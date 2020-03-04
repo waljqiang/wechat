@@ -26,6 +26,11 @@ class Wechat{
 	public static $cache = true;
 
 	/**
+	 * 是否启用消息加密
+	 */
+	public static $encode = true;
+
+	/**
 	 * 微信公众号配置信息
 	 * @var array
 	 */

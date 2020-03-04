@@ -3,6 +3,7 @@ return [
 	"wechat" => [
 		"appid" => "wx5b18b274db7372d6",
 		"secret" => "3cfcde5dfaf9eb01c2762a5aeadf68b2",
+		"encode" => false,
 		"cache" => true,//开启缓存
 		"accesstokenexpire" => 7200,//access_token缓存时间
 		"commonexpire" => 2592000,//公众缓存时间，包括自定义菜单

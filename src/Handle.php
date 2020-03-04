@@ -23,6 +23,9 @@ class Handle{
 		"Account" => [
 			"getQrcode"
 		],
+		"Receive" => [
+			"handleWechatMessage"
+		]
 	];
 	public static function create($className,$wechat){
 		$class = __NAMESPACE__ . "\\Handles\\" . $className;

@@ -16,8 +16,9 @@ if(file_exists(CONF)){
 	$wechat = require_once __DIR__ . "/Configs/wechat.php";
 }
 
-Base::$cache = Wechat::$cache = $wechat["wechat"]["cache"]; 
+Base::$cache = Wechat::$cache = $wechat["wechat"]["cache"];
 Wechat::$config = $wechat["wechat"];
+Wechat::$encode = $wechat["wechat"]["encode"];
 Wechat::$container = new Container;
 //加载缓存
 Wechat::$container->singleton("Redis",function() use ($wechat){

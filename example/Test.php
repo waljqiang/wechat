@@ -61,7 +61,24 @@ try{
 	//获取用户基本信息
 	/*$res = Wechat::getInstance()->getUserList(1,10);
 	var_dump($res);*/
-	$res = Wechat::getInstance()->getQrcode(12,"QR_SCENE",120);
+	//生成带参数的二维码
+/*	$res = Wechat::getInstance()->getQrcode(12,"QR_SCENE",120);
+	var_dump($res);*/
+	//公众号推送的消息处理
+	$message = "<xml>
+  <ToUserName><![CDATA[toUser]]></ToUserName>
+  <FromUserName><![CDATA[fromUser]]></FromUserName>
+  <CreateTime>1348831860</CreateTime>
+  <MsgType><![CDATA[text]]></MsgType>
+  <Content><![CDATA[this is a test]]></Content>
+  <MsgId>1234567890123456</MsgId>
+</xml>";
+	$appid = "";
+	$signature = "";
+	$timestamp = "";
+	$nonce = "";
+	$echostr = "";
+	$res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$timestamp,$nonce,$echostr);
 	var_dump($res);
 }catch(\Exception $e){
 	var_dump($e);
