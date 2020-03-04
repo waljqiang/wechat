@@ -22,6 +22,8 @@ return [
 			"userremarkset" => "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=%s",//设置用户备注
 			"userinfo" => "https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=%s",//获取用户基本信息
 			"userlist" => "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s",//获取用户列表
+			"qrcodeticket" => "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s",//二维码ticket
+			"qrcode" => "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s",//获取二维码
 		],
 		"redis" => [
 			"host" => "192.168.33.10",

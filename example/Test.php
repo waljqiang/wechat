@@ -59,7 +59,9 @@ try{
 /*	$res = Wechat::getInstance()->setUserRemark("ocYxcuAEy30bX0NXmGn4ypqx3tI0",'123');
 	var_dump($res);*/
 	//获取用户基本信息
-	$res = Wechat::getInstance()->getUserList(1,10);
+	/*$res = Wechat::getInstance()->getUserList(1,10);
+	var_dump($res);*/
+	$res = Wechat::getInstance()->getQrcode(12,"QR_SCENE",120);
 	var_dump($res);
 }catch(\Exception $e){
 	var_dump($e);

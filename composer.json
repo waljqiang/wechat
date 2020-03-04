@@ -10,6 +10,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "php": ">=5.4",
         "guzzlehttp/guzzle": "^6.3",
         "predis/predis": "~1.0",
         "illuminate/container": "5.4.x-dev"

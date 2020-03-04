@@ -32,6 +32,11 @@ class Base{
 	 */
 	const USERLIST = "WECHAT:USER:LIST";
 
+	/**
+	 * 二维码缓存key
+	 */
+	const QRCODE = "WECHAT:QRCODE";
+
 	protected $accessToken;
 	protected $appid;
 	protected $secret;
