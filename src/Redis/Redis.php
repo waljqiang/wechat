@@ -1,6 +1,7 @@
 <?php
-namespace Waljqiang\Wechat;
+namespace Waljqiang\Wechat\Redis;
 use Predis\Client;
+use Predis\Command\ScriptCommand;
 
 class Redis{
 	private $redis;
@@ -17,6 +18,11 @@ class Redis{
     public function getValues($key){
     	$result = unserialize($this->redis->get($key));
     	return !empty($result) ? $result : "";
+    }
+
+    public function matchDel($keyword){
+        $keyword = $this->redis->getOptions()->prefix->getPrefix() . $keyword;
+        return $this->redis->matchDelCommand($keyword);
     }
 
     public function __call($method,$args){

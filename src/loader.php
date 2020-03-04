@@ -3,14 +3,20 @@ namespace Waljqiang\Wechat;
 
 use Illuminate\Container\Container;
 use Waljqiang\Wechat\Wechat;
-use Waljqiang\Wechat\Redis;
+use Waljqiang\Wechat\Redis\Redis;
+use Waljqiang\Wechat\Redis\Script\MatchDelKeysBy;
 use GuzzleHttp\Client;
 
 //加载配置
-define("WECHATURL",__DIR__ . "/Configs/wechat.php");
-$wechat = require WECHATURL;
+require_once __DIR__ . "/defined.php";
+if(file_exists(CONF)){
+	$wechat = require_once CONF;
+}else{
+	$wechat = require_once __DIR__ . "/Configs/wechat.php";
+}
+
 Wechat::$cache = $wechat["wechat"]["cache"];
-Wechat::$wechatUrl = $wechat["wechat"]["wechaturl"];
+Wechat::$config = $wechat["wechat"];
 Wechat::$container = new Container;
 //加载缓存
 Wechat::$container->singleton("Redis",function() use ($wechat){
@@ -22,7 +28,12 @@ Wechat::$container->singleton("Redis",function() use ($wechat){
 		"prefix" => $wechat["wechat"]["redis"]["prefix"],
 		"parameters" => [
 			"password" => $wechat["wechat"]["redis"]["password"]
-		]
+		],
+		'profile' => function ($options) {
+	        $profile = $options->getDefault('profile');
+	        $profile->defineCommand('matchDelCommand', MatchDelKeysBy::class);
+	        return $profile;
+	    },
 	]);
 });
 //加载http客户端
@@ -32,4 +43,5 @@ Wechat::$container->singleton("HttpClient",function(){
 
 if(Wechat::$cache){
 	Wechat::$accessTokenExpire = $wechat["wechat"]["accesstokenexpire"];
+	Wechat::$commonExpire = $wechat["wechat"]["commonexpire"];
 }
