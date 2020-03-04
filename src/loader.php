@@ -3,6 +3,7 @@ namespace Waljqiang\Wechat;
 
 use Illuminate\Container\Container;
 use Waljqiang\Wechat\Wechat;
+use Waljqiang\Wechat\Handles\Base;
 use Waljqiang\Wechat\Redis\Redis;
 use Waljqiang\Wechat\Redis\Script\MatchDelKeysBy;
 use GuzzleHttp\Client;
@@ -15,7 +16,7 @@ if(file_exists(CONF)){
 	$wechat = require_once __DIR__ . "/Configs/wechat.php";
 }
 
-Wechat::$cache = $wechat["wechat"]["cache"];
+Base::$cache = Wechat::$cache = $wechat["wechat"]["cache"]; 
 Wechat::$config = $wechat["wechat"];
 Wechat::$container = new Container;
 //加载缓存
@@ -43,5 +44,6 @@ Wechat::$container->singleton("HttpClient",function(){
 
 if(Wechat::$cache){
 	Wechat::$accessTokenExpire = $wechat["wechat"]["accesstokenexpire"];
-	Wechat::$commonExpire = $wechat["wechat"]["commonexpire"];
+	Base::$commonExpire = $wechat["wechat"]["commonexpire"];
+	Base::$wechatUrl = $wechat["wechat"]["wechaturl"];
 }

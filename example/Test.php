@@ -7,7 +7,7 @@ try{
 	$accessToken = Wechat::getInstance()->getAccessToken();
 	var_dump($accessToken);
 	//创建菜单
-	$options = [
+	/*$options = [
 		"button" => [
 			[
 				"type" => "view",
@@ -27,40 +27,40 @@ try{
 		]
 	];
 	$rs = Wechat::getInstance()->setMenu($options);
-	var_dump($rs);
+	var_dump($rs);*/
 	//查询菜单
-	/*$menu = Wechat::getInstance()->getMenu();
+/*	$menu = Wechat::getInstance()->getMenu();
 	var_dump($menu);*/
 	//删除菜单
-	/*$rs = Wechat::getInstance()->deleteMenu();
+/*	$rs = Wechat::getInstance()->deleteMenu();
 	var_dump($rs);*/
 	//创建公众号标签
 /*	$res = Wechat::getInstance()->setTag("店小二");
 	var_dump($res);*/
 	//获取公众号标签
-	/*$res = Wechat::getInstance()->getTag();
+/*	$res = Wechat::getInstance()->getTag();
 	var_dump($res);*/
 	//删除公众号标签
 /*	$res = Wechat::getInstance()->deleteTag(134);
-	var_dump($res);*/
-	//获取公众号标签下的粉丝列表
-	/*$res = Wechat::getInstance()->getTagFans(134,1,10);
-	var_dump($res);*/
-	//为用户打标签，一次最多支持20个
-	/*$rs = Wechat::getInstance()->tagToUsers(134,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
+	var_dump($res);
+*/	//获取公众号标签下的粉丝列表
+/*	$res = Wechat::getInstance()->getTagFans(134,1,10);
+	var_dump($res);
+*/	//为用户打标签，一次最多支持20个
+/*	$rs = Wechat::getInstance()->tagToUsers(134,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
 	var_dump($rs);*/
 	//为用户取消标签,一次最多支持50个
-	/*$rs = Wechat::getInstance()->tagDelUsers(134,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
+/*	$rs = Wechat::getInstance()->tagDelUsers(134,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
 	var_dump($rs);*/
 	//获取用户标签列表
-	/*$res = Wechat::getInstance()->getUserTags("ocYxcuAEy30bX0NXmGn4ypqx3tI0");
-	var_dump($res);*/
-	//为用户打备注
-	/*$res = Wechat::getInstance()->setUserRemark("ocYxcuAEy30bX0NXmGn4ypqx3tI0",'123');
+/*	$res = Wechat::getInstance()->getUserTags("ocYxcuAEy30bX0NXmGn4ypqx3tI0");
+	var_dump($res);
+*/	//为用户打备注
+/*	$res = Wechat::getInstance()->setUserRemark("ocYxcuAEy30bX0NXmGn4ypqx3tI0",'123');
 	var_dump($res);*/
 	//获取用户基本信息
-	/*$res = Wechat::getInstance()->getUserList(1,10);
-	var_dump($res);*/
+	$res = Wechat::getInstance()->getUserList(1,10);
+	var_dump($res);
 }catch(\Exception $e){
 	var_dump($e);
 }
