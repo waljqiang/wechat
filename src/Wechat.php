@@ -3,6 +3,7 @@ namespace Waljqiang\Wechat;
 
 use Waljqiang\Wechat\Exceptions\WechatException;
 use Waljqiang\Wechat\Handle;
+use Waljqiang\Wechat\Handles\Reply;
 
 class Wechat{
 	/**
@@ -119,6 +120,10 @@ class Wechat{
 		return $this->secret;
 	}
 
+	public function getPublishAccount(){
+		return self::$config["publish"];
+	}
+
 	/**
 	 * 发送http请求
 	 *
@@ -134,14 +139,19 @@ class Wechat{
 				$method,
 				$url,
 				$options
-			)->getBody();
-			if (!is_null($result = @json_decode($result, true))){
-				if(isset($result["errcode"]) && $result["errcode"] != 0)
-					throw new  WechatException($result["errmsg"],$result["errcode"]);			
-            } else {
-                throw new \Exception("result explain error",WechatException::RESULTERROR);
-            }
-            return $result;
+			);
+			if($result->getStatusCode() == 200){
+				$result = $result->getBody();
+				if (!is_null($result = @json_decode($result, true))){
+					if(isset($result["errcode"]) && $result["errcode"] != 0)
+						throw new  WechatException($result["errmsg"],$result["errcode"]);			
+	            } else {
+	                throw new \Exception("result explain error",WechatException::RESULTERROR);
+	            }
+	            return $result;
+	        }else{
+	        	throw new \Exception($e->getMessage(),$e->getCode());
+	        }
 		}catch(\Exception $e){
 			throw new \Exception($e->getMessage(),$e->getCode());
 		}

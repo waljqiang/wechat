@@ -15,16 +15,7 @@ class User extends Base{
 			throw new WechatException("The name of tag must less 30",WechatException::TAGNAMEERROR);
 		}
 		$url = sprintf(self::$wechatUrl["tagset"],$this->accessToken);
-		$res = $this->request($url,"POST",[
-			"headers" => [
-				"Accept" => "application/json",
-			],
-			"json" => [
-				"tag" => [
-					"name" => $tagName
-				]
-			]
-		]);
+		$res = $this->request($url,"POST",["body" => json_encode(["tag" => ["name" => $tagName]], JSON_UNESCAPED_UNICODE)]);
 		self::$cache && $this->redis->del(self::TAG . ":" . $this->appid);
 		return $res;
 	}
@@ -60,16 +51,14 @@ class User extends Base{
 				$this->tagDelUsers($tagID,$del);
 			}
 		}
+		$buffer = [
+			"tag" => [
+				"id" => $tagID
+			]
+		];
 		$url = sprintf(self::$wechatUrl["tagdel"],$this->accessToken);
 		$res = $this->request($url,"POST",[
-			"headers" => [
-				"Accept" => "application/json"
-			],
-			"json" => [
-				"tag" => [
-					"id" => $tagID
-				]
-			]
+			"body" => json_encode($buffer, JSON_UNESCAPED_UNICODE)
 		]);
 		if(self::$cache){
 			$keys = [
@@ -96,12 +85,13 @@ class User extends Base{
 	 */
 	public function getTagFans($tagID,$pageIndex = 1,$pageOffset = 10){
 		$tagFansKey = self::TAGFANS . ":" . $this->appid . ":" . $tagID;
-		if(!self::$cache || !($this->redis->getValues($tagFansKey))){
+		if(!self::$cache || !($res = $this->redis->getValues($tagFansKey))){
 			$data = $this->_getTagFans($tagID);
-			$res["list"] = $data["data"]["openid"];
+			$res["list"] = isset($data["data"]["openid"]) ? $data["data"]["openid"] : [];
 			while($data["count"] > 0 ){
 				$data = $this->_getTagFans($tagID,$data["next_openid"]);
-				$res["list"] = array_merge($res["list"],$data["data"]["openid"]);
+				$openIDs = isset($data["data"]["openid"]) ? $data["data"]["openid"] : [];
+				$res["list"] = array_merge($res["list"],$openIDs);
 			}
 			$res["total"] = count($res["list"]);
 			self::$cache && $this->redis->setValues($tagFansKey,$res,self::$commonExpire);
@@ -127,14 +117,12 @@ class User extends Base{
 	 */
 	public function tagToUsers($tagID,$openIDs){
 		$url = sprintf(self::$wechatUrl["tagtousers"],$this->accessToken);
+		$buffer = [
+			"openid_list" => $openIDs,
+			"tagid" => $tagID
+		];
 		$res = $this->request($url,"POST",[
-			"headers" => [
-				"Accept" => "application/json"
-			],
-			"json" => [
-				"openid_list" => $openIDs,
-				"tagid" => $tagID
-			]
+			"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
 		]);
 		if(self::$cache){
 			//删除该标签下粉丝列表
@@ -157,14 +145,12 @@ class User extends Base{
 	 */
 	public function tagDelUsers($tagID,$openIDs){
 		$url = sprintf(self::$wechatUrl["tagdelusers"],$this->accessToken);
+		$buffer = [
+			"openid_list" => $openIDs,
+			"tagid" => $tagID
+		];
 		$res = $this->request($url,"POST",[
-			"headers" => [
-				"Accept" => "application/json"
-			],
-			"json" => [
-				"openid_list" => $openIDs,
-				"tagid" => $tagID
-			]
+			"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
 		]);
 		if(self::$cache){
 			//删除该标签下粉丝列表
@@ -187,16 +173,14 @@ class User extends Base{
 	public function getUserTags($openID){
 		$userTagsKey = self::USERTAGS . ":" . $this->appid . ":" . $openID;
 		if(!self::$cache || !($res = $this->redis->getValues($userTagsKey))){
+			$buffer = [
+				"openid" => $openID
+			];
 			$url = sprintf(self::$wechatUrl["usertags"],$this->accessToken);
 			$res = $this->request($url,"POST",[
-				"headers" => [
-					"Accept" => "application/json"
-				],
-				"json" => [
-					"openid" => $openID
-				]
+				"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
 			]);
-			$res = $res["tag_list"];
+			$res = $res["tagid_list"];
 			self::$cache && $this->redis->setValues($userTagsKey,$res,self::$commonExpire);
 		}
 		return $res;
@@ -212,15 +196,13 @@ class User extends Base{
 		if(strlen($remark) >= 30){
 			throw new WechatException("The name of remark must less 30",WechatException::USERREMARKERROR);
 		}
+		$buffer = [
+			"openid" => $openid,
+			"remark" => $remark
+		];
 		$url = sprintf(self::$wechatUrl["userremarkset"],$this->accessToken);
 		$res = $this->request($url,"POST",[
-			"headers" => [
-				"Accept" => "application/json"
-			],
-			"json" => [
-				"openid" => $openid,
-				"remark" => $remark
-			]
+			"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
 		]);
 		self::$cache && $this->redis->del(self::USERINFO . ":" . $this->appid . ":" . $openid);
 		return true;
@@ -252,13 +234,14 @@ class User extends Base{
 	 */
 	public function getUserList($pageIndex = 0,$pageOffset = 10){
 		$userListKey = self::USERLIST . ":" . $this->appid;
-		if(!self::$cache || !($this->redis->getValues($userListKey))){
+		if(!self::$cache || !($res = $this->redis->getValues($userListKey))){
 			$data = $this->_getUserList();
 			$res["total"] = $data["total"];
-			$res["list"] = $data["data"]["openid"];
+			$res["list"] = isset($data["data"]["openid"]) ? $data["data"]["openid"] : [];
 			while($data["count"] > 0){
 				$data = $this->_getUserList($data["next_openid"]);
-				$res["list"] = array_merge($res["list"],$data["data"]["openid"]);
+				$openIDs = isset($data["data"]["openid"]) ? $data["data"]["openid"] : [];
+				$res["list"] = array_merge($res["list"],$openIDs);
 			}
 			self::$cache && $this->redis->setValues($userListKey,$res,self::$commonExpire); 
 		}
@@ -276,12 +259,9 @@ class User extends Base{
 
 	private function _getTagFans($tagID,$openID = ""){
 		$url = sprintf(self::$wechatUrl["tagfans"],$this->accessToken);
-		$data = empty($openID) ? [ "tagid" => $tagID ] : [ "tagid" => $tagID,"next_openid" => $openID];
+		$data = empty($openID) ? json_encode([ "tagid" => $tagID ],JSON_UNESCAPED_UNICODE) : json_encode([ "tagid" => $tagID,"next_openid" => $openID],JSON_UNESCAPED_UNICODE);
 		$res = $this->request($url,"POST",[
-			"headers" => [
-				"Accept" => "application/json"
-			],
-			"json" => $data
+			"body" => $data
 		]);
 		return $res;
 	}

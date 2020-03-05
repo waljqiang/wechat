@@ -23,8 +23,18 @@ class Handle{
 		"Account" => [
 			"getQrcode"
 		],
+		"Message" => [
+			"createKfAccount",
+			"modifyKfAccount",
+			"deleteKfAccount",
+			"getKfAccount",
+			"uploadAvatar"
+		],
 		"Receive" => [
 			"handleWechatMessage"
+		],
+		"Reply" => [
+			"replyUser"
 		]
 	];
 	public static function create($className,$wechat){

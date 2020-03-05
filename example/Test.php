@@ -7,7 +7,7 @@ try{
 	$accessToken = Wechat::getInstance()->getAccessToken();
 	var_dump($accessToken);
 	//创建菜单
-	/*$options = [
+/*	$options = [
 		"button" => [
 			[
 				"type" => "view",
@@ -35,37 +35,40 @@ try{
 /*	$rs = Wechat::getInstance()->deleteMenu();
 	var_dump($rs);*/
 	//创建公众号标签
-/*	$res = Wechat::getInstance()->setTag("店小二");
+/*	$res = Wechat::getInstance()->setTag("店小二1");
 	var_dump($res);*/
 	//获取公众号标签
 /*	$res = Wechat::getInstance()->getTag();
 	var_dump($res);*/
 	//删除公众号标签
-/*	$res = Wechat::getInstance()->deleteTag(134);
-	var_dump($res);
-*/	//获取公众号标签下的粉丝列表
-/*	$res = Wechat::getInstance()->getTagFans(134,1,10);
-	var_dump($res);
-*/	//为用户打标签，一次最多支持20个
-/*	$rs = Wechat::getInstance()->tagToUsers(134,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
+/*	$res = Wechat::getInstance()->deleteTag(105);
+	var_dump($res);*/
+	//获取公众号标签下的粉丝列表
+/*	$res = Wechat::getInstance()->getTagFans(105,1,10);
+	var_dump($res);*/
+	//为用户打标签，一次最多支持20个
+/*	$rs = Wechat::getInstance()->tagToUsers(105,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
 	var_dump($rs);*/
 	//为用户取消标签,一次最多支持50个
-/*	$rs = Wechat::getInstance()->tagDelUsers(134,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
+/*	$rs = Wechat::getInstance()->tagDelUsers(102,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
 	var_dump($rs);*/
 	//获取用户标签列表
-/*	$res = Wechat::getInstance()->getUserTags("ocYxcuAEy30bX0NXmGn4ypqx3tI0");
-	var_dump($res);
-*/	//为用户打备注
-/*	$res = Wechat::getInstance()->setUserRemark("ocYxcuAEy30bX0NXmGn4ypqx3tI0",'123');
+/*	$res = Wechat::getInstance()->getUserTags("o9lXF0oPTBOMS44dILU1kfZMlra0");
+	var_dump($res);*/
+	//为用户打备注
+/*	$res = Wechat::getInstance()->setUserRemark("o9lXF0oPTBOMS44dILU1kfZMlra0",'123');
 	var_dump($res);*/
 	//获取用户基本信息
-	/*$res = Wechat::getInstance()->getUserList(1,10);
+/*	$res = Wechat::getInstance()->getUserInfo("o9lXF0oPTBOMS44dILU1kfZMlra0");
+	var_dump($res);*/
+	//获取用户列表
+/*	$res = Wechat::getInstance()->getUserList(1,10);
 	var_dump($res);*/
 	//生成带参数的二维码
 /*	$res = Wechat::getInstance()->getQrcode(12,"QR_SCENE",120);
 	var_dump($res);*/
 	//公众号推送的消息处理
-	$message = "<xml>
+	/*$message = "<xml>
   <ToUserName><![CDATA[toUser]]></ToUserName>
   <FromUserName><![CDATA[fromUser]]></FromUserName>
   <CreateTime>1348831860</CreateTime>
@@ -73,58 +76,46 @@ try{
   <Content><![CDATA[this is a test]]></Content>
   <MsgId>1234567890123456</MsgId>
 </xml>";
-	$appid = "";
-	$signature = "";
-	$timestamp = "";
-	$nonce = "";
-	$echostr = "";
+	$appid = "wx5b18b274db7372d6";
+	$signature = "dsdasdfdas";
+	$timestamp = "1122321234534";
+	$nonce = "123456";
+	$echostr = "123adds";
 	$res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$timestamp,$nonce,$echostr);
-	var_dump($res);
+	var_dump($res);*/
+	//公众号回复消息
+	/*$message = [
+		"ToUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
+		"FromUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
+		"Content" => "您好"
+	];
+	Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles\Reply::TEXT,$message);*/
+	//添加客服账号
+	/*$res = Wechat::getInstance()->createKfAccount([
+		"kf_account" => "test1@test",
+		"nickname" => "客服1",
+		"password" => md5("123456")
+	]);
+	var_dump($res);*/
+	//修改客服账号
+	/*$res = Wechat::getInstance()->modifyKfAccount([
+		"kf_account" => "test",
+		"nickname" => "客服2",
+		"password" => "123456"
+	]);
+	var_dump($res);*/
+	/*//删除客服账号
+	$res = Wechat::getInstance()->deleteKfAccount([
+		"kf_account" => "test",
+		"nickname" => "客服1",
+		"password" => "123456"
+	]);
+	var_dump($res);*/
+/*	$res = Wechat::getInstance()->uploadAvatar("test@wxid","/vagrant/wechat/timg.jpg");
+	var_dump($res);*/
+	//获取客服账号
+	/*$res = Wechat::getInstance()->getKfAccount();
+	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
 }
-
-
-/*use Predis\Command\ScriptCommand;
-
-class MatchDelKeysBy extends ScriptCommand
-{
-    public function getKeysCount()
-    {
-        // Tell Predis to use all the arguments but the last one as arguments
-        // for KEYS. The last one will be used to populate ARGV.
-        return -1;
-    }
-
-    public function getScript()
-    {
-        return <<<LUA
-			local keys = redis.call('keys',ARGV[1])
-			for i = 1,#keys,10000 do
-				redis.call('del',unpack(keys,i,math.min(i+9999,#keys)))
-			end
-			return #keys
-LUA;
-    }
-}
-
-$client = new Predis\Client([
-		"host" => "192.168.33.10",
-		"port" => 6379,
-		"database" => 0
-	],[
-		"prefix" => "waljqiang:",
-		"parameters" => [
-			"password" => "1f494c4e0df9b837dbcc82eebed35ca3f2ed3fc5f6428d75bb542583fda2170f"
-		],
-	    'profile' => function ($options) {
-	        $profile = $options->getDefault('profile');
-	        $profile->defineCommand('matchDel', 'MatchDelKeysBy');
-
-	        return $profile;
-	    },
-]);
-
-//$client->mset('foo', 10, 'foobar', 100);
-
-var_export($client->matchDel('foo*'));*/

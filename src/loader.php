@@ -17,6 +17,7 @@ if(file_exists(CONF)){
 }
 
 Base::$cache = Wechat::$cache = $wechat["wechat"]["cache"];
+Base::$wechatUrl = $wechat["wechat"]["wechaturl"];
 Wechat::$config = $wechat["wechat"];
 Wechat::$encode = $wechat["wechat"]["encode"];
 Wechat::$container = new Container;
@@ -44,7 +45,6 @@ Wechat::$container->singleton("HttpClient",function(){
 });
 
 if(Wechat::$cache){
-	Wechat::$accessTokenExpire = $wechat["wechat"]["accesstokenexpire"];
 	Base::$commonExpire = $wechat["wechat"]["commonexpire"];
-	Base::$wechatUrl = $wechat["wechat"]["wechaturl"];
+	Wechat::$accessTokenExpire = $wechat["wechat"]["accesstokenexpire"];
 }

@@ -13,10 +13,7 @@ class Menu extends Base{
 	public function setMenu($options){
 		$url = sprintf(self::$wechatUrl['menuset'],$this->accessToken);
 		$res = $this->request($url,"POST",[
-			"headers" => [
-				"Accept" => "application/json"
-			],
-			"json" => $options
+			"body" => json_encode($options, JSON_UNESCAPED_UNICODE)
 		]);
 		self::$cache && $this->redis->del(self::MENU . ":" . $this->appid);
 		return true;

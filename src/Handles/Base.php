@@ -33,9 +33,16 @@ class Base{
 	const USERLIST = "WECHAT:USER:LIST";
 
 	/**
-	 * 二维码缓存key
+	 * 二维码缓存key标识
 	 */
 	const QRCODE = "WECHAT:QRCODE";
+
+	/**
+	 * 客服账号列表缓存key标识
+	 */
+	const KFACCOUNT = "WECHAT:KFACCOUNT:LIST";
+
+	const AVATARTYPE = ["jpg"];
 
 	protected $accessToken;
 	protected $appid;

@@ -13,10 +13,7 @@ class Account extends Base{
 	private function getTicket($data){
 		$url = sprintf(self::$wechatUrl["qrcodeticket"],$this->accessToken);
 		$res = $this->request($url,"POST",[
-			"headers" => [
-				"Accept" => "application/json"
-			],
-			"json" => $data
+			"body" => json_encode($data,JSON_UNESCAPED_UNICODE)
 		]);
 		return $res;
 	}
@@ -61,8 +58,7 @@ class Account extends Base{
 		}
 		if(!self::$cache || !($res = $this->redis->getValues($qrcodeKey))){
 			$ticket = $this->getTicket($data);
-			$url = sprintf(self::$wechatUrl["qrcode"],urlencode($ticket["ticket"]));
-			$res = base64_encode($this->request($url));
+			$res = sprintf(self::$wechatUrl["qrcode"],urlencode($ticket["ticket"]));
 			if(in_array($type,["QR_LIMIT_SCENE","QR_LIMIT_STR_SCENE"]))
 				$this->redis->setValues($qrcodeKey,$res);
 			else

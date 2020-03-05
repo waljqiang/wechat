@@ -1,9 +1,10 @@
 <?php
 return [
 	"wechat" => [
-		"appid" => "wx5b18b274db7372d6",
-		"secret" => "3cfcde5dfaf9eb01c2762a5aeadf68b2",
-		"encode" => false,
+		"appid" => "wxfae2fb734a9ddf58",
+		"secret" => "78fd8a05411fbfd3b1e899d8a64b026a",
+		"encode" => false,//消息是否加密
+		"publish" => "gh_3c884a361561",//全网发布账号
 		"cache" => true,//开启缓存
 		"accesstokenexpire" => 7200,//access_token缓存时间
 		"commonexpire" => 2592000,//公众缓存时间，包括自定义菜单
@@ -25,6 +26,11 @@ return [
 			"userlist" => "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s",//获取用户列表
 			"qrcodeticket" => "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s",//二维码ticket
 			"qrcode" => "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s",//获取二维码
+			"kfcreate" => "https://api.weixin.qq.com/customservice/kfaccount/add?access_token=%s",//添加客服账号
+			"kfmodify" => "https://api.weixin.qq.com/customservice/kfaccount/update?access_token=%s",//修改客服账号
+			"kfdel" => "https://api.weixin.qq.com/customservice/kfaccount/del?access_token=%s",//删除客服账号
+			"kfavatar" => "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg?access_token=%s&kf_account=%s",//上传客服头像
+			"kfget" => "https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token=%s",//获取所有客服账号
 		],
 		"redis" => [
 			"host" => "192.168.33.10",
