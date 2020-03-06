@@ -4,6 +4,8 @@ namespace Waljqiang\Wechat\Handles;
 use Waljqiang\Wechat\Exceptions\WechatException;
 use Carbon\Carbon;
 
+use Waljqiang\Wechat\Wechat;
+
 /**
  * 回复用户消息处理类
  * 
@@ -50,7 +52,7 @@ class Reply extends Message{
 		}
 		if(!is_null($res)){
 			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Reply Message[" . $res . "]",DEBUG);
-			echo $res;
+			echo Wechat::$encode ? $this->wechat->encryptMsg($res) : $res;
 		}
 		exit(-1);
 	}

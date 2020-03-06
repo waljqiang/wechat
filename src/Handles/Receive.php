@@ -3,7 +3,6 @@ namespace Waljqiang\Wechat\Handles;
 
 use Waljqiang\Wechat\Wechat;
 
-
 /**
  * 公众号推送消息处理类
  * 
@@ -28,9 +27,8 @@ class Receive extends Message{
 	 * @return
 	 */
 	public function handleWechatMessage($message,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = ""){
-        $response = "";
         $appid = empty($appid) ? $this->appid : $appid;
-		$message = Wechat::$encode ? $this->decryptMessage() : $message;
+		$message = Wechat::$encode ? $this->wechat->decryptMessage($signature,$timestamp,$nonce,$message) : $message;
 		if(!empty($message)){
             $obj = simplexml_load_string($message,'SimpleXMLElement',LIBXML_NOCDATA);
             $obj = json_decode(json_encode($obj),true);
@@ -39,21 +37,19 @@ class Receive extends Message{
                 $this->testPublish($obj,$timestamp,$nonce);
                 exit(-1);
             }
-        }
-        switch ($obj["MsgType"]) {
-            case self::EVENT:
-                $this->handleEvent($obj,$appid,$signature,$timestamp,$nonce);
-                break;
-            
-            default:
-                # code...
-                break;
-        }
-        return $obj;
-	}
 
-	public function decryptMessage(){
-		return $message;
+            switch ($obj["MsgType"]) {
+                case self::EVENT:
+                    $this->handleEvent($obj,$appid,$signature,$timestamp,$nonce);
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+            return $obj;
+        }
+        return "";  
 	}
 
 	/**

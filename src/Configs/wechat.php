@@ -3,6 +3,8 @@ return [
 	"wechat" => [
 		"appid" => "wxfae2fb734a9ddf58",
 		"secret" => "78fd8a05411fbfd3b1e899d8a64b026a",
+		"token" => "pamtest",
+		"encodingAesKey" => "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG",
 		"encode" => FALSE,//消息是否加密
 		"publish" => "gh_3c884a361561",//全网发布账号
 		"cache" => TRUE,//开启缓存

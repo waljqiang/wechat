@@ -67,28 +67,6 @@ try{
 	//生成带参数的二维码
 /*	$res = Wechat::getInstance()->getQrcode(12,"QR_SCENE",120);
 	var_dump($res);*/
-	//公众号推送的消息处理
-/*	$message = "<xml>
-  <ToUserName><![CDATA[toUser]]></ToUserName>
-  <FromUserName><![CDATA[FromUser]]></FromUserName>
-  <CreateTime>123456789</CreateTime>
-  <MsgType><![CDATA[event]]></MsgType>
-  <Event><![CDATA[subscribe]]></Event>
-</xml>";
-	$appid = "wx5b18b274db7372d6";
-	$signature = "dsdasdfdas";
-	$timestamp = "1122321234534";
-	$nonce = "123456";
-	$echostr = "123adds";
-	$res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$timestamp,$nonce,$echostr);
-	var_dump($res);*/
-	//公众号回复消息
-	/*$message = [
-		"ToUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
-		"FromUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
-		"Content" => "您好"
-	];
-	Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles\Reply::TEXT,$message);*/
 	//添加客服账号
 	/*$res = Wechat::getInstance()->createKfAccount([
 		"kf_account" => "test1@test",
@@ -115,6 +93,82 @@ try{
 	//获取客服账号
 	/*$res = Wechat::getInstance()->getKfAccount();
 	var_dump($res);*/
+	//加密消息
+	// 第三方发送消息给公众平台
+	/*$encodingAesKey = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";
+	$token = "pamtest";
+	$timeStamp = "1409304348";
+	$nonce = "123456";
+	$appid = "wx5b18b274db7372d6";
+	$text = "<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName><FromUserName><![CDATA[gh_7f083739789a]]></FromUserName><CreateTime>1407743423</CreateTime><MsgType><![CDATA[video]]></MsgType><Video><MediaId><![CDATA[eYJ1MbwPRJtOvIEabaxHs7TX2D-HV71s79GUxqdUkjm6Gs2Ed1KF3ulAOA9H1xG0]]></MediaId><Title><![CDATA[testCallBackReplyVideo]]></Title><Description><![CDATA[testCallBackReplyVideo]]></Description></Video></xml>";
+	Wechat::getInstance()->initDecrypt($token,$encodingAesKey,$appid);
+	$res = Wechat::getInstance()->encryptMsg($text,$timeStamp,$nonce);
+	var_dump("加密后的消息:" . $res);
+
+	$obj = simplexml_load_string($res,'SimpleXMLElement',LIBXML_NOCDATA);
+    $obj = json_decode(json_encode($obj),true);
+    $msg_sigature = $obj["MsgSignature"];
+    $msg_timeStamp = $obj["TimeStamp"];
+    $msg_nonce = $obj["Nonce"];
+    $msg_encryptMsg = $obj["Encrypt"];
+    $format = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><Encrypt><![CDATA[%s]]></Encrypt></xml>";
+	$formatXml = sprintf($format, $obj["Encrypt"]);
+	$res = Wechat::getInstance()->decryptMsg($msg_sigature, $msg_timeStamp, $msg_nonce,$formatXml);
+	var_dump("解密后的消息:" . $res);*/
+	//公众号推送的消息处理
+/*	$message = "<xml>
+  <ToUserName><![CDATA[toUser]]></ToUserName>
+  <FromUserName><![CDATA[FromUser]]></FromUserName>
+  <CreateTime>123456789</CreateTime>
+  <MsgType><![CDATA[event]]></MsgType>
+  <Event><![CDATA[subscribe]]></Event>
+</xml>";
+	$appid = "wx5b18b274db7372d6";
+	$signature = "dsdasdfdas";
+	$timestamp = "1122321234534";
+	$nonce = "123456";
+	$res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$timestamp,$nonce);
+	echo "-------------------------------------------------" . "</br>"; 
+	echo "明文消息" . "</br>";
+	var_dump($res);*/
+
+	//加密,注意配置文件中encode要设置为true
+	/*$appid = "wx5b18b274db7372d6";
+	$text = "<xml>
+  <ToUserName><![CDATA[toUser]]></ToUserName>
+  <FromUserName><![CDATA[FromUser]]></FromUserName>
+  <CreateTime>123456789</CreateTime>
+  <MsgType><![CDATA[event]]></MsgType>
+  <Event><![CDATA[subscribe]]></Event>
+</xml>";
+	$encrypt = Wechat::getInstance()->encryptMsg($text);
+	echo "-------------------------------------------------" . "</br>";
+	echo "密文消息" . "</br>";
+	var_dump($encrypt);
+	echo "</br>";
+
+	$obj = simplexml_load_string($encrypt,'SimpleXMLElement',LIBXML_NOCDATA);
+    $obj = json_decode(json_encode($obj),true);
+    $msg_sigature = $obj["MsgSignature"];
+    $msg_timeStamp = $obj["TimeStamp"];
+    $msg_nonce = $obj["Nonce"];
+    $msg_encryptMsg = $obj["Encrypt"];
+    $format = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><Encrypt><![CDATA[%s]]></Encrypt></xml>";
+	$formatXml = sprintf($format, $obj["Encrypt"]);
+
+	$res = Wechat::getInstance()->handleWechatMessage($formatXml,$appid,$msg_sigature,$msg_timeStamp,$msg_nonce);
+	echo "-------------------------------------------------" . "</br>";
+	echo "密文解密后消息" . "</br>";
+	var_dump($res);
+	echo "</br>";
+	echo "-------------------------------------------------" . "</br>";*/
+	//公众号回复消息
+	$message = [
+		"ToUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
+		"FromUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
+		"Content" => "您好"
+	];
+	Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles\Reply::TEXT,$message);
 }catch(\Exception $e){
 	var_dump($e);
 }

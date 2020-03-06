@@ -4,6 +4,7 @@ namespace Waljqiang\Wechat;
 use Waljqiang\Wechat\Exceptions\WechatException;
 use Waljqiang\Wechat\Handle;
 use Waljqiang\Wechat\Handles\Reply;
+use Waljqiang\Wechat\Decryption\Decrypt;
 
 /**
  * 公众号处理类
@@ -51,6 +52,10 @@ use Waljqiang\Wechat\Handles\Reply;
  * boolean setUserRemark($openid,$remark);为用户打备注
  * array function getUserInfo($openid,$lang="zh_CN");获取用户基本信息
  * array getUserList($pageIndex = 0,$pageOffset = 10);获取用户列表
+ *
+ * 消息加解密
+ * void initDecrypt($token,$encodingAesKey,$appid);初始化加解密类,如果信息使用配置文件则不需要使用此函数
+ * string encryptMsg($replyMsg, $timeStamp, $nonce);加密消息
  */
 class Wechat{
 	/**
@@ -107,6 +112,8 @@ class Wechat{
 
 	public $log;
 
+	private $decrypt;//加解密类
+
 	/**
 	 * access_token缓存过期时间
 	 * @var integer
@@ -127,6 +134,7 @@ class Wechat{
 		$this->httpClient = self::$container->make("HttpClient");
 		$this->redis = self::$container->make("Redis");
 		$this->logger = self::$container->make("Log");
+		$this->decrypt = new Decrypt(self::$config["token"],self::$config["encodingAesKey"],$this->appid);
 	}
 
 	/**
@@ -139,6 +147,18 @@ class Wechat{
 	public function init($appid,$secret){
 		$this->appid = $appid;
 		$this->secret = $secret;
+	}
+
+	/**
+	 * 初始化加密类信息
+	 *
+	 * @param  string $token          
+	 * @param  string $encodingAesKey 
+	 * @param  string $appid          
+	 * @return
+	 */
+	public function initDecrypt($token,$encodingAesKey,$appid){
+		$this->decrypt->init($token,$encodingAesKey,$appid);
 	}
 
 	public static function getInstance($className = __CLASS__){
@@ -215,6 +235,43 @@ class Wechat{
 			$this->log && $this->logger->log("Request " . $url . " error info:code[" . $e->getCode() . "]message[" . $e->getMessage() . "]",ERROR);
 			throw new \Exception($e->getMessage(),$e->getCode());
 		}
+	}
+
+	/**
+	 * 将公众平台回复用户的消息加密打包.
+	 * <ol>
+	 *    <li>对要发送的消息进行AES-CBC加密</li>
+	 *    <li>生成安全签名</li>
+	 *    <li>将消息密文和安全签名打包成xml格式</li>
+	 * </ol>
+	 *
+	 * @param $replyMsg string 公众平台待回复用户的消息，xml格式的字符串
+	 * @param $timeStamp string 时间戳，可以自己生成，也可以用URL参数的timestamp
+	 * @param $nonce string 随机串，可以自己生成，也可以用URL参数的nonce
+	 *
+	 * @return
+	 */
+	public function encryptMsg($replyMsg, $timeStamp = NULL, $nonce = NULL){
+		return $this->decrypt->encryptMsg($replyMsg,$timeStamp,$nonce);
+	}
+
+	/**
+	 * 检验消息的真实性，并且获取解密后的明文.
+	 * <ol>
+	 *    <li>利用收到的密文生成安全签名，进行签名验证</li>
+	 *    <li>若验证通过，则提取xml中的加密消息</li>
+	 *    <li>对消息进行解密</li>
+	 * </ol>
+	 *
+	 * @param $signature string 签名串，对应URL参数的msg_signature
+	 * @param $timeStamp string 时间戳 对应URL参数的timestamp
+	 * @param $nonce string 随机串，对应URL参数的nonce
+	 * @param $encryptMsg string 密文，对应POST请求的数据
+	 *
+	 * @return
+	 */
+	public function decryptMsg($signature,$timeStamp,$nonce,$encryptMsg){
+		return $this->decrypt->decryptMsg($signature,$timeStamp,$nonce,$encryptMsg);
 	}
 
 	public function __call($method,$args){
