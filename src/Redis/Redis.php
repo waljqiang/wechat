@@ -3,6 +3,13 @@ namespace Waljqiang\Wechat\Redis;
 use Predis\Client;
 use Predis\Command\ScriptCommand;
 
+/**
+ * redis处理类
+ * 
+ * @author waljqiang<waljqiang@163.com>
+ * @version 1.0
+ * @link https://github.com/waljqiang/wechat.git
+ */
 class Redis{
 	private $redis;
 

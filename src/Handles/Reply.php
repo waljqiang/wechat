@@ -4,6 +4,13 @@ namespace Waljqiang\Wechat\Handles;
 use Waljqiang\Wechat\Exceptions\WechatException;
 use Carbon\Carbon;
 
+/**
+ * 回复用户消息处理类
+ * 
+ * @author waljqiang<waljqiang@163.com>
+ * @version 1.0
+ * @link https://github.com/waljqiang/wechat.git
+ */
 class Reply extends Message{
 
 	/**
@@ -42,6 +49,7 @@ class Reply extends Message{
 				break;
 		}
 		if(!is_null($res)){
+			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Reply Message[" . $res . "]",DEBUG);
 			echo $res;
 		}
 		exit(-1);

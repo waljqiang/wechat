@@ -1,6 +1,13 @@
 <?php
 namespace Waljqiang\Wechat\Handles;
 
+/**
+ * 账号管理类
+ * 
+ * @author waljqiang<waljqiang@163.com>
+ * @version 1.0
+ * @link https://github.com/waljqiang/wechat.git
+ */
 class Account extends Base{
 	/**
 	 * 获取二维码ticket
@@ -15,6 +22,7 @@ class Account extends Base{
 		$res = $this->request($url,"POST",[
 			"body" => json_encode($data,JSON_UNESCAPED_UNICODE)
 		]);
+		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
 		return $res;
 	}
 
@@ -45,15 +53,15 @@ class Account extends Base{
 		switch ($type) {
 			case "QR_SCENE":
 			case "QR_STR_SCENE":
-				$qrcodeKey = self::QRCODE . ":" . $this->appid . ":" . $type . ":" . $str . ":" . $expire;
+				$qrcodeKey = self::QRCODE . $this->appid . ":" . $type . ":" . $str . ":" . $expire;
 				$data["expire_seconds"] = $expire;
 				break;
 			case "QR_LIMIT_SCENE":
 			case "QR_LIMIT_STR_SCENE":
-				$qrcodeKey = self::QRCODE . ":" . $this->appid . ":" . $type . ":" . $str;
+				$qrcodeKey = self::QRCODE . $this->appid . ":" . $type . ":" . $str;
 				break;
 			default:
-				$qrcodeKey = self::QRCODE . ":" . $this->appid . $str . $expire;
+				$qrcodeKey = self::QRCODE . $this->appid . $str . $expire;
 				break;
 		}
 		if(!self::$cache || !($res = $this->redis->getValues($qrcodeKey))){

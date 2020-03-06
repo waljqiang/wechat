@@ -14,10 +14,14 @@
         "guzzlehttp/guzzle": "^6.3",
         "predis/predis": "~1.0",
         "illuminate/container": "5.4.x-dev",
-        "nesbot/carbon": "^1.39"
+        "nesbot/carbon": "^1.39",
+        "monolog/monolog": "^1.24.0"
     },
     "autoload": {
-        "files": ["src/loader.php"],
+        "files": [
+            "src/loader.php",
+            "src/Helpers/Function.php"
+        ],
         "psr-4": {
             "Waljqiang\\Wechat\\": "src/"
         }

@@ -38,16 +38,16 @@ try{
 /*	$res = Wechat::getInstance()->setTag("店小二1");
 	var_dump($res);*/
 	//获取公众号标签
-/*	$res = Wechat::getInstance()->getTag();
+	/*$res = Wechat::getInstance()->getTag();
 	var_dump($res);*/
 	//删除公众号标签
 /*	$res = Wechat::getInstance()->deleteTag(105);
 	var_dump($res);*/
 	//获取公众号标签下的粉丝列表
-/*	$res = Wechat::getInstance()->getTagFans(105,1,10);
+/*	$res = Wechat::getInstance()->getTagFans(103,1,10);
 	var_dump($res);*/
 	//为用户打标签，一次最多支持20个
-/*	$rs = Wechat::getInstance()->tagToUsers(105,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
+	/*$rs = Wechat::getInstance()->tagToUsers(103,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
 	var_dump($rs);*/
 	//为用户取消标签,一次最多支持50个
 /*	$rs = Wechat::getInstance()->tagDelUsers(102,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
@@ -68,13 +68,12 @@ try{
 /*	$res = Wechat::getInstance()->getQrcode(12,"QR_SCENE",120);
 	var_dump($res);*/
 	//公众号推送的消息处理
-	/*$message = "<xml>
+/*	$message = "<xml>
   <ToUserName><![CDATA[toUser]]></ToUserName>
-  <FromUserName><![CDATA[fromUser]]></FromUserName>
-  <CreateTime>1348831860</CreateTime>
-  <MsgType><![CDATA[text]]></MsgType>
-  <Content><![CDATA[this is a test]]></Content>
-  <MsgId>1234567890123456</MsgId>
+  <FromUserName><![CDATA[FromUser]]></FromUserName>
+  <CreateTime>123456789</CreateTime>
+  <MsgType><![CDATA[event]]></MsgType>
+  <Event><![CDATA[subscribe]]></Event>
 </xml>";
 	$appid = "wx5b18b274db7372d6";
 	$signature = "dsdasdfdas";

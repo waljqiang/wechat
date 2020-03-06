@@ -1,6 +1,14 @@
 <?php
 namespace Waljqiang\Wechat;
 
+/**
+ * 注册公众号请求类
+ *
+ * @author waljqiang<waljqiang@163.com>
+ * @version 1.0
+ * @link https://github.com/waljqiang/wechat.git
+ * @static $handleType 记录了各模块类中可使用Wechat调用的方法
+ */
 class Handle{
 	public static $handleType = [
 		"Menu" => [
@@ -37,6 +45,14 @@ class Handle{
 			"replyUser"
 		]
 	];
+
+	/**
+	 * 注册公众号请求处理类
+	 *
+	 * @param  object $className
+	 * @param  Waljqiang\Wechat\Wechat $wechat
+	 * @return
+	 */
 	public static function create($className,$wechat){
 		$class = __NAMESPACE__ . "\\Handles\\" . $className;
 		return new $class($wechat);

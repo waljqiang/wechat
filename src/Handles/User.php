@@ -3,6 +3,14 @@ namespace Waljqiang\Wechat\Handles;
 
 use Waljqiang\Wechat\Exceptions\WechatException;
 
+/**
+ * 用户管理类
+ * 
+ * @author waljqiang<waljqiang@163.com>
+ * @version 1.0
+ * @link https://github.com/waljqiang/wechat.git
+ */
+
 class User extends Base{
 	/**
 	 * 创建公众号标签
@@ -16,8 +24,9 @@ class User extends Base{
 		}
 		$url = sprintf(self::$wechatUrl["tagset"],$this->accessToken);
 		$res = $this->request($url,"POST",["body" => json_encode(["tag" => ["name" => $tagName]], JSON_UNESCAPED_UNICODE)]);
-		self::$cache && $this->redis->del(self::TAG . ":" . $this->appid);
-		return $res;
+		self::$cache && $this->redis->del(self::TAG . $this->appid);
+		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		return $res["tag"]["id"];
 	}
 
 	/**
@@ -26,11 +35,12 @@ class User extends Base{
 	 * @return
 	 */
 	public function getTag(){
-		$tagKey = self::TAG . ":" . $this->appid;
+		$tagKey = self::TAG . $this->appid;
 		if(!self::$cache || !($res = $this->redis->getValues($tagKey))){
 			$url = sprintf(self::$wechatUrl["tagget"],$this->accessToken);
 			$res = $this->request($url);
 			self::$cache && $this->redis->setValues($tagKey,$res,self::$commonExpire);
+			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
 		}
 		return $res;
 	}
@@ -62,13 +72,13 @@ class User extends Base{
 		]);
 		if(self::$cache){
 			$keys = [
-				self::TAG . ":" . $this->appid,
-				self::TAGFANS . ":" . $this->appid . ":" . $tagID
+				self::TAG . $this->appid,
+				self::TAGFANS . $this->appid . ":" . $tagID
 			];
 			//删除公众号下标签缓存
 			//删除标签下粉丝列表缓存
 			$this->redis->del($keys);
-			$keyword = self::USERTAGS . ":" . $this->appid . ":*";
+			$keyword = self::USERTAGS . $this->appid . ":*";
 			//删除粉丝下标签缓存
 			$this->redis->matchDel($keyword);
 		}
@@ -84,7 +94,7 @@ class User extends Base{
 	 * @return
 	 */
 	public function getTagFans($tagID,$pageIndex = 1,$pageOffset = 10){
-		$tagFansKey = self::TAGFANS . ":" . $this->appid . ":" . $tagID;
+		$tagFansKey = self::TAGFANS . $this->appid . ":" . $tagID;
 		if(!self::$cache || !($res = $this->redis->getValues($tagFansKey))){
 			$data = $this->_getTagFans($tagID);
 			$res["list"] = isset($data["data"]["openid"]) ? $data["data"]["openid"] : [];
@@ -126,10 +136,10 @@ class User extends Base{
 		]);
 		if(self::$cache){
 			//删除该标签下粉丝列表
-			$keys[] = self::TAGFANS . ":" . $this->appid . ":" . $tagID;
+			$keys[] = self::TAGFANS . $this->appid . ":" . $tagID;
 			//删除粉丝下标签列表
 			foreach ($openIDs as $openID) {
-				$keys[] = self::USERTAGS . ":" . $this->appid . ":" . $openID;
+				$keys[] = self::USERTAGS . $this->appid . ":" . $openID;
 			}
 			$this->redis->del($keys);
 		}
@@ -154,10 +164,10 @@ class User extends Base{
 		]);
 		if(self::$cache){
 			//删除该标签下粉丝列表
-			$keys[] = self::TAGFANS . ":" . $this->appid . ":" . $tagID;
+			$keys[] = self::TAGFANS . $this->appid . ":" . $tagID;
 			//删除粉丝下标签列表
 			foreach ($openIDs as $openID) {
-				$keys[] = self::USERTAGS . ":" . $this->appid . ":" . $openID;
+				$keys[] = self::USERTAGS . $this->appid . ":" . $openID;
 			}
 			$this->redis->del($keys);
 		}
@@ -171,7 +181,7 @@ class User extends Base{
 	 * @return
 	 */
 	public function getUserTags($openID){
-		$userTagsKey = self::USERTAGS . ":" . $this->appid . ":" . $openID;
+		$userTagsKey = self::USERTAGS . $this->appid . ":" . $openID;
 		if(!self::$cache || !($res = $this->redis->getValues($userTagsKey))){
 			$buffer = [
 				"openid" => $openID
@@ -180,8 +190,10 @@ class User extends Base{
 			$res = $this->request($url,"POST",[
 				"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
 			]);
+			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
 			$res = $res["tagid_list"];
 			self::$cache && $this->redis->setValues($userTagsKey,$res,self::$commonExpire);
+
 		}
 		return $res;
 	}
@@ -204,7 +216,7 @@ class User extends Base{
 		$res = $this->request($url,"POST",[
 			"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
 		]);
-		self::$cache && $this->redis->del(self::USERINFO . ":" . $this->appid . ":" . $openid);
+		self::$cache && $this->redis->del(self::USERINFO . $this->appid . ":" . $openid);
 		return true;
 	}
 
@@ -216,11 +228,12 @@ class User extends Base{
 	 * @return
 	 */
 	public function getUserInfo($openid,$lang="zh_CN"){
-		$userInfoKey = self::USERINFO . ":" . $this->appid . ":" . $openid;
+		$userInfoKey = self::USERINFO . $this->appid . ":" . $openid;
 		if(!self::$cache || !($res = $this->redis->getValues($userInfoKey))){
 			$url = sprintf(self::$wechatUrl["userinfo"],$this->accessToken,$openid,$lang);
 			$res = $this->request($url);
 			self::$cache && $this->redis->setValues($userInfoKey,$res,self::$commonExpire);
+			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
 		}
 		return $res;
 	}
@@ -233,7 +246,7 @@ class User extends Base{
 	 * @return
 	 */
 	public function getUserList($pageIndex = 0,$pageOffset = 10){
-		$userListKey = self::USERLIST . ":" . $this->appid;
+		$userListKey = self::USERLIST . $this->appid;
 		if(!self::$cache || !($res = $this->redis->getValues($userListKey))){
 			$data = $this->_getUserList();
 			$res["total"] = $data["total"];
@@ -263,12 +276,14 @@ class User extends Base{
 		$res = $this->request($url,"POST",[
 			"body" => $data
 		]);
+		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
 		return $res;
 	}
 
 	private function _getUserList($openID = ""){
 		$url = sprintf(self::$wechatUrl["userlist"],$this->accessToken,$openID);
 		$res = $this->request($url);
+		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
 		return $res;
 	}
 }

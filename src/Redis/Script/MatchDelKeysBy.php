@@ -3,6 +3,13 @@ namespace Waljqiang\Wechat\Redis\Script;
 
 use Predis\Command\ScriptCommand;
 
+/**
+ * lua实现模糊删除类
+ * 
+ * @author waljqiang<waljqiang@163.com>
+ * @version 1.0
+ * @link https://github.com/waljqiang/wechat.git
+ */
 class MatchDelKeysBy extends ScriptCommand{
 	public function getKeysCount(){
         // Tell Predis to use all the arguments but the last one as arguments

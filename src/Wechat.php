@@ -5,11 +5,58 @@ use Waljqiang\Wechat\Exceptions\WechatException;
 use Waljqiang\Wechat\Handle;
 use Waljqiang\Wechat\Handles\Reply;
 
+/**
+ * 公众号处理类
+ *
+ * @author waljqiang<waljqiang@163.com>
+ * @version 1.0
+ * @link https://github.com/waljqiang/wechat.git
+ * @method 
+ * void init($appid,$secret);初始化公众号使用，当不需要使用配置文件中的公众号时，调用其他方法前必须先使用该方法
+ * string getAccessToken();获取公众号访问凭证access_token
+ * string getAppid();返回公众号使用的appid
+ * string getSecret();返回公众号使用的secret
+ * string getPublishAccount();返回全网测试账号
+ * array request($url,$method = 'GET',$options = []);发送http请求
+ *
+ * 用户管理相关(Account)
+ * string getQrcode($str,$type = "QR_SCENE",$expire = 30);获取公众号二维码
+ *
+ * 公众号菜单相关(Menu)
+ * boolean setMenu($options);设置公众号菜单
+ * array getMenu();查询公众号菜单
+ * boolean deleteMenu();删除公众号菜单
+ *
+ * 公众号客服相关(Message)
+ * boolean createKfAccount($data);创建客服账号
+ * boolean modifyKfAccount($data);修改客服账号
+ * boolean deleteKfAccount($data);删除客服账号
+ * array getKfAccount();获取所有客服账号
+ * boolean uploadAvatar($kfAccount,$imageUrl,$fileName = "");设置公众号客服账号头像
+ *
+ * 公众号推送消息相关(Receive)
+ * array handleWechatMessage($message,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = "");公众号推送的消息
+ *
+ * 公众号回复用户消息相关(Reply)
+ * void replyUser($messageType,$message);回复用户消息
+ *
+ * 用户管理相关(User)
+ * integer setTag($tagName);创建公众号标签
+ * array getTag()getTag();获取公众号标签
+ * boolean deleteTag($tagID);删除公众号标签
+ * boolean tagToUsers($tagID,$openIDs);批量为多个用户打标签,最多支持20个用户
+ * boolean tagDelUsers($tagID,$openIDs);批量为多个用户取消标签,最多支持50个用户
+ * array getUserTags($openID);获取用户列表
+ * array getTagFans($tagID,$pageIndex = 1,$pageOffset = 10);获取公众号标签下的粉丝列表
+ * boolean setUserRemark($openid,$remark);为用户打备注
+ * array function getUserInfo($openid,$lang="zh_CN");获取用户基本信息
+ * array getUserList($pageIndex = 0,$pageOffset = 10);获取用户列表
+ */
 class Wechat{
 	/**
 	 * access_token缓存key标识
 	 */
-	const ACCESSTOKEN = "WECHAT:ACCESSTOKEN";
+	const ACCESSTOKEN = "WECHAT:ACCESSTOKEN:";
 
 	/**
 	 * [微信公众号appid]
@@ -53,6 +100,14 @@ class Wechat{
 	public $httpClient;
 
 	/**
+	 * Monolog\Logger
+	 * @var [type]
+	 */
+	public $logger;
+
+	public $log;
+
+	/**
 	 * access_token缓存过期时间
 	 * @var integer
 	 */
@@ -68,8 +123,10 @@ class Wechat{
 	public function __construct(){
 		$this->appid = self::$config["appid"];
 		$this->secret = self::$config["secret"];
+		$this->log = self::$config["log"]["enable"];
 		$this->httpClient = self::$container->make("HttpClient");
 		$this->redis = self::$container->make("Redis");
+		$this->logger = self::$container->make("Log");
 	}
 
 	/**
@@ -98,7 +155,7 @@ class Wechat{
 	 */
 	public function getAccessToken(){
 		if(!$this->accessToken){
-			$accessTokenKey = self::ACCESSTOKEN . ":" . $this->appid;
+			$accessTokenKey = self::ACCESSTOKEN . $this->appid;
 			if(self::$cache){
 				$res = $this->redis->getValues($accessTokenKey);
 			}
@@ -106,6 +163,7 @@ class Wechat{
 				$url = sprintf(self::$config["wechaturl"]["accesstoken"],$this->appid,$this->secret);
 	            $res = $this->request($url);
 				self::$cache && $this->redis->setValues($accessTokenKey,$res,self::$accessTokenExpire);
+				$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
 			}
 			$this->accessToken = $res["access_token"];
 		}
@@ -150,9 +208,11 @@ class Wechat{
 	            }
 	            return $result;
 	        }else{
+	        	$this->log && $this->logger->log("Request " . $url . " error info:code[" . $e->getCode() . "]message[" . $e->getMessage() . "]",ERROR);
 	        	throw new \Exception($e->getMessage(),$e->getCode());
 	        }
 		}catch(\Exception $e){
+			$this->log && $this->logger->log("Request " . $url . " error info:code[" . $e->getCode() . "]message[" . $e->getMessage() . "]",ERROR);
 			throw new \Exception($e->getMessage(),$e->getCode());
 		}
 	}

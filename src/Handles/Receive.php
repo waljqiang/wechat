@@ -3,6 +3,14 @@ namespace Waljqiang\Wechat\Handles;
 
 use Waljqiang\Wechat\Wechat;
 
+
+/**
+ * 公众号推送消息处理类
+ * 
+ * @author waljqiang<waljqiang@163.com>
+ * @version 1.0
+ * @link https://github.com/waljqiang/wechat.git
+ */
 class Receive extends Message{
 	/**
 	 * 处理公众号推送的消息
@@ -21,6 +29,7 @@ class Receive extends Message{
 	 */
 	public function handleWechatMessage($message,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = ""){
         $response = "";
+        $appid = empty($appid) ? $this->appid : $appid;
 		$message = Wechat::$encode ? $this->decryptMessage() : $message;
 		if(!empty($message)){
             $obj = simplexml_load_string($message,'SimpleXMLElement',LIBXML_NOCDATA);
@@ -30,6 +39,15 @@ class Receive extends Message{
                 $this->testPublish($obj,$timestamp,$nonce);
                 exit(-1);
             }
+        }
+        switch ($obj["MsgType"]) {
+            case self::EVENT:
+                $this->handleEvent($obj,$appid,$signature,$timestamp,$nonce);
+                break;
+            
+            default:
+                # code...
+                break;
         }
         return $obj;
 	}
@@ -116,12 +134,72 @@ class Receive extends Message{
         exit(-1);*/
 	}
 
-    private function handleText($message,$timestamp,$nonce){
-        /*$resultStr = "";
-        $toUsername = trim($object->ToUserName);
-        $keyword = trim($object->Content);
-        $info = WechatModel::getInstance()->getData(array('authorizer_wxname'=>$toUsername),'wechat');
-        $resultStr = $info['name'] . "欢迎您!";
-        return $resultStr; */
+    /**
+     * 事件处理
+     *
+     * @param  array $obj       公众号消息数组
+     * @param  string $appid     公众号appid
+     * @param  string $signature 消息签名
+     * @param  string $timestamp 事件戳
+     * @param  string $nonce     随机数
+     * @param  string $echostr   随机字符串
+     * @return
+     */
+    private function handleEvent($obj,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = ""){
+        $appid = empty($appid) ? $this->appid : $appid;
+        switch ($obj["Event"]) {
+            case self::EVENTTYPE["UNSUBSCRIBE"]://取消关注事件
+                $this->handleUnsubscribe($obj,$appid);
+            case self::EVENTTYPE["SUBSCRIBE"]://关注事件,包括用户扫码(未关注)事件
+            case self::EVENTTYPE["SCAN"]://用户扫码事件(用户已关注)
+                echo " ";
+                break;
+            case self::EVENTTYPE["LOCATION"]://上报地理位置事件
+                $this->handleLocation($message,$appid);
+                break;
+            default:
+                # code...
+                break;
+        }
     }
+
+    /**
+     * 取消关注事件处理
+     *
+     * @param  array $message 公众号消息数组
+     * @param  string $appid   公众号appid
+     * @return
+     */
+    private function handleUnsubscribe($message,$appid = ""){
+        $appid = empty($appid) ? $this->appid : $appid;
+        if(self::$cache){
+            //清除公众号标签下的粉丝列表缓存
+            $this->redis->matchDel(self::TAGFANS . $appid . "*");
+            //清除用户下标签列表缓存
+            //清除用户基本信息缓存
+            //用户列表缓存
+            $data[] = [
+                self::USERTAGS . $appid . ":" . $message["FromUserName"],
+                self::USERINFO . $appid . ":" . $message["FromUserName"],
+                self::USERLIST . $appid,
+            ];
+            $this->redis->del($data);
+        }
+        return true;
+    }
+
+    /**
+     * 上报地理位置事件处理
+     *
+     * @param  array $message 公众号消息数组
+     * @param  string $appid   公众号appid
+     * @return
+     */
+    private function handleLocation($message,$appid = ""){
+        $appid = empty($appid) ? $this->appid : $appid;
+        //清除用户基本信息缓存
+        self::$cache && $this->redis->del(self::USERINFO . $appid . ":" . $message["FromUserName"]);
+        return true;
+    }
+
 }

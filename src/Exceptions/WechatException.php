@@ -1,5 +1,11 @@
 <?php
 namespace Waljqiang\Wechat\Exceptions;
+
+/**
+ * @author waljqiang<waljqiang@163.com>
+ * @version 1.0
+ * @link https://github.com/waljqiang/wechat.git
+ */
 class WechatException extends \Exception{
 	const RESULTERROR = 10001;//返回结果解析错误
 	const UNSUPPORT = 10002;//不支持的方法

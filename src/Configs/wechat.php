@@ -3,9 +3,9 @@ return [
 	"wechat" => [
 		"appid" => "wxfae2fb734a9ddf58",
 		"secret" => "78fd8a05411fbfd3b1e899d8a64b026a",
-		"encode" => false,//消息是否加密
+		"encode" => FALSE,//消息是否加密
 		"publish" => "gh_3c884a361561",//全网发布账号
-		"cache" => true,//开启缓存
+		"cache" => TRUE,//开启缓存
 		"accesstokenexpire" => 7200,//access_token缓存时间
 		"commonexpire" => 2592000,//公众缓存时间，包括自定义菜单
 		//微信公众号请求链接
@@ -39,5 +39,11 @@ return [
 			"prefix" => "waljqiang:",
 			"password" => "1f494c4e0df9b837dbcc82eebed35ca3f2ed3fc5f6428d75bb542583fda2170f"
 		],
+		"log" => [
+			"enable" => FALSE,
+			"channel" => "wechat",//log文件将以此为前缀命名
+			"level" => "ERROR",
+			"path" => "/vagrant/wechat/example/"
+		]
 	]
 ];

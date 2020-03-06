@@ -3,6 +3,13 @@ namespace Waljqiang\Wechat\Handles;
 
 use Waljqiang\Wechat\Exceptions\WechatException;
 
+/**
+ * 消息管理类
+ * 
+ * @author waljqiang<waljqiang@163.com>
+ * @version 1.0
+ * @link https://github.com/waljqiang/wechat.git
+ */
 class Message extends Base{
 	const TEXT = "text";
 	const IMAGE = "image";
@@ -33,8 +40,8 @@ class Message extends Base{
 	public function createKfAccount($data){
 		$url = sprintf(self::$wechatUrl["kfcreate"],$this->accessToken);
 		$res = $this->request($url,"POST",["body" => json_encode($data, JSON_UNESCAPED_UNICODE)]);
-		self::$cache && $this->redis->del(self::KFACCOUNT . ":" . $this->appid);
-		return $res;
+		self::$cache && $this->redis->del(self::KFACCOUNT . $this->appid);
+		return true;
 	}
 
 	/**
@@ -46,8 +53,8 @@ class Message extends Base{
 	public function modifyKfAccount($data){
 		$url = sprintf(self::$wechatUrl["kfmodify"],$this->accessToken);
 		$res = $this->request($url,"POST",["body" => json_encode($data, JSON_UNESCAPED_UNICODE)]);
-		self::$cache && $this->redis->del(self::KFACCOUNT . ":" . $this->appid);
-		return $res;
+		self::$cache && $this->redis->del(self::KFACCOUNT . $this->appid);
+		return true;
 	}
 
 	/**
@@ -59,8 +66,8 @@ class Message extends Base{
 	public function deleteKfAccount($data){
 		$url = sprintf(self::$wechatUrl["kfmodify"],$this->accessToken);
 		$res = $this->request($url,"POST",["body" => json_encode($data, JSON_UNESCAPED_UNICODE)]);
-		self::$cache && $this->redis->del(self::KFACCOUNT . ":" . $this->appid);
-		return $res;
+		self::$cache && $this->redis->del(self::KFACCOUNT . $this->appid);
+		return true;
 	}
 
 	/**
@@ -69,11 +76,12 @@ class Message extends Base{
 	 * @return
 	 */
 	public function getKfAccount(){
-		$kfAccountKey = self::KFACCOUNT . ":" . $this->appid;
+		$kfAccountKey = self::KFACCOUNT . $this->appid;
 		if(!self::$cache || !($res = $this->redis->getValues($kfAccountKey))){
 			$url = sprintf(self::$wechatUrl["kfget"],$this->accessToken);
 			$res = $this->request($url);
 			self::$cache && $this->redis->setValues($kfAccountKey,$res,self::$commonExpire);
+			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
 		}
 		return $res;
 	}
