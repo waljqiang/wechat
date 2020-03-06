@@ -36,7 +36,8 @@ class Handle{
 			"modifyKfAccount",
 			"deleteKfAccount",
 			"getKfAccount",
-			"uploadAvatar"
+			"uploadAvatar",
+			"kfSendMessage"
 		],
 		"Receive" => [
 			"handleWechatMessage"

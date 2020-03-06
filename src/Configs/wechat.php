@@ -33,6 +33,7 @@ return [
 			"kfdel" => "https://api.weixin.qq.com/customservice/kfaccount/del?access_token=%s",//删除客服账号
 			"kfavatar" => "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg?access_token=%s&kf_account=%s",//上传客服头像
 			"kfget" => "https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token=%s",//获取所有客服账号
+			"kfsendmsg" => "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s",//客服发消息
 		],
 		"redis" => [
 			"host" => "192.168.33.10",

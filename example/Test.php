@@ -93,6 +93,12 @@ try{
 	//获取客服账号
 	/*$res = Wechat::getInstance()->getKfAccount();
 	var_dump($res);*/
+	//客服发消息
+	$message = [
+		"content" => "你好"
+	];
+	$res = Wechat::getInstance()->kfSendMessage("o9lXF0oPTBOMS44dILU1kfZMlra0",Waljqiang\Wechat\Handles\Message::TEXT,$message);
+	var_dump($res);
 	//加密消息
 	// 第三方发送消息给公众平台
 	/*$encodingAesKey = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";
@@ -163,12 +169,12 @@ try{
 	echo "</br>";
 	echo "-------------------------------------------------" . "</br>";*/
 	//公众号回复消息
-	$message = [
+/*	$message = [
 		"ToUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
 		"FromUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
 		"Content" => "您好"
 	];
-	Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles\Reply::TEXT,$message);
+	Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);*/
 }catch(\Exception $e){
 	var_dump($e);
 }

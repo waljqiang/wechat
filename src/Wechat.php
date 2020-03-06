@@ -34,6 +34,7 @@ use Waljqiang\Wechat\Decryption\Decrypt;
  * boolean deleteKfAccount($data);删除客服账号
  * array getKfAccount();获取所有客服账号
  * boolean uploadAvatar($kfAccount,$imageUrl,$fileName = "");设置公众号客服账号头像
+ * boolean kfSendMessage($openID,$messageType,$data);客服发消息
  *
  * 公众号推送消息相关(Receive)
  * array handleWechatMessage($message,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = "");公众号推送的消息
