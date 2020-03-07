@@ -40,14 +40,14 @@ class Receive extends Message{
 
             switch ($obj["MsgType"]) {
                 case self::EVENT:
-                    $this->handleEvent($obj,$appid,$signature,$timestamp,$nonce);
+                    $res = $this->handleEvent($obj,$appid,$signature,$timestamp,$nonce);
                     break;
                 
                 default:
                     # code...
                     break;
             }
-            return $obj;
+            return $res;
         }
         return "";  
 	}
@@ -143,20 +143,25 @@ class Receive extends Message{
      */
     private function handleEvent($obj,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = ""){
         $appid = empty($appid) ? $this->appid : $appid;
+        $res = $obj;
         switch ($obj["Event"]) {
             case self::EVENTTYPE["UNSUBSCRIBE"]://取消关注事件
-                $this->handleUnsubscribe($obj,$appid);
+                $res = $this->handleUnsubscribe($obj,$appid);
             case self::EVENTTYPE["SUBSCRIBE"]://关注事件,包括用户扫码(未关注)事件
             case self::EVENTTYPE["SCAN"]://用户扫码事件(用户已关注)
                 echo " ";
                 break;
             case self::EVENTTYPE["LOCATION"]://上报地理位置事件
-                $this->handleLocation($message,$appid);
+                $res = $this->handleLocation($message,$appid);
+                break;
+            case self::EVENTTYPE["TEMPLATESENDJOBFINISH"]://模板消息送达是否成功事件
+                $res = $this->handleTplSend($message,$appid);
                 break;
             default:
                 # code...
                 break;
         }
+        return $res;
     }
 
     /**
@@ -181,7 +186,7 @@ class Receive extends Message{
             ];
             $this->redis->del($data);
         }
-        return true;
+        return $message;
     }
 
     /**
@@ -195,7 +200,26 @@ class Receive extends Message{
         $appid = empty($appid) ? $this->appid : $appid;
         //清除用户基本信息缓存
         self::$cache && $this->redis->del(self::USERINFO . $appid . ":" . $message["FromUserName"]);
-        return true;
+        return $message;
+    }
+
+    /**
+     * 模板消息是否送达处理
+     *
+     * @param  array $message 公众号消息数组
+     * @param  string $appid   公众号appid
+     * @return
+     */
+    private function handleTplSend($message,$appid = ""){
+        $appid = empty($appid) ? $this->appid : $appid;
+        if($message["Status"] == "success"){//成功
+            $message["flag"] = "0";
+        }elseif($message["Status"] == "failed:user block"){//失败,用户拒收
+            $message["flag"] = -1;
+        }else{//失败，非用户拒收
+            $message["flag"] = -2;
+        }
+        return $message;
     }
 
 }

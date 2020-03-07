@@ -32,7 +32,8 @@ class Message extends Base{
 		"SCAN" => "SCAN",
 		"LOCATION" => "LOCATION",
 		"CLICK" => "CLICK",
-		"VIEW" => "VIEW"
+		"VIEW" => "VIEW",
+		"TEMPLATESENDJOBFINISH" => "TEMPLATESENDJOBFINISH"
 	];
 
 	/**
