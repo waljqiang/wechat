@@ -57,6 +57,14 @@ use Waljqiang\Wechat\Decryption\Decrypt;
  * 消息加解密
  * void initDecrypt($token,$encodingAesKey,$appid);初始化加解密类,如果信息使用配置文件则不需要使用此函数
  * string encryptMsg($replyMsg, $timeStamp, $nonce);加密消息
+ *
+ * 模板消息
+ * boolean setIndustry($primaryNumber,$secondaryNumber);设置模板消息
+ * array getIndustry();获取所属行业
+ * string getTemplateID($templateIdShort);获取模板id
+ * array function getTemplateList();获取模板列表
+ * boolean deleteTemplate($templateID);删除模板
+ * string sendTemplate($openID,$templateID,$data,$url = "",$appid = "",$pagePath = "");发送模板消息
  */
 class Wechat{
 	/**

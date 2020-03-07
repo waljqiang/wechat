@@ -94,11 +94,11 @@ try{
 	/*$res = Wechat::getInstance()->getKfAccount();
 	var_dump($res);*/
 	//客服发消息
-	$message = [
+/*	$message = [
 		"content" => "你好"
 	];
 	$res = Wechat::getInstance()->kfSendMessage("o9lXF0oPTBOMS44dILU1kfZMlra0",Waljqiang\Wechat\Handles\Message::TEXT,$message);
-	var_dump($res);
+	var_dump($res);*/
 	//加密消息
 	// 第三方发送消息给公众平台
 	/*$encodingAesKey = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";
@@ -175,6 +175,46 @@ try{
 		"Content" => "您好"
 	];
 	Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);*/
+	//设置所属行业
+/*	$res = Wechat::getInstance()->setIndustry("1","4");
+	var_dump($res);*/
+	//获取所属行业
+/*	$res = Wechat::getInstance()->getIndustry();
+	var_dump($res);*/
+	//获取模板id
+	/*$res = Wechat::getInstance()->getTemplateID("TM00015");
+	var_dump($res);*/
+	//获取模板列表
+	/*$res = Wechat::getInstance()->getTemplateList();
+	var_dump($res);*/
+	//删除模板
+/*	$res = Wechat::getInstance()->deleteTemplate("123");
+	var_dump($res);*/
+	//发送模板消息
+/*	$message = [
+		"first" => [
+			"value" => "恭喜你购买成功",
+			"color" => "#173177"
+		],
+		"keyword1" => [
+			"value" => "巧克力",
+			"color" => "#173177"
+		],
+		"keyword2" => [
+			"value" => "39.8$",
+			"color" => "#173177"
+		],
+		"keyword3" => [
+			"value" => "2014年9月22日",
+			"color" => "#173177"
+		],
+		"remark" => [
+			"value" => "欢迎再次购买",
+			"color" => "#173177"
+		]
+	];
+	$res = Wechat::getInstance()->sendTemplate("o9lXF0oPTBOMS44dILU1kfZMlra0","ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",$message);
+	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
 }

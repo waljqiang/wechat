@@ -46,6 +46,19 @@ class Base{
 	 */
 	const KFACCOUNT = "WECHAT:KFACCOUNT:LIST:";
 
+	/**
+	 * 所属行业信息缓存key标识
+	 */
+	const INDUSTRY = "WECHAT:INDUSTRY:";
+
+	/**
+	 * 模板列表缓存key标识
+	 */
+	const TEMPLATELIST = "WECHAT:TPL:LIST:";
+
+	/**
+	 * 客服头像文件类型
+	 */
 	const AVATARTYPE = ["jpg"];
 
 	protected $accessToken;

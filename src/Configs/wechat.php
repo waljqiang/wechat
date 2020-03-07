@@ -34,6 +34,12 @@ return [
 			"kfavatar" => "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg?access_token=%s&kf_account=%s",//上传客服头像
 			"kfget" => "https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token=%s",//获取所有客服账号
 			"kfsendmsg" => "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s",//客服发消息
+			"industryset" => "https://api.weixin.qq.com/cgi-bin/template/api_set_industry?access_token=%s",//设置所属行业
+			"industryget" => "https://api.weixin.qq.com/cgi-bin/template/get_industry?access_token=%s",//获取行业信息
+			"templateid" => "https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token=%s",//获取模板id
+			"templatelist" => "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=%s",//获取模板列表
+			"templatedel" => "https://api.weixin.qq.com/cgi-bin/template/del_private_template?access_token=%s",//删除模板
+			"sendtplmsg" => "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s",//发送模板消息
 		],
 		"redis" => [
 			"host" => "192.168.33.10",

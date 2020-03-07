@@ -44,6 +44,14 @@ class Handle{
 		],
 		"Reply" => [
 			"replyUser"
+		],
+		"Template" => [
+			"setIndustry",
+			"getIndustry",
+			"getTemplateID",
+			"getTemplateList",
+			"deleteTemplate",
+			"sendTemplate"
 		]
 	];
 
