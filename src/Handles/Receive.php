@@ -32,6 +32,7 @@ class Receive extends Message{
 		if(!empty($message)){
             $obj = simplexml_load_string($message,'SimpleXMLElement',LIBXML_NOCDATA);
             $obj = json_decode(json_encode($obj),true);
+            $res = $obj;
             //开放平台全网发布测试
             if($obj["ToUserName"] == $this->wechat->getPublishAccount()){
                 $this->testPublish($obj,$timestamp,$nonce);
@@ -39,17 +40,24 @@ class Receive extends Message{
             }
 
             switch ($obj["MsgType"]) {
+                case self::TEXT:
+                case self::IMAGE:
+                case self::VOICE:
+                case self::VIDEO:
+                case self::SHORTVIDEO:
+                case self::LOCATION:
+                case self::LINK:
+                    $res = $obj;
                 case self::EVENT:
                     $res = $this->handleEvent($obj,$appid,$signature,$timestamp,$nonce);
                     break;
                 
                 default:
-                    # code...
                     break;
             }
             return $res;
         }
-        return "";  
+        return [];  
 	}
 
 	/**
