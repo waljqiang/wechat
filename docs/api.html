@@ -31,9 +31,7 @@
 								</li>
                             </div>
                         </ol>
-                        <li onclick="show('#menu')" class="nav_name1">
-							<span>菜单</span>
-						</li>
+                        <a class="nav_name1" onclick="show('#menu')" target="docbox" href="./menu.html" title="APPLET">菜单</a>
 						<ol class="uls">
 							<div id="menu" style="height: auto;display: none;">
 								<li>
@@ -52,7 +50,7 @@
 			</div>
 		</div>
 		<div id="box_main" class="layout_right">
-			<iframe id="docbox" name="docbox" class="iframe_docbox" onload="this.height=docbox.document.body.scrollHeight" src="./main.html">
+			<iframe id="docbox" name="docbox" class="iframe_docbox" scrolling="no" onload="this.height=docbox.document.body.scrollHeight" src="./main.html">
         	</iframe>
 		</div>
 		</div>

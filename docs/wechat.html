@@ -917,7 +917,11 @@ Wechat::getInstance()->request("http://www.baidu.com");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><xmp>
-$text = '<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName><FromUserName><![CDATA[gh_7f083739789a]]></FromUserName><CreateTime>1407743423</CreateTime><MsgType><![CDATA[video]]></MsgType><Video><MediaId><![CDATA[eYJ1MbwPRJtOvIEabaxHs7TX2D-HV71s79GUxqdUkjm6Gs2Ed1KF3ulAOA9H1xG0]]></MediaId><Title><![CDATA[testCallBackReplyVideo]]></Title><Description><![CDATA[testCallBackReplyVideo]]></Description></Video></xml>';
+$text = '<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName><FromUserName>
+	<![CDATA[gh_7f083739789a]]></FromUserName><CreateTime>1407743423</CreateTime><MsgType><![CDATA[video]]>
+	</MsgType><Video><MediaId><![CDATA[eYJ1MbwPRJtOvIEabaxHs7TX2D-HV71s79GUxqdUkjm6Gs2Ed1KF3ulAOA9H1xG0]]>
+	</MediaId><Title><![CDATA[testCallBackReplyVideo]]></Title><Description><![CDATA[testCallBackReplyVideo]]>
+	</Description></Video></xml>';
 $timeStamp = "1409304348";
 $nonce = "123456";
 Wechat::getInstance()->encryptMsg($text,$timeStamp,$nonce);
@@ -963,7 +967,12 @@ Wechat::getInstance()->initDecrypt("pamtest","abcdefghijklmnopqrstuvwxyz01234567
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><xmp>
-'<xml><Encrypt><![CDATA[FVdB5EhL0Q6Rsvg7f2vW+w3YIhTdxg0+GgmAh3pY0C5UwZ9WsxshRzL9wYNabY0Ep5Noo2CzRwGDvesz7nkwyZSqthGFxlqh5GrqDUbgTcjofE76E2t5TT/zEllSw2UhwLvs2QApJ6184/MXW7sJIxSHoGPIeaIpxDdsHVUUwWQv+nvgbWQ75ycF1wOkjJcDY0aGJaqb138pPshsMxbmzOMjTcQPlEmgq83iOVEOMBLlXfN/DxuxK5cuZG1nQWxsDCGg+alsawiypp5KHkcw4h9V5Vm4WEPB+OKXhgryYY2krBna4D3a2ybcRR/JORH/SxJFsjTTDseSgB7tNiPHhfm07hW13LWRhehBeTlk1fR8GzwLSaTabGv4acExUdkcKsjBAN/BALFwGSWTuLefvZw/NPOLPA038Zjy7GbIwO7eCZyXSYNyeKJmuCJIZXIqId0LPBLUAgXpqT+rWE/k]]></Encrypt><MsgSignature><![CDATA[dsafdesewrwsfqewfdsafewsd]]></MsgSignature>
+'<xml><Encrypt><![CDATA[FVdB5EhL0Q6Rsvg7f2vW+w3YIhTdxg0+GgmAh3pY0C5UwZ9WsxshRzL9wYNabY0Ep5Noo2CzRwGDvesz7nkwyZSqthGFxlqh5GrqDUbgTcjofE76E2t5TT/
+	zEllSw2UhwLvs2QApJ6184/MXW7sJIxSHoGPIeaIpxDdsHVUUwWQv+nvgbWQ75ycF1wOkjJcDY0aGJaqb138pPshsMxbmzOMjTcQPlEmgq83iOVEOMBLlXfN/
+	DxuxK5cuZG1nQWxsDCGg+alsawiypp5KHkcw4h9V5Vm4WEPB+OKXhgryYY2krBna4D3a2ybcRR/JORH/
+	SxJFsjTTDseSgB7tNiPHhfm07hW13LWRhehBeTlk1fR8GzwLSaTabGv4acExUdkcKsjBAN/BALFwGSWTuLefvZw/
+	NPOLPA038Zjy7GbIwO7eCZyXSYNyeKJmuCJIZXIqId0LPBLUAgXpqT+rWE/k]]></Encrypt><MsgSignature>
+		<![CDATA[dsafdesewrwsfqewfdsafewsd]]></MsgSignature>
 <TimeStamp>1409304348</TimeStamp>
 <Nonce><![CDATA[123456]]></Nonce>
 </xml>'
@@ -1032,7 +1041,13 @@ Wechat::getInstance()->initDecrypt("pamtest","abcdefghijklmnopqrstuvwxyz01234567
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><xmp>
-    $format = "<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName><Encrypt><![CDATA[FVdB5EhL0Q6Rsvg7f2vW+w3YIhTdxg0+GgmAh3pY0C5UwZ9WsxshRzL9wYNabY0Ep5Noo2CzRwGDvesz7nkwyZSqthGFxlqh5GrqDUbgTcjofE76E2t5TT/zEllSw2UhwLvs2QApJ6184/MXW7sJIxSHoGPIeaIpxDdsHVUUwWQv+nvgbWQ75ycF1wOkjJcDY0aGJaqb138pPshsMxbmzOMjTcQPlEmgq83iOVEOMBLlXfN/DxuxK5cuZG1nQWxsDCGg+alsawiypp5KHkcw4h9V5Vm4WEPB+OKXhgryYY2krBna4D3a2ybcRR/JORH/SxJFsjTTDseSgB7tNiPHhfm07hW13LWRhehBeTlk1fR8GzwLSaTabGv4acExUdkcKsjBAN/BALFwGSWTuLefvZw/NPOLPA038Zjy7GbIwO7eCZyXSYNyeKJmuCJIZXIqId0LPBLUAgXpqT+rWE/k]]></Encrypt></xml>";
+    $format = "<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName><Encrypt>
+    	<![CDATA[FVdB5EhL0Q6Rsvg7f2vW+w3YIhTdxg0+GgmAh3pY0C5UwZ9WsxshRzL9wYNabY0Ep5Noo2CzRwGDvesz7nkwyZSqthGFxlqh
+    	5GrqDUbgTcjofE76E2t5TT/zEllSw2UhwLvs2QApJ6184/MXW7sJIxSHoGPIeaIpxDdsHVUUwWQv+nvgbWQ75yc
+    	F1wOkjJcDY0aGJaqb138pPshsMxbmzOMjTcQPlEmgq83iOVEOMBLlXfN/DxuxK5cuZG1nQWxsDCGg+alsawi
+    	ypp5KHkcw4h9V5Vm4WEPB+OKXhgryYY2krBna4D3a2ybcRR/JORH/SxJFsjTTDseSgB7tNiPHhfm07hW13LWRhehBeTlk1f
+    	R8GzwLSaTabGv4acExUdkcKsjBAN/BALFwGSWTuLefvZw/NPOLPA038Zjy7GbIwO7eCZyXSYNyeKJmuCJIZXIqId0L
+    	PBLUAgXpqT+rWE/k]]></Encrypt></xml>";
 	$res = Wechat::getInstance()->decryptMsg("dsafdesewrwsfqewfdsafewsd", "1409304348","123456",$format);
 	                    </xmp></td>
 	                </tr>
@@ -1071,7 +1086,12 @@ Wechat::getInstance()->initDecrypt("pamtest","abcdefghijklmnopqrstuvwxyz01234567
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><xmp>
-'<xml><Encrypt><![CDATA[FVdB5EhL0Q6Rsvg7f2vW+w3YIhTdxg0+GgmAh3pY0C5UwZ9WsxshRzL9wYNabY0Ep5Noo2CzRwGDvesz7nkwyZSqthGFxlqh5GrqDUbgTcjofE76E2t5TT/zEllSw2UhwLvs2QApJ6184/MXW7sJIxSHoGPIeaIpxDdsHVUUwWQv+nvgbWQ75ycF1wOkjJcDY0aGJaqb138pPshsMxbmzOMjTcQPlEmgq83iOVEOMBLlXfN/DxuxK5cuZG1nQWxsDCGg+alsawiypp5KHkcw4h9V5Vm4WEPB+OKXhgryYY2krBna4D3a2ybcRR/JORH/SxJFsjTTDseSgB7tNiPHhfm07hW13LWRhehBeTlk1fR8GzwLSaTabGv4acExUdkcKsjBAN/BALFwGSWTuLefvZw/NPOLPA038Zjy7GbIwO7eCZyXSYNyeKJmuCJIZXIqId0LPBLUAgXpqT+rWE/k]]></Encrypt><MsgSignature><![CDATA[dsafdesewrwsfqewfdsafewsd]]></MsgSignature>
+'<xml><Encrypt><![CDATA[FVdB5EhL0Q6Rsvg7f2vW+w3YIhTdxg0+GgmAh3pY0C5UwZ9WsxshRzL9wYNabY0Ep5Noo2CzRwGDvesz7nkwyZSqthGFxlqh5Gr
+	qDUbgTcjofE76E2t5TT/zEllSw2UhwLvs2QApJ6184/MXW7sJIxSHoGPIeaIpxDdsHVUUwWQv+nvgbWQ75ycF1wOkjJcDY0aGJaqb138p
+	PshsMxbmzOMjTcQPlEmgq83iOVEOMBLlXfN/DxuxK5cuZG1nQWxsDCGg+alsawiypp5KHkcw4h9V5Vm4WEPB+OKXhgryYY2krBna4D3a2ybc
+	RR/JORH/SxJFsjTTDseSgB7tNiPHhfm07hW13LWRhehBeTlk1fR8GzwLSaTabGv4acExUdkcKsjBAN/BALFwGSWTuLefvZw/NPOLPA038Zjy7GbIwO7eCZyXSYNyeKJmuCJIZXIqId0LPBLUAgXpqT+rWE/k]]>
+</Encrypt><MsgSignature>
+	<![CDATA[dsafdesewrwsfqewfdsafewsd]]></MsgSignature>
 <TimeStamp>1409304348</TimeStamp>
 <Nonce><![CDATA[123456]]></Nonce>
 </xml>'

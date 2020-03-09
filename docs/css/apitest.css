@@ -122,3 +122,8 @@ span.note{
 .nav_name1{display:block ; text-decoration:none;font-weight: bold;color: #494949;cursor: pointer;list-style: none;background: #e1e1e1;box-shadow:0 0 5px #000; height: 30px;line-height: 30px;padding-left: 10px;}
 .nav_name1:hover{text-decoration: none;}
 .menu_list{list-style: none;}
+
+.selecta{
+	color:#00FF00;
+	text-decoration: underline;
+}
