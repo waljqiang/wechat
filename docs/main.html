@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="./css/apitest.css" />
+<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/common.js"></script>
+</HEAD>
+<body>
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">说明</td>       
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>1、所有方法的错误均以异常的形式抛出，包括微信公众号API接口请求回来的非正确信息;所以需要以try{}cath(){}结构捕获错误信息</td>
+                </tr>
+                <tr>
+                    <td>2、系统中使用了redis作为缓存，尽量使用系统的缓存，所以不要关闭配置文件中的缓存；如强制关闭缓存，请依据微信公众号文档自己实现必要的缓存结构</td>
+                </tr>
+                <tr>
+                    <td>3、系统中使用日志的形式来帮助用户进行调试，在线上环境，将日志级别设置成ERROR，尽量将enable设置成FALSE</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

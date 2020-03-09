@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="./css/apitest.css" />
+<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
+</HEAD>
+<body>
+    <div id="box_opration" class="layout_main_top">
+        <div class="main_header">接口说明</div>
+        <div class="main_mod">
+            <table class="tbl_params">
+                <tbody class="tbody_params">
+                    <tr>
+                        <td width="13%">ACCESSTOKEN</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td width="13%">22</td>
+                        <td width="13%">
+                            33
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="box_expresion" class="layout_main_middle">
+        <div class="main_header">接口入参</div>
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="13%">传参方式</td>
+                    <td width="13%">参数名称</td>
+                    <td width="13%">参数类型</td>
+                    <td width="13%">是否必须</td>
+                    <td width="30%">参数说明</td>
+                    <td>备注</td>
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>post</td>
+                    <td>gw_id</td>
+                    <td>string</td>
+                    <td>是</td>
+                    <td>父设备的mac</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="box_expresion" class="layout_main_middle">
+        <div class="main_header">入参示例</div>
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="10%">入参类型</td>
+                    <td width="75%">示例</td>
+                    <td>备注</td>
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td style="text-align: center;">json</td>
+                    <td>
+                        <pre>
+data= <span class="note">[入参]</span>
+    {
+         "gw_id":"B8975A212987"
+    }
+                        </pre>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="box_expresion" class="layout_main_middle">
+        <div class="main_header">接口返回结果</div>
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="10%">返回值类型</td>
+                    <td width="75%">示例</td>
+                    <td>备注</td>
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td style="text-align: center;">json</td>
+                    <td>
+                    <pre>
+                  {"code":0,"data":[{"type":"ND300N5D"},{"type":"PW1200"},{"type":"XD6700"},{"type":"XD9500Q"}]}
+                </pre>
+                    </td><td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
