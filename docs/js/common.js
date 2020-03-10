@@ -9,3 +9,8 @@ function showParent(obj, number){
 	$("li a",parent.document).removeClass("selecta");
 	obj.find("li:eq("+number+")").find("a").addClass("selecta");
 }
+
+function showSelect(obj){
+	$("li a").removeClass("selecta");
+	$(this).find("a").addClass("selecta");
+}
