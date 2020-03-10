@@ -1,5 +1,7 @@
 <?php
 namespace Waljqiang\Wechat\Handles;
+
+use Waljqiang\Wechat\Wechat;
 /**
  * @author waljqiang<waljqiang@163.com>
  * @version 1.0
@@ -75,7 +77,7 @@ class Base{
 	protected $redis;
 
 	/**
-	 * Monolog\Logger
+	 * Waljqiang\Wechat\Logger
 	 */
 	protected $logger;
 	protected $log;
@@ -89,7 +91,7 @@ class Base{
 	 */
 	public static $commonExpire = 2592000;
 
-	public function __construct($wechat){
+	public function __construct(Wechat $wechat){
 		$this->appid = $wechat->getAppid();
 		$this->secret = $wechat->getSecret();
 		$this->log = $wechat->log;
@@ -99,7 +101,7 @@ class Base{
 		$this->wechat = $wechat;
 	}
 
-	public function request($url,$method = 'GET',$options = []){
+	protected function request($url,$method = 'GET',$options = []){
 		return $this->wechat->request($url,$method,$options);
 	}
 }

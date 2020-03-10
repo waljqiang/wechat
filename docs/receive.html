@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="./css/apitest.css" />
+<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/common.js"></script>
+</HEAD>
+<body>
+	<div id="box_opration" class="layout_main_top">
+		<div class="main_header">Namespace</div>
+        <div class="main_body">Waljqiang\Wechat\Handles</div>
+	</div>
+    <div id="box_opration" class="layout_main_top">
+        <div class="main_header">class</div>
+        <div class="main_body">class Receive extends Message</div>
+    </div>
+
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Methods</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+        </table>
+
+        <div>
+        	<div class="methods_body">public handleWechatMessage($message,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = "")</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>处理公众号推送的消息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$message</td>
+	                    <td>公众号推送的消息</td>
+	                    <td>xml格式</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$appid</td>
+	                    <td>公众号推送消息url中携带的appid</td>
+	                    <td>默认为空</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$signature</td>
+	                    <td>公众号推送消息url中携带的signature</td>
+	                    <td>默认为空</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$timeStamp</td>
+	                    <td>公众号推送消息url中携带的timestamp</td>
+	                    <td>默认为空</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$nonce</td>
+	                    <td>公众号推送消息url中携带的nonce</td>
+	                    <td>默认为空</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$echostr</td>
+	                    <td>公众号推送消息url中携带的echostr</td>
+	                    <td>默认为空</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><xmp>
+$message = "<xml>
+  <ToUserName><![CDATA[toUser]]></ToUserName>
+  <FromUserName><![CDATA[FromUser]]></FromUserName>
+  <CreateTime>123456789</CreateTime>
+  <MsgType><![CDATA[event]]></MsgType>
+  <Event><![CDATA[subscribe]]></Event>
+</xml>";
+$appid = "wx5b18b274db7372d6";
+$signature = "dsdasdfdas";
+$timestamp = "1122321234534";
+$nonce = "123456";
+$res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$timestamp,$nonce);
+	                    </xmp></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>array</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td>xml消息体转变成数组格式消息体</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+[
+ 	"ToUserName" => "toUser",<span class="note">[用户openID]</span>
+  	"FromUserName" => "FromUser",<span class="note">[公众号账号]</span>
+  	"CreateTime" => "123456789",<span class="note">[创建时间]</span>
+  	"MsgType" => "event",<span class="note">[消息类型]</span>
+  	"Event" => "subscribe"<span class="note">[事件类型]</span>
+]
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">private handleEvent($obj,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = "")</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>事件类型消息处理</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">private handleUnsubscribe($message,$appid = "")</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>处理取消关注事件消息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">private handleLocation($message,$appid = "")</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>处理上报地理位置事件消息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">private handleTplSend($message,$appid = "")</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>模板消息是否送达处理</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+    </div>
+</body>
+</html>

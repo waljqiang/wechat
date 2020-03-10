@@ -1,0 +1,215 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="./css/apitest.css" />
+<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/common.js"></script>
+</HEAD>
+<body>
+	<div id="box_opration" class="layout_main_top">
+		<div class="main_header">Namespace</div>
+        <div class="main_body">Waljqiang\Wechat\Handles</div>
+	</div>
+    <div id="box_opration" class="layout_main_top">
+        <div class="main_header">class</div>
+        <div class="main_body">class Reply extends Message</div>
+    </div>
+
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Methods</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+        </table>
+
+        <div>
+        	<div class="methods_body">public replyUser($messageType,$message)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>生成发送给公众号的消息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$messageType</td>
+	                    <td>消息类型</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>$message</td>
+	                    <td>消息</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+$message = [
+	"ToUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
+	"FromUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
+	"Content" => "您好"
+];
+Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>array</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td>xml消息体转变成数组格式消息体</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><xmp>
+"<xml><ToUserName><![CDATA[o9lXF0oPTBOMS44dILU1kfZMlra0]]></ToUserName>
+			  	<FromUserName><![CDATA[o9lXF0oPTBOMS44dILU1kfZMlra0]]></FromUserName>
+			  	<CreateTime>1583820730</CreateTime>
+			  	<MsgType><![CDATA[text]]></MsgType>
+			  	<Content><![CDATA[您好]]></Content>
+				</xml>"
+	                	</xmp></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="main_body">private parseImage($message)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>处理图片消息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">private parseVoice($message)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>处理语音消息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">private parseVideo($message)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>处理视频消息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">private parseMusic($message)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>处理音乐消息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">private parseNews($message)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>处理图文消息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+    </div>
+</body>
+</html>

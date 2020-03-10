@@ -38,9 +38,10 @@ class User extends Base{
 		$tagKey = self::TAG . $this->appid;
 		if(!self::$cache || !($res = $this->redis->getValues($tagKey))){
 			$url = sprintf(self::$wechatUrl["tagget"],$this->accessToken);
-			$res = $this->request($url);
+			$data = $this->request($url);
+			$res = isset($data["tags"]) ? $data["tags"] : [];
 			self::$cache && $this->redis->setValues($tagKey,$res,self::$commonExpire);
-			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($data) . "]",DEBUG);
 		}
 		return $res;
 	}
@@ -201,36 +202,36 @@ class User extends Base{
 	/**
 	 * 为用户打备注
 	 *
-	 * @param string $openid 用户openid
+	 * @param string $openid openID
 	 * @param string $remark 备注名
 	 */
-	public function setUserRemark($openid,$remark){
+	public function setUserRemark($openID,$remark){
 		if(strlen($remark) >= 30){
 			throw new WechatException("The name of remark must less 30",WechatException::USERREMARKERROR);
 		}
 		$buffer = [
-			"openid" => $openid,
+			"openid" => $openID,
 			"remark" => $remark
 		];
 		$url = sprintf(self::$wechatUrl["userremarkset"],$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
 		]);
-		self::$cache && $this->redis->del(self::USERINFO . $this->appid . ":" . $openid);
+		self::$cache && $this->redis->del(self::USERINFO . $this->appid . ":" . $openID);
 		return true;
 	}
 
 	/**
 	 * 获取用户基本信息
 	 *
-	 * @param  string $openid 用户openid
+	 * @param  string $openID 用户openid
 	 * @param  string $lang   语言，支持参数请查看微信获取用户基本信息接口说明
 	 * @return
 	 */
-	public function getUserInfo($openid,$lang="zh_CN"){
-		$userInfoKey = self::USERINFO . $this->appid . ":" . $openid;
+	public function getUserInfo($openID,$lang="zh_CN"){
+		$userInfoKey = self::USERINFO . $this->appid . ":" . $openID;
 		if(!self::$cache || !($res = $this->redis->getValues($userInfoKey))){
-			$url = sprintf(self::$wechatUrl["userinfo"],$this->accessToken,$openid,$lang);
+			$url = sprintf(self::$wechatUrl["userinfo"],$this->accessToken,$openID,$lang);
 			$res = $this->request($url);
 			self::$cache && $this->redis->setValues($userInfoKey,$res,self::$commonExpire);
 			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);

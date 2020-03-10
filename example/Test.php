@@ -169,12 +169,12 @@ try{
 	echo "</br>";
 	echo "-------------------------------------------------" . "</br>";*/
 	//公众号回复消息
-/*	$message = [
+	/*$message = [
 		"ToUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
 		"FromUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
 		"Content" => "您好"
 	];
-	Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);*/
+	Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles\Message::TEXT,$message);*/
 	//设置所属行业
 /*	$res = Wechat::getInstance()->setIndustry("1","4");
 	var_dump($res);*/

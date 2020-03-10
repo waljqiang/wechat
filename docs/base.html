@@ -1,0 +1,330 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="./css/apitest.css" />
+<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/common.js"></script>
+</HEAD>
+<body>
+	<div id="box_opration" class="layout_main_top">
+		<div class="main_header">Namespace</div>
+        <div class="main_body">Waljqiang\Wechat\Handles</div>
+	</div>
+    <div id="box_opration" class="layout_main_top">
+        <div class="main_header">class</div>
+        <div class="main_body">class Base</div>
+    </div>
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Constants</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>MENU</td>
+                    <td>自定义菜单缓存key标识</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TAG</td>
+                    <td>公众号标签缓存key标识</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TAGFANS</td>
+                    <td>公众号标签下粉丝列表key标识</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>USERTAGS</td>
+                    <td>用户下标签列表缓存key标识</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>USERINFO</td>
+                    <td>用户基本信息缓存key标识</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>USERLIST</td>
+                    <td>用户列表缓存key标识</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>QRCODE</td>
+                    <td>二维码缓存key标识</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>KFACCOUNT</td>
+                    <td>客服账号列表缓存key标识</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>INDUSTRY</td>
+                    <td>所属行业信息缓存key标识</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TEMPLATELIST</td>
+                    <td>模板列表缓存key标识</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>AVATARTYPE</td>
+                    <td>客服头像文件类型</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>protected string</td>
+                    <td>$accessToken</td>
+                    <td>微信公众号接口访问权限</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>protected string</td>
+                    <td>$appid</td>
+                    <td>微信公众号appid</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>protected string</td>
+                    <td>$secret</td>
+                    <td>微信公众号secret</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>protected Wechat</td>
+                    <td>$wechat</td>
+                    <td>Waljqiang\Wechat\Wechat::class实例</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td>protected Redis</td>
+                    <td>$redis</td>
+                    <td>Waljqiang\Wechat\Redis\Redis::class实例</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>protected Logger</td>
+                    <td>$logger</td>
+                    <td>Waljqiang\Wechat\Logger::classs实例</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>protected boolean</td>
+                    <td>$log</td>
+                    <td>是否启用日志</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>public static boolean</td>
+                    <td>$cache</td>
+                    <td>是否启用缓存</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>public static array</td>
+                    <td>$wechatUrl</td>
+                    <td>微信api请求地址配置信息</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>public static integer</td>
+                    <td>$commonExpire</td>
+                    <td>缓存公共过期时间</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Methods</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+        </table>
+        <div>
+        	<div class="methods_body">public __construct($wechat)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>构造函数</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>Waljqiang\Wechat\Wechat</td>
+	                    <td>$wechat</td>
+	                    <td>Wechat实例</td>
+	                    <td>主要完成变量初始化工作</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">protected request($url,$method = 'GET',$options = [])</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>调用Waljqiang\Wechat\Wechat::class的request方法发送http请求,内部使用</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数示例</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>string</td>
+	                    <td>$url</td>
+	                    <td>http请求地址</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$method</td>
+	                    <td>http请求方法</td>
+	                    <td>默认为GET</td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>$options</td>
+	                    <td>GuzzleHttp\Client请求参数</td>
+	                    <td>默认为[]</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>array</td>
+	                    <td></td>
+	                    <td>http请求结果</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+    </div>
+</body>
+</html>

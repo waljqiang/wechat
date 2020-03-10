@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="./css/apitest.css" />
+<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/common.js"></script>
+</HEAD>
+<body>
+    <div id="box_opration" class="layout_main_top">
+        <div class="main_header">class</div>
+        <div class="main_body"><a href="./message.html" onclick="showParent('#obj',4)">Waljqiang\Wechat\Handles\Message::class</a></div>
+    </div>
+    
+    <div id="box_expresion" class="layout_main_middle">
+    	<div class="methods_body">public createKfAccount($data)</div>
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td>说明</td>       
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td>创建客服账号</td>
+                </tr>
+            </tbody>
+       	</table>
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="10%">参数说明</td>
+                    <td width="10%"></td>
+                    <td width="40%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td>类型</td>
+                    <td>名称</td>
+                    <td>说明</td>
+                    <td>备注</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>kf_account</td>
+                    <td>客服账号</td>
+                    <td>格式:账号前缀@公众号微信号</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>kf_nick</td>
+                    <td>客服昵称</td>
+                    <td>最长6个汉字或12个英文字符</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>password</td>
+                    <td>客服密码</td>
+                    <td>格式为密码明文的32位加密MD5值。该密码仅用于在公众平台官网的多客服功能中使用，若不使用多客服功能，则不必设置密码</td>
+                </tr>
+            </tbody>
+       	</table>
+       	<table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td>调用示例</td>       
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td><pre>
+示例1:
+Wechat::getInstance()->creatKfAccount([
+"kf_account" => "test1@test",
+"nickname" => "客服1",
+"password" => md5("123456")
+]);
+                    </pre></td>
+                </tr>
+                <tr>
+                    <td><pre>
+示例2:
+$wechat = Wechat::getInstance();
+$message = new Message($wechat);
+$menu->creatKfAccount([
+"kf_account" => "test1@test",
+"nickname" => "客服1",
+"password" => md5("123456")
+]);
+                    </pre></td>
+                </tr>
+            </tbody>
+       	</table>
+       	<table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="10%">返回参数说明</td>
+                    <td width="10%"></td>
+                    <td width="40%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td>boolean</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+       	</table>
+       	<table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td>返回参数示例</td>       
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td><pre>
+true
+                	</pre></td>
+                </tr>
+            </tbody>
+       	</table>
+    </div>
+</body>
+</html>
