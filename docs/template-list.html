@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="./css/apitest.css" />
+<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/common.js"></script>
+</HEAD>
+<body>
+    <div id="box_opration" class="layout_main_top">
+        <div class="main_header">class</div>
+        <div class="main_body"><a href="./template.html" onclick="showParent('#obj',10)">Waljqiang\Wechat\Handles\Template::class</a></div>
+    </div>
+    
+    <div id="box_expresion" class="layout_main_middle">
+    	<div class="">public getTemplateList()</div>
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td>说明</td>       
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td>获取模板列表</td>
+                </tr>
+            </tbody>
+       	</table>
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="10%">参数说明</td>
+                    <td width="10%"></td>
+                    <td width="40%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td>无</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+       	</table>
+       	<table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td>调用示例</td>       
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td><pre>
+示例1:
+Wechat::getInstance()->getTemplateList();
+                    </pre></td>
+                </tr>
+            </tbody>
+       	</table>
+       	<table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="10%">返回参数说明</td>
+                    <td width="10%"></td>
+                    <td width="40%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td>类型</td>
+                    <td>名称</td>
+                    <td>说明</td>
+                    <td>备注</td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>templateID</td>
+                    <td>模板ID</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>title</td>
+                    <td>模板标题</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>primary_industry</td>
+                    <td>模板所属行业的一级行业</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>deputy_industry</td>
+                    <td>模板所属行业的二级行业</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>content</td>
+                    <td>模板内容</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>string</td>
+                    <td>example</td>
+                    <td>模板示例</td>
+                    <td></td>
+                </tr>
+            </tbody>
+       	</table>
+       	<table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td>返回参数示例</td>       
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td><pre>	
+[
+[
+  "template_id" => "iPk5sOIt5X_flOVKn5GrTFpncEYTojx6ddbt8WYoV5s",
+  "title" => "领取奖金提醒",
+  "primary_industry" => "IT科技",
+  "deputy_industry" => "互联网|电子商务",
+  "content" => "{ {result.DATA} }\n\n领奖金额:{ {withdrawMoney.DATA} }\n领奖  时间:    { {withdrawTime.DATA} }\n银行信息:{ {cardInfo.DATA} }\n到账时间:  { {arrivedTime.DATA} }\n{ {remark.DATA} }",
+  "example" => "您已提交领奖申请\n\n领奖金额：xxxx元\n领奖时间：2013-10-10 12:22:22\n银行信息：xx银行(尾号xxxx)\n到账时间：预计xxxxxxx\n\n预计将于xxxx到达您的银行卡"
+]
+]
+
+                    </pre></td>
+                </tr>
+            </tbody>
+       	</table>
+    </div>
+</body>
+</html>
