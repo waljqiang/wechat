@@ -44,6 +44,7 @@ return [
 			"shopcreate" => "http://api.weixin.qq.com/cgi-bin/poi/addpoi?access_token=%s",//创建门店
 			"shopget" => "http://api.weixin.qq.com/cgi-bin/poi/getpoi?access_token=%s",//查询门店信息
 			"shoplist" => "https://api.weixin.qq.com/cgi-bin/poi/getpoilist?access_token=%s",//查询门店列表
+			"shopmodify" => "https://api.weixin.qq.com/cgi-bin/poi/updatepoi?access_token=%s",//修改门店信息
 		],
 		"redis" => [
 			"host" => "192.168.33.10",

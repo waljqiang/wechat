@@ -57,7 +57,8 @@ class Handle{
 			"uploadImage",
 			"createShop",
 			"getShop",
-			"getShopList"
+			"getShopList",
+			"modifyShop"
 		]
 	];
 

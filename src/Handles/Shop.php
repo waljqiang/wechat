@@ -123,6 +123,35 @@ class Shop extends Base{
 		];
 	}
 
+	//修改门店信息
+	public function modifyShop($data){
+		$buffer['business']['base_info'] = array_intersect_key($data,[
+			"poi_id" => "",
+			"sid" => "",
+	      	"telephone" => "",
+	      	"photo_list" => [],
+	      	"recommend" => "",
+	      	"special" => "",
+	      	"introduction" => "",
+	      	"open_time" => "",
+	      	"avg_price" => 0
+		]);
+		$url = sprintf(self::$wechatUrl["shopmodify"],$this->accessToken);
+		$res = $this->request($url,"POST",[
+			"body" => json_encode($buffer, JSON_UNESCAPED_UNICODE)
+		]);
+		//清除门店列表缓存
+		//清除门店缓存
+		if(self::$cache){
+			$keys = [
+				self::SHOPLIST . $this->appid,
+				self::SHOPLIST . $this->appid . ":" . $data["poi_id"]
+			];
+			$this->redis->del($keys);
+		}
+		return true;
+	}
+
 	private function _getShopList($begin = 0,$limit = 20){
 		$url = sprintf(self::$wechatUrl["shoplist"],$this->accessToken);
 		$res = $this->request($url,"POST",[

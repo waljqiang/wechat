@@ -252,6 +252,24 @@ try{
 	//查询门店列表
 	/*$res = Wechat::getInstance()->getShopList();
 	var_dump($res);*/
+	//修改门店信息
+	/*$data = [
+		"poi_id" => "271864249",
+		"sid" => "A00001",
+		"telephone " => "020-12345678",
+		"photo_list" => [
+			[
+				"photo_url" => "http://mmbiz.qpic.cn/mmbiz_jpg/5JvjiczLQWUxW8a2wgkTyYicAI9Ylf6sicPXyvJxU2PmeRvACPyJ9xy7Tk9LIibGO25BhVQiciaYYQMPdCviayiblU6H0w/0"
+			]
+		],
+		"recommend" => "麦辣鸡腿堡套餐，麦乐鸡，全家桶",
+		"special" => "免费wifi，外卖服务",
+		"introduction" => "麦当劳是全球大型跨国连锁餐厅，1940 年创立于美国，在世界上大约拥有3 万间分店。主要售卖汉堡包，以及薯条、炸鸡、汽水、冰品、沙拉、水果等快餐食品",
+		"open_time" => "8:00-20:00",
+		"avg_price" => 35
+	];
+	$res = Wechat::getInstance()->modifyShop($data);
+	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
 }
