@@ -59,6 +59,16 @@ class Base{
 	const TEMPLATELIST = "WECHAT:TPL:LIST:";
 
 	/**
+	 * 门店缓存key标识
+	 */
+	const SHOP = "WECHAT:SHOP:";
+
+	/**
+	 * 门店列表缓存key标识
+	 */
+	const SHOPLIST = "WECHAT:SHOP:LIST:";
+
+	/**
 	 * 客服头像文件类型
 	 */
 	const AVATARTYPE = ["jpg"];

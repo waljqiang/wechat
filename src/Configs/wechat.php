@@ -41,6 +41,9 @@ return [
 			"templatedel" => "https://api.weixin.qq.com/cgi-bin/template/del_private_template?access_token=%s",//删除模板
 			"sendtplmsg" => "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s",//发送模板消息
 			"upimage" => "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=%s",//上传图片
+			"shopcreate" => "http://api.weixin.qq.com/cgi-bin/poi/addpoi?access_token=%s",//创建门店
+			"shopget" => "http://api.weixin.qq.com/cgi-bin/poi/getpoi?access_token=%s",//查询门店信息
+			"shoplist" => "https://api.weixin.qq.com/cgi-bin/poi/getpoilist?access_token=%s",//查询门店列表
 		],
 		"redis" => [
 			"host" => "192.168.33.10",

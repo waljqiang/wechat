@@ -33,7 +33,8 @@ class Message extends Base{
 		"LOCATION" => "LOCATION",
 		"CLICK" => "CLICK",
 		"VIEW" => "VIEW",
-		"TEMPLATESENDJOBFINISH" => "TEMPLATESENDJOBFINISH"
+		"TEMPLATESENDJOBFINISH" => "TEMPLATESENDJOBFINISH",
+		"POICHECKNOTIFY" => "poi_check_notify"
 	];
 
 	/**

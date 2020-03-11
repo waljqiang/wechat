@@ -54,7 +54,10 @@ class Handle{
 			"sendTemplate"
 		],
 		"Shop" => [
-			"uploadImage"
+			"uploadImage",
+			"createShop",
+			"getShop",
+			"getShopList"
 		]
 	];
 

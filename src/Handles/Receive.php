@@ -51,7 +51,6 @@ class Receive extends Message{
                 case self::EVENT:
                     $res = $this->handleEvent($obj,$appid,$signature,$timestamp,$nonce);
                     break;
-                
                 default:
                     break;
             }
@@ -155,9 +154,13 @@ class Receive extends Message{
         switch ($obj["Event"]) {
             case self::EVENTTYPE["UNSUBSCRIBE"]://取消关注事件
                 $res = $this->handleUnsubscribe($obj,$appid);
+                break;
             case self::EVENTTYPE["SUBSCRIBE"]://关注事件,包括用户扫码(未关注)事件
             case self::EVENTTYPE["SCAN"]://用户扫码事件(用户已关注)
                 echo " ";
+                break;
+            case self::EVENTTYPE["POICHECKNOTIFY"]://门店审核后事件推送
+                $res = $this->handlePoiCheckNotify($obj,$appid);
                 break;
             case self::EVENTTYPE["LOCATION"]://上报地理位置事件
                 $res = $this->handleLocation($message,$appid);
@@ -194,6 +197,7 @@ class Receive extends Message{
             ];
             $this->redis->del($data);
         }
+        echo " ";
         return $message;
     }
 
@@ -227,6 +231,21 @@ class Receive extends Message{
         }else{//失败，非用户拒收
             $message["flag"] = -2;
         }
+        return $message;
+    }
+
+    private function handlePoiCheckNotify($message,$appid = ""){
+        $appid = empty($appid) ? $this->appid : $appid;
+        //清楚门店缓存
+        //清楚门店列表缓存
+        if(self::$cache){
+            $keys = [
+                self::SHOP . $appid . ":" . $message["PoiId"],
+                self::SHOPLIST . $appid
+            ];
+            $this->redis->del($keys);
+        }
+        echo " ";
         return $message;
     }
 

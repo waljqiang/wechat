@@ -16,6 +16,27 @@
         <div class="main_header">class</div>
         <div class="main_body">class Shop extends <a href="./base.html" onclick="showParent('#wechat',2)">Base</a></div>
     </div>
+
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>private array</td>
+                    <td>$baseinfo</td>
+                    <td>门店基本信息</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     
     <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
@@ -110,6 +131,745 @@ Wechat::getInstance()->uploadImage("./timg.jpg");
 	            	<tr>
 	                    <td><pre>
 "http://mmbiz.qpic.cn/mmbiz_jpg/5JvjiczLQWUxW8a2wgkTyYicAI9Ylf6sicPXyvJxU2PmeRvACPyJ9xy7Tk9LIibGO25BhVQiciaYYQMPdCviayiblU6H0w/0"
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public createShop($data)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>创建门店</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.sid</td>
+	                    <td>商户自己的id,用于后续审核通过收到poi_id 的通知时，做对应关系。请商户自己保证唯一识别性</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.business_name</td>
+	                    <td>门店名称,15个汉字或30个英文字符内,不应包含地区、地址、分店名等信息</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.branch_name</td>
+	                    <td>分店名称,20个字,不应包含地区信息，不应与门店名有重复</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.province</td>
+	                    <td>门店所在省,10个字以内</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.city</td>
+	                    <td>门店所在市,10个字以内</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.district</td>
+	                    <td>门店所在区,10个字以内</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.address</td>
+	                    <td>门店所在详细街道地址,不要填写省市信息</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.telephone</td>
+	                    <td>门店电话,纯数字,区号,分机号均由"-"隔开</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.categories</td>
+	                    <td>门店分类,不同级分类用","隔开</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$data.offset_type</td>
+	                    <td>坐标类型,坐标类型:1,为火星坐标;2,sogou经纬度;3,为百度经纬度;4,mapbar经纬度;5,GPS坐标;6,sogou墨卡托坐标 注：高德经纬度无需转换可直接使用</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>float</td>
+	                    <td>$data.longitude</td>
+	                    <td>门店所在经度</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>float</td>
+	                    <td>$data.latitude</td>
+	                    <td>门店所在维度</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>$data.photo_list</td>
+	                    <td>门店图片列表</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.recommend</td>
+	                    <td>推荐品,不超过200字</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.special</td>
+	                    <td>特殊服务,不超过200字</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.introduction</td>
+	                    <td>商户简介,主要介绍商户信息等 300字以内</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.open_time</td>
+	                    <td>营业时间,24 小时制表示,用"-"连接,如 8:00-20:00</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$data.avg_price</td>
+	                    <td>人均价格</td>
+	                    <td>非必须</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+$data = [
+	"sid" => "33788392",
+	"business_name" => "15个汉字或30个英文字符内",
+	"branch_name" => "不超过10个字，不能含有括号和特殊字符",
+	"province" => "不超过10个字",
+	"city" => "不超过30个字",
+	"district" => "不超过10个字",
+	"address" => "门店所在的详细街道地址（不要填写省市信息）：不超过80个字",
+	"telephone" => "不超53个字符（不可以出现文字）",
+	"categories" => ["美食,小吃快餐"],
+	"offset_type" => 1,
+	"longitude" => 115.32375,
+	"latitude" => 25.097486,
+	"photo_list" => [
+		[
+			"photo_url" => "http://mmbiz.qpic.cn/mmbiz_jpg/5JvjiczLQWUxW8a2wgkTyYicAI9Ylf6sicPXyvJxU2PmeRvACPyJ9xy7Tk9LIibGO25BhVQiciaYYQMPdCviayiblU6H0w/0"
+		]
+	],
+	"recommend" => "不超过200字。麦辣鸡腿堡套餐，麦乐鸡，全家桶",
+	"special" => "不超过200字。免费wifi，外卖服务",
+	"introduction" => "不超过300字。麦当劳是全球大型跨国连锁餐厅，1940 年创立于美国，在世界上大约拥有3 万间分店。
+	主要售卖汉堡包，以及薯条、炸鸡、汽水、冰品、沙拉、 水果等快餐食品",
+	"open_time" => "8:00-20:00",
+	"avg_price" => 35
+];
+Wechat::getInstance()->createShop($data);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>integer</td>
+	                    <td></td>
+	                    <td>门店poi_id</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+460123456
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public getShop($poiID)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>查询门店信息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$poiID</td>
+	                    <td>微信门店poi_id</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->getShop("271262077");
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>sid</td>
+	                    <td>商户自己的id,用于后续审核通过收到poi_id 的通知时，做对应关系。请商户自己保证唯一识别性</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>business_name</td>
+	                    <td>门店名称,15个汉字或30个英文字符内,不应包含地区、地址、分店名等信息</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>branch_name</td>
+	                    <td>分店名称,20个字,不应包含地区信息，不应与门店名有重复</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>province</td>
+	                    <td>门店所在省,10个字以内</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>city</td>
+	                    <td>门店所在市,10个字以内</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>district</td>
+	                    <td>门店所在区,10个字以内</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>address</td>
+	                    <td>门店所在详细街道地址,不要填写省市信息</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>telephone</td>
+	                    <td>门店电话,纯数字,区号,分机号均由"-"隔开</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>categories</td>
+	                    <td>门店分类,不同级分类用","隔开</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>offset_type</td>
+	                    <td>坐标类型,坐标类型:1,为火星坐标;2,sogou经纬度;3,为百度经纬度;4,mapbar经纬度;5,GPS坐标;6,sogou墨卡托坐标 注：高德经纬度无需转换可直接使用</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>float</td>
+	                    <td>longitude</td>
+	                    <td>门店所在经度</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>float</td>
+	                    <td>latitude</td>
+	                    <td>门店所在维度</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>photo_list</td>
+	                    <td>门店图片列表</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>recommend</td>
+	                    <td>推荐品,不超过200字</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>special</td>
+	                    <td>特殊服务,不超过200字</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>introduction</td>
+	                    <td>商户简介,主要介绍商户信息等 300字以内</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>open_time</td>
+	                    <td>营业时间,24 小时制表示,用"-"连接,如 8:00-20:00</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>avg_price</td>
+	                    <td>人均价格</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>available_state</td>
+	                    <td>门店是否可用状态</td>
+	                    <td>1,系统错误;2,审核中;3,审核通过;4,审核驳回;当该字段为1、2、4 状态时,poi_id为空</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>update_status</td>
+	                    <td>扩展字段是否正在更新中</td>
+	                    <td>1,扩展字段正在更新中,尚未生效,不允许再次更新;0,扩展字段没有在更新中或更新已生效,可以再次更新</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+[
+	"sid" => "001",
+	"business_name" => "麦当劳",
+	"branch_name" => "艺苑路店",
+	"province" => "广东省",
+	"city" => "广州市",
+	"address" => "海珠区艺苑路11 号",
+	"telephone" => "020-12345678",
+	"categories" => ["美食,小吃快餐"],
+	"offset_type" => 1,
+	"longitude" => 115.32375,
+	"latitude" => 25.097486,
+	"photo_list" => [
+		[
+			"photo_url":"https:// XXX.com"
+		]
+	],
+	"recommend" => "麦辣鸡腿堡套餐，麦乐鸡，全家桶",
+	"special" => "免费wifi，外卖服务",
+	"introduction" => "麦当劳是全球大型跨国连锁餐厅，1940 年创立于美国，在世界上大
+	约拥有3 万间分店。主要售卖汉堡包，以及薯条、炸鸡、汽水、冰品、沙拉、水果等快餐食品",
+	"open_time" => "8:00-20:00",
+	"avg_price" => 35
+	"available_state" => 3
+	"update_status" => 0
+]
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public getShopList</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>查询门店列表</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->getShopList();
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>total</td>
+	                    <td>总门店数</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.sid</td>
+	                    <td>商户自己的id,用于后续审核通过收到poi_id 的通知时，做对应关系。请商户自己保证唯一识别性</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.business_name</td>
+	                    <td>门店名称,15个汉字或30个英文字符内,不应包含地区、地址、分店名等信息</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.branch_name</td>
+	                    <td>分店名称,20个字,不应包含地区信息，不应与门店名有重复</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.province</td>
+	                    <td>门店所在省,10个字以内</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.city</td>
+	                    <td>门店所在市,10个字以内</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.district</td>
+	                    <td>门店所在区,10个字以内</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.address</td>
+	                    <td>门店所在详细街道地址,不要填写省市信息</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.telephone</td>
+	                    <td>门店电话,纯数字,区号,分机号均由"-"隔开</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.categories</td>
+	                    <td>门店分类,不同级分类用","隔开</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>list.offset_type</td>
+	                    <td>坐标类型,坐标类型:1,为火星坐标;2,sogou经纬度;3,为百度经纬度;4,mapbar经纬度;5,GPS坐标;6,sogou墨卡托坐标 注：高德经纬度无需转换可直接使用</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>float</td>
+	                    <td>list.longitude</td>
+	                    <td>门店所在经度</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>float</td>
+	                    <td>list.latitude</td>
+	                    <td>门店所在维度</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>list.photo_list</td>
+	                    <td>门店图片列表</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.recommend</td>
+	                    <td>推荐品,不超过200字</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.special</td>
+	                    <td>特殊服务,不超过200字</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.introduction</td>
+	                    <td>商户简介,主要介绍商户信息等 300字以内</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.open_time</td>
+	                    <td>营业时间,24 小时制表示,用"-"连接,如 8:00-20:00</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>list.avg_price</td>
+	                    <td>人均价格</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>list.available_state</td>
+	                    <td>门店是否可用状态</td>
+	                    <td>1,系统错误;2,审核中;3,审核通过;4,审核驳回;当该字段为1、2、4 状态时,poi_id为空</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.poi_id</td>
+	                    <td>门店poi_id</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>list.update_status</td>
+	                    <td>扩展字段是否正在更新中</td>
+	                    <td>1,扩展字段正在更新中,尚未生效,不允许再次更新;0,扩展字段没有在更新中或更新已生效,可以再次更新</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+[
+	"total" => 3,
+	"list" => [
+		[
+			"sid" => "101",
+			"business_name" => "麦当劳",
+			"branch_name" => "艺苑路店",
+			"address" => "艺苑路11号",
+			"telephone" => "020-12345678",
+			"categories" => ["美食,快餐小吃"],
+			"city" => "广州市",
+			"province" => "广东省",
+			"offset_type" => 1,
+			"longitude" => 115.32375,
+			"latitude" => 25.097486,
+			"photo_list" => [
+				[
+					"photo_url":"https:// XXX.com"
+				]
+			],
+			"introduction" => "麦当劳是全球大型跨国连锁餐厅，1940 年创立于美国，在世界上大约拥有3 万间分店。主要售卖汉堡包，以及薯条、炸鸡、汽水、冰品、沙拉、水果等快餐食品",
+			"recommend" => "麦辣鸡腿堡套餐，麦乐鸡，全家桶",
+			"special" => "免费wifi，外卖服务",
+			"open_time" => "8:00-20:00",
+			"avg_price" => 35,
+			"poi_id" => "285633617",
+			"available_state" => 3,
+			"district" => "海珠区",
+			"update_status" => 0
+		],
+		[
+			"sid" => "102",
+			"business_name" => "麦当劳",
+			"branch_name" => "北京路店",
+			"address" => "北京路12号",
+			"telephone" => "020-12345689",
+			"categories" => ["美食,快餐小吃"],
+			"city" => "广州市",
+			"province" => "广东省",
+			"offset_type" => 1,
+			"longitude" => 115.3235,
+			"latitude" => 25.092386,
+			"photo_list" => [],
+			"introduction" => "麦当劳是全球大型跨国连锁餐厅，1940 年创立于美国，在世界上大约拥有3 万间分店。主要售卖汉堡包，以及薯条、炸鸡、汽水、冰品、沙拉、水果等快餐食品",
+			"recommend" => "麦辣鸡腿堡套餐，麦乐鸡，全家桶",
+			"special" => "免费wifi，外卖服务",
+			"open_time" => "8:00-20:00",
+			"avg_price" => 35,
+			"poi_id" => "285633618",
+			"available_state" => 4,
+			"district" => "越秀区",
+			"update_status" => 0
+		],
+		[
+			"sid" => "103",
+			"business_name" => "麦当劳",
+			"branch_name" => "龙洞店",
+			"address" => "迎龙路122号",
+			"telephone" => "020-12345659",
+			"categories" => ["美食,快餐小吃"],
+			"city" => "广州市",
+			"province" => "广东省",
+			"offset_type" => 1,
+			"longitude" => 115.32345,
+			"latitude" => 25.056686,
+			"photo_list" => [],
+			"introduction" => "麦当劳是全球大型跨国连锁餐厅，1940 年创立于美国，在世界上大约拥有3 万间分店。主要售卖汉堡包，以及薯条、炸鸡、汽水、冰品、沙拉、水果等快餐食品",
+			"recommend" => "麦辣鸡腿堡套餐，麦乐鸡，全家桶",
+			"special" => "免费wifi，外卖服务",
+			"open_time" => "8:00-20:00",
+			"avg_price" => 35,
+			"poi_id" => "285633619",
+			"available_state" => 2,
+			"district" => "天河区",
+			"update_status" => 0
+		]
+	]
+]
 	                	</pre></td>
 	                </tr>
 	            </tbody>
