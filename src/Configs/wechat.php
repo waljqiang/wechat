@@ -40,6 +40,7 @@ return [
 			"templatelist" => "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=%s",//获取模板列表
 			"templatedel" => "https://api.weixin.qq.com/cgi-bin/template/del_private_template?access_token=%s",//删除模板
 			"sendtplmsg" => "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s",//发送模板消息
+			"upimage" => "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=%s",//上传图片
 		],
 		"redis" => [
 			"host" => "192.168.33.10",

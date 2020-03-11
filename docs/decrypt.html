@@ -1,0 +1,454 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="./css/apitest.css" />
+<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/common.js"></script>
+</HEAD>
+<body>
+	<div id="box_opration" class="layout_main_top">
+		<div class="main_header">Namespace</div>
+        <div class="main_body">Waljqiang\Wechat\Decryption</div>
+	</div>
+    <div id="box_opration" class="layout_main_top">
+        <div class="main_header">class</div>
+        <div class="main_body">class Decrypt</div>
+        <div class="main_body">消息加解密处理类</div>
+    </div>
+
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>private string</td>
+                    <td>$token</td>
+                    <td>微信公众平台配置的token</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>private string</td>
+                    <td>$encodingAesKey</td>
+                    <td>微信公众平台配置的encodingAesKey</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>public sting</td>
+                    <td>$appid</td>
+                    <td>微信公众号的appid</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Methods</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+        </table>
+
+        <div>
+        	<div class="methods_body">public __construct($token,$encodingAesKey,$appid)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>构造函数</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>string</td>
+	                    <td>$token</td>
+	                    <td>微信公众平台配置的token</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$encodingAesKey</td>
+	                    <td>微信公众平台配置的encodingAesKey</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$appid</td>
+	                    <td>微信公众号的appid</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="">public init($token,$encodingAesKey,$appid)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类初始化,改变类的token，encodingAesKey，appid的值</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>string</td>
+	                    <td>$token</td>
+	                    <td>微信公众平台配置的token</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$encodingAesKey</td>
+	                    <td>微信公众平台配置的encodingAesKey</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$appid</td>
+	                    <td>微信公众号的appid</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->init("pamtest","abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG","wxfae2fb734a9ddf58");
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>void</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="">public encryptMsg($replyMsg, $timeStamp = NULL, $nonce = NULL)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>加密消息</td>
+	                </tr>
+	                <tr>
+	                    <td>请尽量使用<a href="./wechat.html" onclick="showParent('#wechat',1)">Wechat</a>类的encryptMsg方法对消息加密</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>string</td>
+	                    <td>$replyMsg</td>
+	                    <td>需加密的消息</td>
+	                    <td>xml格式</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$timeStamp</td>
+	                    <td>时间戳</td>
+	                    <td>默认为NULL，取系统时间戳</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$nonce</td>
+	                    <td>随机数</td>
+	                    <td>默认为NULL，系统自动生成</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre><pre><xmp>
+$message = "<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName>
+	<FromUserName><![CDATA[gh_7f083739789a]]></FromUserName>
+	<CreateTime>1407743423</CreateTime>
+	<MsgType><![CDATA[video]]></MsgType>
+	<Video><MediaId><![CDATA[eYJ1MbwPRJtOvIEabaxHs7TX2D-HV71s79GUxqdUkjm6Gs2Ed1KF3ulAOA9H1xG0]]></MediaId>
+		<Title><![CDATA[testCallBackReplyVideo]]></Title><Description><![CDATA[testCallBackReplyVideo]]></Description>
+	</Video></xml>";
+$decrypt = new Decrypt("pamtest","abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG","wxfae2fb734a9ddf58");
+Wechat::getInstance()->encryptMsg($message);
+	                    </xmp></pre></pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>string</td>
+	                    <td></td>
+	                    <td>加密后的消息</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre><xmp>
+"<xml>
+<Encrypt><![CDATA[JfdaqMUyI++sFHexYHCtmJZ5DEmTY7VzYwYlyg/ooUYVJAVjfLIxh2+Z2IB4ppJaNmco2LQXX1UntQG/
+	ylWAfcMeztt2yKC1NTGxwT8Gfdzisz/WTChjNcizex18zcpZkjiO/HANyOhJN9OU+poKO70yvOafqOaOFYMSdc/OmXtF
+	k+p/5+nujM0+dfuq9GqAnrVN7CRMQURJdpnSn3b+7ZgeP3C6BIhZv9ojoAfbNigLuC0GdzvXc29CWDfKgB23Uff9vRAA
+	mPJslCaV/4DXRHWkDXKZ7+kfapO97QOHdK1Ut3NJ0foWL7BWplGPOVSig5KrkH/5VfWBUEj0xifk0XKeZn/99c5uQU93W
+	JINfXpX+uIMaFnEOBHKky8E9aJZfouE31EN3WQq9d9ujK0b9qeS4VWxOpuC3N2dBaTTtTRvzUw4MJNjs9E8BYvP+3sO3V
+	ehCNKE6puv5]]></Encrypt><MsgSignature><![CDATA[sdfedfdf232434dfsdfge53454sdf]]></MsgSignature>
+<TimeStamp>1583820730</TimeStamp>
+<Nonce><![CDATA[123456]]></Nonce></xml>"
+	                    </xmp></pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="">public decryptMsg($signature, $timeStamp, $nonce,$encryptMsg)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>解密消息</td>
+	                </tr>
+	                <tr>
+	                    <td>请尽量使用<a href="./wechat.html" onclick="showParent('#wechat',1)">Wechat</a>类的decryptMsg方法对消息解密</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>string</td>
+	                    <td>$signature</td>
+	                    <td>消息签名</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$timeStamp</td>
+	                    <td>时间戳</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$nonce</td>
+	                    <td>随机数</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$encryptMsg</td>
+	                    <td>密文消息</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+$message = "JfdaqMUyI++sFHexYHCtmJZ5DEmTY7VzYwYlyg/ooUYVJAVjfLIxh2+Z2IB4ppJaNmco2LQXX1UntQG/
+	ylWAfcMeztt2yKC1NTGxwT8Gfdzisz/WTChjNcizex18zcpZkjiO/HANyOhJN9OU+poKO70yvOafqOaOFYMSdc/OmXtF
+	k+p/5+nujM0+dfuq9GqAnrVN7CRMQURJdpnSn3b+7ZgeP3C6BIhZv9ojoAfbNigLuC0GdzvXc29CWDfKgB23Uff9vRAA
+	mPJslCaV/4DXRHWkDXKZ7+kfapO97QOHdK1Ut3NJ0foWL7BWplGPOVSig5KrkH/5VfWBUEj0xifk0XKeZn/99c5uQU93W
+	JINfXpX+uIMaFnEOBHKky8E9aJZfouE31EN3WQq9d9ujK0b9qeS4VWxOpuC3N2dBaTTtTRvzUw4MJNjs9E8BYvP+3sO3V
+	ehCNKE6puv5";
+$decrypt = new Decrypt("pamtest","abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG","wxfae2fb734a9ddf58");
+Wechat::getInstance()->encryptMsg("sdfedfdf232434dfsdfge53454sdf",1583820730,123456,$message);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>string</td>
+	                    <td></td>
+	                    <td>解密后的消息</td>
+	                    <td>xml格式</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre><xmp>
+"<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName>
+	<FromUserName><![CDATA[gh_7f083739789a]]></FromUserName>
+	<CreateTime>1407743423</CreateTime>
+	<MsgType><![CDATA[video]]></MsgType>
+	<Video><MediaId><![CDATA[eYJ1MbwPRJtOvIEabaxHs7TX2D-HV71s79GUxqdUkjm6Gs2Ed1KF3ulAOA9H1xG0]]></MediaId>
+		<Title><![CDATA[testCallBackReplyVideo]]></Title><Description><![CDATA[testCallBackReplyVideo]]></Description>
+	</Video></xml>"
+	                    </xmp></pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+    </div>
+</body>
+</html>

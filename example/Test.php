@@ -215,6 +215,9 @@ try{
 	];
 	$res = Wechat::getInstance()->sendTemplate("o9lXF0oPTBOMS44dILU1kfZMlra0","ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",$message);
 	var_dump($res);*/
+	//上传图片
+/*	$res = Wechat::getInstance()->uploadImage("./timg.jpg");
+	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
 }

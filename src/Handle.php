@@ -52,6 +52,9 @@ class Handle{
 			"getTemplateList",
 			"deleteTemplate",
 			"sendTemplate"
+		],
+		"Shop" => [
+			"uploadImage"
 		]
 	];
 

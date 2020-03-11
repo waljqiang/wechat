@@ -63,6 +63,11 @@ class Base{
 	 */
 	const AVATARTYPE = ["jpg"];
 
+	/**
+	 * 门店图片支持的类型
+	 */
+	const SHOPIMAGE = ["jpg"];
+
 	protected $accessToken;
 	protected $appid;
 	protected $secret;
