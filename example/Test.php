@@ -270,6 +270,12 @@ try{
 	];
 	$res = Wechat::getInstance()->modifyShop($data);
 	var_dump($res);*/
+	//身份证识别
+/*	$res = Wechat::getInstance()->identityCard("./my.jpg");
+	var_dump($res);*/
+	//银行卡识别
+/*	$res = Wechat::getInstance()->bankCard("./my.jpg");
+	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
 }

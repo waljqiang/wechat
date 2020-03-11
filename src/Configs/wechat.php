@@ -46,6 +46,12 @@ return [
 			"shoplist" => "https://api.weixin.qq.com/cgi-bin/poi/getpoilist?access_token=%s",//查询门店列表
 			"shopmodify" => "https://api.weixin.qq.com/cgi-bin/poi/updatepoi?access_token=%s",//修改门店信息
 			"shopdel" => "https://api.weixin.qq.com/cgi-bin/poi/delpoi?access_token=%s",//删除门店
+			"idcard" => "https://api.weixin.qq.com/cv/ocr/idcard?img_url=%s&access_token=%s",//身份证识别
+			"bankcard" => "https://api.weixin.qq.com/cv/ocr/bankcard?img_url=%s&access_token=%s",//银行卡识别
+			"drivecard" => "https://api.weixin.qq.com/cv/ocr/driving?img_url=%s&access_token=%s",//行驶证识别
+			"drivelicense" => "https://api.weixin.qq.com/cv/ocr/drivinglicense?img_url=%s&access_token=%s",//驾驶证识别
+			"bizlicense" => "http://api.weixin.qq.com/cv/ocr/bizlicense?img_url=%s&access_token=%s",//营业执照识别
+			"ocrcomm" => "http://api.weixin.qq.com/cv/ocr/comm?img_url=%s&access_token=%s",//通用印刷体识别
 		],
 		"redis" => [
 			"host" => "192.168.33.10",

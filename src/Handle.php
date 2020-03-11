@@ -59,6 +59,14 @@ class Handle{
 			"getShop",
 			"getShopList",
 			"modifyShop"
+		],
+		"Ocr" => [
+			"identityCard",
+			"bankCard",
+			"drivingCard",
+			"drivingLicense",
+			"bizLicense",
+			"orcComm"
 		]
 	];
 
