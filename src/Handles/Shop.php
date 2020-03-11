@@ -152,6 +152,24 @@ class Shop extends Base{
 		return true;
 	}
 
+	//删除门店
+	public function deleteShop($poiID){
+		$url = sprintf(self::$wechatUrl["shopdel"],$this->accessToken);
+		$res = $this->request($url,"POST",[
+			"body" => json_encode(["poi_id" => $poiID], JSON_UNESCAPED_UNICODE)
+		]);
+		//清除门店列表缓存
+		//清除门店缓存
+		if(self::$cache){
+			$keys = [
+				self::SHOPLIST . $this->appid,
+				self::SHOPLIST . $this->appid . ":" . $data["poi_id"]
+			];
+			$this->redis->del($keys);
+		}
+		return true;
+	}
+
 	private function _getShopList($begin = 0,$limit = 20){
 		$url = sprintf(self::$wechatUrl["shoplist"],$this->accessToken);
 		$res = $this->request($url,"POST",[

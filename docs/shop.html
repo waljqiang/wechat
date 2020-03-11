@@ -64,7 +64,7 @@
 	            </tbody>
 	       	</table>
 
-	       	 <table class="tbl_params">
+	       	<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
 	                    <td width="10%">参数说明</td>
@@ -152,7 +152,7 @@ Wechat::getInstance()->uploadImage("./timg.jpg");
 	            </tbody>
 	       	</table>
 
-	       	 <table class="tbl_params">
+	       	<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
 	                    <td width="10%">参数说明</td>
@@ -876,8 +876,8 @@ Wechat::getInstance()->getShopList();
 	       	</table>
         </div>
 
-         <div>
-        	<div class="methods_body">public modifyShop($data)</div>
+        <div>
+        	<div class="methods_body">public deleteShop($poiID)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -886,10 +886,7 @@ Wechat::getInstance()->getShopList();
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>修改门店信息</td>
-	                </tr>
-	                <tr>
-	                    <td>参数若有填写内容则为覆盖更新，若无内容则视为不修改，维持原有内容</td>
+	                    <td>删除门店</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -912,56 +909,8 @@ Wechat::getInstance()->getShopList();
 	                </tr>
 	                <tr>
 	                    <td>string</td>
-	                    <td>$data.poi_id</td>
+	                    <td>$poiID</td>
 	                    <td>微信门店poi_id</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$data.sid</td>
-	                    <td>商户自己的id,用于后续审核通过收到poi_id 的通知时，做对应关系。请商户自己保证唯一识别性</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$data.telephone</td>
-	                    <td>门店电话,纯数字,区号,分机号均由"-"隔开</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>array</td>
-	                    <td>$data.photo_list</td>
-	                    <td>门店图片列表</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$data.recommend</td>
-	                    <td>推荐品,不超过200字</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$data.special</td>
-	                    <td>特殊服务,不超过200字</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$data.introduction</td>
-	                    <td>商户简介,主要介绍商户信息等 300字以内</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$data.open_time</td>
-	                    <td>营业时间,24 小时制表示,用"-"连接,如 8:00-20:00</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$data.avg_price</td>
-	                    <td>人均价格</td>
 	                    <td></td>
 	                </tr>
 	            </tbody>
@@ -976,22 +925,7 @@ Wechat::getInstance()->getShopList();
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-$data = [
-	"poi_id" => "271864249",
-	"sid" => "A00001",
-	"telephone " => "020-12345678",
-	"photo_list" => [
-		[
-			"photo_url" => "http://mmbiz.qpic.cn/mmbiz_jpg/5JvjiczLQWUxW8a2wgkTyYicAI9Ylf6sicPXyvJxU2PmeRvACPyJ9xy7Tk9LIibGO25BhVQiciaYYQMPdCviayiblU6H0w/0"
-		]
-	],
-	"recommend" => "麦辣鸡腿堡套餐，麦乐鸡，全家桶",
-	"special" => "免费wifi，外卖服务",
-	"introduction" => "麦当劳是全球大型跨国连锁餐厅，1940 年创立于美国，在世界上大约拥有3 万间分店。主要售卖汉堡包，以及薯条、炸鸡、汽水、冰品、沙拉、水果等快餐食品",
-	"open_time" => "8:00-20:00",
-	"avg_price" => 35
-];
-Wechat::getInstance()->modifyShop($data);
+Wechat::getInstance()->deleteShop("271864249");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
