@@ -72,7 +72,10 @@ class Handle{
 			"getWifiShopList",
 			"getWifiShop",
 			"modifyWifiShop",
-			"clearWifiShop"
+			"clearWifiShop",
+			"addPasswordDevice",
+			"addPortalDevice",
+			"getDeviceList"
 		]
 	];
 

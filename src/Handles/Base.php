@@ -79,6 +79,11 @@ class Base{
 	const WIFISHOP = "WECHAT:WIFI:SHOP:";
 
 	/**
+	 * WiFi设备列表缓存key标识
+	 */
+	const DEVICELIST = "WECHAT:WIFI:DEVICE:LIST:";
+
+	/**
 	 * 客服头像文件类型
 	 */
 	const AVATARTYPE = ["jpg"];

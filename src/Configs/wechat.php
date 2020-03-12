@@ -56,6 +56,9 @@ return [
 			"wifishop" => "https://api.weixin.qq.com/bizwifi/shop/get?access_token=%s",//查询wifi门店信息
 			"wifishopmodify" => "https://api.weixin.qq.com/bizwifi/shop/update?access_token=%s",//修改门店信息
 			"wifishopclear" => "https://api.weixin.qq.com/bizwifi/shop/clean?access_token=%s",//清空门店网络设备
+			"devicetopwd" => "https://api.weixin.qq.com/bizwifi/device/add?access_token=%s",//添加密码型设备
+			"devicetoportal" => "https://api.weixin.qq.com/bizwifi/apportal/register?access_token=%s",//添加portal型设备
+			"devicelist" => "https://api.weixin.qq.com/bizwifi/device/list?access_token=%s",//查询设备列表
 		],
 		"redis" => [
 			"host" => "192.168.33.10",

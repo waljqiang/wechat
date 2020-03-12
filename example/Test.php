@@ -283,13 +283,22 @@ try{
 /*	$res = Wechat::getInstance()->getWifiShop(429620);
 	var_dump($res);*/
 	//修改wifi门店信息
-	$data = [
+	/*$data = [
 		"shop_id" => 429620,
 	    "old_ssid" => "WX123",
 	    "ssid" => "WX567"
 	];
 	$res = Wechat::getInstance()->modifyWifiShop($data);
-	var_dump($res);
+	var_dump($res);*/
+	//添加密码型设备
+	/*$res = Wechat::getInstance()->addPasswordDevice(429620,"WX123","123456789");
+	var_dump($res);*/
+	//添加portal设备
+	/*$res = Wechat::getInstance()->addPortalDevice(429620,"123");
+	var_dump($res);*/
+	//获取设备列表
+/*	$res = Wechat::getInstance()->getDeviceList();
+	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
 }

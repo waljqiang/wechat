@@ -578,6 +578,350 @@ true
 	            </tbody>
 	       	</table>
         </div>
+
+        <div>
+        	<div class="methods_body">public addPasswordDevice($shopID,$ssid,$password)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>添加密码型设备</td>
+	                </tr>
+	                <tr>
+	                    <td style="color:#DC143C">添加密码型设备后,不能再添加portal型设备</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$shopID</td>
+	                    <td>门店ID(shop_id)</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$ssid</td>
+	                    <td>网络设备ssid</td>
+	                    <td>32个字符以内;ssid支持中文,但可能因设备兼容性问题导致显示乱码,或无法连接等问题, 当门店下是portal型设备时,ssid必填;当门店下是密码型设备时,ssid选填,且ssid和密码必须有一个以大写字母"WX"开头</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$password</td>
+	                    <td>无线网络设备的密码</td>
+	                    <td>8-24个字符;不能包含中文字符;当门店下是密码型设备时,才可填写password,且ssid和密码必须有一个以大写字母"WX"开头</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->addPasswordDevice(429620,"WX123","123456789");
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>boolean</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+true
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public addPortalDevice($shopID,$ssid,$reset = false)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>添加portal型设备</td>
+	                </tr>
+	                <tr>
+	                    <td style="color:#DC143C">添加portal型设备后,不能添加密码型设备</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$shopID</td>
+	                    <td>门店ID(shop_id)</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$ssid</td>
+	                    <td>网络设备ssid</td>
+	                    <td>32个字符以内;ssid支持中文,但可能因设备兼容性问题导致显示乱码,或无法连接等问题</td>
+	                </tr>
+	                <tr>
+	                    <td>boolean</td>
+	                    <td>$reset</td>
+	                    <td>是否重置secretkey</td>
+	                    <td>false,不重置;true,重置;默认为false</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->addPortalDevice(429620,"123");
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>string</td>
+	                    <td></td>
+	                    <td>secretkey</td>
+	                    <td>改造portal页面所需参数，该参数用于触发呼起微信的JSAPI接口的sign参数值的计算</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+"1af08ec5cdb70a4d7365bcd64d3120f6"
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public getDeviceList($pageIndex = 1,$pageOffset = 10,$shopID = "")</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>获取设备列表</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$pageIndex</td>
+	                    <td>页码</td>
+	                    <td>默认为1</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$pageOffset</td>
+	                    <td>每页记录数</td>
+	                    <td>默认为10</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$shopID</td>
+	                    <td>门店shop_id</td>
+	                    <td>默认为空,查询所有;当不为空时,根据门店id查询</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->getDeviceList();
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>integer</td>
+	                    <td>total</td>
+	                    <td>总数</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>list.shop_id</td>
+	                    <td>门店id</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.ssid</td>
+	                    <td>连网设备ssid</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.bssid</td>
+	                    <td>无线MAC地址</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>list.protocol_type</td>
+	                    <td>设备类型</td>
+	                    <td>0,未添加设备;1,专业型设备;4,密码型设备;5,portal自助型设备;31,portal改造型设备</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+[
+	"total" => 1,
+	"list" => [
+		"shop_id" => 429620,
+        "ssid" => "WX123",
+        "bssid" => "00:1f:7a:ad:5b:a9",
+        "protocol_type" => 4
+	]
+]
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
     </div>
 </body>
 </html>
