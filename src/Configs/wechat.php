@@ -52,6 +52,10 @@ return [
 			"drivelicense" => "https://api.weixin.qq.com/cv/ocr/drivinglicense?img_url=%s&access_token=%s",//驾驶证识别
 			"bizlicense" => "http://api.weixin.qq.com/cv/ocr/bizlicense?img_url=%s&access_token=%s",//营业执照识别
 			"ocrcomm" => "http://api.weixin.qq.com/cv/ocr/comm?img_url=%s&access_token=%s",//通用印刷体识别
+			"wifishops" => "https://api.weixin.qq.com/bizwifi/shop/list?access_token=%s",//获取wifi门店列表
+			"wifishop" => "https://api.weixin.qq.com/bizwifi/shop/get?access_token=%s",//查询wifi门店信息
+			"wifishopmodify" => "https://api.weixin.qq.com/bizwifi/shop/update?access_token=%s",//修改门店信息
+			"wifishopclear" => "https://api.weixin.qq.com/bizwifi/shop/clean?access_token=%s",//清空门店网络设备
 		],
 		"redis" => [
 			"host" => "192.168.33.10",

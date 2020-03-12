@@ -1,0 +1,583 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML>
+<HEAD>
+<meta charset="utf-8">
+<link type="text/css" rel="stylesheet" href="./css/apitest.css" />
+<link type="text/css" rel="stylesheet" href="./css/bootstrap.css" />
+<script src="./js/jquery-1.7.2.min.js"></script>
+<script src="./js/common.js"></script>
+</HEAD>
+<body>
+	<div id="box_opration" class="layout_main_top">
+		<div class="main_header">Namespace</div>
+        <div class="main_body">Waljqiang\Wechat\Handles</div>
+	</div>
+    <div id="box_opration" class="layout_main_top">
+        <div class="main_header">class</div>
+        <div class="main_body">class WIFI extends <a href="./base.html" onclick="showParent('#wechat',2)">Base</a></div>
+    </div>
+    
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Methods</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+        </table>
+        <div>
+        	<div class="methods_body">public getWifiShopList($pageIndex = 1,$pageOffset = 10)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>获取wifi门店列表</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$pageIndex</td>
+	                    <td>页码</td>
+	                    <td>默认为1</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$pageOffset</td>
+	                    <td>每页记录数</td>
+	                    <td>默认为10</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->getWifiShopList();
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>total</td>
+	                    <td>总门店数</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>list.shop_id</td>
+	                    <td>门店id</td>
+	                    <td>适用于微信连Wi-Fi业务</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.shop_name</td>
+	                    <td>门店名称</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.ssid</td>
+	                    <td>无线网络设备的ssid</td>
+	                    <td>未添加设备为空,多个ssid时显示第一个</td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>list.ssid_list</td>
+	                    <td>无线网络设备的ssid列表</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>list.protocol_type</td>
+	                    <td>门店内设备的设备类型</td>
+	                    <td>0,未添加设备;1,专业型设备;4,密码型设备;5,portal自助型设备;31,portal改造型设备</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.sid</td>
+	                    <td>商户自己的id</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>list.poi_id</td>
+	                    <td>微信门店ID</td>
+	                    <td>与shop_id一一对应</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+[
+	"total" => 2,
+	"list" => [
+		[
+	        "shop_id" => 429620,
+	        "shop_name" => "南山店",
+	        "ssid" => "WX123",
+	        "ssid_list" => [
+	          	"WX123",
+	          	"WX456"
+	        ],
+	        "protocol_type" => 4,
+	        "sid" => "",
+	        "poi_id" => "285633617"
+	    ],
+      	[
+	        "shop_id" => 7921527,
+	        "shop_name" => "宝安店",
+	        "ssid" => "",
+	        "ssid_list" => [],
+	        "protocol_type" => 0,
+	        "sid" => "",
+	        "poi_id" => "285623614"
+      	]
+	]
+]
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public getWifiShop($shopID)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>查询WiFi门店信息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$shopID</td>
+	                    <td>门店ID(shop_id)</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->getWifiShop(429620);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>ssid</td>
+	                    <td>无线网络设备的ssid</td>
+	                    <td>未添加设备为空,多个ssid时显示第一个</td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>ssid_password_list</td>
+	                    <td>ssid和密码的列表</td>
+	                    <td>当为密码型设备时,密码才有值</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>password</td>
+	                    <td>设备密码</td>
+	                    <td>当设备类型为密码型时返回</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>protocol_type</td>
+	                    <td>设备类型</td>
+	                    <td>0,未添加设备;1,专业型设备;4,密码型设备;5,portal自助型设备;31,portal改造型设备</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>ap_count</td>
+	                    <td>设备总数</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>template_id</td>
+	                    <td>商家主页模板类型</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>homepage_url</td>
+	                    <td>商家主要链接</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>bar_type</td>
+	                    <td>顶部常驻入口上显示的文本内容</td>
+	                    <td>0,欢迎光临+公众号名称;1,欢迎光临+门店名称;2,已连接+公众号名称+WiFi;3,已连接+门店名称+Wi-Fi</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>finishpage_url</td>
+	                    <td>连网完成页链接</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>sid</td>
+	                    <td>商户自己的id</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>poi_id</td>
+	                    <td>门店ID</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+[
+    "shop_name" => "南山店",
+    "ssid" => " WX123",
+    "ssid_list": [
+      "WX123",
+      "WX456"
+    ],
+    "ssid_password_list" => [
+    	[
+	        "ssid" => "WX123",
+	        "password" => "123456789"
+      	],
+      	[
+        	"ssid" => "WX456",
+        	"password" => "21332465dge"
+      	]
+    ],
+    "password" => "123456789",
+    "protocol_type" => 4,
+    "ap_count" => 2,
+    "template_id" => 1,
+    "homepage_url" => "http://www.weixin.qq.com/",
+    "bar_type" => 1,
+    "sid" =>"",
+    "poi_id" => "285633617"
+]
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public modifyWifiShop($data)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>修改WiFi门店信息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.shop_id</td>
+	                    <td>门店ID(shop_id)</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.old_ssid</td>
+	                    <td>原ssid</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.ssid</td>
+	                    <td>新ssid</td>
+	                    <td>32个字符以内;ssid支持中文,但可能因设备兼容性问题导致显示乱码,或无法连接等问题, 当门店下是portal型设备时,ssid必填;当门店下是密码型设备时,ssid选填,且ssid和密码必须有一个以大写字母"WX"开头</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.password</td>
+	                    <td>无线网络设备的密码</td>
+	                    <td>8-24个字符;不能包含中文字符;当门店下是密码型设备时,才可填写password,且ssid和密码必须有一个以大写字母"WX"开头</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+$data = [
+	"shop_id" => 429620,
+    "old_ssid" => "WX123",
+    "ssid" => "WX567"
+];
+Wechat::getInstance()->modifyWifiShop($data);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>boolean</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+true
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public clearWifiShop($shopID,$ssid="")</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>清空门店下网络设备</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$shopID</td>
+	                    <td>门店ID(shop_id)</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$ssid</td>
+	                    <td>网络设备ssid</td>
+	                    <td>默认为空,为空清空门店下所有设备；不为空则清除门店中该ssid下的所有设备</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->clearWifiShop(429620);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>boolean</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+true
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+    </div>
+</body>
+</html>

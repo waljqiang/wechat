@@ -67,6 +67,12 @@ class Handle{
 			"drivingLicense",
 			"bizLicense",
 			"orcComm"
+		],
+		"WIFI" => [
+			"getWifiShopList",
+			"getWifiShop",
+			"modifyWifiShop",
+			"clearWifiShop"
 		]
 	];
 

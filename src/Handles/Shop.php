@@ -82,7 +82,7 @@ class Shop extends Base{
 				"body" => json_encode(["poi_id" => $poiID],JSON_UNESCAPED_UNICODE)
 			]);
 			$res = isset($data["business "]["base_info"]) ? $data["business"]["base_info"] : [];
-			self::$cache && $this->redis->setValues($menuKey,$res,self::$commonExpire);
+			self::$cache && $this->redis->setValues($shopKey,$res,self::$commonExpire);
 			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($data) . "]",DEBUG);
 		}
 		return $res;

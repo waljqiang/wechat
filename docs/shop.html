@@ -586,7 +586,7 @@ Wechat::getInstance()->getShop("271262077");
         </div>
 
         <div>
-        	<div class="methods_body">public getShopList</div>
+        	<div class="methods_body">public getShopList($pageIndex = 1,$pageOffset = 10)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -611,10 +611,22 @@ Wechat::getInstance()->getShop("271262077");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>无</td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$pageIndex</td>
+	                    <td>页码</td>
+	                    <td>默认为1</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$pageOffset</td>
+	                    <td>每页记录数</td>
+	                    <td>默认为10</td>
 	                </tr>
 	            </tbody>
 	       	</table>

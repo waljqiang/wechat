@@ -276,6 +276,20 @@ try{
 	//银行卡识别
 /*	$res = Wechat::getInstance()->bankCard("./my.jpg");
 	var_dump($res);*/
+	//获取wifi门店列表
+/*	$res = Wechat::getInstance()->getWifiShopList(1,10);
+	var_dump($res);*/
+	//查询wifi门店信息
+/*	$res = Wechat::getInstance()->getWifiShop(429620);
+	var_dump($res);*/
+	//修改wifi门店信息
+	$data = [
+		"shop_id" => 429620,
+	    "old_ssid" => "WX123",
+	    "ssid" => "WX567"
+	];
+	$res = Wechat::getInstance()->modifyWifiShop($data);
+	var_dump($res);
 }catch(\Exception $e){
 	var_dump($e);
 }
