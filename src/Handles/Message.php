@@ -34,7 +34,8 @@ class Message extends Base{
 		"CLICK" => "CLICK",
 		"VIEW" => "VIEW",
 		"TEMPLATESENDJOBFINISH" => "TEMPLATESENDJOBFINISH",
-		"POICHECKNOTIFY" => "poi_check_notify"
+		"POICHECKNOTIFY" => "poi_check_notify",
+		"WIFICONNECTED" => "WifiConnected"
 	];
 
 	/**

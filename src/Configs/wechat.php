@@ -59,6 +59,11 @@ return [
 			"devicetopwd" => "https://api.weixin.qq.com/bizwifi/device/add?access_token=%s",//添加密码型设备
 			"devicetoportal" => "https://api.weixin.qq.com/bizwifi/apportal/register?access_token=%s",//添加portal型设备
 			"devicelist" => "https://api.weixin.qq.com/bizwifi/device/list?access_token=%s",//查询设备列表
+			"devicedel" => "https://api.weixin.qq.com/bizwifi/device/delete?access_token=%s",//删除设备
+			"wifiqrcode" => "https://api.weixin.qq.com/bizwifi/qrcode/get?access_token=%s",//配置连网方式
+			"statistics" => "https://api.weixin.qq.com/bizwifi/statistics/list?access_token=%s",//wifi数据统计
+			"couponput" => "https://api.weixin.qq.com/bizwifi/couponput/get?access_token=%s",//设置门店卡券投放
+			"couponget" => "https://api.weixin.qq.com/bizwifi/couponput/get?access_token=%s",//查询门店卡券信息
 		],
 		"redis" => [
 			"host" => "192.168.33.10",

@@ -922,6 +922,606 @@ Wechat::getInstance()->getDeviceList();
 	            </tbody>
 	       	</table>
         </div>
+
+        <div>
+        	<div class="methods_body">public deleteDevice($bssid)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>删除设备</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$bssid</td>
+	                    <td>无线网络设备无线mac地址</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->deleteDevice("00:1f:7a:ad:5c:a8");
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>boolean</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+true
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public wifiQrcode($shopID,$ssid,$imageID = 0)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>配置连网方式</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$shopID</td>
+	                    <td>门店ID</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$ssid</td>
+	                    <td>无线ssid</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$imageID</td>
+	                    <td>物料样式编号</td>
+	                    <td>0，纯二维码;可用于自由设计宣传材料;1,二维码物料,155mm×215mm(宽×高),可直接张贴;默认0</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->wifiQrcode(429620,"WX123");
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>string</td>
+	                    <td></td>
+	                    <td>二维码地址</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQHE7jwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyZUlIQ3RMU2xmNWkxalQ1RHh1MWIAAgR-BWdeAwR4AAAA
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public getWifiStatistics($begin,$end,$shopID = -1)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>wifi数据统计</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$begin</td>
+	                    <td>起始日期</td>
+	                    <td>时间格式yyyy-mm-dd,最长时间跨度为30天</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$end</td>
+	                    <td>终止日期</td>
+	                    <td>时间格式yyyy-mm-dd,最长时间跨度为30天</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->getWifiStatistics("2020-03-01","2020-03-12");
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>shop_id</td>
+	                    <td>门店ID</td>
+	                    <td>-1为总统将</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>statis_time</td>
+	                    <td>统计时间</td>
+	                    <td>单位毫秒</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>total_user</td>
+	                    <td>WiFi连接总人数</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>homepage_uv</td>
+	                    <td>商家主页访问总人数</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>new_fans</td>
+	                    <td>新增公众号关注人数</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>total_fans</td>
+	                    <td>累计公众号关注人数</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>wxconnect_user</td>
+	                    <td>微信方式连WiFi人数</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>connect_msg_user</td>
+	                    <td>连网后消息发送人数</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+[
+	[
+      	"shop_id" => "429620",
+      	"statis_time" => 1430409600000,
+      	"total_user" => 2,
+      	"homepage_uv" => 0,
+      	"new_fans" => 0,
+      	"total_fans" => 4,
+      	"wxconnect_user" => 8,
+      	"connect_msg_user" => 5
+    ],
+    [
+      	"shop_id" => "429621",
+      	"statis_time" => 1430496000000,
+      	"total_user" => 2,
+      	"homepage_uv" => 0,
+      	"new_fans" => 0,
+      	"total_fans" => 4,
+      	"wxconnect_user" => 4,
+      	"connect_msg_user" => 3
+    ]
+]
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public setWifiCoupon($data)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>设置门店卡券投放信息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$data.shop_id</td>
+	                    <td>门店ID</td>
+	                    <td>可设置为0，表示所有门店</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.card_id</td>
+	                    <td>卡券id</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.card_describe</td>
+	                    <td>卡券描述</td>
+	                    <td>不超过18个字符</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.start_time</td>
+	                    <td>卡券投放时间</td>
+	                    <td>unix时间戳</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.end_time</td>
+	                    <td>卡券投放结束时间</td>
+	                    <td>unix时间戳,不能超过有效期</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->setWifiCoupon(
+	[
+		"shop_id" => 429620,
+		"card_id" => "pBnTrjvZJXkZsPGwfq9F0Hl0WqE",
+	 	"card_describe" => "10元代金券",
+	  	"start_time" => 1457280000,
+	  	"end_time" => 1457712000
+	]
+);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>boolean</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+true	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public getWifiCoupon($shopID)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>查询门店卡券投放信息</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$shopID</td>
+	                    <td>门店ID</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+Wechat::getInstance()->getWifiCoupon(429620);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="40%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>shop_id</td>
+	                    <td>门店ID</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>card_status</td>
+	                    <td>卡券投放状态</td>
+	                    <td>,0表示生效中;1,表示未生效;2,表示已过期</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>card_id</td>
+	                    <td>卡券id</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>card_describe</td>
+	                    <td>卡券描述</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>start_time</td>
+	                    <td>卡券投放时间</td>
+	                    <td>unix时间戳</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>end_time</td>
+	                    <td>卡券投放结束时间</td>
+	                    <td>unix时间戳</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+[
+	"shop_id" => 429620,
+    "card_status" => 1,
+    "card_id" => "pBnTrjqf95sZLOxN5gf_EkHwyxiw",
+    "card_describe" => "10元代金券",
+    "start_date" => 1457712000,
+    "end_date" => 1457712000
+]	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
     </div>
 </body>
 </html>

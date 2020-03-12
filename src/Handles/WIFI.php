@@ -58,10 +58,12 @@ class WIFI extends Base{
 		//清除设备列表缓存
 		if(self::$cache){
 			$keys = [
+				self::SHOP . $this->appid . ":" . $data["shop_id"],
+				self::SHOPLIST . $this->appid,
 				self::WIFISHOP . $this->appid . ":" . $data["shop_id"],
 				self::WIFISHOPLIST . $this->appid,
-				self::DEVICELIST . $this->appid . ":" . $data["shop_id"],
-				self::DEVICELIST . $this->appid
+				self::DEVICELIST . $this->appid,
+				self::DEVICELIST . $this->appid . ":" . $data["shop_id"]
 			];
 			$this->redis->del($keys);
 		}
@@ -85,9 +87,12 @@ class WIFI extends Base{
 		//清除门店列表缓存
 		if(self::$cache){
 			$keys = [
+				self::SHOP . $this->appid . ":" . $shopID,
+				self::SHOPLIST . $this->appid,
 				self::WIFISHOP . $this->appid . ":" . $shopID,
 				self::WIFISHOPLIST . $this->appid,
-				self::DEVICELIST . $this->appid
+				self::DEVICELIST . $this->appid,
+				self::DEVICELIST . $this->appid . ":" . $shopID
 			];
 			$this->redis->del($keys);
 			//清除所有设备列表缓存
@@ -112,10 +117,12 @@ class WIFI extends Base{
 		//清除设备列表缓存
 		if(self::$cache){
 			$keys = [
+				self::SHOP . $this->appid . ":" . $shopID,
+				self::SHOPLIST . $this->appid,
 				self::WIFISHOP . $this->appid . ":" . $shopID,
 				self::WIFISHOPLIST . $this->appid,
-				self::DEVICELIST . $this->appid . ":" . $shopID,
-				self::DEVICELIST . $this->appid
+				self::DEVICELIST . $this->appid,
+				self::DEVICELIST . $this->appid . ":" . $shopID
 			];
 			$this->redis->del($keys);
 		}
@@ -138,10 +145,12 @@ class WIFI extends Base{
 		//清除设备列表缓存
 		if(self::$cache){
 			$keys = [
+				self::SHOP . $this->appid . ":" . $shopID,
+				self::SHOPLIST . $this->appid,
 				self::WIFISHOP . $this->appid . ":" . $shopID,
 				self::WIFISHOPLIST . $this->appid,
-				self::DEVICELIST . $this->appid . ":" . $shopID,
-				self::DEVICELIST . $this->appid
+				self::DEVICELIST . $this->appid,
+				self::DEVICELIST . $this->appid . ":" . $shopID
 			];
 			$this->redis->del($keys);
 		}
@@ -176,6 +185,87 @@ class WIFI extends Base{
 			"total" => $res["total"],
 			"list" => $list
 		];
+	}
+
+	//删除设备
+	public function deleteDevice($bssid){
+		$url = sprintf(self::$wechatUrl["devicedel"],$this->accessToken);
+		$res = $this->request($url,"POST",[
+			"body" => json_encode(["bssid" => $bssid],JSON_UNESCAPED_UNICODE)
+		]);
+		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		//清除缓存
+		if(self::$cache){
+			$keys = [
+				self::SHOPLIST . $this->appid,
+				self::WIFISHOPLIST . $this->appid,
+				self::DEVICELIST . $this->appid
+			];
+			$this->redis->del($keys);
+			$this->redis->matchDel(self::SHOP . "*");
+			$this->redis->matchDel(self::WIFISHOP . "*");
+			$this->redis->matchDel(self::DEVICELIST . "*");
+		}
+		return true;
+	}
+
+	//配置连网方式
+	public function wifiQrcode($shopID,$ssid,$imageID = 0){
+		$url = sprintf(self::$wechatUrl["wifiqrcode"],$this->accessToken);
+		$res = $this->request($url,"POST",[
+			"body" => json_encode([
+				"shop_id" => $shopID,
+				"ssid" => $ssid,
+				"img_id" => $imageID
+			],JSON_UNESCAPED_UNICODE)
+		]);
+		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		//清除缓存
+		if(self::$cache){
+			$keys = [
+				self::SHOP . $this->appid . ":" . $shopID,
+				self::SHOPLIST . $this->appid,
+				self::WIFISHOP . $this->appid . ":" . $shopID,
+				self::WIFISHOPLIST . $this->appid,
+				self::DEVICELIST . $this->appid,
+				self::DEVICELIST . $this->appid . ":" . $shopID
+			];
+			$this->redis->del($keys);
+		}
+		return $res["data"]["qrcode_url"];
+	}
+
+	public function getWifiStatistics($begin,$end,$shopID = -1){
+		$url = sprintf(self::$wechatUrl["statistics"],$this->accessToken);
+		$res = $this->request($url,"POST",[
+			"body" => json_encode([
+				"begin_date" => $begin,
+				"end_date" => $end,
+				"shop_id" => -1
+			],JSON_UNESCAPED_UNICODE)
+		]);
+		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		return $res['data'];
+	}
+
+	//设置门店卡券投放信息
+	public function setWifiCoupon($data){
+		$url = sprintf(self::$wechatUrl["couponput"],$this->accessToken);
+		$res = $this->request($url,"POST",[
+			"body" => json_encode($data,JSON_UNESCAPED_UNICODE)
+		]);
+		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		return true;
+	}
+
+	//查询门店卡券投放信息
+	public function getWifiCoupon($shopID){
+		$url = sprintf(self::$wechatUrl["couponget"],$this->accessToken);
+		$res = $this->request($url,"POST",[
+			"body" => json_encode(["shop_id" => $shopID],JSON_UNESCAPED_UNICODE)
+		]);
+		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		return $res["data"];
 	}
 
 	public function _getWifiShopList($pageIndex = 1,$pageOffset = 10){

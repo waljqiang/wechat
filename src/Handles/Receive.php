@@ -168,6 +168,8 @@ class Receive extends Message{
             case self::EVENTTYPE["TEMPLATESENDJOBFINISH"]://模板消息送达是否成功事件
                 $res = $this->handleTplSend($message,$appid);
                 break;
+            case self::EVENTTYPE["WIFICONNECTED"]://连网成功后事件
+                echo " ";
             default:
                 # code...
                 break;

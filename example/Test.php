@@ -299,6 +299,26 @@ try{
 	//获取设备列表
 /*	$res = Wechat::getInstance()->getDeviceList();
 	var_dump($res);*/
+	//配置连网方式
+	/*$res = Wechat::getInstance()->wifiQrcode(429620,"WX123");
+	var_dump($res);*/
+	//查询wifi数据统计
+	/*$res = Wechat::getInstance()->getWifiStatistics("2020-03-01","2020-03-12");
+	var_dump($res);*/
+	//设置门店卡券信息
+	/*$res = Wechat::getInstance()->setWifiCoupon(
+		[
+			"shop_id" => 429620,
+			"card_id" => "pBnTrjvZJXkZsPGwfq9F0Hl0WqE",
+		 	"card_describe" => "10元代金券",
+		  	"start_time" => 1457280000,
+		  	"end_time" => 1457712000
+		]
+	);
+	var_dump($res);*/
+	//查询门店卡券投放信息
+/*	$res = Wechat::getInstance()->getWifiCoupon(429620);
+	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
 }

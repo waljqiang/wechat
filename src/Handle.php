@@ -75,7 +75,12 @@ class Handle{
 			"clearWifiShop",
 			"addPasswordDevice",
 			"addPortalDevice",
-			"getDeviceList"
+			"getDeviceList",
+			"deleteDevice",
+			"wifiQrcode",
+			"getWifiStatistics",
+			"setWifiCoupon",
+			"getWifiCoupon"
 		]
 	];
 
