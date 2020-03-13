@@ -81,6 +81,9 @@ class Handle{
 			"getWifiStatistics",
 			"setWifiCoupon",
 			"getWifiCoupon"
+		],
+		"Pay" => [
+			"unifiedOrder"
 		]
 	];
 

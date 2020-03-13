@@ -13,6 +13,46 @@ use Waljqiang\Wechat\Exceptions\WechatException;
 
 class User extends Base{
 	/**
+	 * 微信创建公众号标签API地址
+	 */
+	const UTAGSET = "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=%s";
+	/**
+	 * 微信获取公众号标签API地址
+	 */
+	const UTAGGET = "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=%s";
+	/**
+	 * 微信删除公众号标签API地址
+	 */
+	const UTAGDEL = "https://api.weixin.qq.com/cgi-bin/tags/delete?access_token=%s";
+	/**
+	 * 微信获取标签下的粉丝列表API地址
+	 */
+	const UTAGFANS = "https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token=%s";
+	/**
+	 * 微信为用户打标签API地址
+	 */
+	const UTAGTOUSERS = "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=%s";
+	/**
+	 * 微信为用户取消标签API地址
+	 */
+	const UTAGDELUSERS = "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=%s";
+	/**
+	 * 微信获取用户身上的标签列表API地址
+	 */
+	const UUSERTAGS = "https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token=%s";
+	/**
+	 * 微信设置用户备注API地址
+	 */
+	const UUSERREMARKSET = "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=%s";
+	/**
+	 * 微信获取用户基本信息API地址
+	 */
+	const UUSERINFO = "https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=%s";
+	/**
+	 * 微信获取用户列表API地址
+	 */
+	const UUSERLIST = "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s";
+	/**
 	 * 创建公众号标签
 	 *
 	 * @param  string $tagName 标签名称
@@ -22,7 +62,7 @@ class User extends Base{
 		if(strlen($tagName) >= 30){
 			throw new WechatException("The name of tag must less 30",WechatException::TAGNAMEERROR);
 		}
-		$url = sprintf(self::$wechatUrl["tagset"],$this->accessToken);
+		$url = sprintf(self::UTAGSET,$this->accessToken);
 		$res = $this->request($url,"POST",["body" => json_encode(["tag" => ["name" => $tagName]], JSON_UNESCAPED_UNICODE)]);
 		self::$cache && $this->redis->del(self::TAG . $this->appid);
 		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
@@ -37,7 +77,7 @@ class User extends Base{
 	public function getTag(){
 		$tagKey = self::TAG . $this->appid;
 		if(!self::$cache || !($res = $this->redis->getValues($tagKey))){
-			$url = sprintf(self::$wechatUrl["tagget"],$this->accessToken);
+			$url = sprintf(self::UTAGGET,$this->accessToken);
 			$data = $this->request($url);
 			$res = isset($data["tags"]) ? $data["tags"] : [];
 			self::$cache && $this->redis->setValues($tagKey,$res,self::$commonExpire);
@@ -67,7 +107,7 @@ class User extends Base{
 				"id" => $tagID
 			]
 		];
-		$url = sprintf(self::$wechatUrl["tagdel"],$this->accessToken);
+		$url = sprintf(self::UTAGDEL,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode($buffer, JSON_UNESCAPED_UNICODE)
 		]);
@@ -127,7 +167,7 @@ class User extends Base{
 	 * @return
 	 */
 	public function tagToUsers($tagID,$openIDs){
-		$url = sprintf(self::$wechatUrl["tagtousers"],$this->accessToken);
+		$url = sprintf(self::UTAGTOUSERS,$this->accessToken);
 		$buffer = [
 			"openid_list" => $openIDs,
 			"tagid" => $tagID
@@ -155,7 +195,7 @@ class User extends Base{
 	 * @return
 	 */
 	public function tagDelUsers($tagID,$openIDs){
-		$url = sprintf(self::$wechatUrl["tagdelusers"],$this->accessToken);
+		$url = sprintf(self::UTAGDELUSERS,$this->accessToken);
 		$buffer = [
 			"openid_list" => $openIDs,
 			"tagid" => $tagID
@@ -187,7 +227,7 @@ class User extends Base{
 			$buffer = [
 				"openid" => $openID
 			];
-			$url = sprintf(self::$wechatUrl["usertags"],$this->accessToken);
+			$url = sprintf(self::UUSERTAGS,$this->accessToken);
 			$res = $this->request($url,"POST",[
 				"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
 			]);
@@ -213,7 +253,7 @@ class User extends Base{
 			"openid" => $openID,
 			"remark" => $remark
 		];
-		$url = sprintf(self::$wechatUrl["userremarkset"],$this->accessToken);
+		$url = sprintf(self::UUSERREMARKSET,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
 		]);
@@ -231,7 +271,7 @@ class User extends Base{
 	public function getUserInfo($openID,$lang="zh_CN"){
 		$userInfoKey = self::USERINFO . $this->appid . ":" . $openID;
 		if(!self::$cache || !($res = $this->redis->getValues($userInfoKey))){
-			$url = sprintf(self::$wechatUrl["userinfo"],$this->accessToken,$openID,$lang);
+			$url = sprintf(self::UUSERINFO,$this->accessToken,$openID,$lang);
 			$res = $this->request($url);
 			self::$cache && $this->redis->setValues($userInfoKey,$res,self::$commonExpire);
 			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
@@ -272,7 +312,7 @@ class User extends Base{
 	}
 
 	private function _getTagFans($tagID,$openID = ""){
-		$url = sprintf(self::$wechatUrl["tagfans"],$this->accessToken);
+		$url = sprintf(self::UTAGFANS,$this->accessToken);
 		$data = empty($openID) ? json_encode([ "tagid" => $tagID ],JSON_UNESCAPED_UNICODE) : json_encode([ "tagid" => $tagID,"next_openid" => $openID],JSON_UNESCAPED_UNICODE);
 		$res = $this->request($url,"POST",[
 			"body" => $data
@@ -282,7 +322,7 @@ class User extends Base{
 	}
 
 	private function _getUserList($openID = ""){
-		$url = sprintf(self::$wechatUrl["userlist"],$this->accessToken,$openID);
+		$url = sprintf(self::UUSERLIST,$this->accessToken,$openID);
 		$res = $this->request($url);
 		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
 		return $res;

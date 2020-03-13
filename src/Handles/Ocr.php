@@ -3,6 +3,30 @@ namespace Waljqiang\Wechat\Handles;
 
 class Ocr extends Base{
 	/**
+	 * 微信身份证识别API地址
+	 */
+	const UIDCARD = "https://api.weixin.qq.com/cv/ocr/idcard?img_url=%s&access_token=%s";
+	/**
+	 * 微信银行卡识别API地址
+	 */
+	const UBANKCARD = "https://api.weixin.qq.com/cv/ocr/bankcard?img_url=%s&access_token=%s";
+	/**
+	 * 微信行驶证识别API地址
+	 */
+	const UDRIVECARD = "https://api.weixin.qq.com/cv/ocr/driving?img_url=%s&access_token=%s";
+	/**
+	 * 微信驾驶证识别API地址
+	 */
+	const UDRIVELICENSE = "https://api.weixin.qq.com/cv/ocr/drivinglicense?img_url=%s&access_token=%s";
+	/**
+	 * 微信营业执照识别API地址
+	 */
+	const UBIZLICENSE = "http://api.weixin.qq.com/cv/ocr/bizlicense?img_url=%s&access_token=%s";
+	/**
+	 * 微信通用印刷体识别API地址
+	 */
+	const UOCRCOMM = "http://api.weixin.qq.com/cv/ocr/comm?img_url=%s&access_token=%s";
+	/**
 	 * 身份证识别
 	 *
 	 * @return
@@ -15,7 +39,7 @@ class Ocr extends Base{
 			throw new WechatException("File is not exists",WechatException::FILENO);
 		}
 		
-		$url = sprintf(self::$wechatUrl["idcard"],"ENCODE_URL",$this->accessToken);
+		$url = sprintf(self::UIDCARD,"ENCODE_URL",$this->accessToken);
 		$res = $this->request($url,"GET",[
 			"multipart" => [
 				[
@@ -41,7 +65,7 @@ class Ocr extends Base{
 			throw new WechatException("File is not exists",WechatException::FILENO);
 		}
 		
-		$url = sprintf(self::$wechatUrl["bankcard"],"ENCODE_URL",$this->accessToken);
+		$url = sprintf(self::UBANKCARD,"ENCODE_URL",$this->accessToken);
 		$res = $this->request($url,"GET",[
 			"multipart" => [
 				[
@@ -67,7 +91,7 @@ class Ocr extends Base{
 			throw new WechatException("File is not exists",WechatException::FILENO);
 		}
 		
-		$url = sprintf(self::$wechatUrl["drivecard"],"ENCODE_URL",$this->accessToken);
+		$url = sprintf(self::UDRIVECARD,"ENCODE_URL",$this->accessToken);
 		$res = $this->request($url,"GET",[
 			"multipart" => [
 				[
@@ -93,7 +117,7 @@ class Ocr extends Base{
 			throw new WechatException("File is not exists",WechatException::FILENO);
 		}
 		
-		$url = sprintf(self::$wechatUrl["drivelicense"],"ENCODE_URL",$this->accessToken);
+		$url = sprintf(self::UDRIVELICENSE,"ENCODE_URL",$this->accessToken);
 		$res = $this->request($url,"GET",[
 			"multipart" => [
 				[
@@ -119,7 +143,7 @@ class Ocr extends Base{
 			throw new WechatException("File is not exists",WechatException::FILENO);
 		}
 		
-		$url = sprintf(self::$wechatUrl["bizlicense"],"ENCODE_URL",$this->accessToken);
+		$url = sprintf(self::UBIZLICENSE,"ENCODE_URL",$this->accessToken);
 		$res = $this->request($url,"GET",[
 			"multipart" => [
 				[
@@ -145,7 +169,7 @@ class Ocr extends Base{
 			throw new WechatException("File is not exists",WechatException::FILENO);
 		}
 		
-		$url = sprintf(self::$wechatUrl["ocrcomm"],"ENCODE_URL",$this->accessToken);
+		$url = sprintf(self::UOCRCOMM,"ENCODE_URL",$this->accessToken);
 		$res = $this->request($url,"GET",[
 			"multipart" => [
 				[

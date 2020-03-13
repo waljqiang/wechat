@@ -319,6 +319,73 @@ try{
 	//查询门店卡券投放信息
 /*	$res = Wechat::getInstance()->getWifiCoupon(429620);
 	var_dump($res);*/
+	//微信支付统一下单接口
+	//生成支付二维码
+/*	$data = [
+		"body" => "商品描述",
+		"attach" => "附加数据",
+		"total_fee" => "888",
+		"expire" => 300,
+		"goods_tag" => "WXG",
+		"trade_type" => "NATIVE",
+		"product_id" => "12235413214070356458058",
+		"detail" => [
+		    "cost_price" => 608800, 
+		    "receipt_id" => "wx123", 
+		    "goods_detail" => [ //注意goods_detail字段的格式为"goods_detail":[[]],较多商户写成"goods_detail":[]
+		        [
+		            "goods_id" => "商品编码", 
+		            "wxpay_goods_id" => "1001", 
+		            "goods_name" => "", 
+		            "quantity" => 1, 
+		            "price" => 528800
+		        ], 
+		        [
+		            "goods_id" => "商品编码", 
+		            "wxpay_goods_id" => "1002", 
+		            "goods_name" => "iPhone6s 32G", 
+		            "quantity" => 1, 
+		            "price" => 608800
+		        ]
+		    ]
+		]
+	];*/
+	//JSAPI示例
+	/*$data = [
+		"body" => "商品描述",
+		"attach" => "附加数据",
+		"total_fee" => "608800",
+		"expire" => 300,
+		"goods_tag" => "WXG",
+		"trade_type" => "JSAPI",
+		"product_id" => "12235413214070356458058",
+		"openid" => "oUpF8uMuAJO_M2pxb1Q9zNjWeS6o"
+	];*/
+	//H5示例
+	/*$data = [
+		"body" => "商品描述",
+		"attach" => "附加数据",
+		"total_fee" => "608800",
+		"expire" => 300,
+		"goods_tag" => "WXG",
+		"trade_type" => "MWEB",
+		"scene_info" => [
+			"h5_info" => [
+		   		"type" => "Wap",
+		    	"wap_url" => "https://pay.qq.com",
+		    	"wap_name" => "腾讯充值"
+		    ]
+		]
+	];*/
+/*	$config = [
+		"appid" => "wxdaa43d75b815f44e",//微信分配的公众账号ID（企业号corpid即为此appId)
+		"mch_id" => "1347427701",//微信支付分配的商户号
+		"key" => "otDEIs5YfaplAzvzXS5uBVFS7VD8rb12",
+		"appsecret" => "3343b17da99cbd77d32d1d18f68f739a",
+		"notify_url" => "http://www.yowifi.net/Wechat/wxpayh5",//接收微信支付异步通知回调地址,通知url必须为直接可访问的url,不能携带参数
+	];
+	$res = Wechat::getInstance()->unifiedOrder($data,$config);
+	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
 }

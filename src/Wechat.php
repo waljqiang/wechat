@@ -68,6 +68,11 @@ use Waljqiang\Wechat\Decryption\Decrypt;
  */
 class Wechat{
 	/**
+	 * 微信获取access_tokenAPI地址
+	 */
+	const UACCESSTOKEN = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s";
+	
+	/**
 	 * access_token缓存key标识
 	 */
 	const ACCESSTOKEN = "WECHAT:ACCESSTOKEN:";
@@ -189,7 +194,7 @@ class Wechat{
 				$res = $this->redis->getValues($accessTokenKey);
 			}
 			if(empty($res)){
-				$url = sprintf(self::$config["wechaturl"]["accesstoken"],$this->appid,$this->secret);
+				$url = sprintf(self::UACCESSTOKEN,$this->appid,$this->secret);
 	            $res = $this->request($url);
 				self::$cache && $this->redis->setValues($accessTokenKey,$res,self::$accessTokenExpire);
 				$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);

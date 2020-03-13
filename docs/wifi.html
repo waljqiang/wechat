@@ -16,6 +16,93 @@
         <div class="main_header">class</div>
         <div class="main_body">class WIFI extends <a href="./base.html" onclick="showParent('#wechat',2)">Base</a></div>
     </div>
+
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Constants</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td>UWIFISHOPS</td>
+                    <td>微信获取WiFi门店列表API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UWIFISHOP</td>
+                    <td>微信查询WiFi门店信息API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UWIFISHOPMODIFY</td>
+                    <td>微信修改WiFi门店信息API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UWIFISHOPCLEAR</td>
+                    <td>微信清空门店网络设备API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UDEVICETOPWD</td>
+                    <td>微信添加密码型设备API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UDEVICETOPORTAL</td>
+                    <td>微信添加portal型设备API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UDEVICELIST</td>
+                    <td>微信查询设备列表API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UDEVICEDEL</td>
+                    <td>微信删除设备API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UWIFIQRCODE</td>
+                    <td>微信配置连网方式API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>USTATISTICS</td>
+                    <td>微信统计WiFi数据API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UCOUPONPUT</td>
+                    <td>微信设置门店卡券投放API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UCOUPONGET</td>
+                    <td>微信查询门店卡券信息API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     
     <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
@@ -48,7 +135,7 @@
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -93,7 +180,7 @@ Wechat::getInstance()->getWifiShopList();
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -215,7 +302,7 @@ Wechat::getInstance()->getWifiShopList();
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -254,7 +341,7 @@ Wechat::getInstance()->getWifiShop(429620);
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -394,7 +481,7 @@ Wechat::getInstance()->getWifiShop(429620);
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -456,7 +543,7 @@ Wechat::getInstance()->modifyWifiShop($data);
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -505,7 +592,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -550,7 +637,7 @@ Wechat::getInstance()->clearWifiShop(429620);
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -602,7 +689,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -653,7 +740,7 @@ Wechat::getInstance()->addPasswordDevice(429620,"WX123","123456789");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -705,7 +792,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -756,7 +843,7 @@ Wechat::getInstance()->addPortalDevice(429620,"123");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -805,7 +892,7 @@ Wechat::getInstance()->addPortalDevice(429620,"123");
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -856,7 +943,7 @@ Wechat::getInstance()->getDeviceList();
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -943,7 +1030,7 @@ Wechat::getInstance()->getDeviceList();
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -982,7 +1069,7 @@ Wechat::getInstance()->deleteDevice("00:1f:7a:ad:5c:a8");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -1031,7 +1118,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -1082,7 +1169,7 @@ Wechat::getInstance()->wifiQrcode(429620,"WX123");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -1131,7 +1218,7 @@ https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQHE7jwAAAAAAAAAAS5odHRwOi8vd
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -1176,7 +1263,7 @@ Wechat::getInstance()->getWifiStatistics("2020-03-01","2020-03-12");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -1294,7 +1381,7 @@ Wechat::getInstance()->getWifiStatistics("2020-03-01","2020-03-12");
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -1365,7 +1452,7 @@ Wechat::getInstance()->setWifiCoupon(
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -1413,7 +1500,7 @@ true	                	</pre></td>
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -1452,7 +1539,7 @@ Wechat::getInstance()->getWifiCoupon(429620);
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>

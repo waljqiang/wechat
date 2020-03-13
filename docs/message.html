@@ -28,6 +28,42 @@
                 </tr>
             </thead>
             <tbody class="tbody_params">
+            	<tr>
+                    <td>UKFCREATE</td>
+                    <td>微信添加客服账号API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UKFMODIFY</td>
+                    <td>微信修改客服账号API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UKFDEL</td>
+                    <td>微信删除客服账号API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UKFAVATAR</td>
+                    <td>微信上传客服头像API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UKFGET</td>
+                    <td>微信获取所有客服账号API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UKFSENDMSG</td>
+                    <td>微信发送客服消息API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
                 <tr>
                     <td>TEXT</td>
                     <td>文本消息类型</td>
@@ -153,7 +189,7 @@
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -220,7 +256,7 @@ $menu->creatKfAccount([
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -268,7 +304,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -335,7 +371,7 @@ $message->modifyKfAccount([
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -383,7 +419,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -450,7 +486,7 @@ $message->deleteKfAccount([
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -498,7 +534,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -534,7 +570,7 @@ $menu->getKfAccount();
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -627,7 +663,7 @@ $menu->getKfAccount();
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -686,7 +722,7 @@ $message->uploadAvatar("test1@test","./avatar.jpg");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -734,7 +770,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -803,7 +839,7 @@ $message->kfSendMessage("o9lXF0oPTBOMS44dILU1kfZMlra0",Waljqiang\Wechat\Handles\
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -851,7 +887,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -889,7 +925,7 @@ true
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>

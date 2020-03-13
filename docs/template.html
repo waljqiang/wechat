@@ -21,6 +21,63 @@
         <table class="tbl_params">
             <thead class="thead_params">
                 <tr>
+                    <td width="15%">Constants</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td>UINDUSTRYSET</td>
+                    <td>微信设置所属行业API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UINDUSTRYGET</td>
+                    <td>微信获取行业信息API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UTEMPLATEID</td>
+                    <td>微信获取模板id API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UTEMPLATELIST</td>
+                    <td>微信获取模板列表API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UTEMPLATEDEL</td>
+                    <td>微信删除模板API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>USENDTPLMSG</td>
+                    <td>微信发送模板消息API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UUPIMAGE</td>
+                    <td>微信上传图片API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
                     <td width="15%">Methods</td>
                     <td width="30%"></td>
                     <td width="35%"></td>
@@ -48,7 +105,7 @@
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -92,7 +149,7 @@ Wechat::getInstance()->setIndustry("1","4");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -140,7 +197,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -172,7 +229,7 @@ Wechat::getInstance()->getIndustry();
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -242,7 +299,7 @@ Wechat::getInstance()->getIndustry();
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -280,7 +337,7 @@ Wechat::getInstance()->getTemplateID("TM00015");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -328,7 +385,7 @@ Wechat::getInstance()->getTemplateID("TM00015");
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -366,7 +423,7 @@ Wechat::getInstance()->deleteTemplate("Doclyl5uP7Aciu-qZ7mJNPtWkbkYnWBWVja26EGbN
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -414,7 +471,7 @@ true
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -446,7 +503,7 @@ Wechat::getInstance()->getTemplateList();
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -540,7 +597,7 @@ Wechat::getInstance()->getTemplateList();
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -638,7 +695,7 @@ $message->uploadAvatar("test1@test","./avatar.jpg");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -694,7 +751,7 @@ $message->uploadAvatar("test1@test","./avatar.jpg");
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -732,7 +789,7 @@ $message->uploadAvatar("test1@test","./avatar.jpg");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>

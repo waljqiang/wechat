@@ -113,7 +113,6 @@ class Base{
 	protected $log;
 
 	public static $cache = true;
-	public static $wechatUrl = [];
 
 	/**
 	 * 公共缓存时间

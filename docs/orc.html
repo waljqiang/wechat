@@ -16,6 +16,57 @@
         <div class="main_header">class</div>
         <div class="main_body">class Orc extends <a href="./base.html" onclick="showParent('#wechat',2)">Base</a></div>
     </div>
+
+     <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Constants</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+            	<tr>
+                    <td>UIDCARD</td>
+                    <td>微信身份证识别API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UBANKCARD</td>
+                    <td>微信银行卡识别API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UDRIVECARD</td>
+                    <td>微信行驶证识别API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UDRIVELICENSE</td>
+                    <td>微信驾驶证识别API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UBIZLICENSE</td>
+                    <td>微信营业执照识别API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UOCRCOMM</td>
+                    <td>微信通用印刷体识别API地址</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     
     <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
@@ -48,7 +99,7 @@
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -87,7 +138,7 @@ Wechat::getInstance()->identityCard("./my.jpg");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -153,7 +204,7 @@ Wechat::getInstance()->identityCard("./my.jpg");
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -192,7 +243,7 @@ Wechat::getInstance()->bankCard("./my.jpg");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -243,7 +294,7 @@ Wechat::getInstance()->bankCard("./my.jpg");
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -282,7 +333,7 @@ Wechat::getInstance()->drivingCard("./my.jpg");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -392,7 +443,7 @@ Wechat::getInstance()->drivingCard("./my.jpg");
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -431,7 +482,7 @@ Wechat::getInstance()->drivingLicense("./my.jpg");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -492,7 +543,7 @@ Wechat::getInstance()->drivingLicense("./my.jpg");
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -531,7 +582,7 @@ Wechat::getInstance()->bizLicense("./my.jpg");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -617,7 +668,7 @@ Wechat::getInstance()->bizLicense("./my.jpg");
 	                <tr>
 	                    <td width="10%">参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
@@ -656,7 +707,7 @@ Wechat::getInstance()->orcComm("./my.jpg");
 	                <tr>
 	                    <td width="10%">返回参数说明</td>
 	                    <td width="10%"></td>
-	                    <td width="40%"></td>
+	                    <td width="20%"></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>

@@ -10,6 +10,14 @@ namespace Waljqiang\Wechat\Handles;
  */
 class Account extends Base{
 	/**
+	 * 微信获取二维码ticket API地址
+	 */
+	const UQRCODETICKET = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s";
+	/**
+	 * 微信获取二维码API地址
+	 */
+	const UQRCODE = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s";
+	/**
 	 * 获取二维码ticket
 	 *
 	 * @param  integer,string  $str    场景值ID
@@ -18,7 +26,7 @@ class Account extends Base{
 	 * @return
 	 */
 	private function getTicket($data){
-		$url = sprintf(self::$wechatUrl["qrcodeticket"],$this->accessToken);
+		$url = sprintf(self::UQRCODETICKET,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode($data,JSON_UNESCAPED_UNICODE)
 		]);
@@ -66,7 +74,7 @@ class Account extends Base{
 		}
 		if(!self::$cache || !($res = $this->redis->getValues($qrcodeKey))){
 			$ticket = $this->getTicket($data);
-			$res = sprintf(self::$wechatUrl["qrcode"],urlencode($ticket["ticket"]));
+			$res = sprintf(self::UQRCODE,urlencode($ticket["ticket"]));
 			if(in_array($type,["QR_LIMIT_SCENE","QR_LIMIT_STR_SCENE"]))
 				$this->redis->setValues($qrcodeKey,$res);
 			else

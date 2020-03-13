@@ -11,6 +11,31 @@ use Waljqiang\Wechat\Exceptions\WechatException;
  * @link https://github.com/waljqiang/wechat.git
  */
 class Message extends Base{
+	/**
+	 * 微信添加客服账号API地址
+	 */
+	const UKFCREATE = "https://api.weixin.qq.com/customservice/kfaccount/add?access_token=%s";
+	/**
+	 * 微信修改客服账号API地址
+	 */
+	const UKFMODIFY = "https://api.weixin.qq.com/customservice/kfaccount/update?access_token=%s";
+	/**
+	 * 微信删除客服账号API地址
+	 */
+	const UKFDEL = "https://api.weixin.qq.com/customservice/kfaccount/del?access_token=%s";
+	/**
+	 * 微信上传客服头像API地址
+	 */
+	const UKFAVATAR = "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg?access_token=%s&kf_account=%s";
+	/**
+	 * 微信获取所有客服账号API地址
+	 */
+	const UKFGET = "https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token=%s";
+	/**
+	 * 微信发送客服消息API地址
+	 */
+	const UKFSENDMSG = "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s";
+
 	const TEXT = "text";
 	const IMAGE = "image";
 	const VOICE = "voice";
@@ -45,7 +70,7 @@ class Message extends Base{
 	 * @return
 	 */
 	public function createKfAccount($data){
-		$url = sprintf(self::$wechatUrl["kfcreate"],$this->accessToken);
+		$url = sprintf(self::UKFCREATE,$this->accessToken);
 		$res = $this->request($url,"POST",["body" => json_encode($data, JSON_UNESCAPED_UNICODE)]);
 		self::$cache && $this->redis->del(self::KFACCOUNT . $this->appid);
 		return true;
@@ -58,7 +83,7 @@ class Message extends Base{
 	 * @return
 	 */
 	public function modifyKfAccount($data){
-		$url = sprintf(self::$wechatUrl["kfmodify"],$this->accessToken);
+		$url = sprintf(self::UKFMODIFY,$this->accessToken);
 		$res = $this->request($url,"POST",["body" => json_encode($data, JSON_UNESCAPED_UNICODE)]);
 		self::$cache && $this->redis->del(self::KFACCOUNT . $this->appid);
 		return true;
@@ -71,7 +96,7 @@ class Message extends Base{
 	 * @return
 	 */
 	public function deleteKfAccount($data){
-		$url = sprintf(self::$wechatUrl["kfmodify"],$this->accessToken);
+		$url = sprintf(self::UKFDEL,$this->accessToken);
 		$res = $this->request($url,"POST",["body" => json_encode($data, JSON_UNESCAPED_UNICODE)]);
 		self::$cache && $this->redis->del(self::KFACCOUNT . $this->appid);
 		return true;
@@ -85,7 +110,7 @@ class Message extends Base{
 	public function getKfAccount(){
 		$kfAccountKey = self::KFACCOUNT . $this->appid;
 		if(!self::$cache || !($res = $this->redis->getValues($kfAccountKey))){
-			$url = sprintf(self::$wechatUrl["kfget"],$this->accessToken);
+			$url = sprintf(self::UKFGET,$this->accessToken);
 			$res = $this->request($url);
 			self::$cache && $this->redis->setValues($kfAccountKey,$res,self::$commonExpire);
 			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
@@ -123,7 +148,7 @@ class Message extends Base{
 	            "filename" => $fileName,
 	        ]
 		];
-		$url = sprintf(self::$wechatUrl["kfavatar"],$this->accessToken,$kfAccount);
+		$url = sprintf(self::UKFAVATAR,$this->accessToken,$kfAccount);
 		$res = $this->request($url,"POST",[
 			"multipart" => $data
 		]);
@@ -218,7 +243,7 @@ class Message extends Base{
 		if(!empty($kfAccount)){
 			$buffer["customservice"]["kf_account"] = $kfAccount;
 		}
-		$url = sprintf(self::$wechatUrl["kfsendmsg"],$this->accessToken,$openID);
+		$url = sprintf(self::UKFSENDMSG,$this->accessToken,$openID);
 		$data = json_encode($buffer,JSON_UNESCAPED_UNICODE);
 		$this->request($url,"POST",[
 			"body" => $data

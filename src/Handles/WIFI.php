@@ -2,6 +2,54 @@
 namespace Waljqiang\Wechat\Handles;
 
 class WIFI extends Base{
+	/**
+	 * 微信获取WiFi门店列表API地址
+	 */
+	const UWIFISHOPS = "https://api.weixin.qq.com/bizwifi/shop/list?access_token=%s";
+	/**
+	 * 微信查询WiFi门店信息API地址
+	 */
+	const UWIFISHOP = "https://api.weixin.qq.com/bizwifi/shop/get?access_token=%s";
+	/**
+	 * 微信修改WiFi门店信息API地址
+	 */
+	const UWIFISHOPMODIFY = "https://api.weixin.qq.com/bizwifi/shop/update?access_token=%s";
+	/**
+	 * 微信清空门店网络设备API地址
+	 */
+	const UWIFISHOPCLEAR = "https://api.weixin.qq.com/bizwifi/shop/clean?access_token=%s";
+	/**
+	 * 微信添加密码型设备API地址
+	 */
+	const UDEVICETOPWD = "https://api.weixin.qq.com/bizwifi/device/add?access_token=%s";
+	/**
+	 * 微信添加portal型设备API地址
+	 */
+	const UDEVICETOPORTAL = "https://api.weixin.qq.com/bizwifi/apportal/register?access_token=%s";
+	/**
+	 * 微信查询设备列表API地址
+	 */
+	const UDEVICELIST = "https://api.weixin.qq.com/bizwifi/device/list?access_token=%s";
+	/**
+	 * 微信删除设备API地址
+	 */
+	const UDEVICEDEL = "https://api.weixin.qq.com/bizwifi/device/delete?access_token=%s";
+	/**
+	 * 微信配置连网方式API地址
+	 */
+	const UWIFIQRCODE = "https://api.weixin.qq.com/bizwifi/qrcode/get?access_token=%s";
+	/**
+	 * 微信统计WiFi数据API地址
+	 */
+	const USTATISTICS = "https://api.weixin.qq.com/bizwifi/statistics/list?access_token=%s";
+	/**
+	 * 微信设置门店卡券投放API地址
+	 */
+	const UCOUPONPUT = "https://api.weixin.qq.com/bizwifi/couponput/get?access_token=%s";
+	/**
+	 * 微信查询门店卡券信息API地址
+	 */
+	const UCOUPONGET = "https://api.weixin.qq.com/bizwifi/couponput/get?access_token=%s";
 
 	//获取wifi门店列表
 	public function getWifiShopList($pageIndex = 1,$pageOffset = 10){
@@ -36,7 +84,7 @@ class WIFI extends Base{
 	public function getWifiShop($shopID){
 		$shopKey = self::WIFISHOP . $this->appid . ":" . $shopID;
 		if(!self::$cache || !($res = $this->redis->getValues($shopKey))){
-			$url = sprintf(self::$wechatUrl["wifishop"],$this->accessToken);
+			$url = sprintf(self::UWIFISHOP,$this->accessToken);
 			$data = $this->request($url,"POST",[
 				"body" => json_encode(["shop_id" => $shopID],JSON_UNESCAPED_UNICODE)
 			]);
@@ -49,7 +97,7 @@ class WIFI extends Base{
 
 	//修改门店信息
 	public function modifyWifiShop($data){
-		$url = sprintf(self::$wechatUrl["wifishopmodify"],$this->accessToken);
+		$url = sprintf(self::UWIFISHOPMODIFY,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode($data,JSON_UNESCAPED_UNICODE)
 		]);
@@ -79,7 +127,7 @@ class WIFI extends Base{
 		] : [
 			"shop_id" => $shopID
 		];
-		$url = sprintf(self::$wechatUrl["wifishopclear"],$this->accessToken);
+		$url = sprintf(self::UWIFISHOPCLEAR,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode($data,JSON_UNESCAPED_UNICODE)
 		]);
@@ -104,7 +152,7 @@ class WIFI extends Base{
 
 	//添加密码型设备
 	public function addPasswordDevice($shopID,$ssid,$password){
-		$url = sprintf(self::$wechatUrl["devicetopwd"],$this->accessToken);
+		$url = sprintf(self::UDEVICETOPWD,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode([
 				"shop_id" => $shopID,
@@ -132,7 +180,7 @@ class WIFI extends Base{
 
 	//添加portal型设备
 	public function addPortalDevice($shopID,$ssid,$reset = false){
-		$url = sprintf(self::$wechatUrl["devicetoportal"],$this->accessToken);
+		$url = sprintf(self::UDEVICETOPORTAL,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode([
 				"shop_id" => $shopID,
@@ -189,7 +237,7 @@ class WIFI extends Base{
 
 	//删除设备
 	public function deleteDevice($bssid){
-		$url = sprintf(self::$wechatUrl["devicedel"],$this->accessToken);
+		$url = sprintf(self::UDEVICEDEL,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode(["bssid" => $bssid],JSON_UNESCAPED_UNICODE)
 		]);
@@ -211,7 +259,7 @@ class WIFI extends Base{
 
 	//配置连网方式
 	public function wifiQrcode($shopID,$ssid,$imageID = 0){
-		$url = sprintf(self::$wechatUrl["wifiqrcode"],$this->accessToken);
+		$url = sprintf(self::UWIFIQRCODE,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode([
 				"shop_id" => $shopID,
@@ -236,7 +284,7 @@ class WIFI extends Base{
 	}
 
 	public function getWifiStatistics($begin,$end,$shopID = -1){
-		$url = sprintf(self::$wechatUrl["statistics"],$this->accessToken);
+		$url = sprintf(self::USTATISTICS,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode([
 				"begin_date" => $begin,
@@ -250,7 +298,7 @@ class WIFI extends Base{
 
 	//设置门店卡券投放信息
 	public function setWifiCoupon($data){
-		$url = sprintf(self::$wechatUrl["couponput"],$this->accessToken);
+		$url = sprintf(self::UCOUPONPUT,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode($data,JSON_UNESCAPED_UNICODE)
 		]);
@@ -260,7 +308,7 @@ class WIFI extends Base{
 
 	//查询门店卡券投放信息
 	public function getWifiCoupon($shopID){
-		$url = sprintf(self::$wechatUrl["couponget"],$this->accessToken);
+		$url = sprintf(self::UCOUPONGET,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode(["shop_id" => $shopID],JSON_UNESCAPED_UNICODE)
 		]);
@@ -269,7 +317,7 @@ class WIFI extends Base{
 	}
 
 	public function _getWifiShopList($pageIndex = 1,$pageOffset = 10){
-		$url = sprintf(self::$wechatUrl["wifishops"],$this->accessToken);
+		$url = sprintf(self::UWIFISHOPS,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode(["pageindex" => 1,"pagesize" => $pageOffset],JSON_UNESCAPED_UNICODE)
 		]);
@@ -286,7 +334,7 @@ class WIFI extends Base{
 			"pageindex" => $pageIndex,
 			"pagesize" => $pageOffset
 		];
-		$url = sprintf(self::$wechatUrl["devicelist"],$this->accessToken);
+		$url = sprintf(self::UDEVICELIST,$this->accessToken);
 		$res = $this->request($url,"POST",[
 			"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
 		]);
