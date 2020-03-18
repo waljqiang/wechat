@@ -7,12 +7,13 @@ use Waljqiang\Wechat\Pay\WxPayConfig;
 use Waljqiang\Wechat\Pay\WxPayUnifiedOrder;//统一下单输入对象
 use Waljqiang\Wechat\Pay\WxPayOrderQuery;
 use Waljqiang\Wechat\Pay\WxPayCloseOrder;
+use Waljqiang\Wechat\Pay\WxPayRefund;
 use Waljqiang\Wechat\Exceptions\WechatPayException;
 
 class Pay extends Base{
 
 	//统一下单接口
-    public function unifiedOrder($data,$payConfig = [],$timeOut = 6){
+    public function unifiedOrder($data,$payConfig = [],$timeOut = 600){
     	$time = time();
     	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
     	$data["out_trade_no"] = isset($data["out_trade_no"]) ? $data["out_trade_no"] : $wxPayConfig->MCHID . date("YmdHis",$time);
@@ -36,7 +37,7 @@ class Pay extends Base{
     }
 
     //查询订单
-    public function orderQuery($data,$payConfig = [],$timeOut = 6){
+    public function orderQuery($data,$payConfig = [],$timeOut = 600){
     	if(!isset($data["out_trade_no"]) || !isset($data["transaction_id"])){
     		throw new WechatPayException("订单查询接口中,out_trade_no、transaction_id至少填一个",WechatPayException::OUTTRADENOTRANSNO);
     	}
@@ -54,12 +55,26 @@ class Pay extends Base{
     }
 
     //关闭订单
-    public function closeOrder($outTradeNo,$wxPayConfig = [],$timeOut = 6){
+    public function closeOrder($outTradeNo,$wxPayConfig = [],$timeOut = 600){
     	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
     	$input = new WxPayCloseOrder;
     	$input->SetOut_trade_no($outTradeNo);
     	$result = WxPay::closeOrder($input,$wxPayConfig,$timeOut);
     	return $this->out($result);
+    }
+
+    //申请退款
+    public function refund($data,$wxPayConfig = [],$timeOut = 600){
+    	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
+    	$input = new WxPayRefund;
+    	foreach ($data as $key => $value) {
+	    	$method = "Set" . ucwords($key);
+	    	if(method_exists($input,$method)){
+	    		$input->{$method}($value);
+	    	}
+	    }
+	    $result = WxPay::refund($input,$wxPayConfig,$timeOut);
+	    return $this->out($result);
     }
 
     private function out($result){

@@ -191,17 +191,15 @@ class WxPay{
 			throw new WechatPayException("退款申请接口中,缺少必填参数total_fee",WechatPayException::TOTALFEENO);
 		}else if(!$inputObj->IsRefund_feeSet()){
 			throw new WechatPayException("退款申请接口中,缺少必填参数refund_fee",WechatPayException::REFUNDFEENO);
-		}else if(!$inputObj->IsOp_user_idSet()){
-			throw new WechatPayException("退款申请接口中,缺少必填参数op_user_id",WechatPayException::OPUSERID);
 		}
 		$inputObj->SetAppid($wxPayConfig->APPID);//公众账号ID
 		$inputObj->SetMch_id($wxPayConfig->MCHID);//商户号
 		$inputObj->SetNonce_str(self::getNonceStr());//随机字符串
 
-		$inputObj->SetSign();//签名
+		$inputObj->SetSign($wxPayConfig);//签名
 		$xml = $inputObj->ToXml();
 		$startTimeStamp = self::getMillisecond();//请求开始时间
-		$response = self::postXmlCurl($wxPayConfig,$xml, self::REFUND, true, $timeOut);
+		$response = self::postXmlCurl($wxPayConfig,$xml,self::REFUND,true,$timeOut);
 		$result = WxPayResults::Init($response,$wxPayConfig);
 		self::reportCostTime(self::REFUND, $startTimeStamp, $result,$wxPayConfig);//上报请求花费时间
 

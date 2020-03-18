@@ -927,6 +927,291 @@ Wechat::getInstance()->closeOrder("20150806125346");
 	            </tbody>
 	       	</table>
         </div>
+
+        <div>
+        	<div class="methods_body">public refund($data,$wxPayConfig = [],$timeOut = 600)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>关闭订单</td>
+	                </tr>
+	                <tr>
+	                    <td style="color:#DC143C">需要证书支持</td>
+	                </tr>
+	                <tr>
+	                    <td>支持NATIVE</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string(32)</td>
+	                    <td>$data.transaction_id</td>
+	                    <td>微信订单号</td>
+	                    <td>与out_trade_no二选一,建议优先使用</td>
+	                </tr>
+	                <tr>
+	                    <td>string(32)</td>
+	                    <td>$data.out_trade_no</td>
+	                    <td>商户订单号</td>
+	                    <td>与transaction二选一</td>
+	                </tr>
+	                <tr>
+	                    <td>string(64)</td>
+	                    <td>$data.out_refund_no</td>
+	                    <td>商户退款单号</td>
+	                    <td>商户系统内部的退款单号,商户系统内部唯一,只能是数字、大小写字母_-|*@ ,同一退款单号多次请求只退一笔</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$data.total_fee</td>
+	                    <td>订单金额</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$data.refund_fee</td>
+	                    <td>退款金额</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string(8)</td>
+	                    <td>$data.refund_fee_type</td>
+	                    <td>退款货币种类</td>
+	                    <td>非必须,默认CNY</td>
+	                </tr>
+	                <tr>
+	                    <td>string(80)</td>
+	                    <td>$data.refund_desc</td>
+	                    <td>退款原因</td>
+	                    <td>非必须,若商户传入,会在下发给用户的退款消息中体现退款原因注意：若订单退款金额≤1元,且属于部分退款,则不会在退款消息中体现退款原因</td>
+	                </tr>
+	                <tr>
+	                    <td>string(30)</td>
+	                    <td>$data.refund_account</td>
+	                    <td>退款资金来源</td>
+	                    <td>非必须,仅针对老资金流商户使用REFUND_SOURCE_UNSETTLED_FUNDS,未结算资金退款(默认使用未结算资金退款)REFUND_SOURCE_RECHARGE_FUNDS,可用余额退款</td>
+	                </tr>
+	                <tr>
+	                    <td>string(256)</td>
+	                    <td>$data.notify_url</td>
+	                    <td>退款结果通知url</td>
+	                    <td>非必须,异步接收微信支付退款结果通知的回调地址,通知URL必须为外网可访问的url,不允许带参数,如果参数中传了notify_url,则商户平台上配置的回调地址将不会生效</td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>$wxPayConfig</td>
+	                    <td>微信支付配置信息</td>
+	                    <td>默认为空数组,使用配置文件中的配置信息</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$timeOut</td>
+	                    <td>请求微信超时时间</td>
+	                    <td>默认为60秒</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+$data = [
+	"transaction_id" => "1217752501201407033233368018",
+	"out_trade_no" => "1415757673",
+	"out_refund_no" => "1415701182",
+	"total_fee" => 100,
+	"refund_fee" => 100
+];
+Wechat::getInstance()->refund($data);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>appid</td>
+	                    <td>公共号appid</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>mch_id</td>
+	                    <td>商户号</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>nonce_str</td>
+	                    <td>随机字符串</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>sign</td>
+	                    <td>签名</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>transaction_id</td>
+	                    <td>微信订单号</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>out_trade_no</td>
+	                    <td>商户订单号</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>out_refund_no</td>
+	                    <td>商户退款单号</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>refund_id</td>
+	                    <td>微信退款单号</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>refund_fee</td>
+	                    <td>退款金额</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>settlement_refund_fee</td>
+	                    <td>应结退款金额</td>
+	                    <td>非必须,去掉非充值代金券退款金额后的退款金额,退款金额=申请退款金额-非充值代金券退款金额,退款金额<=申请退款金额</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>fee_type</td>
+	                    <td>标价币种</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>cash_fee</td>
+	                    <td>现金支付金额</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>cash_fee_type</td>
+	                    <td>现金支付币种</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>cash_refund_fee</td>
+	                    <td>现金退款金额</td>
+	                    <td>非必须</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>coupon_type_$n</td>
+	                    <td>代金券类型</td>
+	                    <td>非必须,CASH,充值代金券;NO_CASH,非充值优惠券;开通免充值券功能,并且订单使用了优惠券后有返回(取值:CASH、NO_CASH).$n为下标,从0开始编号,举例：coupon_type_$0</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>coupon_refund_fee</td>
+	                    <td>代金券退款总金额</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>coupon_refund_fee_$n</td>
+	                    <td>单个代金券退款金额</td>
+	                    <td>非必须,$n为下标,从0开始编号</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>coupon_refund_count</td>
+	                    <td>退款代金券使用数量</td>
+	                    <td>非必须</td>
+	                </tr>            
+	                <tr>
+	                    <td>string(20)</td>
+	                    <td>coupon_refund_id_$</td>
+	                    <td>退款代金券ID</td>
+	                    <td>非必须,$n为下标,从0开始编号</td>
+	                </tr>
+	                
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+[
+	"appid" => "wx2421b1c4370ec43b",
+	"mch_id" => 10000100",
+	"nonce_str" => TN55wO9Pba5yENl8",
+	"sign" => "BDF0099C15FF7BC6B1585FBB110AB635",
+	"transaction_id" => "1008450740201411110005820873",
+   	"out_trade_no" => "1415757673",
+   	"out_refund_no" => "1415701182",
+   	"refund_id" => "2008450740201411110000174436",
+   	"refund_fee" => 1
+]
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
     </div>
 </body>
 </html>
