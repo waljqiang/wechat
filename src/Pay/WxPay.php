@@ -126,7 +126,6 @@ class WxPay{
 	 * @return 成功时返回，其他抛异常
 	 */
 	public static function orderQuery(WxPayOrderQuery $inputObj,WxPayConfig $wxPayConfig,$timeOut = 6){
-		$url = "https://api.mch.weixin.qq.com/pay/orderquery";
 		//检测必填参数
 		if(!$inputObj->IsOut_trade_noSet() && !$inputObj->IsTransaction_idSet()) {
 			throw new WechatPayException("订单查询接口中,out_trade_no、transaction_id至少填一个",WechatPayException::OUTTRADENOTRANSNO);
@@ -134,14 +133,12 @@ class WxPay{
 		$inputObj->SetAppid($wxPayConfig->APPID);//公众账号ID
 		$inputObj->SetMch_id($wxPayConfig->MCHID);//商户号
 		$inputObj->SetNonce_str(self::getNonceStr());//随机字符串
-
 		$inputObj->SetSign($wxPayConfig);//签名
 		$xml = $inputObj->ToXml();
 		$startTimeStamp = self::getMillisecond();//请求开始时间
 		$response = self::postXmlCurl($wxPayConfig,$xml, self::ORDERQUERY, false, $timeOut);
 		$result = WxPayResults::Init($response,$wxPayConfig);
 		self::reportCostTime(self::ORDERQUERY, $startTimeStamp, $result,$wxPayConfig);//上报请求花费时间
-
 		return $result;
 	}
 

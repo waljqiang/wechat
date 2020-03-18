@@ -386,6 +386,13 @@ try{
 	];
 	$res = Wechat::getInstance()->unifiedOrder($data,$config);
 	var_dump($res);*/
+	//查询订单
+	$data = [
+		"transaction_id" => "1009660380201506130728806387",
+		"out_trade_no" => "20150806125346",
+	];
+	$res = Wechat::getInstance()->orderQuery($data);
+	var_dump($res);
 }catch(\Exception $e){
 	var_dump($e);
 }

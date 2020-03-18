@@ -83,7 +83,8 @@ class Handle{
 			"getWifiCoupon"
 		],
 		"Pay" => [
-			"unifiedOrder"
+			"unifiedOrder",
+			"orderQuery"
 		]
 	];
 
