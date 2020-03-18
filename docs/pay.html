@@ -14,7 +14,7 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class Native extends <a href="./base.html" onclick="showParent('#wechat',2)">Base</a></div>
+        <div class="main_body">class Pay extends <a href="./base.html" onclick="showParent('#wechat',2)">Base</a></div>
         <div class="main_body">扫码支付,JSAPI支付,H5支付</div>
     </div>
     
@@ -137,7 +137,7 @@
             </thead>
         </table>
         <div>
-        	<div class="methods_body">public unifiedOrder($data,$payConfig = [],$timeOut = 6)</div>
+        	<div class="methods_body">public unifiedOrder($data,$payConfig = [],$timeOut = 600)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -177,8 +177,8 @@
 	                    <td>非必须,可以为终端设备号(门店号或收银设备ID),PC网页或公众号内支付可以传"WEB"</td>
 	                </tr>
 	                <tr>
-	                    <td>string</td>
-	                    <td>$data.body(128)</td>
+	                    <td>string(128)</td>
+	                    <td>$data.body</td>
 	                    <td>商品描述</td>
 	                    <td>浏览器打开的网站主页title名-商品概述</td>
 	                </tr>
