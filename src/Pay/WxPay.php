@@ -73,7 +73,7 @@ class WxPay{
 	 * @return 成功时返回，其他抛异常
 	 */
 
-	public static function unifiedOrder(WxPayUnifiedOrder $inputObj,WxPayConfig $wxPayConfig, $timeOut = 6){
+	public static function unifiedOrder(WxPayUnifiedOrder $inputObj,WxPayConfig $wxPayConfig, $timeOut = 600){
 		//检测必填参数
 		if(!$inputObj->IsOut_trade_noSet()) {
 			throw new WechatPayException("缺少统一支付接口必填参数out_trade_no",WechatPayException::OUTTRADENONO);
@@ -125,7 +125,7 @@ class WxPay{
 	 * @throws WechatPayException
 	 * @return 成功时返回，其他抛异常
 	 */
-	public static function orderQuery(WxPayOrderQuery $inputObj,WxPayConfig $wxPayConfig,$timeOut = 6){
+	public static function orderQuery(WxPayOrderQuery $inputObj,WxPayConfig $wxPayConfig,$timeOut = 600){
 		//检测必填参数
 		if(!$inputObj->IsOut_trade_noSet() && !$inputObj->IsTransaction_idSet()) {
 			throw new WechatPayException("订单查询接口中,out_trade_no、transaction_id至少填一个",WechatPayException::OUTTRADENOTRANSNO);
@@ -151,7 +151,7 @@ class WxPay{
 	 * @throws WechatPayException
 	 * @return 成功时返回，其他抛异常
 	 */
-	public static function closeOrder(WxPayCloseOrder $inputObj,WxPayConfig $wxPayConfig,$timeOut = 6){
+	public static function closeOrder(WxPayCloseOrder $inputObj,WxPayConfig $wxPayConfig,$timeOut = 600){
 		//检测必填参数
 		if(!$inputObj->IsOut_trade_noSet()) {
 			throw new WechatPayException("订单查询接口中,out_trade_no必填",WechatPayException::OUTTRADENONO);
@@ -160,7 +160,7 @@ class WxPay{
 		$inputObj->SetMch_id($wxPayConfig->MCHID);//商户号
 		$inputObj->SetNonce_str(self::getNonceStr());//随机字符串
 
-		$inputObj->SetSign();//签名
+		$inputObj->SetSign($wxPayConfig);//签名
 		$xml = $inputObj->ToXml();
 
 		$startTimeStamp = self::getMillisecond();//请求开始时间
@@ -181,7 +181,7 @@ class WxPay{
 	 * @throws WechatPayException
 	 * @return 成功时返回，其他抛异常
 	 */
-	public static function refund(WxPayRefund $inputObj,WxPayConfig $wxPayConfig,$timeOut = 6){
+	public static function refund(WxPayRefund $inputObj,WxPayConfig $wxPayConfig,$timeOut = 600){
 		//检测必填参数
 		if(!$inputObj->IsOut_trade_noSet() && !$inputObj->IsTransaction_idSet()) {
 			throw new WechatPayException("退款申请接口中,out_trade_no、transaction_id至少填一个",WechatPayException::OUTTRADENOTRANSNO);
@@ -220,7 +220,7 @@ class WxPay{
 	 * @throws WechatPayException
 	 * @return 成功时返回，其他抛异常
 	 */
-	public static function refundQuery(WxPayRefundQuery $inputObj,WxPayConfig $wxPayConfig,$timeOut = 6){
+	public static function refundQuery(WxPayRefundQuery $inputObj,WxPayConfig $wxPayConfig,$timeOut = 600){
 		//检测必填参数
 		if(!$inputObj->IsOut_refund_noSet() &&
 			!$inputObj->IsOut_trade_noSet() &&
@@ -251,7 +251,7 @@ class WxPay{
 	 * @throws WechatPayException
 	 * @return 成功时返回，其他抛异常
 	 */
-	public static function downloadBill(WxPayDownloadBill $inputObj,WxPayConfig $wxPayConfig,$timeOut = 6){
+	public static function downloadBill(WxPayDownloadBill $inputObj,WxPayConfig $wxPayConfig,$timeOut = 600){
 		//检测必填参数
 		if(!$inputObj->IsBill_dateSet()) {
 			throw new WechatPayException("对账单接口中,缺少必填参数bill_date",WechatPayException::BILLDATENO);
@@ -279,7 +279,7 @@ class WxPay{
 	 * @param WxPayMicroPay $inputObj
 	 * @param int $timeOut
 	 */
-	public static function micropay(WxPayMicroPay $inputObj,WxPayConfig $wxPayConfig,$timeOut = 10){
+	public static function micropay(WxPayMicroPay $inputObj,WxPayConfig $wxPayConfig,$timeOut = 600){
 		//检测必填参数
 		if(!$inputObj->IsBodySet()) {
 			throw new WechatPayException("提交被扫支付API接口中,缺少必填参数body",WechatPayException::BODYNO);
@@ -315,7 +315,7 @@ class WxPay{
 	 * @param int $timeOut
 	 * @throws WechatPayException
 	 */
-	public static function reverse(WxPayReverse $inputObj,WxPayConfig $wxPayConfig,$timeOut = 6){
+	public static function reverse(WxPayReverse $inputObj,WxPayConfig $wxPayConfig,$timeOut = 600){
 		//检测必填参数
 		if(!$inputObj->IsOut_trade_noSet() && !$inputObj->IsTransaction_idSet()) {
 			throw new WechatPayException("撤销订单API接口中,参数out_trade_no和transaction_id必须填写一个",WechatPayException::OUTTRADENOTRANSNO);
@@ -346,7 +346,7 @@ class WxPay{
 	 * @throws WxPayException
 	 * @return 成功时返回，其他抛异常
 	 */
-	public static function report($inputObj,$wxPayConfig,$timeOut = 1){
+	public static function report($inputObj,$wxPayConfig,$timeOut = 600){
 		//检测必填参数
 		if(!$inputObj->IsInterface_urlSet()) {
 			throw new WechatPayException("接口URL,缺少必填参数interface_url",WechatPayException::INTERFACEURLNO);
@@ -382,7 +382,7 @@ class WxPay{
 	 * @throws WechatPayException
 	 * @return 成功时返回，其他抛异常
 	 */
-	public static function bizpayurl(WxPayBizPayUrl $inputObj,WxPayConfig $wxPayConfig,$timeOut = 6){
+	public static function bizpayurl(WxPayBizPayUrl $inputObj,WxPayConfig $wxPayConfig,$timeOut = 600){
 		if(!$inputObj->IsProduct_idSet()){
 			throw new WechatPayException("生成二维码,缺少必填参数product_id",WechatPayException::PRODUCTIDMUST);
 		}
@@ -408,7 +408,7 @@ class WxPay{
 	 * @throws WechatPayException
 	 * @return 成功时返回，其他抛异常
 	 */
-	public static function shorturl(WxPayShortUrl $inputObj,WxPayConfig $wxPayConfig,$timeOut = 6){
+	public static function shorturl(WxPayShortUrl $inputObj,WxPayConfig $wxPayConfig,$timeOut = 600){
 		//检测必填参数
 		if(!$inputObj->IsLong_urlSet()) {
 			throw new WechatPayException("需要转换的URL,签名用原串,传输需URL encode",WechatPayException::LONGURLERROR);
@@ -543,7 +543,7 @@ class WxPay{
 	 * @param int $second   url执行超时时间，默认30s
 	 * @throws WechatPayException
 	 */
-	private static function postXmlCurl($wxPayConfig,$xml, $url, $useCert = false, $second = 300){
+	private static function postXmlCurl($wxPayConfig,$xml, $url, $useCert = false, $second = 600){
 		$ch = curl_init();
 		//设置超时
 		curl_setopt($ch, CURLOPT_TIMEOUT, $second);

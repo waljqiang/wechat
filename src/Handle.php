@@ -84,7 +84,8 @@ class Handle{
 		],
 		"Pay" => [
 			"unifiedOrder",
-			"orderQuery"
+			"orderQuery",
+			"closeOrder"
 		]
 	];
 

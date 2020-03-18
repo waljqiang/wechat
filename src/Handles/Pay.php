@@ -2,10 +2,11 @@
 namespace Waljqiang\Wechat\Handles;
 
 use Waljqiang\Wechat\Wechat;
+use Waljqiang\Wechat\Pay\WxPay;
+use Waljqiang\Wechat\Pay\WxPayConfig;
 use Waljqiang\Wechat\Pay\WxPayUnifiedOrder;//统一下单输入对象
 use Waljqiang\Wechat\Pay\WxPayOrderQuery;
-use Waljqiang\Wechat\Pay\WxPayConfig;
-use Waljqiang\Wechat\Pay\WxPay;
+use Waljqiang\Wechat\Pay\WxPayCloseOrder;
 use Waljqiang\Wechat\Exceptions\WechatPayException;
 
 class Pay extends Base{
@@ -31,7 +32,7 @@ class Pay extends Base{
 	    }
 
 	    $result = WxPay::unifiedOrder($input,$wxPayConfig,$timeOut);
-	    $this->out($result);
+	    return $this->out($result);
     }
 
     //查询订单
@@ -49,7 +50,16 @@ class Pay extends Base{
 	    	}
 	    }
     	$result = WxPay::orderQuery($input,$wxPayConfig,$timeOut);
-    	$this->out($result);
+    	return $this->out($result);
+    }
+
+    //关闭订单
+    public function closeOrder($outTradeNo,$wxPayConfig = [],$timeOut = 6){
+    	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
+    	$input = new WxPayCloseOrder;
+    	$input->SetOut_trade_no($outTradeNo);
+    	$result = WxPay::closeOrder($input,$wxPayConfig,$timeOut);
+    	return $this->out($result);
     }
 
     private function out($result){
