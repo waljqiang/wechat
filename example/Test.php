@@ -397,7 +397,7 @@ try{
 	/*$res = Wechat::getInstance()->closeOrder("20150806125346");
 	var_dump($res);*/
 	//申请退款
-	$data = [
+/*	$data = [
 		"transaction_id" => "1217752501201407033233368018",
 		"out_trade_no" => "1415757673",
 		"out_refund_no" => "1415701182",
@@ -405,7 +405,13 @@ try{
 		"refund_fee" => 100
 	];
 	$res = Wechat::getInstance()->refund($data);
-	var_dump($res);
+	var_dump($res);*/
+	//查询退款
+/*	$data = [
+		"out_trade_no" => "1415757673"
+	];
+	$res = Wechat::getInstance()->refundQuery($data);
+	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
 }

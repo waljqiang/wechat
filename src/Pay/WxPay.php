@@ -230,7 +230,7 @@ class WxPay{
 		$inputObj->SetMch_id($wxPayConfig->MCHID);//商户号
 		$inputObj->SetNonce_str(self::getNonceStr());//随机字符串
 
-		$inputObj->SetSign();//签名
+		$inputObj->SetSign($wxPayConfig);//签名
 		$xml = $inputObj->ToXml();
 
 		$startTimeStamp = self::getMillisecond();//请求开始时间

@@ -86,7 +86,8 @@ class Handle{
 			"unifiedOrder",
 			"orderQuery",
 			"closeOrder",
-			"refund"
+			"refund",
+			"refundQuery"
 		]
 	];
 
