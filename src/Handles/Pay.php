@@ -5,11 +5,6 @@ use Waljqiang\Wechat\Wechat;
 use Waljqiang\Wechat\Pay\WxPay;
 use Waljqiang\Wechat\Pay\WxPayConfig;
 use Waljqiang\Wechat\Pay\WxPayUnifiedOrder;//统一下单输入对象
-use Waljqiang\Wechat\Pay\WxPayOrderQuery;
-use Waljqiang\Wechat\Pay\WxPayCloseOrder;
-use Waljqiang\Wechat\Pay\WxPayRefund;
-use Waljqiang\Wechat\Pay\WxPayRefundQuery;
-use Waljqiang\Wechat\Pay\WxPayDownloadBill;
 use Waljqiang\Wechat\Exceptions\WechatPayException;
 
 class Pay extends Base{
@@ -38,72 +33,20 @@ class Pay extends Base{
 	    return $this->out($result);
     }
 
-    //查询订单
-    public function orderQuery($data,$payConfig = [],$timeOut = 600){
-    	if(!isset($data["out_trade_no"]) || !isset($data["transaction_id"])){
-    		throw new WechatPayException("订单查询接口中,out_trade_no、transaction_id至少填一个",WechatPayException::OUTTRADENOTRANSNO);
-    	}
-    	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
-    	$input = new WxPayOrderQuery;
-    	//设置订单查询属性
-	    foreach ($data as $key => $value) {
-	    	$method = "Set" . ucwords($key);
-	    	if(method_exists($input,$method)){
-	    		$input->{$method}($value);
-	    	}
-	    }
-    	$result = WxPay::orderQuery($input,$wxPayConfig,$timeOut);
-    	return $this->out($result);
-    }
-
-    //关闭订单
-    public function closeOrder($outTradeNo,$wxPayConfig = [],$timeOut = 600){
-    	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
-    	$input = new WxPayCloseOrder;
-    	$input->SetOut_trade_no($outTradeNo);
-    	$result = WxPay::closeOrder($input,$wxPayConfig,$timeOut);
-    	return $this->out($result);
-    }
-
-    //申请退款
-    public function refund($data,$wxPayConfig = [],$timeOut = 600){
-    	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
-    	$input = new WxPayRefund;
+    //查询订单 关闭订单 申请退款 查询退款 下载对账单
+    public function __call($method,$args){
+    	$data = $args[0];
+    	$wxPayConfig = !empty($args[1]) ? new WxPayConfig($args[1]) : new WxPayConfig(Wechat::$config["pay"]);
+    	$timeOut = isset($args[2]) ? $args[2] : 600;
+    	$class = "Waljqiang\Wechat\Pay\WxPay" . ucwords($method);
+    	$input = new $class;
     	foreach ($data as $key => $value) {
-	    	$method = "Set" . ucwords($key);
-	    	if(method_exists($input,$method)){
-	    		$input->{$method}($value);
+	    	$function = "Set" . ucwords($key);
+	    	if(method_exists($input,$function)){
+	    		$input->{$function}($value);
 	    	}
 	    }
-	    $result = WxPay::refund($input,$wxPayConfig,$timeOut);
-	    return $this->out($result);
-    }
-
-    //查询退款
-    public function refundQuery($data,$wxPayConfig = [],$timeOut = 600){
-    	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
-    	$input = new WxPayRefundQuery;
-    	foreach ($data as $key => $value) {
-	    	$method = "Set" . ucwords($key);
-	    	if(method_exists($input,$method)){
-	    		$input->{$method}($value);
-	    	}
-	    }
-	    $result = WxPay::refundQuery($input,$wxPayConfig,$timeOut);
-	    return $this->out($result);
-    }
-
-    //下载对账单
-    public function downloadBill($data,$wxPayConfig = [],$timeOut = 600){
-    	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
-    	$input = new WxPayDownloadBill;
-    	foreach ($data as $key => $value) {
-	    	$method = "Set" . ucwords($key);
-	    	if(method_exists($input,$method)){
-	    		$input->{$method}($value);
-	    	}
-	    }
-	    $result = WxPay::downloadBill($input,$wxPayConfig,$timeOut);
+	    $result = call_user_func_array([WxPay::class,$method],[$input,$wxPayConfig,$timeOut]);
 	    return $this->out($result);
     }
 

@@ -394,7 +394,7 @@ try{
 	$res = Wechat::getInstance()->orderQuery($data);
 	var_dump($res);*/
 	//关闭订单
-	/*$res = Wechat::getInstance()->closeOrder("20150806125346");
+/*	$res = Wechat::getInstance()->closeOrder(["out_trade_no" => "20150806125346"]);
 	var_dump($res);*/
 	//申请退款
 /*	$data = [
