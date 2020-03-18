@@ -412,6 +412,12 @@ try{
 	];
 	$res = Wechat::getInstance()->refundQuery($data);
 	var_dump($res);*/
+	//下载对账单
+/*	$data = [
+		"bill_date" => "20200316"
+	];
+	$res = Wechat::getInstance()->downloadBill($data);
+	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
 }

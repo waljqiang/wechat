@@ -1502,6 +1502,123 @@ Wechat::getInstance()->refundQuery($data);
 	            </tbody>
 	       	</table>
         </div>
+
+        <div>
+        	<div class="methods_body">public downloadBill($data,$wxPayConfig = [],$timeOut = 600)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>下载对账单</td>
+	                </tr>
+	                <tr>
+	                    <td>支持NATIVE</td>
+	                </tr>
+	                <tr>
+	                    <td style="color:#DC143C">微信侧未成功下单的交易不会出现在对账单中.支付成功后撤销的交易会出现在对账单中,跟原支付单订单号一致</td>
+	                </tr>
+	                <tr>
+	                    <td style="color:#DC143C">微信在次日9点启动生成前一天的对账单,建议商户10点后再获取</td>
+	                </tr>
+	                <tr>
+	                    <td style="color:#DC143C">对账单中涉及金额的字段单位为"元"</td>
+	                </tr>
+	                <tr>
+	                    <td style="color:#DC143C">对账单接口只能下载三个月以内的账单</td>
+	                </tr>
+	                <tr>
+	                    <td style="color:#DC143C">对账单是以商户号纬度来生成的,如一个商户号与多个appid有绑定关系,则使用其中任何一个appid都可以请求下载对账单.对账单中的appid取自交易时候提交的appid,与请求下载对账单时使用的appid无关</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string(8)</td>
+	                    <td>$data.bill_date</td>
+	                    <td>对账单日期</td>
+	                    <td>下载对账单的日期,格式:20140603</td>
+	                </tr>
+	                <tr>
+	                    <td>string(8)</td>
+	                    <td>$data.bill_type</td>
+	                    <td>账单类型</td>
+	                    <td>非必须,ALL(默认值),返回当日所有订单信息(不含充值退款订单)SUCCESS,返回当日成功支付的订单(不含充值退款订单)REFUND,返回当日退款订单(不含充值退款订单)RECHARGE_REFUND,返回当日充值退款订单</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$data.tar_type</td>
+	                    <td>压缩账单</td>
+	                    <td>非必须,固定值:GZIP,返回格式为.gzip的压缩包账单.不传则默认为数据流形式</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+$data = [
+	"transaction_id" => "1008450740201411110005820873"
+];
+Wechat::getInstance()->refundQuery($data);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>返回请参看微信支付-下载对账单接口说明https://pay.weixin.qq.com/wiki/doc/api/native.php?chapter=9_6</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
     </div>
 </body>
 </html>

@@ -87,7 +87,8 @@ class Handle{
 			"orderQuery",
 			"closeOrder",
 			"refund",
-			"refundQuery"
+			"refundQuery",
+			"downloadBill"
 		]
 	];
 

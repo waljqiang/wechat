@@ -258,10 +258,11 @@ class WxPay{
 		$inputObj->SetMch_id($wxPayConfig->MCHID);//商户号
 		$inputObj->SetNonce_str(self::getNonceStr());//随机字符串
 
-		$inputObj->SetSign();//签名
+		$inputObj->SetSign($wxPayConfig);//签名
 		$xml = $inputObj->ToXml();
 
 		$response = self::postXmlCurl($wxPayConfig,$xml, self::DOWNLOADBILL, false, $timeOut);
+
 		if(substr($response, 0 , 5) == "<xml>"){
 			return "";
 		}

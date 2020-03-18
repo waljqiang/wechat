@@ -9,6 +9,7 @@ use Waljqiang\Wechat\Pay\WxPayOrderQuery;
 use Waljqiang\Wechat\Pay\WxPayCloseOrder;
 use Waljqiang\Wechat\Pay\WxPayRefund;
 use Waljqiang\Wechat\Pay\WxPayRefundQuery;
+use Waljqiang\Wechat\Pay\WxPayDownloadBill;
 use Waljqiang\Wechat\Exceptions\WechatPayException;
 
 class Pay extends Base{
@@ -89,6 +90,20 @@ class Pay extends Base{
 	    	}
 	    }
 	    $result = WxPay::refundQuery($input,$wxPayConfig,$timeOut);
+	    return $this->out($result);
+    }
+
+    //下载对账单
+    public function downloadBill($data,$wxPayConfig = [],$timeOut = 600){
+    	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
+    	$input = new WxPayDownloadBill;
+    	foreach ($data as $key => $value) {
+	    	$method = "Set" . ucwords($key);
+	    	if(method_exists($input,$method)){
+	    		$input->{$method}($value);
+	    	}
+	    }
+	    $result = WxPay::downloadBill($input,$wxPayConfig,$timeOut);
 	    return $this->out($result);
     }
 
