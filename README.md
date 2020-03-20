@@ -23,3 +23,5 @@ sdk for wechat official palt
 * 公众号推送的消息，接收后请导向Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$timestamp,$nonce,$echostr)来解析，该方法解析后可将消息转变成数组。
 
 * 如需要公众号回复用户消息，请使用Wechat::getInstance()->replyUser($messageType,$message)方法，其中$messageType在Waljqiang\Wechat\Handles\Reply::class中已经定义好，不要使用其他的消息类型值。
+## API文档
+* 访问wechat/docs/api.html文件查看
