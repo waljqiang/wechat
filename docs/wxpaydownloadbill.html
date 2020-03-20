@@ -14,190 +14,8 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class WxPay</div>
-        <div class="main_body"></div>
-    </div>
-    
-    <div id="box_expresion" class="layout_main_middle">
-    	<table class="tbl_params">
-            <thead class="thead_params">
-                <tr>
-                    <td width="15%">Detail说明</td>
-                    <td width="30%"></td>
-                    <td width="35%"></td>
-                    <td></td>         
-                </tr>
-            </thead>
-        </table>
-        <table class="tbl_params">
-            <thead class="thead_params">
-                <tr>
-                    <td width="15%">字段说明</td>
-                    <td width="30%"></td>
-                    <td width="35%"></td>
-                    <td></td>         
-                </tr>
-            </thead>
-            <tbody class="tbody_params">
-                <tr>
-                    <td>integer</td>
-                    <td>detail.cost_price</td>
-                    <td>订单原价</td>
-                    <td>非必须,1.商户侧一张小票订单可能被分多次支付,订单原价用于记录整张小票的交易金额.2.当订单原价与支付金额不相等,则不享受优惠.3.该字段主要用于防止同一张小票分多次支付,以享受多次优惠的情况,正常支付订单不必上传此参数.</td>
-                </tr>
-                <tr>
-                    <td>string(32)</td>
-                    <td>detail.receipt_id</td>
-                    <td>商品小票ID</td>
-                    <td>非必须</td>
-                </tr>
-                <tr>
-                    <td>sting</td>
-                    <td>goods_detail</td>
-                    <td>单品列表</td>
-                    <td>使用数组格式</td>
-                </tr>
-                <tr>
-                    <td>sting(32)</td>
-                    <td>detail.goods_detail.goods_id</td>
-                    <td>商品编码</td>
-                    <td>由半角的大小写字母、数字、中划线、下划线中的一种或几种组成</td>
-                </tr>
-                <tr>
-                    <td>sting(32)</td>
-                    <td>detail.goods_detail.wxpay_goods_id</td>
-                    <td>微信侧商品编码</td>
-                    <td>非必须,微信支付定义的统一商品编号</td>
-                </tr>
-                <tr>
-                    <td>sting(256)</td>
-                    <td>detail.goods_detail.goods_name</td>
-                    <td>商品名称</td>
-                    <td>商品的实际名称</td>
-                </tr>
-                <tr>
-                    <td>integer</td>
-                    <td>detail.goods_detail.quantity</td>
-                    <td>商品名称</td>
-                    <td>商品的实际名称</td>
-                </tr>
-                <tr>
-                    <td>integer</td>
-                    <td>detail.goods_detail.price</td>
-                    <td>商品单价</td>
-                    <td>单位为:分.如果商户有优惠,需传输商户优惠后的单价(例如:用户对一笔100元的订单使用了商场发的纸质优惠券100-50,则活动商品的单价应为原单价-50)</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <table class="tbl_params">
-            <thead class="thead_params">
-                <tr>
-                    <td>示例</td>        
-                </tr>
-            </thead>
-            <tbody class="tbody_params">
-                <tr>
-                    <td><pre>
-[
-    "cost_price" => 608800, 
-    "receipt_id" => "wx123", 
-    "goods_detail" => [ //注意goods_detail字段的格式为"goods_detail":[[]],较多商户写成"goods_detail":[]
-        [
-            "goods_id" => "商品编码", 
-            "wxpay_goods_id" => "1001", 
-            "goods_name" => "", 
-            "quantity" => 1, 
-            "price" => 528800
-        ], 
-        [
-            "goods_id" => "商品编码", 
-            "wxpay_goods_id" => "1002", 
-            "goods_name" => "iPhone6s 32G", 
-            "quantity" => 1, 
-            "price" => 608800
-        ]
-    ]
-]
-                    </pre></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div id="box_expresion" class="layout_main_middle">
-        <table class="tbl_params">
-            <thead class="thead_params">
-                <tr>
-                    <td width="15%">Constants</td>
-                    <td width="30%"></td>
-                    <td width="35%"></td>
-                    <td></td>         
-                </tr>
-            </thead>
-            <tbody class="tbody_params">
-            	<tr>
-                    <td>UNIFIEDORDER</td>
-                    <td>微信统一下单API请求地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>ORDERQUERY</td>
-                    <td>微信查询订单API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>CLOSEORDER</td>
-                    <td>微信关闭订单API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>REFUND</td>
-                    <td>微信申请退款API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>REFUNDQUERY</td>
-                    <td>微信查询退款API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>DOWNLOADBILL</td>
-                    <td>微信下载对账单API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>MICROPAY</td>
-                    <td>微信提交被扫支付API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>REVERSE</td>
-                    <td>微信撤销订单API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>REPORT</td>
-                    <td>微信测速上报API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>SHORTURL</td>
-                    <td>微信转换短链接API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="main_body">class WxPayDownloadBill extends <a href="./message.html" onclick="showParent('#wechat','WxPayDataBase::class')">WxPayDataBase</a></div>
+        <div class="main_body">下载对账单输入对象</div>
     </div>
 
     <div id="box_expresion" class="layout_main_middle">
@@ -212,7 +30,7 @@
             </thead>
         </table>
         <div>
-        	<div class="methods_body">public static unifiedOrder(WxPayUnifiedOrder $inputObj,WxPayConfig $wxPayConfig, $timeOut = 60)</div>
+        	<div class="methods_body">public SetAppid($value)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -221,7 +39,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>统一下单</td>
+	                    <td>设置微信分配的公众账号ID</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -243,22 +61,10 @@
 	                    <td>备注</td>
 	                </tr>
 	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayUnifiedOrder</td>
-	                    <td>$inputObj</td>
-	                    <td>统一下单输入数据对象</td>
+	                    <td>string</td>
+	                    <td>$value</td>
+	                    <td>微信公众号appid</td>
 	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -284,7 +90,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>请参阅微信支付统一下单API说明,返回结果已经将xml格式数据转换成数组格式</td>
+	                    <td>无</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -305,7 +111,7 @@
         </div>
 
         <div>
-        	<div class="methods_body">public static orderQuery(WxPayOrderQuery $inputObj,WxPayConfig $wxPayConfig,$timeOut = 60)</div>
+        	<div class="methods_body">public GetAppid()</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -314,7 +120,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>查询订单</td>
+	                    <td>获取微信分配的公众账号ID的值</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -330,28 +136,10 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayOrderQuery</td>
-	                    <td>$inputObj</td>
-	                    <td>查询订单输入数据对象</td>
+	                    <td>无</td>
 	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
 	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
+	                    <td></td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -377,7 +165,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>请参阅微信支付查询订单API说明,返回结果已经将xml格式数据转换成数组格式</td>
+	                    <td>无</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -398,7 +186,7 @@
         </div>
 
         <div>
-        	<div class="methods_body">public static closeOrder(WxPayCloseOrder $inputObj,WxPayConfig $wxPayConfig,$timeOut = 60)</div>
+        	<div class="methods_body">public IsAppidSet()</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -407,7 +195,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>关闭订单</td>
+	                    <td>判断微信分配的公众账号ID是否存在</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -423,28 +211,10 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayCloseOrder</td>
-	                    <td>$inputObj</td>
-	                    <td>关闭订单输入数据对象</td>
+	                    <td>无</td>
 	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
 	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
+	                    <td></td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -470,7 +240,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>请参阅微信支付关闭订单API说明,返回结果已经将xml格式数据转换成数组格式</td>
+	                    <td>无</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -491,7 +261,7 @@
         </div>
 
         <div>
-        	<div class="methods_body">public static refund(WxPayRefund $inputObj,WxPayConfig $wxPayConfig,$timeOut = 60)</div>
+        	<div class="methods_body">public SetMch_id($value)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -500,10 +270,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>申请退款</td>
-	                </tr>
-	                <tr>
-	                    <td style="color:#DC143C">需要证书支持</td>
+	                    <td>设置微信支付分配的商户号</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -525,22 +292,10 @@
 	                    <td>备注</td>
 	                </tr>
 	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayRefund</td>
-	                    <td>$inputObj</td>
-	                    <td>申请退款输入数据对象</td>
+	                    <td>string</td>
+	                    <td>$value</td>
+	                    <td>微信支付的商户号</td>
 	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -566,7 +321,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>请参阅微信支付申请退款API说明,返回结果已经将xml格式数据转换成数组格式</td>
+	                    <td>无</td>
 	                </tr>       
 	            </tbody>
 	       	</table>
@@ -587,7 +342,7 @@
         </div>
 
         <div>
-        	<div class="methods_body">public static refundQuery(WxPayRefundQuery $inputObj,WxPayConfig $wxPayConfig,$timeOut = 60)</div>
+        	<div class="methods_body">public GetMch_id()</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -596,7 +351,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>查询退款</td>
+	                    <td>获取微信支付分配的商户号的值</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -612,28 +367,10 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayRefundQuery</td>
-	                    <td>$inputObj</td>
-	                    <td>查询退款输入数据对象</td>
+	                    <td>无</td>
 	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
 	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
+	                    <td></td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -659,7 +396,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>请参阅微信支付查询退款API说明,返回结果已经将xml格式数据转换成数组格式</td>
+	                    <td>无</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -680,7 +417,7 @@
         </div>
 
         <div>
-        	<div class="methods_body">public static downloadBill(WxPayDownloadBill $inputObj,WxPayConfig $wxPayConfig,$timeOut = 60)</div>
+        	<div class="methods_body">public IsMch_idSet()</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -689,944 +426,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>下载对账单</td>
-	                </tr>
-	                <tr>
-	                    <td style="color:#DC143C">微信侧未成功下单的交易不会出现在对账单中.支付成功后撤销的交易会出现在对账单中,跟原支付单订单号一致</td>
-	                </tr>
-	                <tr>
-	                    <td style="color:#DC143C">微信在次日9点启动生成前一天的对账单,建议商户10点后再获取</td>
-	                </tr>
-	                <tr>
-	                    <td style="color:#DC143C">对账单中涉及金额的字段单位为"元"</td>
-	                </tr>
-	                <tr>
-	                    <td style="color:#DC143C">对账单接口只能下载三个月以内的账单</td>
-	                </tr>
-	                <tr>
-	                    <td style="color:#DC143C">对账单是以商户号纬度来生成的,如一个商户号与多个appid有绑定关系,则使用其中任何一个appid都可以请求下载对账单.对账单中的appid取自交易时候提交的appid,与请求下载对账单时使用的appid无关</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayDownloadBill</td>
-	                    <td>$inputObj</td>
-	                    <td>下载对账单输入数据对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	                <tr><td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<td>请参阅微信支付下载对账单API说明,返回结果已经将xml格式数据转换成数组格式</td>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public static micropay(WxPayMicroPay $inputObj,WxPayConfig $wxPayConfig,$timeOut = 60)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>提交被扫支付</td>
-	                </tr>
-	                <tr>
-	                    <td style="color:#DC143C">收银员使用扫码设备读取微信用户刷卡授权码以后,二维码或条码信息传送至商户收银台</td>
-	                </tr>
-	                <tr>
-	                    <td style="color:#DC143C">由商户收银台或者商户后台调用该接口发起支付</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayMicroPay</td>
-	                    <td>$inputObj</td>
-	                    <td>被扫支付输入数据对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	                <tr><td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<td>请参阅微信支付提交被扫支付API说明,返回结果已经将xml格式数据转换成数组格式</td>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public static reverse(WxPayReverse $inputObj,WxPayConfig $wxPayConfig,$timeOut = 60)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>撤销订单</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayReverse</td>
-	                    <td>$inputObj</td>
-	                    <td>撤销订单输入数据对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	                <tr><td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<td>请参阅微信支付撤销订单API说明,返回结果已经将xml格式数据转换成数组格式</td>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public static report(WxPayReport $inputObj,$wxPayConfig,$timeOut = 60)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>测速上报</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayReport</td>
-	                    <td>$inputObj</td>
-	                    <td>测试上报输入数据对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	                <tr><td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<td>请参阅微信支付测速上报API说明,返回结果已经将xml格式数据转换成数组格式</td>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public static bizpayurl(WxPayBizPayUrl $inputObj,WxPayConfig $wxPayConfig,$timeOut = 60)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>生成二维码规则</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayBizPayUrl</td>
-	                    <td>$inputObj</td>
-	                    <td>生成二维码规则输入数据对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	                <tr><td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<td>请参阅微信支付生成二维码规则API说明,返回结果已经将xml格式数据转换成数组格式</td>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public static shorturl(WxPayShortUrl $inputObj,WxPayConfig $wxPayConfig,$timeOut = 60)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>转换短链接</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayShortUrl</td>
-	                    <td>$inputObj</td>
-	                    <td>转换短链接输入数据对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$timeOut</td>
-	                    <td>请求微信超时时间</td>
-	                    <td>非必须,单位为毫秒,默认60秒</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	                <tr><td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<td>请参阅微信支付转换短链接API说明,返回结果已经将xml格式数据转换成数组格式</td>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public static notify($callback, &$msg)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>支付结果通用通知</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Closure/Function</td>
-	                    <td>$callback</td>
-	                    <td>回调函数</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$msg</td>
-	                    <td>微信通知支付结果的消息</td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	                <tr><td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<td>无</td>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public static getNonceStr($length = 32)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>产生随机字符串</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$length</td>
-	                    <td>字符串长度</td>
-	                    <td>默认32</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	                <tr><td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<td>无</td>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public static reportCostTime($url, $startTimeStamp, $data,$wxPayConfig)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>上报数据</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$url</td>
-	                    <td>接口地址</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$startTimeStamp</td>
-	                    <td>请求接口开始时间</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>array</td>
-	                    <td>$data</td>
-	                    <td>接口返回数据</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信配置对象</td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	                <tr><td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<td>无</td>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">private static postXmlCurl($wxPayConfig,$xml, $url, $useCert = false, $second = 600)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>以post方式提交xml到对应的接口url</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信支付配置对象</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$xml</td>
-	                    <td>xml数据</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$url</td>
-	                    <td>接口地址</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>boolean</td>
-	                    <td>$useCert</td>
-	                    <td>是否使用证书</td>
-	                    <td>默认false</td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$second</td>
-	                    <td>请求超时时间</td>
-	                    <td>单位秒,默认60秒</td>
-	                </tr>
-	                <tr>
-	                    <td>integ</td>
-	                    <td>$wxPayConfig</td>
-	                    <td>微信配置对象</td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	                <tr><td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<td>无</td>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">private staticgetMillisecond()</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>获取毫秒级别的时间戳</td>
+	                    <td>判断微信支付分配的商户号是否存在</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -1643,6 +443,911 @@
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public SetDevice_info($value)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>设置微信支付分配的终端设备号,填写此字段,只下载该设备号的对账单</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$value</td>
+	                    <td>微信支付分配的终端设备号</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public GetDevice_info()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>获取微信支付分配的终端设备号</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public IsDevice_infoSet()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>判断微信支付分配的终端设备号是否存在</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public SetNonce_str($value)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>设置随机字符串</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$value</td>
+	                    <td>随机字符串</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public GetNonce_str()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>获取随机字符串的值</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public IsNonce_strSet()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>判断随机字符串是否存在</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public SetBill_date($value)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>设置下载对账单的日期</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$value</td>
+	                    <td>日期</td>
+	                    <td>格式:20140603</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public GetBill_date()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>获取下载对账单的日期</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public IsBill_dateSet()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>判断下载对账单的日期是否存在</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public SetBill_type($value)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>
+	                    设置下载对账单类型
+	                    </td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$value</td>
+	                    <td>对账单类型</td>
+	                    <td>默认ALL;ALL,返回当日所有订单信息;SUCCESS,返回当日成功支付的订单;REFUND,返回当日退款订单;REVOKED,已撤销的订单</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public GetBill_type()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>获取下载对账单的类型</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public IsBill_typeSet()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>判断下载对账单的类型是否存在</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
 	                </tr>
 	            </tbody>
 	       	</table>

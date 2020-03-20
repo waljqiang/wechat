@@ -14,7 +14,7 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class Pay extends <a href="./base.html" onclick="showParent('#wechat',2)">Base</a></div>
+        <div class="main_body">class Pay extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Base</a></div>
         <div class="main_body">扫码支付,JSAPI支付,H5支付</div>
     </div>
     
@@ -137,7 +137,7 @@
             </thead>
         </table>
         <div>
-        	<div class="methods_body">public unifiedOrder($data,$payConfig = [],$timeOut = 600)</div>
+        	<div class="methods_body">public unifiedOrder($data,$payConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -519,7 +519,7 @@ H5示例:
         </div>
 
         <div>
-        	<div class="methods_body">public orderQuery($data,$payConfig = [],$timeOut = 6)</div>
+        	<div class="methods_body">public orderQuery($data,$payConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -798,7 +798,7 @@ Wechat::getInstance()->orderQuery($data);
         </div>
 
         <div>
-        	<div class="methods_body">public closeOrder($outTradeNo,$wxPayConfig = [],$timeOut = 6)</div>
+        	<div class="methods_body">public closeOrder($outTradeNo,$wxPayConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -929,7 +929,7 @@ Wechat::getInstance()->closeOrder(["out_trade_no" => "20150806125346"]);
         </div>
 
         <div>
-        	<div class="methods_body">public refund($data,$wxPayConfig = [],$timeOut = 600)</div>
+        	<div class="methods_body">public refund($data,$wxPayConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -1213,7 +1213,7 @@ Wechat::getInstance()->refund($data);
         </div>
 
         <div>
-        	<div class="methods_body">public refundQuery($data,$wxPayConfig = [],$timeOut = 600)</div>
+        	<div class="methods_body">public refundQuery($data,$wxPayConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -1504,7 +1504,7 @@ Wechat::getInstance()->refundQuery($data);
         </div>
 
         <div>
-        	<div class="methods_body">public downloadBill($data,$wxPayConfig = [],$timeOut = 600)</div>
+        	<div class="methods_body">public downloadBill($data,$wxPayConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>

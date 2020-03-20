@@ -2,12 +2,17 @@ function show(obj){
 	$(obj).slideToggle();
 }
 
-function showParent(obj, number){
-	number = number-1;
+function showParent(obj, className){
 	var obj = $(obj,parent.document);
 	obj.css("display","block");
 	$("li a",parent.document).removeClass("selecta");
-	obj.find("li:eq("+number+")").find("a").addClass("selecta");
+	obj.find("li").each(function(){
+		_obj = $(this).find("a");
+		if(className == _obj.text()){
+
+			_obj.addClass("selecta");
+		}
+	});
 }
 
 function showSelect(obj){

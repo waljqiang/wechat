@@ -10,64 +10,35 @@
 <body>
 	<div id="box_opration" class="layout_main_top">
 		<div class="main_header">Namespace</div>
-        <div class="main_body">Waljqiang\Wechat\Handles</div>
+        <div class="main_body">Waljqiang\Wechat\Pay</div>
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class Orc extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Base</a></div>
+        <div class="main_body">class WxPayDataBase</div>
+        <div class="main_body"></div>
     </div>
-
-     <div id="box_expresion" class="layout_main_middle">
+    
+    <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
             <thead class="thead_params">
                 <tr>
-                    <td width="15%">Constants</td>
+                    <td width="15%">Properties</td>
                     <td width="30%"></td>
                     <td width="35%"></td>
                     <td></td>         
                 </tr>
             </thead>
             <tbody class="tbody_params">
-            	<tr>
-                    <td>UIDCARD</td>
-                    <td>微信身份证识别API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
                 <tr>
-                    <td>UBANKCARD</td>
-                    <td>微信银行卡识别API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UDRIVECARD</td>
-                    <td>微信行驶证识别API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UDRIVELICENSE</td>
-                    <td>微信驾驶证识别API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UBIZLICENSE</td>
-                    <td>微信营业执照识别API地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UOCRCOMM</td>
-                    <td>微信通用印刷体识别API地址</td>
-                    <td></td>
+                    <td>protected array</td>
+                    <td>$values</td>
+                    <td>微信输入对象属性</td>
                     <td></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    
+
     <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
             <thead class="thead_params">
@@ -80,7 +51,7 @@
             </thead>
         </table>
         <div>
-        	<div class="methods_body">public identityCard($imageUrl)</div>
+        	<div class="methods_body">public SetSign($wxPayConfig)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -89,202 +60,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>身份证识别</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$imageUrl</td>
-	                    <td>图片地址</td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-Wechat::getInstance()->identityCard("./my.jpg");
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>array</td>
-	                    <td></td>
-	                    <td>身份证信息</td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-正面:
-[
-	"type" => "Front", <span class="note">[正面]</span>
-    "name": "张三", <span class="note">[姓名]</span>
-    "id": "123456789012345678", <span class="note">[身份证号]</span>
-    "addr": "广东省广州市XXX", <span class="note">[地址]</span>
-    "gender": "男", <span class="note">[性别]</span>
-    "nationality": "汉" <span class="note">[民族]</span>
-]
-	                	</pre></td>
-	                </tr>
-	                <tr>
-	                    <td><pre>
-反面:
-[
-	"type" => "Back", <span class="note">[反面]</span>
-    "valid_date" => "20171025-20271025"<span class="note">[有效期]</span>
-]
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public bankCard($imageUrl)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>银行卡识别</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$imageUrl</td>
-	                    <td>图片地址</td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-Wechat::getInstance()->bankCard("./my.jpg");
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>array</td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-[
-	"number" => "6222300074419865"<span class="note">[银行卡号]</span>
-]
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public drivingCard($imageUrl)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>行驶证识别</td>
+	                    <td>设置签名</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -306,9 +82,9 @@ Wechat::getInstance()->bankCard("./my.jpg");
 	                    <td>备注</td>
 	                </tr>
 	                <tr>
-	                    <td>string</td>
-	                    <td>$imageUrl</td>
-	                    <td>图片地址</td>
+	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
+	                    <td>$wxPayConfig</td>
+	                    <td>微信支付配置对象</td>
 	                    <td></td>
 	                </tr>
 	            </tbody>
@@ -321,9 +97,8 @@ Wechat::getInstance()->bankCard("./my.jpg");
 	                </tr>
 	            </thead>
 	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-Wechat::getInstance()->drivingCard("./my.jpg");
+	                <tr><td><pre>
+无
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -331,18 +106,12 @@ Wechat::getInstance()->drivingCard("./my.jpg");
 	       	<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
+	                    <td>返回参数说明</td>     
 	                </tr>
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>array</td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
+	                    <td>无</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -355,76 +124,15 @@ Wechat::getInstance()->drivingCard("./my.jpg");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-[
-    "plate_num" => "粤xxxxx", <span class="note">[车牌号码]</span>
-    "vehicle_type" => "小型普通客车", <span class="note">[车辆类型]</span>
-    "owner" => "东莞市xxxxx机械厂", <span class="note">[所有人]</span>
-    "addr" => "广东省东莞市xxxxx号", <span class="note">[住址]</span>
-    "use_character" => "非营运", <span class="note">[使用性质]</span>
-    "model" => "江淮牌HFCxxxxxxx", <span class="note">[品牌型号]</span>
-    "vin" => "LJ166xxxxxxxx51", <span class="note">[车辆识别代号]</span>
-    "engine_num" => "J3xxxxx3", <span class="note">[发动机号码]</span>
-    "register_date" => "2018-07-06", <span class="note">[注册日期]</span>
-    "issue_date" => "2018-07-01", <span class="note">[发证日期]</span>
-    "plate_num_b" => "粤xxxxx", <span class="note">[车牌号码]</span>
-    "record" => "441xxxxxx3", <span class="note">[号牌]</span>
-    "passengers_num" => "7人", <span class="note">[核定载人数]</span>
-    "total_quality" => "2700kg", <span class="note">[总质量]</span>
-    "prepare_quality" => "1995kg",<span class="note">[整备质量]</span>
-    "overall_size" => "4582x1795x1458mm",<span class="note">[外廓尺寸]</span>
-    "card_position_front" => [<span class="note">[卡片正面位置（检测到卡片正面才会返回)]</span>
-        "pos" => [
-            "left_top" => [
-                "x" => 119, 
-                "y" => 2925
-            ], 
-            "right_top" => [
-                "x" => 1435, 
-                "y" => 2887
-            ], 
-            "right_bottom" => [
-                "x" => 1435, 
-                "y" => 3793
-            ], 
-            "left_bottom" => [
-                "x" => 119, 
-                "y" => 3831
-            ]
-        ]
-    ], 
-    "card_position_back" => [<span class="note">[卡片反面位置（检测到卡片反面才会返回)]</span>
-        "pos" => [
-            "left_top" => [
-                "x" => 1523, 
-                "y" => 2849
-            ], 
-            "right_top" => [
-                "x" => 2898, 
-                "y" => 2887
-            ], 
-            "right_bottom" => [
-                "x" => 2927, 
-                "y" => 3831
-            ], 
-            "left_bottom" => [
-                "x" => 1523, 
-                "y" => 3831
-            ]
-        ]
-    ], 
-    "img_size" => [<span class="note">[图片大小]</span>
-        "w" => 3120, 
-        "h" => 4208
-    ]
-]
-	                	</pre></td>
+无
+						</pre><td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public drivingLicense($imageUrl)</div>
+        	<div class="methods_body">public GetSign()</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -433,7 +141,383 @@ Wechat::getInstance()->drivingCard("./my.jpg");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>驾驶证识别</td>
+	                    <td>获取签名</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>    
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public IsSignSet()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>判断签名是否存在</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>        
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public ToXml()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>将属性输出xml格式</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                </tr>       
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public FromXml($xml)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>xml转数组</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>        
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public ToUrlParams()</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>格式化参数格式化成url参数</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+无
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<td>无</td>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+无
+	                	</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public MakeSign($wxPayConfig)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>生成签名</td>
+	                </tr>
+	                <tr>
+	                    <td style="color:#DC143C">函数不覆盖sign成员变量,如要设置签名需要调用SetSign方法赋值</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -455,9 +539,9 @@ Wechat::getInstance()->drivingCard("./my.jpg");
 	                    <td>备注</td>
 	                </tr>
 	                <tr>
-	                    <td>string</td>
-	                    <td>$imageUrl</td>
-	                    <td>图片地址</td>
+	                    <td>Waljqiang\Wechat\Pay\WxPayConfig</td>
+	                    <td>$wxPayConfig</td>
+	                    <td>微信支付配置对象</td>
 	                    <td></td>
 	                </tr>
 	            </tbody>
@@ -470,9 +554,8 @@ Wechat::getInstance()->drivingCard("./my.jpg");
 	                </tr>
 	            </thead>
 	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-Wechat::getInstance()->drivingLicense("./my.jpg");
+	                <tr><td><pre>
+无
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -480,19 +563,11 @@ Wechat::getInstance()->drivingLicense("./my.jpg");
 	       	<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
+	                    <td>返回参数说明</td>       
 	                </tr>
 	            </thead>
 	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>array</td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
+	            	<td>无</td>
 	            </tbody>
 	       	</table>
 	       	<table class="tbl_params">
@@ -504,19 +579,7 @@ Wechat::getInstance()->drivingLicense("./my.jpg");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-[
-	"id_num" => "660601xxxxxxxx1234",<span class="note">[证号]</span>
-    "name" => "张三", <span class="note">[姓名]</span>
-    "sex" => "男", <span class="note">[性别]</span>
-    "nationality" => "中国", <span class="note">[国籍]</span>
-    "address" => "广东省东莞市xxxxx号", <span class="note">[住址]</span>
-    "birth_date" => "1990-12-21", <span class="note">[出生日期]</span>
-    "issue_date" => "2012-12-21", <span class="note">[初次领证日期]</span>
-    "car_class" => "C1", <span class="note">[准驾车型]</span>
-    "valid_from" => "2018-07-06", <span class="note">[有效期限起始日]</span>
-    "valid_to" => "2020-07-01", <span class="note">[有效期限终止日]</span>
-    "official_seal" => "xx市公安局公安交通管理局" <span class="note">[印章文字]</span>
-]
+无
 	                	</pre></td>
 	                </tr>
 	            </tbody>
@@ -524,7 +587,7 @@ Wechat::getInstance()->drivingLicense("./my.jpg");
         </div>
 
         <div>
-        	<div class="methods_body">public bizLicense($imageUrl)</div>
+        	<div class="methods_body">public GetValues()</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -533,7 +596,7 @@ Wechat::getInstance()->drivingLicense("./my.jpg");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>营业执照识别</td>
+	                    <td>获取属性值</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -549,15 +612,9 @@ Wechat::getInstance()->drivingLicense("./my.jpg");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$imageUrl</td>
-	                    <td>图片地址</td>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
 	                    <td></td>
 	                </tr>
 	            </tbody>
@@ -570,9 +627,8 @@ Wechat::getInstance()->drivingLicense("./my.jpg");
 	                </tr>
 	            </thead>
 	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-Wechat::getInstance()->bizLicense("./my.jpg");
+	                <tr><td><pre>
+无
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -580,19 +636,11 @@ Wechat::getInstance()->bizLicense("./my.jpg");
 	       	<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
+	                    <td>返回参数说明</td>       
 	                </tr>
 	            </thead>
 	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>array</td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
+	            	<td>无</td>
 	            </tbody>
 	       	</table>
 	       	<table class="tbl_params">
@@ -604,181 +652,7 @@ Wechat::getInstance()->bizLicense("./my.jpg");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-[
-	"reg_num" => "123123",<span class="note">[注册号]</span>
-    "serial" => "123123",<span class="note">[编号]</span>
-    "legal_representative" => "张三", <span class="note">[法定代表人姓名]</span>
-    "enterprise_name" => "XX饮食店", <span class="note">[企业名称]</span>
-    "type_of_organization" => "个人经营", <span class="note">[组成形式]</span>
-    "address" => "XX市XX区XX路XX号", <span class="note">[经营场所/企业住所]</span>
-    "type_of_enterprise" => "xxx", <span class="note">[公司类型]</span>
-    "business_scope" => "中型餐馆(不含凉菜、不含裱花蛋糕，不含生食海产品)。", <span class="note">[经营范围]</span>
-    "registered_capital" => "200万", <span class="note">[注册资本]</span>
-    "paid_in_capital" => "200万", <span class="note">[实收资本]</span>
-    "valid_period" => "2019年1月1日", <span class="note">[营业期限]</span>
-    "registered_date" => "2018年1月1日", <span class="note">[注册日期/成立日期]</span>
-    "cert_position"=> [ <span class="note">[营业执照位置]</span>
-        "pos" => [
-            "left_top" => [
-                "x" => 1523, 
-                "y" => 2849
-            ], 
-            "right_top" => [
-                "x" => 2898, 
-                "y" => 2887
-            ], 
-            "right_bottom" => [
-                "x" => 2927, 
-                "y" => 3831
-            ], 
-            "left_bottom" => [
-                "x" => 1523, 
-                "y" => 3831
-            ]
-        ]
-    ], 
-    "img_size" => [ <span class="note">[图片大小]</span>
-        "w" => 966, 
-        "h" => 728
-    ]
-]
-	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public orcComm($imageUrl)</div>
-	  		<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>通用印刷体识别</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	 <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$imageUrl</td>
-	                    <td>图片地址</td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-Wechat::getInstance()->orcComm("./my.jpg");
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>array</td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-[
-	"items" => [ <span class="note">[识别结果]</span>
-        [
-            "text" => "腾讯", 
-            "pos" => [
-	            "left_top" => [
-	                "x" => 1523, 
-	                "y" => 2849
-	            ], 
-	            "right_top" => [
-	                "x" => 2898, 
-	                "y" => 2887
-	            ], 
-	            "right_bottom" => [
-	                "x" => 2927, 
-	                "y" => 3831
-	            ], 
-	            "left_bottom" => [
-	                "x" => 1523, 
-	                "y" => 3831
-	            ]
-	        ]
-        ], 
-        [
-            "text" => "微信团队", 
-            "pos" => [
-	            "left_top" => [
-	                "x" => 1523, 
-	                "y" => 2849
-	            ], 
-	            "right_top" => [
-	                "x" => 2898, 
-	                "y" => 2887
-	            ], 
-	            "right_bottom" => [
-	                "x" => 2927, 
-	                "y" => 3831
-	            ], 
-	            "left_bottom" => [
-	                "x" => 1523, 
-	                "y" => 3831
-	            ]
-	        ]
-        ]
-    ], 
-    "img_size" => [ <span class="note">[图片大小]</span>
-        "w" => 966, 
-        "h" => 728
-    ]
-]
+无
 	                	</pre></td>
 	                </tr>
 	            </tbody>

@@ -10,7 +10,7 @@ use Waljqiang\Wechat\Exceptions\WechatPayException;
 class Pay extends Base{
 
 	//统一下单接口
-    public function unifiedOrder($data,$payConfig = [],$timeOut = 600){
+    public function unifiedOrder($data,$payConfig = [],$timeOut = 60){
     	$time = time();
     	$wxPayConfig = !empty($payConfig) ? new WxPayConfig($payConfig) : new WxPayConfig(Wechat::$config["pay"]);
     	$data["out_trade_no"] = isset($data["out_trade_no"]) ? $data["out_trade_no"] : $wxPayConfig->MCHID . date("YmdHis",$time);
@@ -37,7 +37,7 @@ class Pay extends Base{
     public function __call($method,$args){
     	$data = $args[0];
     	$wxPayConfig = !empty($args[1]) ? new WxPayConfig($args[1]) : new WxPayConfig(Wechat::$config["pay"]);
-    	$timeOut = isset($args[2]) ? $args[2] : 600;
+    	$timeOut = isset($args[2]) ? $args[2] : 60;
     	$class = "Waljqiang\Wechat\Pay\WxPay" . ucwords($method);
     	$input = new $class;
     	foreach ($data as $key => $value) {
