@@ -12,29 +12,15 @@ use Waljqiang\Wechat\Exceptions\WechatException;
  */
 class Menu extends Base{
 	/**
-	 * 微信创建自定义菜单API地址
-	 */
-	const UMENUSET = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s";
-	/**
-	 * 微信查询自定义菜单API地址
-	 */
-	const UMENUGET = "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=%s";
-	/**
-	 * 微信删除自定义菜单API地址
-	 */
-	const UMENUDEL = "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=%s";
-	/**
 	 * 创建自定义菜单
 	 *
 	 * @param  array $options 自定义菜单设置项，具体查看微信公众号自定义菜单说明
 	 * @return
 	 */
 	public function setMenu($options){
-		$url = sprintf(self::UMENUSET,$this->accessToken);
-		$res = $this->request($url,"POST",[
-			"body" => json_encode($options, JSON_UNESCAPED_UNICODE)
-		]);
-		self::$cache && $this->redis->del(self::MENU . $this->appid);
+		$url = sprintf($this->api["menu_set"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url,"POST",["json" => $options]);
+		$this->wechat->redis->del(self::MENU . $this->wechat->getAppid());
 		return true;
 	}
 

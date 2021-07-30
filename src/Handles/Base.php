@@ -11,7 +11,7 @@ class Base{
 	/**
 	 * 自定义菜单缓存key标识
 	 */
-	const MENU = "WECHAT:MENU:";
+	const MENU = "wechat:menu:";
 
 	/**
 	 * 公众号标签key标识
@@ -93,44 +93,23 @@ class Base{
 	 */
 	const SHOPIMAGE = ["jpg"];
 
-	protected $accessToken;
-	protected $appid;
-	protected $secret;
+	protected $api = [
+		"menu_set" => "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s",//创建自定义菜单
+		"menu_get" => "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=%s",//查询自定义菜单
+		"menu_del" => "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=%s",//删除自定义菜单
+	];
 
 	/**
 	 * Waljqiang\Wechat\Wechat
 	 */
 	protected $wechat;
-	/**
-	 * Waljqiang\Wechat\Redis\Redis
-	 */
-	protected $redis;
-
-	/**
-	 * Waljqiang\Wechat\Logger
-	 */
-	protected $logger;
-	protected $log;
-
-	public static $cache = true;
-
-	/**
-	 * 公共缓存时间
-	 * @var integer
-	 */
-	public static $commonExpire = 2592000;
 
 	public function __construct(Wechat $wechat){
-		$this->appid = $wechat->getAppid();
-		$this->secret = $wechat->getSecret();
-		$this->log = $wechat->log;
-		$this->accessToken = $wechat->getAccessToken();
-		$this->redis = $wechat->redis;
-		$this->logger = $wechat->logger;
 		$this->wechat = $wechat;
 	}
 
-	protected function request($url,$method = 'GET',$options = []){
-		return $this->wechat->request($url,$method,$options);
+	public function setWechat(Wechat $wechat){
+		$this->wechat = $wechat;
+		return $this;
 	}
 }

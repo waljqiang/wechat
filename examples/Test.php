@@ -1,13 +1,23 @@
 <?php
-require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/shared.php";
 use Waljqiang\Wechat\Wechat;
 try{
-	//如果使用配置文件中的公众号则不需要使用init函数，如果要改变微信公众号，则需要使用init方法重新进行初始化
-	//Wechat::getInstance()->init("wx5b18b274db7372d6","3cfcde5dfaf9eb01c2762a5aeadf68b2");
-	$accessToken = Wechat::getInstance()->getAccessToken();
-	var_dump($accessToken);
+
+
+	$wechat = new Wechat($redis,$logger,[
+		"appid" => $wechatConfig["appid"],
+		"appSecret" => $wechatConfig["appSecret"],
+		"encodingAesKey" => $wechatConfig["encodingAesKey"],
+		"token" => $wechatConfig["token"],
+		"encoded" => $wechatConfig["encoded"]
+	]);
+	//$wechat->init($wechatConfig["appid"],$wechatConfig["appSecret"]);
+
+	/*$accessToken = $wechat->getAccessToken();
+	var_dump($accessToken);*/
+
 	//创建菜单
-/*	$options = [
+	$options = [
 		"button" => [
 			[
 				"type" => "view",
@@ -26,8 +36,8 @@ try{
 			]
 		]
 	];
-	$rs = Wechat::getInstance()->setMenu($options);
-	var_dump($rs);*/
+	$rs = $wechat->setMenu($options);
+	var_dump($rs);
 	//查询菜单
 /*	$menu = Wechat::getInstance()->getMenu();
 	var_dump($menu);*/

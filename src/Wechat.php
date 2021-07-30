@@ -1,10 +1,11 @@
 <?php
 namespace Waljqiang\Wechat;
 
-use Waljqiang\Wechat\Exceptions\WechatException;
-use Waljqiang\Wechat\Handle;
-use Waljqiang\Wechat\Handles\Reply;
+use Waljqiang\Wechat\Redis;
+use Waljqiang\Wechat\Logger;
+use GuzzleHttp\Client;
 use Waljqiang\Wechat\Decryption\Decrypt;
+use Waljqiang\Wechat\Exceptions\WechatException;
 
 /**
  * 公众号处理类
@@ -68,99 +69,94 @@ use Waljqiang\Wechat\Decryption\Decrypt;
  */
 class Wechat{
 	/**
-	 * 微信获取access_tokenAPI地址
-	 */
-	const UACCESSTOKEN = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s";
-	
-	/**
 	 * access_token缓存key标识
 	 */
-	const ACCESSTOKEN = "WECHAT:ACCESSTOKEN:";
+	const ACCESSTOKEN = "wechat:accesstoken:";
+
+	private $api = [
+		"access_token" => "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",//获取access_token
+	];
+	public static $pre_expire_in = 600;
 
 	/**
 	 * [微信公众号appid]
 	 */
 	private $appid;
 	/**
-	 * 微信公众号secret
+	 * 微信公众号appSecret
 	 */
-	private $secret;
+	private $appSecret;
+	/**
+	 * 微信公众号encodingAesKey
+	 */
+	private $encodingAesKey;
+	/**
+	 * 微信公众号token
+	 */
+	private $token;
+	/**
+	 * 消息是否加密
+	 */
+	private $encoded = true;
 
 	/**
-	 * 是否启用缓存
-	 * @var boolean
+	 * Predis\Client
 	 */
-	public static $cache = true;
-
+	private $redis;
 	/**
-	 * 是否启用消息加密
+	 * Monolog\Logger
 	 */
-	public static $encode = true;
-
-	/**
-	 * 微信公众号配置信息
-	 * @var array
-	 */
-	public static $config;
-
-	/**
-	 * 类实例
-	 * @var [type]
-	 */
-	public static $container;
-	/**
-	 * Waljqiang\Wechat\Redis
-	 */
-	public $redis;
-
+	private $logger;
 	/**
 	 * GuzzleHttp\Client
 	 */
-	public $httpClient;
+	private $httpClient;
+	/**
+	 * Waljqiang\Wechat\Decryption\Decrypt
+	 */
+	private $decrypt;
 
 	/**
-	 * Monolog\Logger
-	 * @var [type]
+	 * 微信公众号接口调用凭证
 	 */
-	public $logger;
-
-	public $log;
-
-	private $decrypt;//加解密类
-
-	/**
-	 * access_token缓存过期时间
-	 * @var integer
-	 */
-	public static $accessTokenExpire = 7200;
-
 	private $accessToken;
-
 	/**
-	 * Wechat实例
+	 * 微信接口处理类
 	 */
-	private static $instances;
+	private $handles;
 
-	public function __construct(){
-		$this->appid = self::$config["appid"];
-		$this->secret = self::$config["secret"];
-		$this->log = self::$config["log"]["enable"];
-		$this->httpClient = self::$container->make("HttpClient");
-		$this->redis = self::$container->make("Redis");
-		$this->logger = self::$container->make("Log");
-		$this->decrypt = new Decrypt(self::$config["token"],self::$config["encodingAesKey"],$this->appid);
+	public function __construct(Redis $redis,Logger $logger,$config){
+		if(!empty(array_diff(["appid","appSecret","encodingAesKey","token"],array_keys($config)))){
+			throw new WechatException("Missing required attribute",WechatException::ATTRIBUTEMISS);
+		}
+		foreach ($config as $key => $value) {
+			if(property_exists($this,$key)){
+				$this->{$key} = $value;
+			}
+		}
+		$this->redis = $redis;
+		$this->logger = $logger;
+		$this->httpClient = new Client;
+		$this->decrypt = new Decrypt($this->token,$this->encodingAesKey,$this->appid);
+		//加载处理类
+		$this->loaderHandles();
 	}
 
 	/**
 	 * 初始化，使用于改变微信公众号业务
 	 *
 	 * @param  string $appid  微信公众号appid
-	 * @param  string $secret 微信公众号secret
+	 * @param  string $appSecret 微信公众号appSecret
 	 * @return void
 	 */
-	public function init($appid,$secret){
+	public function init($appid,$appSecret){
 		$this->appid = $appid;
-		$this->secret = $secret;
+		$this->appSecret = $appSecret;
+		$this->decrypt->init($this->token,$this->encodingAesKey,$this->appid);
+		foreach ($this->handles as $key => $handle) {
+			$this->handles[$key] = $handle->setWechat($this);
+		}
+		return $this;
 	}
 
 	/**
@@ -171,16 +167,9 @@ class Wechat{
 	 * @param  string $appid          
 	 * @return
 	 */
-	public function initDecrypt($token,$encodingAesKey,$appid){
+	/*public function initDecrypt($token,$encodingAesKey,$appid){
 		$this->decrypt->init($token,$encodingAesKey,$appid);
-	}
-
-	public static function getInstance($className = __CLASS__){
-		if(!isset(self::$instances[$className])){
-			self::$instances[$className] = new $className();
-		}
-		return self::$instances[$className];
-	}
+	}*/
 
 	/**
 	 * 获取access_token
@@ -189,15 +178,11 @@ class Wechat{
 	 */
 	public function getAccessToken(){
 		if(!$this->accessToken){
-			$accessTokenKey = self::ACCESSTOKEN . $this->appid;
-			if(self::$cache){
-				$res = $this->redis->getValues($accessTokenKey);
-			}
+			$res = $this->redis->getValues(self::ACCESSTOKEN . $this->appid);
 			if(empty($res)){
-				$url = sprintf(self::UACCESSTOKEN,$this->appid,$this->secret);
-	            $res = $this->request($url);
-				self::$cache && $this->redis->setValues($accessTokenKey,$res,self::$accessTokenExpire);
-				$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+				$url = sprintf($this->api["access_token"],$this->appid,$this->appSecret);
+				$res = $this->request($url,"GET");
+				$this->redis->setValues(self::ACCESSTOKEN . $this->appid,$res,$res["expires_in"] - self::$pre_expire_in);
 			}
 			$this->accessToken = $res["access_token"];
 		}
@@ -208,13 +193,13 @@ class Wechat{
 		return $this->appid;
 	}
 
-	public function getSecret(){
-		return $this->secret;
+	public function getAppSecret(){
+		return $this->appSecret;
 	}
 
-	public function getPublishAccount(){
+	/*public function getPublishAccount(){
 		return self::$config["publish"];
-	}
+	}*/
 
 	/**
 	 * 发送http请求
@@ -225,29 +210,35 @@ class Wechat{
 	 * @return array
 	 * @throws Waljqiang\Wechat\Exception,\Exception 
 	 */
-	public function request($url,$method = 'GET',$options = []){
+	public function request($url,$method = "POST",$data = [],$header = []){
 		try{
-			$result = $this->httpClient->request(
-				$method,
-				$url,
-				$options
-			);
-			if($result->getStatusCode() == 200){
-				$result = $result->getBody();
-				if (!is_null($result = @json_decode($result, true))){
-					if(isset($result["errcode"]) && $result["errcode"] != 0)
-						throw new  WechatException($result["errmsg"],$result["errcode"]);			
-	            } else {
-	                throw new \Exception("result explain error",WechatException::RESULTERROR);
-	            }
-	            return $result;
-	        }else{
-	        	$this->log && $this->logger->log("Request " . $url . " error info:code[" . $e->getCode() . "]message[" . $e->getMessage() . "]",ERROR);
-	        	throw new \Exception($e->getMessage(),$e->getCode());
-	        }
+			$body = [];
+			if(!empty($header)){
+				array_push($body,["headers" => $header]);
+			}
+			if(!empty($data)){
+				array_merge($body,$data);
+			}
+			$response = $this->httpClient->request($method,$url,$body);
+			if($response->getStatusCode() == 200){
+				$result = $response->getBody();
+				if(!is_null($result = @json_decode($result,true))){
+					$this->logger->log("Request " . $url . " response[" . json_encode($result) . "]",\Monolog\Logger::DEBUG);
+					if(isset($result["errcode"]) && $result["errcode"] != 0){
+						throw new WechatException($result["errmsg"],$result["errcode"]);
+					}
+					return $result;
+				}else{
+					$this->logger->log("Explain response failure",\Monolog\Logger::ERROR);
+					throw new WechatException("Explain response failure",WechatException::HTTPRESPONSEEXPLAINFAILURE);
+				}
+			}else{
+				$this->logger->log("Request " . $url . " Failure, caused:" . $e->getMessage(),\Monolog\Logger::ERROR);
+				throw new WechatException($e->getMessage(),WechatException::HTTPREQUESTERROR);
+			}
 		}catch(\Exception $e){
-			$this->log && $this->logger->log("Request " . $url . " error info:code[" . $e->getCode() . "]message[" . $e->getMessage() . "]",ERROR);
-			throw new \Exception($e->getMessage(),$e->getCode());
+			$this->logger->log("Request " . $url . " Failure, caused:" . $e->getMessage(),\Monolog\Logger::ERROR);
+			throw new WechatException($e->getMessage(),WechatException::HTTPREQUESTERROR);
 		}
 	}
 
@@ -265,9 +256,9 @@ class Wechat{
 	 *
 	 * @return
 	 */
-	public function encryptMsg($replyMsg, $timeStamp = NULL, $nonce = NULL){
+	/*public function encryptMsg($replyMsg, $timeStamp = NULL, $nonce = NULL){
 		return $this->decrypt->encryptMsg($replyMsg,$timeStamp,$nonce);
-	}
+	}*/
 
 	/**
 	 * 检验消息的真实性，并且获取解密后的明文.
@@ -284,23 +275,29 @@ class Wechat{
 	 *
 	 * @return
 	 */
-	public function decryptMsg($signature,$timeStamp,$nonce,$encryptMsg){
+	/*public function decryptMsg($signature,$timeStamp,$nonce,$encryptMsg){
 		return $this->decrypt->decryptMsg($signature,$timeStamp,$nonce,$encryptMsg);
-	}
+	}*/
 
 	public function __call($method,$args){
-		$className = "";
-		foreach (Handle::$handleType as $key => $value) {
-			if(in_array($method,$value)){
-				$className = $key;
-				break;
+		if(!$this->accessToken){
+			$this->getAccessToken();
+		}
+		foreach ($this->handles as $key => $handle){
+			if(method_exists($handle,$method)){
+				return call_user_func_array([$handle,$method],$args);
 			}
 		}
-		if(empty($className)){
-			throw new WechatException("Unsupport method",WechatException::UNSUPPORT);
+	}
+
+	private function loaderHandles(){
+		foreach (scandir(__DIR__ . "/Handles") as $fileName) {
+			if($fileName != "." && $fileName != ".."){
+				$className = str_replace(strrchr($fileName, "."),"",$fileName);
+				$className = __NAMESPACE__ . "\\Handles\\" . $className;
+				$this->handles[$className] = new $className($this);
+			}
 		}
-		$obj = Handle::create($className,$this);
-		return call_user_func_array([$obj,$method],$args);
 	}
 
 }

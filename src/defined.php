@@ -1,1 +1,0 @@
-<?php define('CONF','/vagrant/wechat/example/wechat.php');
