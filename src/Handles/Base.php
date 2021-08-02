@@ -110,7 +110,15 @@ class Base{
 			"remark_with_user_set" => "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=%s",//微信设置用户备注API地址
 			"info" => "https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=%s",//微信获取用户基本信息API地址
 			"list" => "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s",//微信获取用户列表API地址
-		]
+		],
+		"account" => [
+			"qrcode_ticket" => "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s",//微信获取二维码ticket API地址
+			"qrcode" => "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s",//微信获取二维码API地址
+		],
+
+
+
+	
 	];
 
 	/**

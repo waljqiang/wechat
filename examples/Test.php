@@ -72,11 +72,11 @@ try{
 	/*$res = $wechat->getUserInfo("o9lXF0oPTBOMS44dILU1kfZMlra0");
 	var_dump($res);*/
 	//获取用户列表
-	$res = $wechat->getUserList(1,10);
-	var_dump($res);
-	//生成带参数的二维码
-/*	$res = Wechat::getInstance()->getQrcode(12,"QR_SCENE",120);
+	/*$res = $wechat->getUserList(1,10);
 	var_dump($res);*/
+	//生成带参数的二维码
+	$res = $wechat->getQrcode(12,"QR_SCENE",120);
+	var_dump($res);
 	//添加客服账号
 	/*$res = Wechat::getInstance()->createKfAccount([
 		"kf_account" => "test1@test",

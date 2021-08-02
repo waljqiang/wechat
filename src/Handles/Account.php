@@ -9,14 +9,7 @@ namespace Waljqiang\Wechat\Handles;
  * @link https://github.com/waljqiang/wechat.git
  */
 class Account extends Base{
-	/**
-	 * 微信获取二维码ticket API地址
-	 */
-	const UQRCODETICKET = "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s";
-	/**
-	 * 微信获取二维码API地址
-	 */
-	const UQRCODE = "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s";
+	
 	/**
 	 * 获取二维码ticket
 	 *
@@ -26,11 +19,8 @@ class Account extends Base{
 	 * @return
 	 */
 	private function getTicket($data){
-		$url = sprintf(self::UQRCODETICKET,$this->accessToken);
-		$res = $this->request($url,"POST",[
-			"body" => json_encode($data,JSON_UNESCAPED_UNICODE)
-		]);
-		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		$url = sprintf($this->api["account"]["qrcode_ticket"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url,"POST",["json" => $data]);
 		return $res;
 	}
 
@@ -61,24 +51,24 @@ class Account extends Base{
 		switch ($type) {
 			case "QR_SCENE":
 			case "QR_STR_SCENE":
-				$qrcodeKey = self::QRCODE . $this->appid . ":" . $type . ":" . $str . ":" . $expire;
+				$qrcodeKey = self::QRCODE . $this->wechat->getAppid() . ":" . $type . ":" . $str . ":" . $expire;
 				$data["expire_seconds"] = $expire;
 				break;
 			case "QR_LIMIT_SCENE":
 			case "QR_LIMIT_STR_SCENE":
-				$qrcodeKey = self::QRCODE . $this->appid . ":" . $type . ":" . $str;
+				$qrcodeKey = self::QRCODE . $this->wechat->getAppid() . ":" . $type . ":" . $str;
 				break;
 			default:
-				$qrcodeKey = self::QRCODE . $this->appid . $str . $expire;
+				$qrcodeKey = self::QRCODE . $this->wechat->getAppid() . $str . $expire;
 				break;
 		}
-		if(!self::$cache || !($res = $this->redis->getValues($qrcodeKey))){
+		if(!($res = $this->wechat->getRedis()->getValues($qrcodeKey))){
 			$ticket = $this->getTicket($data);
-			$res = sprintf(self::UQRCODE,urlencode($ticket["ticket"]));
+			$res = sprintf($this->api["account"]["qrcode"],urlencode($ticket["ticket"]));
 			if(in_array($type,["QR_LIMIT_SCENE","QR_LIMIT_STR_SCENE"]))
-				$this->redis->setValues($qrcodeKey,$res);
+				$this->wechat->getRedis()->setValues($qrcodeKey,$res);
 			else
-				$this->redis->setValues($qrcodeKey,$res,$expire);
+				$this->wechat->getRedis()->setValues($qrcodeKey,$res,$expire);
 		}
 		return $res;
 	}
