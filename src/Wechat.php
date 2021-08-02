@@ -76,7 +76,14 @@ class Wechat{
 	private $api = [
 		"access_token" => "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=%s&secret=%s",//获取access_token
 	];
+	/**
+	 * 缓存提前过期时间
+	 */
 	public static $pre_expire_in = 600;
+	/**
+	 * 公共缓存时间
+	 */
+	public static $common_expire_in = 2592000;
 
 	/**
 	 * [微信公众号appid]
@@ -181,7 +188,7 @@ class Wechat{
 			$res = $this->redis->getValues(self::ACCESSTOKEN . $this->appid);
 			if(empty($res)){
 				$url = sprintf($this->api["access_token"],$this->appid,$this->appSecret);
-				$res = $this->request($url,"GET");
+				$res = $this->request($url);
 				$this->redis->setValues(self::ACCESSTOKEN . $this->appid,$res,$res["expires_in"] - self::$pre_expire_in);
 			}
 			$this->accessToken = $res["access_token"];
@@ -197,6 +204,10 @@ class Wechat{
 		return $this->appSecret;
 	}
 
+	public function getRedis(){
+		return $this->redis;
+	}
+
 	/*public function getPublishAccount(){
 		return self::$config["publish"];
 	}*/
@@ -210,7 +221,7 @@ class Wechat{
 	 * @return array
 	 * @throws Waljqiang\Wechat\Exception,\Exception 
 	 */
-	public function request($url,$method = "POST",$data = [],$header = []){
+	public function request($url,$method = "GET",$data = [],$header = []){
 		try{
 			$body = [];
 			if(!empty($header)){

@@ -16,27 +16,27 @@ class Base{
 	/**
 	 * 公众号标签key标识
 	 */
-	const TAG = "WECHAT:TAG:";
+	const TAG = "wechat:tag:";
 
 	/**
 	 * 公众号标签下粉丝列表key标识
 	 */
-	const TAGFANS = "WECHAT:TAG:FANS:";
+	const TAGFANS = "wechat:tag:fans:";
 
 	/**
 	 * 用户下标签列表缓存key标识
 	 */
-	const USERTAGS = "WECHAT:USER:TAGS:";
+	const USERTAGS = "wechat:user:tags:";
 
 	/**
 	 * 用户基本信息缓存key标识
 	 */
-	const USERINFO = "WECHAT:USER:";
+	const USERINFO = "wechat:user:";
 
 	/**
 	 * 用户列表缓存key标识
 	 */
-	const USERLIST = "WECHAT:USER:LIST:";
+	const USERLIST = "wechat:user:list:";
 
 	/**
 	 * 二维码缓存key标识
@@ -94,9 +94,23 @@ class Base{
 	const SHOPIMAGE = ["jpg"];
 
 	protected $api = [
-		"menu_set" => "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s",//创建自定义菜单
-		"menu_get" => "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=%s",//查询自定义菜单
-		"menu_del" => "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=%s",//删除自定义菜单
+		"menu" => [
+			"set" => "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=%s",//创建自定义菜单
+			"get" => "https://api.weixin.qq.com/cgi-bin/get_current_selfmenu_info?access_token=%s",//查询自定义菜单
+			"del" => "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=%s",//删除自定义菜单
+		],
+		"user" => [
+			"tag_set" => "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=%s",//微信创建公众号标签API地址
+			"tag_get" => "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=%s",//微信获取公众号标签API地址
+			"tag_del" => "https://api.weixin.qq.com/cgi-bin/tags/delete?access_token=%s",//微信删除公众号标签API地址
+			"tag_fans_get" => "https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token=%s",//微信获取标签下的粉丝列表API地址
+			"tag_with_user_set" => "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=%s",//微信为用户打标签API地址
+			"tag_with_user_del" => "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=%s",//微信为用户取消标签API地址
+			"tag_with_user_get" => "https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token=%s",//微信获取用户身上的标签列表API地址
+			"remark_with_user_set" => "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=%s",//微信设置用户备注API地址
+			"info" => "https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=%s",//微信获取用户基本信息API地址
+			"list" => "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s",//微信获取用户列表API地址
+		]
 	];
 
 	/**

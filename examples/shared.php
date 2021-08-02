@@ -8,14 +8,14 @@ use Waljqiang\Wechat\Redis;
 use Waljqiang\Wechat\Logger;
 
 $wechatConfig = [
-	"appid" => "wxfae2fb734a9ddf58",
+	"appid" => "wxfhe2fb734a9ddf58",
 	"appSecret" => "78fd8a05411fbfd3b1e899d8a64b026a",
 	"token" => "pamtest",
 	"encodingAesKey" => "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG",
 	"encoded" => TRUE,//消息是否加密
 	"publish" => "gh_3c884a361561",//全网发布账号
 	"pre_expire_in" => 600,//缓存提前失效时间
-	"access_token_expire_in" => 7200,//access_token缓存时间
+
 	"common_expire_in" => 2592000,//公共缓存时间，包括自定义菜单
 	"pay" => [//微信支付配置信息
 		"appid" => "wxdaa43d75b815f44e",
@@ -53,12 +53,7 @@ $redis = new Redis([
 	"prefix" => $redisConfig["prefix"],
 	"parameters" => [
 		"password" => $redisConfig["password"]
-	],
-	"profile" => function($options){
-		$profile = $options->getDefault("profile");
-		$profile->defineCommand("vagueDelCommand",VagueDel::class);
-		return $profile;
-	}
+	]
 ],$redisConfig["enabled"]);
 
 

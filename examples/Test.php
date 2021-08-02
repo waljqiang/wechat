@@ -17,7 +17,7 @@ try{
 	var_dump($accessToken);*/
 
 	//创建菜单
-	$options = [
+	/*$options = [
 		"button" => [
 			[
 				"type" => "view",
@@ -37,43 +37,43 @@ try{
 		]
 	];
 	$rs = $wechat->setMenu($options);
-	var_dump($rs);
+	var_dump($rs);*/
 	//查询菜单
-/*	$menu = Wechat::getInstance()->getMenu();
+	/*$menu = $wechat->getMenu();
 	var_dump($menu);*/
 	//删除菜单
-/*	$rs = Wechat::getInstance()->deleteMenu();
+	/*$rs = $wechat->deleteMenu();
 	var_dump($rs);*/
 	//创建公众号标签
-/*	$res = Wechat::getInstance()->setTag("店小二1");
+	/*$res = $wechat->setTag("店小二1");
 	var_dump($res);*/
 	//获取公众号标签
-	/*$res = Wechat::getInstance()->getTag();
+	/*$res = $wechat->getTag();
 	var_dump($res);*/
 	//删除公众号标签
-/*	$res = Wechat::getInstance()->deleteTag(105);
+	/*$res = $wechat->deleteTag(105);
 	var_dump($res);*/
 	//获取公众号标签下的粉丝列表
-/*	$res = Wechat::getInstance()->getTagFans(103,1,10);
+	/*$res = $wechat->getTagFans(103,1,10);
 	var_dump($res);*/
 	//为用户打标签，一次最多支持20个
-	/*$rs = Wechat::getInstance()->tagToUsers(103,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
+	/*$rs = $wechat->tagToUsers(103,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
 	var_dump($rs);*/
 	//为用户取消标签,一次最多支持50个
-/*	$rs = Wechat::getInstance()->tagDelUsers(102,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
+/*	$rs = $wechat->tagDelUsers(102,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
 	var_dump($rs);*/
 	//获取用户标签列表
-/*	$res = Wechat::getInstance()->getUserTags("o9lXF0oPTBOMS44dILU1kfZMlra0");
+	/*$res = $wechat->getUserTags("o9lXF0oPTBOMS44dILU1kfZMlra0");
 	var_dump($res);*/
 	//为用户打备注
-/*	$res = Wechat::getInstance()->setUserRemark("o9lXF0oPTBOMS44dILU1kfZMlra0",'123');
+	/*$res = $wechat->setUserRemark("o9lXF0oPTBOMS44dILU1kfZMlra0",'123');
 	var_dump($res);*/
 	//获取用户基本信息
-/*	$res = Wechat::getInstance()->getUserInfo("o9lXF0oPTBOMS44dILU1kfZMlra0");
+	/*$res = $wechat->getUserInfo("o9lXF0oPTBOMS44dILU1kfZMlra0");
 	var_dump($res);*/
 	//获取用户列表
-/*	$res = Wechat::getInstance()->getUserList(1,10);
-	var_dump($res);*/
+	$res = $wechat->getUserList(1,10);
+	var_dump($res);
 	//生成带参数的二维码
 /*	$res = Wechat::getInstance()->getQrcode(12,"QR_SCENE",120);
 	var_dump($res);*/

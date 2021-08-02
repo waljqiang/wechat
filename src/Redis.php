@@ -1,6 +1,7 @@
 <?php
 namespace Waljqiang\Wechat;
 use Predis\Client;
+use Waljqiang\Wechat\RedisCommands\VagueDel;
 
 /**
  * redis处理类
@@ -14,8 +15,10 @@ class Redis{
     private $redis;
 
 	public function __construct($connection,$options=[],$enabled = true){
-        $this->redis = new Client($connection,$options);
         $this->enabled = $enabled;
+        $this->redis = new Client($connection,$options);
+        //添加lua相关脚本
+        $this->loaderLuas();
 	}
 
 
@@ -32,15 +35,21 @@ class Redis{
         }
     }
 
-    public function VagueDel($keyword){
-        if($this->enabled){
-            return $this->redis->getProfile()->vagueDelCommand($keyword);
-        }
-    }
-
     public function __call($method,$args){
         if($this->enabled){
             return call_user_func_array([$this->redis, $method], $args);
+        }
+    }
+
+    private function loaderLuas(){
+        $profile = $this->redis->getProfile();
+        foreach (scandir(__DIR__ . "/RedisCommands") as $fileName) {
+            if($fileName != "." && $fileName != ".."){
+                $className = str_replace(strrchr($fileName, "."),"",$fileName);
+                $commandName = lcfirst($className) . "Command";
+                $class = __NAMESPACE__ . "\\RedisCommands\\" . $className;
+                $profile->defineCommand($commandName,$class);
+            }
         }
     }
 }

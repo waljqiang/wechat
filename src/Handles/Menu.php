@@ -2,6 +2,7 @@
 namespace Waljqiang\Wechat\Handles;
 
 use Waljqiang\Wechat\Exceptions\WechatException;
+use Waljqiang\Wechat\Wechat;
 
 /**
  * 菜单管理类
@@ -18,9 +19,9 @@ class Menu extends Base{
 	 * @return
 	 */
 	public function setMenu($options){
-		$url = sprintf($this->api["menu_set"],$this->wechat->getAccessToken());
+		$url = sprintf($this->api["menu"]["set"],$this->wechat->getAccessToken());
 		$res = $this->wechat->request($url,"POST",["json" => $options]);
-		$this->wechat->redis->del(self::MENU . $this->wechat->getAppid());
+		$this->wechat->getRedis()->del(self::MENU . $this->wechat->getAppid());
 		return true;
 	}
 
@@ -30,12 +31,11 @@ class Menu extends Base{
 	 * @return
 	 */
 	public function getMenu(){
-		$menuKey = self::MENU . $this->appid;
-		if(!self::$cache || !($res = $this->redis->getValues($menuKey))){
-			$url = sprintf(self::UMENUGET,$this->accessToken);
-			$res = $this->request($url);
-			self::$cache && $this->redis->setValues($menuKey,$res,self::$commonExpire);
-			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		$menuKey = self::MENU . $this->wechat->getAppid();
+		if(!$res = $this->wechat->getRedis()->getValues($menuKey)){
+			$url = sprintf($this->api["menu"]["get"],$this->wechat->getAccessToken());
+			$res = $this->wechat->request($url);
+			$this->wechat->getRedis()->setValues($menuKey,$res,Wechat::$common_expire_in - Wechat::$pre_expire_in);
 		}
 		return $res;
 	}
@@ -46,9 +46,9 @@ class Menu extends Base{
 	 * @return
 	 */
 	public function deleteMenu(){
-		$url = sprintf(self::UMENUDEL,$this->accessToken);
-		$res = $this->request($url);
-		self::$cache && $this->redis->del(self::MENU . $this->appid);
+		$url = sprintf($this->api["menu"]["del"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url);
+		$this->wechat->getRedis()->del(self::MENU . $this->wechat->getAppid());
 		return true;
 	}
 }
