@@ -41,7 +41,7 @@ class Base{
 	/**
 	 * 二维码缓存key标识
 	 */
-	const QRCODE = "WECHAT:QRCODE:";
+	const QRCODE = "wechat:qrcode:";
 
 	/**
 	 * 客服账号列表缓存key标识
@@ -115,8 +115,14 @@ class Base{
 			"qrcode_ticket" => "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s",//微信获取二维码ticket API地址
 			"qrcode" => "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s",//微信获取二维码API地址
 		],
-
-
+		"customer" => [
+			"kf_add" => "https://api.weixin.qq.com/customservice/kfaccount/add?access_token=%s",//微信添加客服账号API地址
+			"kf_set" => "https://api.weixin.qq.com/customservice/kfaccount/update?access_token=%s",//微信修改客服账号API地址
+			"kf_del" => "https://api.weixin.qq.com/customservice/kfaccount/del?access_token=%s",//微信删除客服账号API地址
+			"kf_avatar_up" => "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg?access_token=%s&kf_account=%s",//微信上传客服头像API地址
+			"kf_all_get" => "https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token=%s",//微信获取所有客服账号API地址
+			"kf_send_message" => "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s",//微信发送客服消息API地址
+		],
 
 	
 	];

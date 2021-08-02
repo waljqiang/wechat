@@ -41,4 +41,7 @@ class WechatException extends \Exception{
 	const UNSUPPORTMETHOD = 600900115;//不支持的方法
 	const TAGNAMEERROR = 600900116;//标签名长度超过30个字符
 	const USERREMARKINVALID = 600900117;//用户备注名称不合法
+	const UNSUPPORTFILETYPE = 600900118;//不支持的文件类型
+	const FILENO = 600900119;//文件不存在
+	const UNSUPPORTMESSAGETYPE = 600900120;//不支持的消息类型
 }

@@ -75,40 +75,40 @@ try{
 	/*$res = $wechat->getUserList(1,10);
 	var_dump($res);*/
 	//生成带参数的二维码
-	$res = $wechat->getQrcode(12,"QR_SCENE",120);
-	var_dump($res);
+/*	$res = $wechat->getQrcode(12,"QR_SCENE",120);
+	var_dump($res);*/
 	//添加客服账号
-	/*$res = Wechat::getInstance()->createKfAccount([
+	/*$res = $wechat->createKfAccount([
 		"kf_account" => "test1@test",
 		"nickname" => "客服1",
 		"password" => md5("123456")
 	]);
 	var_dump($res);*/
 	//修改客服账号
-	/*$res = Wechat::getInstance()->modifyKfAccount([
+	/*$res = $wechat->modifyKfAccount([
 		"kf_account" => "test",
 		"nickname" => "客服2",
 		"password" => "123456"
 	]);
 	var_dump($res);*/
-	/*//删除客服账号
-	$res = Wechat::getInstance()->deleteKfAccount([
+	//删除客服账号
+	/*$res = $wechat->deleteKfAccount([
 		"kf_account" => "test",
 		"nickname" => "客服1",
 		"password" => "123456"
 	]);
 	var_dump($res);*/
-/*	$res = Wechat::getInstance()->uploadAvatar("test@wxid","/vagrant/wechat/timg.jpg");
+	/*$res = $wechat->uploadAvatar("test@wxid","/vagrant/wechat/timg.jpg");
 	var_dump($res);*/
 	//获取客服账号
-	/*$res = Wechat::getInstance()->getKfAccount();
+	/*$res = $wechat->getAllKfAccount();
 	var_dump($res);*/
 	//客服发消息
-/*	$message = [
+	$message = [
 		"content" => "你好"
 	];
-	$res = Wechat::getInstance()->kfSendMessage("o9lXF0oPTBOMS44dILU1kfZMlra0",Waljqiang\Wechat\Handles\Message::TEXT,$message);
-	var_dump($res);*/
+	$res = $wechat->kfSendMessage("o9lXF0oPTBOMS44dILU1kfZMlra0",Waljqiang\Wechat\Handles\Message::TEXT,$message);
+	var_dump($res);
 	//加密消息
 	// 第三方发送消息给公众平台
 	/*$encodingAesKey = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";
