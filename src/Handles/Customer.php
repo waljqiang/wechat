@@ -13,7 +13,7 @@ use Waljqiang\Wechat\Handles\Message;
  * @link https://github.com/waljqiang/wechat.git
  */
 
-class Customer extends Base{
+class Customer extends Message{
 	/**
 	 * 添加客服账号
 	 *
@@ -197,10 +197,6 @@ class Customer extends Base{
 		$url = sprintf($this->api["customer"]["kf_send_message"],$this->wechat->getAccessToken(),$openID);
 		$this->wechat->request($url,"POST",["json" => $buffer]);
 		return true;
-	}
-
-	protected function checkMsgType($messageType){
-		return in_array($messageType,[Message::TEXT,Message::IMAGE,Message::VOICE,Message::VIDEO,Message::SHORTVIDEO,Message::MUSIC,Message::NEWS,Message::LOCATION,Message::LINK,Message::EVENT]);
 	}
 
 }

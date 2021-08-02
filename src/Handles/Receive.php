@@ -27,14 +27,14 @@ class Receive extends Message{
 	 * @return
 	 */
 	public function handleWechatMessage($message,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = ""){
-        $appid = empty($appid) ? $this->appid : $appid;
-		$message = Wechat::$encode ? $this->wechat->decryptMessage($signature,$timestamp,$nonce,$message) : $message;
+        $appid = empty($appid) ? $this->wechat->getAppid() : $appid;
+		$message = $this->wechat->encoded ? $this->wechat->getDecrypt()->decryptMsg($signature,$timestamp,$nonce,$message) : $message;
 		if(!empty($message)){
             $obj = simplexml_load_string($message,'SimpleXMLElement',LIBXML_NOCDATA);
             $obj = json_decode(json_encode($obj),true);
             $res = $obj;
             //开放平台全网发布测试
-            if($obj["ToUserName"] == $this->wechat->getPublishAccount()){
+            if($obj["ToUserName"] == $this->wechat->publish_account){
                 $this->testPublish($obj,$timestamp,$nonce);
                 exit(-1);
             }
@@ -149,7 +149,7 @@ class Receive extends Message{
      * @return
      */
     private function handleEvent($obj,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = ""){
-        $appid = empty($appid) ? $this->appid : $appid;
+        $appid = empty($appid) ? $this->wechat->getAppid() : $appid;
         $res = $obj;
         switch ($obj["Event"]) {
             case self::EVENTTYPE["UNSUBSCRIBE"]://取消关注事件
@@ -185,10 +185,10 @@ class Receive extends Message{
      * @return
      */
     private function handleUnsubscribe($message,$appid = ""){
-        $appid = empty($appid) ? $this->appid : $appid;
+        $appid = empty($appid) ? $this->wechat->getAppid() : $appid;
         if(self::$cache){
             //清除公众号标签下的粉丝列表缓存
-            $this->redis->matchDel(self::TAGFANS . $appid . "*");
+            $this->wechat->getRedis()->vagueDelCommand(self::TAGFANS . $appid . "*");
             //清除用户下标签列表缓存
             //清除用户基本信息缓存
             //用户列表缓存
@@ -197,7 +197,7 @@ class Receive extends Message{
                 self::USERINFO . $appid . ":" . $message["FromUserName"],
                 self::USERLIST . $appid,
             ];
-            $this->redis->del($data);
+            $this->wechat->getRedis()->del($data);
         }
         echo " ";
         return $message;
@@ -211,9 +211,9 @@ class Receive extends Message{
      * @return
      */
     private function handleLocation($message,$appid = ""){
-        $appid = empty($appid) ? $this->appid : $appid;
+        $appid = empty($appid) ? $this->wechat->getAppid() : $appid;
         //清除用户基本信息缓存
-        self::$cache && $this->redis->del(self::USERINFO . $appid . ":" . $message["FromUserName"]);
+        $this->wechat->getRedis()->del(self::USERINFO . $appid . ":" . $message["FromUserName"]);
         return $message;
     }
 
@@ -225,7 +225,7 @@ class Receive extends Message{
      * @return
      */
     private function handleTplSend($message,$appid = ""){
-        $appid = empty($appid) ? $this->appid : $appid;
+        $appid = empty($appid) ? $this->wechat->getAppid() : $appid;
         if($message["Status"] == "success"){//成功
             $message["flag"] = "0";
         }elseif($message["Status"] == "failed:user block"){//失败,用户拒收
@@ -237,16 +237,14 @@ class Receive extends Message{
     }
 
     private function handlePoiCheckNotify($message,$appid = ""){
-        $appid = empty($appid) ? $this->appid : $appid;
+        $appid = empty($appid) ? $this->wechat->getAppid() : $appid;
         //清楚门店缓存
         //清楚门店列表缓存
-        if(self::$cache){
-            $keys = [
-                self::SHOP . $appid . ":" . $message["PoiId"],
-                self::SHOPLIST . $appid
-            ];
-            $this->redis->del($keys);
-        }
+        $keys = [
+            self::SHOP . $appid . ":" . $message["PoiId"],
+            self::SHOPLIST . $appid
+        ];
+        $this->wechat->getRedis()->del($keys);
         echo " ";
         return $message;
     }

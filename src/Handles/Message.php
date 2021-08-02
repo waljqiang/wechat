@@ -10,7 +10,7 @@ use Waljqiang\Wechat\Exceptions\WechatException;
  * @version 1.0
  * @link https://github.com/waljqiang/wechat.git
  */
-class Message{
+class Message extends Base{
 	const TEXT = "text";
 	const IMAGE = "image";
 	const VOICE = "voice";
@@ -36,5 +36,9 @@ class Message{
 		"TEMPLATESENDJOBFINISH" => "TEMPLATESENDJOBFINISH",
 		"POICHECKNOTIFY" => "poi_check_notify",
 		"WIFICONNECTED" => "WifiConnected"
-	];	
+	];
+
+	protected function checkMsgType($messageType){
+		return in_array($messageType,[Message::TEXT,Message::IMAGE,Message::VOICE,Message::VIDEO,Message::SHORTVIDEO,Message::MUSIC,Message::NEWS,Message::LOCATION,Message::LINK,Message::EVENT]);
+	}
 }

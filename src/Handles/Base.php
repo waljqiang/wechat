@@ -46,42 +46,42 @@ class Base{
 	/**
 	 * 客服账号列表缓存key标识
 	 */
-	const KFACCOUNT = "WECHAT:KFACCOUNT:LIST:";
+	const KFACCOUNT = "wechat:cfaccount:list:";
 
 	/**
 	 * 所属行业信息缓存key标识
 	 */
-	const INDUSTRY = "WECHAT:INDUSTRY:";
+	const INDUSTRY = "wechat:industry:";
 
 	/**
 	 * 模板列表缓存key标识
 	 */
-	const TEMPLATELIST = "WECHAT:TPL:LIST:";
+	const TEMPLATELIST = "wechat:tpl:list:";
 
 	/**
 	 * 门店缓存key标识
 	 */
-	const SHOP = "WECHAT:SHOP:";
+	const SHOP = "wechat:shop:";
 
 	/**
 	 * 门店列表缓存key标识
 	 */
-	const SHOPLIST = "WECHAT:SHOP:LIST:";
+	const SHOPLIST = "wechat:shop:list:";
 
 	/**
 	 * WiFi门店列表缓存key标识
 	 */
-	const WIFISHOPLIST = "WECHAT:WIFI:SHOP:LIST:";
+	const WIFISHOPLIST = "wechat:wifi:shop:list:";
 
 	/**
 	 * WiFi门店信息缓存key标识
 	 */
-	const WIFISHOP = "WECHAT:WIFI:SHOP:";
+	const WIFISHOP = "wechat:wifi:shop:";
 
 	/**
 	 * WiFi设备列表缓存key标识
 	 */
-	const DEVICELIST = "WECHAT:WIFI:DEVICE:LIST:";
+	const DEVICELIST = "wechat:wifi:device:list:";
 
 	/**
 	 * 客服头像文件类型

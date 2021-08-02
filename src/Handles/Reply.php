@@ -51,8 +51,8 @@ class Reply extends Message{
 				break;
 		}
 		if(!is_null($res)){
-			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Reply Message[" . $res . "]",DEBUG);
-			echo Wechat::$encode ? $this->wechat->encryptMsg($res) : $res;
+			$this->wechat->getLogger()->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Reply Message[" . $res . "]",\Monolog\Logger::DEBUG);
+			echo $this->wechat->encoded ? $this->wechat->getDecrypt()->encryptMsg($res) : $res;
 		}
 		exit(-1);
 	}

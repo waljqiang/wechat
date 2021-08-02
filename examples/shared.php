@@ -13,9 +13,8 @@ $wechatConfig = [
 	"token" => "pamtest",
 	"encodingAesKey" => "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG",
 	"encoded" => TRUE,//消息是否加密
-	"publish" => "gh_3c884a361561",//全网发布账号
+	"publish_account" => "gh_3c884a361561",//全网发布账号
 	"pre_expire_in" => 600,//缓存提前失效时间
-
 	"common_expire_in" => 2592000,//公共缓存时间，包括自定义菜单
 	"pay" => [//微信支付配置信息
 		"appid" => "wxdaa43d75b815f44e",

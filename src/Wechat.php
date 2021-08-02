@@ -86,6 +86,15 @@ class Wechat{
 	public static $common_expire_in = 2592000;
 
 	/**
+	 * 消息是否加密
+	 */
+	public $encoded = FALSE;
+	/**
+	 * 全网发布测试账号
+	 */
+	public $publish_account = "gh_3c884a361561";
+
+	/**
 	 * [微信公众号appid]
 	 */
 	private $appid;
@@ -101,10 +110,6 @@ class Wechat{
 	 * 微信公众号token
 	 */
 	private $token;
-	/**
-	 * 消息是否加密
-	 */
-	private $encoded = true;
 
 	/**
 	 * Predis\Client
@@ -167,18 +172,6 @@ class Wechat{
 	}
 
 	/**
-	 * 初始化加密类信息
-	 *
-	 * @param  string $token          
-	 * @param  string $encodingAesKey 
-	 * @param  string $appid          
-	 * @return
-	 */
-	/*public function initDecrypt($token,$encodingAesKey,$appid){
-		$this->decrypt->init($token,$encodingAesKey,$appid);
-	}*/
-
-	/**
 	 * 获取access_token
 	 *
 	 * @return [type] [description]
@@ -208,9 +201,13 @@ class Wechat{
 		return $this->redis;
 	}
 
-	/*public function getPublishAccount(){
-		return self::$config["publish"];
-	}*/
+	public function getDecrypt(){
+		return $this->decrypt;
+	}
+
+	public function getLogger(){
+		return $this->logger;
+	}
 
 	/**
 	 * 发送http请求
@@ -252,43 +249,6 @@ class Wechat{
 			throw new WechatException($e->getMessage(),WechatException::HTTPREQUESTERROR);
 		}
 	}
-
-	/**
-	 * 将公众平台回复用户的消息加密打包.
-	 * <ol>
-	 *    <li>对要发送的消息进行AES-CBC加密</li>
-	 *    <li>生成安全签名</li>
-	 *    <li>将消息密文和安全签名打包成xml格式</li>
-	 * </ol>
-	 *
-	 * @param $replyMsg string 公众平台待回复用户的消息，xml格式的字符串
-	 * @param $timeStamp string 时间戳，可以自己生成，也可以用URL参数的timestamp
-	 * @param $nonce string 随机串，可以自己生成，也可以用URL参数的nonce
-	 *
-	 * @return
-	 */
-	/*public function encryptMsg($replyMsg, $timeStamp = NULL, $nonce = NULL){
-		return $this->decrypt->encryptMsg($replyMsg,$timeStamp,$nonce);
-	}*/
-
-	/**
-	 * 检验消息的真实性，并且获取解密后的明文.
-	 * <ol>
-	 *    <li>利用收到的密文生成安全签名，进行签名验证</li>
-	 *    <li>若验证通过，则提取xml中的加密消息</li>
-	 *    <li>对消息进行解密</li>
-	 * </ol>
-	 *
-	 * @param $signature string 签名串，对应URL参数的msg_signature
-	 * @param $timeStamp string 时间戳 对应URL参数的timestamp
-	 * @param $nonce string 随机串，对应URL参数的nonce
-	 * @param $encryptMsg string 密文，对应POST请求的数据
-	 *
-	 * @return
-	 */
-	/*public function decryptMsg($signature,$timeStamp,$nonce,$encryptMsg){
-		return $this->decrypt->decryptMsg($signature,$timeStamp,$nonce,$encryptMsg);
-	}*/
 
 	public function __call($method,$args){
 		if(!$this->accessToken){

@@ -11,20 +11,16 @@ use Waljqiang\Wechat\Exceptions\WechatException;
 class SHA1{
 	/**
 	 * 用SHA1算法生成安全签名
-	 * @param string $token 票据
-	 * @param string $timestamp 时间戳
-	 * @param string $nonce 随机字符串
-	 * @param string $encrypt 密文消息
 	 */
-	public function getSHA1($token, $timestamp, $nonce, $encrypt_msg){
+	public function getSHA1($data){
 		//排序
-		try {
-			$array = array($encrypt_msg, $token, $timestamp, $nonce);
-			sort($array, SORT_STRING);
-			$str = implode($array);
+		try{
+			sort($data, SORT_STRING);
+			$str = implode($data);
 			return sha1($str);
-		} catch (Exception $e) {
-			throw new WechatException("sha加密生成签名失败",WechatException::SHAENCODEERROR);
+		}catch (Exception $e) {
+			throw new WechatException($e->getMessage(),WechatException::$SIGNATUREERROR);
 		}
 	}
+
 }

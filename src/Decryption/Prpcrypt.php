@@ -1,6 +1,12 @@
 <?php
 namespace Waljqiang\Wechat\Decryption;
+
+use Waljqiang\Wechat\Decryption\PKCS7Encoder;
+use Waljqiang\Wechat\Exceptions\WechatException;
+
 /**
+ * Prpcrypt class
+ *
  * 提供接收和推送给公众平台消息的加解密接口.
  */
 class Prpcrypt{
@@ -18,7 +24,7 @@ class Prpcrypt{
 	public function encrypt($text, $appid){
 		try {
 			//获得16位随机字符串，填充到明文之前
-			$random = getRandomStr();
+			$random = $this->getRandomStr();
 			$text = $random . pack("N", strlen($text)) . $text . $appid;
 			// 网络字节序
 			$size = mcrypt_get_block_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
@@ -37,7 +43,7 @@ class Prpcrypt{
 			//使用BASE64对加密后的字符串进行编码
 			return base64_encode($encrypted);
 		} catch (Exception $e) {
-			throw new WechatException("aes 加密失败",WechatException::ASEENCODEERROR);
+			throw new WechatException($e->getMessage(),WechatException::$ENCODINGFAILURE);
 		}
 	}
 
@@ -47,6 +53,7 @@ class Prpcrypt{
 	 * @return string 解密得到的明文
 	 */
 	public function decrypt($encrypted, $appid){
+
 		try {
 			//使用BASE64对需要解密的字符串进行解码
 			$ciphertext_dec = base64_decode($encrypted);
@@ -59,8 +66,9 @@ class Prpcrypt{
 			mcrypt_generic_deinit($module);
 			mcrypt_module_close($module);
 		} catch (Exception $e) {
-			throw new WechatException("aes 解密失败",WechatException::ASEDECODEERROR);
+			throw new WechatException($e->getMessage(),WechatException::$DECRYPTFAILURE);
 		}
+
 
 		try {
 			//去除补位字符
@@ -75,11 +83,25 @@ class Prpcrypt{
 			$xml_content = substr($content, 4, $xml_len);
 			$from_appid = substr($content, $xml_len + 4);
 		} catch (Exception $e) {
-			throw new WechatException("解密后得到的buffer非法",WechatException::ASEDECODEBUFFERERROR);
+			throw new WechatException($e->getMessage(),WechatException::$BUFFERINIVALID);
 		}
-		if ($from_appid != $appid)
-			throw new WechatException("appid 校验错误",WechatException::APPIDINVALID);
+		if ($from_appid != $appid){
+			throw new WechatException($e->getMessage(),WechatException::$APPIDINVALID);
+		}
 		return $xml_content;
-
 	}
+
+
+	/**
+	 * 随机生成16位字符串
+	 * @return string 生成的字符串
+	 */
+	public function getRandomStr($lenth = 16,$source = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz"){
+		$str = '';
+	    for($i = 0; $i < $lenth; $i++){
+	    	$str .= iconv_substr($source,floor(mt_rand(0,mb_strlen($source,'utf-8')-1)),1,'utf-8');
+	    }
+	    return $str;
+	}
+
 }

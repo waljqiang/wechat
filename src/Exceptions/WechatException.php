@@ -44,4 +44,5 @@ class WechatException extends \Exception{
 	const UNSUPPORTFILETYPE = 600900118;//不支持的文件类型
 	const FILENO = 600900119;//文件不存在
 	const UNSUPPORTMESSAGETYPE = 600900120;//不支持的消息类型
+	const DECRYPTERNOINIT = 600900121;//加密器未初始化
 }
