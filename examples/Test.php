@@ -384,14 +384,14 @@ try{
 	var_dump($res);
 	exit;*/
 	//微信支付统一下单接口
-	$config = [
+	/*$config = [
 		"appid" => "wxdaa43d75b815f44e",//微信分配的公众账号ID（企业号corpid即为此appId)
 		"mch_id" => "1347427701",//微信支付分配的商户号
 		"key" => "otDEIs5YfaplAzvzXS5uBVFS7VD8rb12",
 		"appsecret" => "3343b17da99cbd77d32d1d18f68f739a",
 		"notify_url" => "http://www.yowifi.net/Wechat/wxpayh5",//接收微信支付异步通知回调地址,通知url必须为直接可访问的url,不能携带参数
 	];
-	$wechat->setPayConfig($config);
+	$wechat->setPayConfig($config);*/
 	//生成支付二维码
 	/*$data = [
 		"body" => "商品描述",
