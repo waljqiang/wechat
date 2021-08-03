@@ -100,29 +100,47 @@ class Base{
 			"del" => "https://api.weixin.qq.com/cgi-bin/menu/delete?access_token=%s",//删除自定义菜单
 		],
 		"user" => [
-			"tag_set" => "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=%s",//微信创建公众号标签API地址
-			"tag_get" => "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=%s",//微信获取公众号标签API地址
-			"tag_del" => "https://api.weixin.qq.com/cgi-bin/tags/delete?access_token=%s",//微信删除公众号标签API地址
-			"tag_fans_get" => "https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token=%s",//微信获取标签下的粉丝列表API地址
-			"tag_with_user_set" => "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=%s",//微信为用户打标签API地址
-			"tag_with_user_del" => "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=%s",//微信为用户取消标签API地址
-			"tag_with_user_get" => "https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token=%s",//微信获取用户身上的标签列表API地址
-			"remark_with_user_set" => "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=%s",//微信设置用户备注API地址
-			"info" => "https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=%s",//微信获取用户基本信息API地址
-			"list" => "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s",//微信获取用户列表API地址
+			"tag_set" => "https://api.weixin.qq.com/cgi-bin/tags/create?access_token=%s",//创建公众号标签
+			"tag_get" => "https://api.weixin.qq.com/cgi-bin/tags/get?access_token=%s",//获取公众号标签
+			"tag_del" => "https://api.weixin.qq.com/cgi-bin/tags/delete?access_token=%s",//删除公众号标签
+			"tag_fans_get" => "https://api.weixin.qq.com/cgi-bin/user/tag/get?access_token=%s",//获取标签下的粉丝列表
+			"tag_of_user_set" => "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=%s",//为用户打标签
+			"tag_of_user_del" => "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=%s",//为用户取消标签
+			"tag_of_user_get" => "https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token=%s",//获取用户身上的标签列表
+			"remark_with_user_set" => "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=%s",//设置用户备注
+			"info" => "https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=%s",//获取用户基本信息
+			"list" => "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s",//获取用户列表
 		],
 		"account" => [
-			"qrcode_ticket" => "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s",//微信获取二维码ticket API地址
-			"qrcode" => "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s",//微信获取二维码API地址
+			"qrcode_ticket" => "https://api.weixin.qq.com/cgi-bin/qrcode/create?access_token=%s",//获取二维码ticket
+			"qrcode" => "https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=%s",//获取二维码
 		],
 		"customer" => [
-			"kf_add" => "https://api.weixin.qq.com/customservice/kfaccount/add?access_token=%s",//微信添加客服账号API地址
-			"kf_set" => "https://api.weixin.qq.com/customservice/kfaccount/update?access_token=%s",//微信修改客服账号API地址
-			"kf_del" => "https://api.weixin.qq.com/customservice/kfaccount/del?access_token=%s",//微信删除客服账号API地址
-			"kf_avatar_up" => "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg?access_token=%s&kf_account=%s",//微信上传客服头像API地址
-			"kf_all_get" => "https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token=%s",//微信获取所有客服账号API地址
-			"kf_send_message" => "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s",//微信发送客服消息API地址
+			"kf_add" => "https://api.weixin.qq.com/customservice/kfaccount/add?access_token=%s",//添加客服账号
+			"kf_set" => "https://api.weixin.qq.com/customservice/kfaccount/update?access_token=%s",//修改客服账号
+			"kf_del" => "https://api.weixin.qq.com/customservice/kfaccount/del?access_token=%s",//删除客服账号
+			"kf_avatar_up" => "http://api.weixin.qq.com/customservice/kfaccount/uploadheadimg?access_token=%s&kf_account=%s",//上传客服头像
+			"kf_all_get" => "https://api.weixin.qq.com/cgi-bin/customservice/getkflist?access_token=%s",//获取所有客服账号
+			"kf_send_message" => "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token=%s",//发送客服消息
 		],
+		"template" => [
+			"industry_set" => "https://api.weixin.qq.com/cgi-bin/template/api_set_industry?access_token=%s",//设置所属行业
+			"industry_get" => "https://api.weixin.qq.com/cgi-bin/template/get_industry?access_token=%s",//获取行业信息
+			"tpl_id_get" => "https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token=%s",//获取模板id
+			"tpl_list" => "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=%s",//获取模板列表
+			"tpl_del" => "https://api.weixin.qq.com/cgi-bin/template/del_private_template?access_token=%s",//删除模板
+			"send_tpl_msg" => "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s",//发送模板消息
+		],
+		"shop" => [
+			"upimage" => "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=%s",//上传图片
+			"add" => "http://api.weixin.qq.com/cgi-bin/poi/addpoi?access_token=%s",//创建门店
+			"get" => "http://api.weixin.qq.com/cgi-bin/poi/getpoi?access_token=%s",//查询门店信息
+			"list" => "https://api.weixin.qq.com/cgi-bin/poi/getpoilist?access_token=%s",//查询门店列表
+			"set" => "https://api.weixin.qq.com/cgi-bin/poi/updatepoi?access_token=%s",//修改门店信息
+			"del" => "https://api.weixin.qq.com/cgi-bin/poi/delpoi?access_token=%s",//删除门店
+		]
+
+
 
 	
 	];

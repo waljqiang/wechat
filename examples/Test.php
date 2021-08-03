@@ -188,22 +188,22 @@ try{
 	];
 	$wechat->replyUser(Waljqiang\Wechat\Handles\Message::TEXT,$message);*/
 	//设置所属行业
-	$res = $wechat->setIndustry("1","4");
-	var_dump($res);
+	/*$res = $wechat->setIndustry("1","4");
+	var_dump($res);*/
 	//获取所属行业
-/*	$res = Wechat::getInstance()->getIndustry();
+	/*$res = $wechat->getIndustry();
 	var_dump($res);*/
 	//获取模板id
-	/*$res = Wechat::getInstance()->getTemplateID("TM00015");
+	/*$res = $wechat->getTemplateID("TM00015");
 	var_dump($res);*/
 	//获取模板列表
-	/*$res = Wechat::getInstance()->getTemplateList();
+	/*$res = $wechat->getTemplateList();
 	var_dump($res);*/
 	//删除模板
-/*	$res = Wechat::getInstance()->deleteTemplate("123");
+	/*$res = $wechat->deleteTemplate("123");
 	var_dump($res);*/
 	//发送模板消息
-/*	$message = [
+	$message = [
 		"first" => [
 			"value" => "恭喜你购买成功",
 			"color" => "#173177"
@@ -225,10 +225,10 @@ try{
 			"color" => "#173177"
 		]
 	];
-	$res = Wechat::getInstance()->sendTemplate("o9lXF0oPTBOMS44dILU1kfZMlra0","ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",$message);
+	/*$res = $wechat->sendTemplate("o9lXF0oPTBOMS44dILU1kfZMlra0","ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",$message);
 	var_dump($res);*/
 	//上传图片
-/*	$res = Wechat::getInstance()->uploadImage("./timg.jpg");
+	/*$res = $wechat->uploadImage("./timg.jpg");
 	var_dump($res);*/
 	//创建门店
 	/*$data = [
@@ -256,13 +256,13 @@ try{
 		"open_time" => "8:00-20:00",
 		"avg_price" => 35
 	];
-	$res = Wechat::getInstance()->createShop($data);
+	$res = $wechat->createShop($data);
 	var_dump($res);*/
 	//查询门店信息
-	/*$res = Wechat::getInstance()->getShop("271262077");
+	/*$res = $wechat->getShop("271262077");
 	var_dump($res);*/
 	//查询门店列表
-	/*$res = Wechat::getInstance()->getShopList();
+	/*$res = $wechat->getShopList();
 	var_dump($res);*/
 	//修改门店信息
 	/*$data = [
@@ -280,8 +280,11 @@ try{
 		"open_time" => "8:00-20:00",
 		"avg_price" => 35
 	];
-	$res = Wechat::getInstance()->modifyShop($data);
+	$res = $wechat->modifyShop($data);
 	var_dump($res);*/
+	//删除门店
+	$res = $wechat->deleteShop("271864249");
+	var_dump($res);
 	//身份证识别
 /*	$res = Wechat::getInstance()->identityCard("./my.jpg");
 	var_dump($res);*/

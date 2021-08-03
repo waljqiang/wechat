@@ -1,27 +1,10 @@
 <?php
 namespace Waljqiang\Wechat\Handles;
 
+use Waljqiang\Wechat\Exceptions\WechatException;
+use Waljqiang\Wechat\Wechat;
+
 class Shop extends Base{
-	/**
-	 * 微信创建门店API地址
-	 */
-	const USHOPCREATE = "http://api.weixin.qq.com/cgi-bin/poi/addpoi?access_token=%s";
-	/**
-	 * 微信查询门店信息API地址
-	 */
-	const USHOPGET = "http://api.weixin.qq.com/cgi-bin/poi/getpoi?access_token=%s";
-	/**
-	 * 微信查询门店列表API地址
-	 */
-	const USHOPLIST = "https://api.weixin.qq.com/cgi-bin/poi/getpoilist?access_token=%s";
-	/**
-	 * 微信修改门店信息API地址
-	 */
-	const USHOPMODIFY = "https://api.weixin.qq.com/cgi-bin/poi/updatepoi?access_token=%s";
-	/**
-	 * 微信删除门店API地址
-	 */
-	const USHOPDEL = "https://api.weixin.qq.com/cgi-bin/poi/delpoi?access_token=%s";
 
 	private $baseinfo = [
 		"sid" => "",//商户自己id
@@ -59,8 +42,8 @@ class Shop extends Base{
 			throw new WechatException("File is not exists",WechatException::FILENO);
 		}
 		
-		$url = sprintf(Template::UUPIMAGE,$this->accessToken);
-		$res = $this->request($url,"POST",[
+		$url = sprintf($this->api["shop"]["upimage"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url,"POST",[
 			"multipart" => [
 				[
 					"name" => "file",
@@ -79,12 +62,10 @@ class Shop extends Base{
 	 */
 	public function createShop($data){
 		$buffer['business']['base_info'] = array_intersect_key($data,$this->baseinfo);
-		$url = sprintf(self::USHOPCREATE,$this->accessToken);
-		$res = $this->request($url,"POST",[
-			"body" => json_encode($buffer, JSON_UNESCAPED_UNICODE)
-		]);
+		$url = sprintf($this->api["shop"]["add"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url,"POST",["json" => $buffer]);
 		//清楚门店列表缓存
-		self::$cache && $this->redis->del(self::SHOPLIST . $this->appid);
+		$this->wechat->getRedis()->del(self::SHOPLIST . $this->wechat->getAppid());
 		return $res["poi_id"];
 	}
 
@@ -95,15 +76,12 @@ class Shop extends Base{
 	 * @return array
 	 */
 	public function getShop($poiID){
-		$shopKey = self::SHOP . $this->appid . ":" . $poiID;
-		if(!self::$cache || !($res = $this->redis->getValues($shopKey))){
-			$url = sprintf(self::USHOPGET,$this->accessToken);
-			$data = $this->request($url,"POST",[
-				"body" => json_encode(["poi_id" => $poiID],JSON_UNESCAPED_UNICODE)
-			]);
+		$shopKey = self::SHOP . $this->wechat->getAppid() . ":" . $poiID;
+		if(!($res = $this->wechat->getRedis()->getValues($shopKey))){
+			$url = sprintf($this->api["shop"]["get"],$this->wechat->getAccessToken());
+			$data = $this->wechat->request($url,"POST",["json" => ["poi_id" => $poiID]]);
 			$res = isset($data["business "]["base_info"]) ? $data["business"]["base_info"] : [];
-			self::$cache && $this->redis->setValues($shopKey,$res,self::$commonExpire);
-			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($data) . "]",DEBUG);
+			$this->wechat->getRedis()->setValues($shopKey,$res,Wechat::$common_expire_in);
 		}
 		return $res;
 	}
@@ -116,8 +94,8 @@ class Shop extends Base{
 	 * @return
 	 */
 	public function getShopList($pageIndex = 1,$pageOffset = 10){
-		$shopListKey = self::SHOPLIST . $this->appid;
-		if(!self::$cache || !($res = $this->redis->getValues($shopListKey))){
+		$shopListKey = self::SHOPLIST . $this->wechat->getAppid();
+		if(!($res = $this->wechat->getRedis()->getValues($shopListKey))){
 			$start = 0;
 			$limit = 50;
 			$data = $this->_getShopList($start,$limit);
@@ -129,7 +107,7 @@ class Shop extends Base{
 				$shopList = count($data["data"]["business_list"]) > 0 ? array_column($data["business_list"],"base_info") : [];
 				$res["list"] = array_merge($res["list"],$shopList);
 			}
-			self::$cache && $this->redis->setValues($shopListKey,$res,self::$commonExpire); 
+			$this->wechat->getRedis()->setValues($shopListKey,$res,Wechat::$common_expire_in); 
 		}
 		$start = ($pageIndex-1) * $pageOffset;
 		$end = $pageOffset;
@@ -156,46 +134,37 @@ class Shop extends Base{
 	      	"open_time" => "",
 	      	"avg_price" => 0
 		]);
-		$url = sprintf(self::USHOPMODIFY,$this->accessToken);
-		$res = $this->request($url,"POST",[
-			"body" => json_encode($buffer, JSON_UNESCAPED_UNICODE)
-		]);
+		$url = sprintf($this->api["shop"]["set"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url,"POST",["json" => $buffer]);
 		//清除门店列表缓存
 		//清除门店缓存
-		if(self::$cache){
-			$keys = [
-				self::SHOPLIST . $this->appid,
-				self::SHOPLIST . $this->appid . ":" . $data["poi_id"]
-			];
-			$this->redis->del($keys);
-		}
+
+		$keys = [
+			self::SHOPLIST . $this->wechat->getAppid(),
+			self::SHOPLIST . $this->wechat->getAppid() . ":" . $data["poi_id"]
+		];
+		$this->wechat->getRedis()->del($keys);
+
 		return true;
 	}
 
 	//删除门店
 	public function deleteShop($poiID){
-		$url = sprintf(self::USHOPDEL,$this->accessToken);
-		$res = $this->request($url,"POST",[
-			"body" => json_encode(["poi_id" => $poiID], JSON_UNESCAPED_UNICODE)
-		]);
+		$url = sprintf($this->api["shop"]["del"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url,"POST",["json" => ["poi_id" => $poiID]]);
 		//清除门店列表缓存
 		//清除门店缓存
-		if(self::$cache){
-			$keys = [
-				self::SHOPLIST . $this->appid,
-				self::SHOPLIST . $this->appid . ":" . $data["poi_id"]
-			];
-			$this->redis->del($keys);
-		}
+		$keys = [
+			self::SHOPLIST . $this->wechat->getAppid(),
+			self::SHOPLIST . $this->wechat->getAppid() . ":" . $data["poi_id"]
+		];
+		$this->wechat->getRedis()->del($keys);
 		return true;
 	}
 
 	private function _getShopList($begin = 0,$limit = 20){
-		$url = sprintf(self::USHOPLIST,$this->accessToken);
-		$res = $this->request($url,"POST",[
-			"body" => json_encode(["begin" => $begin,"limit" => $limit],JSON_UNESCAPED_UNICODE)
-		]);
-		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		$url = sprintf($this->api["shop"]["list"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url,"POST",["json" => ["begin" => $begin,"limit" => $limit]]);
 		return $res;
 	}
 

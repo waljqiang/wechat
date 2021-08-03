@@ -73,7 +73,7 @@ class User extends Base{
 				"id" => $tagID
 			]
 		];
-		$url = sprintf($this->api["user"]["tag_with_user_del"],$this->wechat->getAccessToken());
+		$url = sprintf($this->api["user"]["tag_of_user_del"],$this->wechat->getAccessToken());
 		$res = $this->request($url,"POST",[
 			"json" => $buffer
 		]);
@@ -133,7 +133,7 @@ class User extends Base{
 	 * @return
 	 */
 	public function tagToUsers($tagID,$openIDs){
-		$url = sprintf($this->api["user"]["tag_with_user_set"],$this->wechat->getAccessToken());
+		$url = sprintf($this->api["user"]["tag_of_user_set"],$this->wechat->getAccessToken());
 		$buffer = [
 			"openid_list" => $openIDs,
 			"tagid" => $tagID
@@ -157,7 +157,7 @@ class User extends Base{
 	 * @return
 	 */
 	public function tagDelUsers($tagID,$openIDs){
-		$url = sprintf($this->api["user"]["tag_with_user_del"],$this->wechat->getAccessToken());
+		$url = sprintf($this->api["user"]["tag_of_user_del"],$this->wechat->getAccessToken());
 		$buffer = [
 			"openid_list" => $openIDs,
 			"tagid" => $tagID
@@ -188,7 +188,7 @@ class User extends Base{
 			$buffer = [
 				"openid" => $openID
 			];
-			$url = sprintf($this->api["user"]["tag_with_user_get"],$this->wechat->getAccessToken());
+			$url = sprintf($this->api["user"]["tag_of_user_get"],$this->wechat->getAccessToken());
 			$res = $this->wechat->request($url,"POST",["json" => $buffer]);
 			$res = $res["tagid_list"];
 			$this->wechat->getRedis()->setValues($userTagsKey,$res,Wechat::$common_expire_in);
@@ -211,7 +211,7 @@ class User extends Base{
 			"openid" => $openID,
 			"remark" => $remark
 		];
-		$url = sprintf($this->api["user"]["remark_with_user_set"],$this->wechat->getAccessToken());
+		$url = sprintf($this->api["user"]["remark_of_user_set"],$this->wechat->getAccessToken());
 		$res = $this->wechat->request($url,"POST",["json" => $buffer]);
 		$this->wechat->getRedis()->del(self::USERINFO . $this->wechat->getAppid() . ":" . $openID);
 		return true;

@@ -1,35 +1,9 @@
 <?php
 namespace Waljqiang\Wechat\Handles;
 
+use Waljqiang\Wechat\Wechat;
+
 class Template extends Base{
-	/**
-	 * 微信设置所属行业API地址
-	 */
-	const UINDUSTRYSET = "https://api.weixin.qq.com/cgi-bin/template/api_set_industry?access_token=%s";
-	/**
-	 * 微信获取行业信息API地址
-	 */
-	const UINDUSTRYGET = "https://api.weixin.qq.com/cgi-bin/template/get_industry?access_token=%s";
-	/**
-	 * 微信获取模板id API地址
-	 */
-	const UTEMPLATEID = "https://api.weixin.qq.com/cgi-bin/template/api_add_template?access_token=%s";
-	/**
-	 * 微信获取模板列表API地址
-	 */
-	const UTEMPLATELIST = "https://api.weixin.qq.com/cgi-bin/template/get_all_private_template?access_token=%s";
-	/**
-	 * 微信删除模板API地址
-	 */
-	const UTEMPLATEDEL = "https://api.weixin.qq.com/cgi-bin/template/del_private_template?access_token=%s";
-	/**
-	 * 微信发送模板消息API地址
-	 */
-	const USENDTPLMSG = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s";
-	/**
-	 * 微信上传图片API地址
-	 */
-	const UUPIMAGE = "https://api.weixin.qq.com/cgi-bin/media/uploadimg?access_token=%s";
 
 	/**
 	 * 设置所属行业
@@ -38,16 +12,13 @@ class Template extends Base{
 	 * @param string $secondaryNumber 副营行业编号
 	 */
 	public function setIndustry($primaryNumber,$secondaryNumber){
-		$url = sprintf(self::UINDUSTRYSET,$this->accessToken);
+		$url = sprintf($this->api["template"]["industry_set"],$this->wechat->getAccessToken());
 		$buffer = [
 			"industry_id1" => $primaryNumber,
 			"secondaryNumber" => $secondaryNumber
 		];
-		$res = $this->request($url,"POST",[
-			"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
-		]);
-		self::$cache && $this->redis->del(self::INDUSTRY . $this->appid);
-		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		$res = $this->wechat->request($url,"POST",["json" => $buffer]);
+		$this->wechat->getRedis()->del(self::INDUSTRY . $this->wechat->getAppid());
 		return true;
 	}
 
@@ -57,12 +28,11 @@ class Template extends Base{
 	 * @return
 	 */
 	public function getIndustry(){
-		$industryKey = self::INDUSTRY . $this->appid;
-		if(!self::$cache || !($res = $this->redis->getValues($industryKey))){
-			$url = sprintf(self::UINDUSTRYGET,$this->accessToken);var_dump($url);
-			$res = $this->request($url);
-			self::$cache && $this->redis->setValues($industryKey,$res,self::$commonExpire);
-			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		$industryKey = self::INDUSTRY . $this->wechat->getAppid();
+		if(!($res = $this->wechat->getRedis()->getValues($industryKey))){
+			$url = sprintf($this->api["template"]["industry_get"],$this->wechat->getAccessToken());
+			$res = $this->wechat->request($url);
+			$this->wechat->getRedis()->setValues($industryKey,$res,Wechat::$common_expire_in);
 		}
 		return $res;
 	}
@@ -74,11 +44,8 @@ class Template extends Base{
 	 * @return
 	 */
 	public function getTemplateID($templateIdShort){
-		$url = sprintf(self::UTEMPLATEID,$this->accessToken);
-		$res = $this->request($url,"POST",[
-			"body" => json_encode(["template_id_short" => $templateIdShort],JSON_UNESCAPED_UNICODE)
-		]);
-		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		$url = sprintf($this->api["template"]["tpl_id_get"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url,"POST",["json" => ["template_id_short" => $templateIdShort]]);
 		return $res['template_id'];
 	}
 
@@ -88,13 +55,12 @@ class Template extends Base{
 	 * @return
 	 */
 	public function getTemplateList(){
-		$tplListKey = self::TEMPLATELIST . $this->appid;
-		if(!self::$cache || !($list = $this->redis->getValues($tplListKey))){
-			$url = sprintf(self::UTEMPLATELIST,$this->accessToken);
-			$res = $this->request($url);
+		$tplListKey = self::TEMPLATELIST . $this->wechat->getAppid();
+		if(!($list = $this->wechat->getRedis()->getValues($tplListKey))){
+			$url = sprintf($this->api["template"]["tpl_list"],$this->wechat->getAccessToken());
+			$res = $this->wechat->request($url);
 			$list = $res["template_list"];
-			$this->redis->setValues($tplListKey,$list,self::$commonExpire);
-			$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+			$this->wechat->getRedis()->setValues($tplListKey,$list,Wechat::$common_expire_in);
 		}
 		return $list;
 	}
@@ -106,13 +72,10 @@ class Template extends Base{
 	 * @return
 	 */
 	public function deleteTemplate($templateID){
-		$url = sprintf(self::UTEMPLATEDEL,$this->accessToken);
-		$res = $this->request($url,"POST",[
-			"body" => json_encode(["template_id" => $templateID],JSON_UNESCAPED_UNICODE)
-		]);
-		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		$url = sprintf($this->api["template"]["tpl_del"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url,"POST",["json" => ["template_id" => $templateID]]);
 		//清楚模板列表缓存
-		self::$cache && $this->redis->del(self::TEMPLATELIST . $this->appid);
+		$this->wechat->getRedis()->del(self::TEMPLATELIST . $this->wechat->getAppid());
 		return true;
 	}
 
@@ -140,11 +103,8 @@ class Template extends Base{
 			if(!empty($pagePath))
 				$buffer["miniprogram"]["pagepath"] = $pagePath;
 		}
-		$url = sprintf(self::USENDTPLMSG,$this->accessToken);
-		$res = $this->request($url,"POST",[
-			"body" => json_encode($buffer,JSON_UNESCAPED_UNICODE)
-		]);
-		$this->log && $this->logger->log("[" . __CLASS__ . "->" . __FUNCTION__ . "]Request[" . $url . "]result[" . json_encode($res) . "]",DEBUG);
+		$url = sprintf($this->api["template"]["send_tpl_msg"],$this->wechat->getAccessToken());
+		$res = $this->wechat->request($url,"POST",["json" => $buffer]);
 		return isset($res["msgid"]) ? $res["msgid"] : false;
 	}
 
