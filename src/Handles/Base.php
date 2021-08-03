@@ -107,7 +107,7 @@ class Base{
 			"tag_of_user_set" => "https://api.weixin.qq.com/cgi-bin/tags/members/batchtagging?access_token=%s",//为用户打标签
 			"tag_of_user_del" => "https://api.weixin.qq.com/cgi-bin/tags/members/batchuntagging?access_token=%s",//为用户取消标签
 			"tag_of_user_get" => "https://api.weixin.qq.com/cgi-bin/tags/getidlist?access_token=%s",//获取用户身上的标签列表
-			"remark_with_user_set" => "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=%s",//设置用户备注
+			"remark_of_user_set" => "https://api.weixin.qq.com/cgi-bin/user/info/updateremark?access_token=%s",//设置用户备注
 			"info" => "https://api.weixin.qq.com/cgi-bin/user/info?access_token=%s&openid=%s&lang=%s",//获取用户基本信息
 			"list" => "https://api.weixin.qq.com/cgi-bin/user/get?access_token=%s&next_openid=%s",//获取用户列表
 		],
@@ -138,9 +138,33 @@ class Base{
 			"list" => "https://api.weixin.qq.com/cgi-bin/poi/getpoilist?access_token=%s",//查询门店列表
 			"set" => "https://api.weixin.qq.com/cgi-bin/poi/updatepoi?access_token=%s",//修改门店信息
 			"del" => "https://api.weixin.qq.com/cgi-bin/poi/delpoi?access_token=%s",//删除门店
-		]
+		],
+		"ocr" => [
+			"idcard" => "https://api.weixin.qq.com/cv/ocr/idcard?access_token=%s",//身份证识别
+			"bankcard" => "https://api.weixin.qq.com/cv/ocr/bankcard?access_token=%s",//银行卡识别
+			"drivecard" => "https://api.weixin.qq.com/cv/ocr/driving?access_token=%s",//行驶证识别
+			"drivelicense" => "https://api.weixin.qq.com/cv/ocr/drivinglicense?access_token=%s",//驾驶证识别
+			"bizlicense" => "http://api.weixin.qq.com/cv/ocr/bizlicense?access_token=%s",//营业执照识别
+			"common" => "http://api.weixin.qq.com/cv/ocr/comm?access_token=%s",//通用印刷体识别
+		],
+		"wifi" => [
+			"shop_list" => "https://api.weixin.qq.com/bizwifi/shop/list?access_token=%s",//获取WiFi门店列表
+			"shop" => "https://api.weixin.qq.com/bizwifi/shop/get?access_token=%s",//查询WiFi门店信息
+			"shop_set" => "https://api.weixin.qq.com/bizwifi/shop/update?access_token=%s",//修改WiFi门店信息
+			"shop_clear" => "https://api.weixin.qq.com/bizwifi/shop/clean?access_token=%s",//清空门店网络设备
+			"dev_of_pwd_add" => "https://api.weixin.qq.com/bizwifi/device/add?access_token=%s",//添加密码型设备
+			"dev_of_portal_add" => "https://api.weixin.qq.com/bizwifi/apportal/register?access_token=%s",//添加portal型设备
+			"dev_list" => "https://api.weixin.qq.com/bizwifi/device/list?access_token=%s",//查询设备列表
+			"dev_del" => "https://api.weixin.qq.com/bizwifi/device/delete?access_token=%s",//删除设备
+			"wifi_qrcode" => "https://api.weixin.qq.com/bizwifi/qrcode/get?access_token=%s",//配置连网方式
+			"statistics" => "https://api.weixin.qq.com/bizwifi/statistics/list?access_token=%s",//统计WiFi数据
+			"couponput_set" => "https://api.weixin.qq.com/bizwifi/couponput/get?access_token=%s",//设置门店卡券投放
+			"couponput_get" => "https://api.weixin.qq.com/bizwifi/couponput/get?access_token=%s",//查询门店卡券信息
+		],
 
 
+
+	
 
 	
 	];

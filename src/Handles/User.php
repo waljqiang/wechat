@@ -85,7 +85,7 @@ class User extends Base{
 		//删除公众号下标签缓存
 		//删除标签下粉丝列表缓存
 		$this->wechat->getRedis()->del($keys);
-		$keyword = self::USERTAGS . $this->wechat->getAppid() . ":*";
+		$keyword = self::USERTAGS . $this->wechat->getAppid();
 		//删除粉丝下标签缓存
 		$this->wechat->getRedis()->vagueDelCommand($keyword);
 

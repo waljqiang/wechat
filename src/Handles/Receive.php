@@ -188,7 +188,7 @@ class Receive extends Message{
         $appid = empty($appid) ? $this->wechat->getAppid() : $appid;
         if(self::$cache){
             //清除公众号标签下的粉丝列表缓存
-            $this->wechat->getRedis()->vagueDelCommand(self::TAGFANS . $appid . "*");
+            $this->wechat->getRedis()->vagueDelCommand(self::TAGFANS . $appid);
             //清除用户下标签列表缓存
             //清除用户基本信息缓存
             //用户列表缓存

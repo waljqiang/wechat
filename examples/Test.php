@@ -38,78 +38,98 @@ try{
 		]
 	];
 	$rs = $wechat->setMenu($options);
-	var_dump($rs);*/
+	var_dump($rs);
+	exit;*/
 	//查询菜单
 	/*$menu = $wechat->getMenu();
-	var_dump($menu);*/
+	var_dump($menu);
+	exit;*/
 	//删除菜单
 	/*$rs = $wechat->deleteMenu();
-	var_dump($rs);*/
+	var_dump($rs);
+	exit;*/
 	//创建公众号标签
 	/*$res = $wechat->setTag("店小二1");
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//获取公众号标签
 	/*$res = $wechat->getTag();
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//删除公众号标签
 	/*$res = $wechat->deleteTag(105);
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//获取公众号标签下的粉丝列表
 	/*$res = $wechat->getTagFans(103,1,10);
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//为用户打标签，一次最多支持20个
 	/*$rs = $wechat->tagToUsers(103,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
-	var_dump($rs);*/
+	var_dump($rs);
+	exit;*/
 	//为用户取消标签,一次最多支持50个
-/*	$rs = $wechat->tagDelUsers(102,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
-	var_dump($rs);*/
+	/*$rs = $wechat->tagDelUsers(102,["o9lXF0oPTBOMS44dILU1kfZMlra0"]);
+	var_dump($rs);
+	exit;*/
 	//获取用户标签列表
 	/*$res = $wechat->getUserTags("o9lXF0oPTBOMS44dILU1kfZMlra0");
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//为用户打备注
 	/*$res = $wechat->setUserRemark("o9lXF0oPTBOMS44dILU1kfZMlra0",'123');
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//获取用户基本信息
 	/*$res = $wechat->getUserInfo("o9lXF0oPTBOMS44dILU1kfZMlra0");
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//获取用户列表
 	/*$res = $wechat->getUserList(1,10);
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//生成带参数的二维码
-/*	$res = $wechat->getQrcode(12,"QR_SCENE",120);
-	var_dump($res);*/
+	/*$res = $wechat->getQrcode(12,"QR_SCENE",120);
+	var_dump($res);
+	exit;*/
 	//添加客服账号
 	/*$res = $wechat->createKfAccount([
 		"kf_account" => "test1@test",
 		"nickname" => "客服1",
 		"password" => md5("123456")
 	]);
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//修改客服账号
 	/*$res = $wechat->modifyKfAccount([
 		"kf_account" => "test",
 		"nickname" => "客服2",
 		"password" => "123456"
 	]);
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//删除客服账号
 	/*$res = $wechat->deleteKfAccount([
 		"kf_account" => "test",
 		"nickname" => "客服1",
 		"password" => "123456"
 	]);
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	/*$res = $wechat->uploadAvatar("test@wxid","/vagrant/wechat/timg.jpg");
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//获取客服账号
 	/*$res = $wechat->getAllKfAccount();
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//客服发消息
 	/*$message = [
 		"content" => "你好"
 	];
 	$res = $wechat->kfSendMessage("o9lXF0oPTBOMS44dILU1kfZMlra0",Waljqiang\Wechat\Handles\Message::TEXT,$message);
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//加密消息
 	// 第三方发送消息给公众平台
 	/*$encodingAesKey = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG";
@@ -129,9 +149,11 @@ try{
 	$format = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><Encrypt><![CDATA[%s]]></Encrypt></xml>";
 	$from_xml = sprintf($format,$obj["Encrypt"]);
 	$decryptMsg = $wechat->getDecrypt()->decryptMsg($obj["MsgSignature"],$obj["TimeStamp"],$obj["Nonce"],$from_xml);
-	var_dump("解密后的消息:" . $decryptMsg);*/
+	var_dump("解密后的消息:" . $decryptMsg);
+	exit;*/
 	//公众号推送的消息处理,注意Wechat实例$encoded属性要设置为false
-	/*$message = "<xml>
+	/*$wechat->encoded = false;
+	$message = "<xml>
   <ToUserName><![CDATA[toUser]]></ToUserName>
   <FromUserName><![CDATA[FromUser]]></FromUserName>
   <CreateTime>123456789</CreateTime>
@@ -145,10 +167,11 @@ try{
 	$res = $wechat->handleWechatMessage($message,$appid,$signature,$timestamp,$nonce);
 	echo "-------------------------------------------------" . "</br>"; 
 	echo "明文消息" . "</br>";
-	var_dump($res);*/
-
+	var_dump($res);
+	exit;*/
 	//加密,注意Wechat实例$encoded属性要设置为true
-	/*$appid = "wx5b18b274db7372d6";
+	/*$wechat->encoded = true;
+	$appid = "wx5b18b274db7372d6";
 	$timestamp = "1409304348";
 	$nonce = "123456";
 	$text = "<xml>
@@ -179,31 +202,38 @@ try{
 	echo "密文解密后消息" . "</br>";
 	var_dump($res);
 	echo "</br>";
-	echo "-------------------------------------------------" . "</br>";*/
+	echo "-------------------------------------------------" . "</br>";
+	exit;*/
 	//公众号回复消息
 	/*$message = [
 		"ToUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
 		"FromUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
 		"Content" => "您好"
 	];
-	$wechat->replyUser(Waljqiang\Wechat\Handles\Message::TEXT,$message);*/
+	$wechat->replyUser(Waljqiang\Wechat\Handles\Message::TEXT,$message);
+	exit;*/
 	//设置所属行业
 	/*$res = $wechat->setIndustry("1","4");
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//获取所属行业
 	/*$res = $wechat->getIndustry();
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//获取模板id
 	/*$res = $wechat->getTemplateID("TM00015");
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//获取模板列表
 	/*$res = $wechat->getTemplateList();
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//删除模板
 	/*$res = $wechat->deleteTemplate("123");
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//发送模板消息
-	$message = [
+	/*$message = [
 		"first" => [
 			"value" => "恭喜你购买成功",
 			"color" => "#173177"
@@ -225,11 +255,13 @@ try{
 			"color" => "#173177"
 		]
 	];
-	/*$res = $wechat->sendTemplate("o9lXF0oPTBOMS44dILU1kfZMlra0","ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",$message);
-	var_dump($res);*/
+	$res = $wechat->sendTemplate("o9lXF0oPTBOMS44dILU1kfZMlra0","ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",$message);
+	var_dump($res);
+	exit;*/
 	//上传图片
 	/*$res = $wechat->uploadImage("./timg.jpg");
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//创建门店
 	/*$data = [
 		"sid" => "33788392",
@@ -257,13 +289,16 @@ try{
 		"avg_price" => 35
 	];
 	$res = $wechat->createShop($data);
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//查询门店信息
 	/*$res = $wechat->getShop("271262077");
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//查询门店列表
 	/*$res = $wechat->getShopList();
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//修改门店信息
 	/*$data = [
 		"poi_id" => "271864249",
@@ -281,47 +316,59 @@ try{
 		"avg_price" => 35
 	];
 	$res = $wechat->modifyShop($data);
-	var_dump($res);*/
-	//删除门店
-	$res = $wechat->deleteShop("271864249");
 	var_dump($res);
+	exit;*/
+	//删除门店
+	/*$res = $wechat->deleteShop("271864249");
+	var_dump($res);
+	exit;*/
 	//身份证识别
-/*	$res = Wechat::getInstance()->identityCard("./my.jpg");
-	var_dump($res);*/
+	/*$res = $wechat->identityCard("./my.jpg");
+	var_dump($res);
+	exit;*/
 	//银行卡识别
-/*	$res = Wechat::getInstance()->bankCard("./my.jpg");
-	var_dump($res);*/
+	/*$res = $wechat->bankCard("./my.jpg");
+	var_dump($res);
+	exit;*/
 	//获取wifi门店列表
-/*	$res = Wechat::getInstance()->getWifiShopList(1,10);
-	var_dump($res);*/
+	/*$res = $wechat->getWifiShopList(1,10);
+	var_dump($res);
+	exit;*/
 	//查询wifi门店信息
-/*	$res = Wechat::getInstance()->getWifiShop(429620);
-	var_dump($res);*/
+	/*$res = $wechat->getWifiShop(429620);
+	var_dump($res);
+	exit;*/
 	//修改wifi门店信息
 	/*$data = [
 		"shop_id" => 429620,
 	    "old_ssid" => "WX123",
 	    "ssid" => "WX567"
 	];
-	$res = Wechat::getInstance()->modifyWifiShop($data);
-	var_dump($res);*/
+	$res = $wechat->modifyWifiShop($data);
+	var_dump($res);
+	exit;*/
 	//添加密码型设备
-	/*$res = Wechat::getInstance()->addPasswordDevice(429620,"WX123","123456789");
-	var_dump($res);*/
+	/*$res = $wechat->addPasswordDevice(429620,"WX123","123456789");
+	var_dump($res);
+	exit;*/
 	//添加portal设备
-	/*$res = Wechat::getInstance()->addPortalDevice(429620,"123");
-	var_dump($res);*/
+	/*$res = $wechat->addPortalDevice(429620,"123");
+	var_dump($res);
+	exit;*/
 	//获取设备列表
-/*	$res = Wechat::getInstance()->getDeviceList();
-	var_dump($res);*/
+	/*$res = $wechat->getDeviceList();
+	var_dump($res);
+	exit;*/
 	//配置连网方式
-	/*$res = Wechat::getInstance()->wifiQrcode(429620,"WX123");
-	var_dump($res);*/
+	/*$res = $wechat->wifiQrcode(429620,"WX123");
+	var_dump($res);
+	exit;*/
 	//查询wifi数据统计
-	/*$res = Wechat::getInstance()->getWifiStatistics("2020-03-01","2020-03-12");
-	var_dump($res);*/
+	/*$res = $wechat->getWifiStatistics("2020-03-01","2020-03-12");
+	var_dump($res);
+	exit;*/
 	//设置门店卡券信息
-	/*$res = Wechat::getInstance()->setWifiCoupon(
+	/*$res = $wechat->setWifiCoupon(
 		[
 			"shop_id" => 429620,
 			"card_id" => "pBnTrjvZJXkZsPGwfq9F0Hl0WqE",
@@ -330,13 +377,15 @@ try{
 		  	"end_time" => 1457712000
 		]
 	);
-	var_dump($res);*/
+	var_dump($res);
+	exit;*/
 	//查询门店卡券投放信息
-/*	$res = Wechat::getInstance()->getWifiCoupon(429620);
-	var_dump($res);*/
+	/*$res = $wechat->getWifiCoupon(429620);
+	var_dump($res);
+	exit;*/
 	//微信支付统一下单接口
 	//生成支付二维码
-/*	$data = [
+	/*$data = [
 		"body" => "商品描述",
 		"attach" => "附加数据",
 		"total_fee" => "888",
@@ -392,46 +441,46 @@ try{
 		    ]
 		]
 	];*/
-/*	$config = [
+	/*$config = [
 		"appid" => "wxdaa43d75b815f44e",//微信分配的公众账号ID（企业号corpid即为此appId)
 		"mch_id" => "1347427701",//微信支付分配的商户号
 		"key" => "otDEIs5YfaplAzvzXS5uBVFS7VD8rb12",
 		"appsecret" => "3343b17da99cbd77d32d1d18f68f739a",
 		"notify_url" => "http://www.yowifi.net/Wechat/wxpayh5",//接收微信支付异步通知回调地址,通知url必须为直接可访问的url,不能携带参数
 	];
-	$res = Wechat::getInstance()->unifiedOrder($data,$config);
+	$res = $wechat->unifiedOrder($data,$config);
 	var_dump($res);*/
 	//查询订单
-	/*$data = [
+	$data = [
 		"transaction_id" => "1009660380201506130728806387",
 		"out_trade_no" => "20150806125346",
 	];
-	$res = Wechat::getInstance()->orderQuery($data);
-	var_dump($res);*/
+	$res = $wechat->orderQuery($data);
+	var_dump($res);
 	//关闭订单
-/*	$res = Wechat::getInstance()->closeOrder(["out_trade_no" => "20150806125346"]);
+	/*$res = $wechat->closeOrder(["out_trade_no" => "20150806125346"]);
 	var_dump($res);*/
 	//申请退款
-/*	$data = [
+	/*$data = [
 		"transaction_id" => "1217752501201407033233368018",
 		"out_trade_no" => "1415757673",
 		"out_refund_no" => "1415701182",
 		"total_fee" => 100,
 		"refund_fee" => 100
 	];
-	$res = Wechat::getInstance()->refund($data);
+	$res = $wechat->refund($data);
 	var_dump($res);*/
 	//查询退款
-/*	$data = [
+	/*$data = [
 		"out_trade_no" => "1415757673"
 	];
-	$res = Wechat::getInstance()->refundQuery($data);
+	$res = $wechat->refundQuery($data);
 	var_dump($res);*/
 	//下载对账单
-/*	$data = [
+	/*$data = [
 		"bill_date" => "20200316"
 	];
-	$res = Wechat::getInstance()->downloadBill($data);
+	$res = $wechat->downloadBill($data);
 	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);
