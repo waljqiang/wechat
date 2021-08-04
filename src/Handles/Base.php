@@ -160,13 +160,7 @@ class Base{
 			"statistics" => "https://api.weixin.qq.com/bizwifi/statistics/list?access_token=%s",//统计WiFi数据
 			"couponput_set" => "https://api.weixin.qq.com/bizwifi/couponput/get?access_token=%s",//设置门店卡券投放
 			"couponput_get" => "https://api.weixin.qq.com/bizwifi/couponput/get?access_token=%s",//查询门店卡券信息
-		],
-
-
-
-	
-
-	
+		],	
 	];
 
 	/**

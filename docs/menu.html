@@ -14,7 +14,7 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class Menu extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Base</a></div>
+        <div class="main_body">class Menu extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Waljqiang\Wechat\Handles\Base</a></div>
     </div>
 
     <div id="box_expresion" class="layout_main_middle">
@@ -28,28 +28,136 @@
                 </tr>
             </thead>
             <tbody class="tbody_params">
-            	<tr>
-                    <td>UMENUSET</td>
-                    <td>微信创建自定义菜单API地址</td>
+                <tr>
+                    <td>parent::MENU</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UMENUGET</td>
-                    <td>微信查询自定义菜单API地址</td>
+                    <td>parent::TAG</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UMENUDEL</td>
-                    <td>微信删除自定义菜单API地址</td>
+                    <td>parent::TAGFANS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERTAGS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERINFO</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::QRCODE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::KFACCOUNT</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>parent::INDUSTRY</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TEMPLATELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::DEVICELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::AVATARTYPE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPIMAGE</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
             </tbody>
         </table>
     </div>
-
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>parent::$api</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::$wechat</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
             <thead class="thead_params">
@@ -61,9 +169,31 @@
                 </tr>
             </thead>
         </table>
+        <div>
+        	<div class="methods_body">parent::__construct(Wechat $wechat)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
 
         <div>
-        	<div class="methods_body">public setMenu($options)</div>
+        	<div class="methods_body">parent::setWechat(Wechat $wechat)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+        <div>
+        	<div class="methods_body">public function setMenu($options)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -158,7 +288,7 @@
 	            	<tr>
 	                    <td><pre>
 示例1:
-Wechat::getInstance()->setMenu([
+$wechat->setMenu([
 	"button" => [
 		[
 			"type" => "view",
@@ -182,7 +312,6 @@ Wechat::getInstance()->setMenu([
 	                <tr>
 	                    <td><pre>
 示例2:
-$wechat = Wechat::getInstance();
 $menu = new Menu($wechat);
 $menu->setMenu([
 	"button" => [
@@ -233,16 +362,14 @@ $menu->setMenu([
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                	</pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public getMenu()</div>
+        	<div class="methods_body">public function getMenu()</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -283,13 +410,12 @@ true
 	            	<tr>
 	                    <td><pre>
 示例1:
-Wechat::getInstance()->getMenu();
+$wechat->getMenu();
 	                    </pre></td>
 	                </tr>
 	                <tr>
 	                    <td><pre>
 示例2:
-$wechat = Wechat::getInstance();
 $menu = new Menu($wechat);
 $menu->getMenu();
 	                    </pre></td>
@@ -480,7 +606,7 @@ $menu->getMenu();
         </div>
 
         <div>
-        	<div class="methods_body">public deleteMenu()</div>
+        	<div class="methods_body">public function deleteMenu()</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -521,13 +647,12 @@ $menu->getMenu();
 	            	<tr>
 	                    <td><pre>
 示例1:
-Wechat::getInstance()->deleteMenu();
+$wechat->deleteMenu();
 	                    </pre></td>
 	                </tr>
 	                <tr>
 	                    <td><pre>
 示例2:
-$wechat = Wechat::getInstance();
 $menu = new Menu($wechat);
 $menu->deleteMenu();
 	                    </pre></td>
@@ -560,9 +685,7 @@ $menu->deleteMenu();
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>

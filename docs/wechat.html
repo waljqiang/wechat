@@ -27,12 +27,6 @@
                 </tr>
             </thead>
             <tbody class="tbody_params">
-            	<tr>
-                    <td>UACCESSTOKEN</td>
-                    <td>微信获取access_tokenAPI地址</td>
-                    <td></td>
-                    <td></td>
-                </tr>
                 <tr>
                     <td>ACCESSTOKEN</td>
                     <td>access_token缓存key标识</td>
@@ -53,6 +47,36 @@
                 </tr>
             </thead>
             <tbody class="tbody_params">
+            	<tr>
+                    <td>private array</td>
+                    <td>$api</td>
+                    <td>微信公众号API地址</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>public static</td>
+                    <td>$pre_expire_in</td>
+                    <td>缓存提前过期时间</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>public static</td>
+                    <td>$common_expire_in</td>
+                    <td>公共缓存时间</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>public boolean</td>
+                    <td>$encode</td>
+                    <td>是否启用消息加密</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>public string</td>
+                    <td>$publish_account</td>
+                    <td>全网发布测试账号</td>
+                    <td></td>
+                </tr>
                 <tr>
                     <td>private string</td>
                     <td>$appid</td>
@@ -61,58 +85,52 @@
                 </tr>
                 <tr>
                     <td>private string</td>
-                    <td>$secret</td>
-                    <td>微信公众号scret</td>
+                    <td>$appSecret</td>
+                    <td>微信公众号appSecret</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>public static boolean</td>
-                    <td>$cache</td>
-                    <td>是否启用缓存</td>
+                    <td>private string</td>
+                    <td>$encodingAesKey</td>
+                    <td>微信公众号encodingAesKey</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>public static boolean</td>
-                    <td>$encode</td>
-                    <td>是否启用消息加密</td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td>public static array</td>
-                    <td>$config</td>
-                    <td>Wechat配置信息</td>
+                    <td>private string</td>
+                    <td>$token</td>
+                    <td>微信公众号token</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>public Redis</td>
+                    <td>private Redis</td>
                     <td>$redis</td>
                     <td>redis客户端</td>
-                    <td>from Waljqiang\Wechat\Redis\Redis</td>
+                    <td>from Waljqiang\Wechat\Redis</td>
                 </tr>
                 <tr>
-                    <td>public Client</td>
-                    <td>$httpClient</td>
-                    <td>http请求类</td>
-                    <td>from GuzzleHttp\Client</td>
-                </tr>
-                <tr>
-                    <td>public Logger</td>
+                    <td>private Logger</td>
                     <td>$logger</td>
                     <td>日志类</td>
                     <td>from Waljqiang\Wechat\Logger</td>
                 </tr>
                 <tr>
+                    <td>private Client</td>
+                    <td>$httpClient</td>
+                    <td>http请求类</td>
+                    <td>from GuzzleHttp\Client</td>
+                </tr>
+                
+                <tr>
                     <td>private Decrypt</td>
                     <td>$decrypt</td>
-                    <td>加密类</td>
+                    <td>加解密类</td>
                     <td>from Waljqiang\Wechat\Decryption\Decrypt</td>
                 </tr>
                 <tr>
-                    <td>public static</td>
-                    <td>$accessTokenExpire</td>
-                    <td>access_tokeng过期时间</td>
-                    <td>from Waljqiang\Wechat\Decryption\Decrypt</td>
+                    <td>private Pay</td>
+                    <td>$pay</td>
+                    <td>支付类</td>
+                    <td>from Waljqiang\Wechat\Pay</td>
                 </tr>
                 <tr>
                     <td>private string</td>
@@ -121,9 +139,9 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <td>private static array</td>
-                    <td>$instances</td>
-                    <td>类静态实例</td>
+                    <td>private array</td>
+                    <td>$handles</td>
+                    <td>微信接口处理类</td>
                     <td></td>
                 </tr>
             </tbody>
@@ -141,7 +159,7 @@
             </thead>
         </table>
         <div>
-        	<div class="methods_body">public __construct()</div>
+        	<div class="methods_body">public function __construct(Redis $redis,Logger $logger,$config)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -154,10 +172,46 @@
 	                </tr>
 	            </tbody>
 	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>Waljqiang\Wechat\Redis</td>
+	                    <td>$redis</td>
+	                    <td>redis实例</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>Waljqiang\Wechat\Logger</td>
+	                    <td>$logger</td>
+	                    <td>Logger实例</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>$config</td>
+	                    <td>微信公众号配置项</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public init($appid,$secret)</div>
+        	<div class="methods_body">public function init($appid,$appSecret)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -194,8 +248,8 @@
 	                </tr>
 	                <tr>
 	                    <td>string</td>
-	                    <td>$secret</td>
-	                    <td>微信公众号secret</td>
+	                    <td>$appSecret</td>
+	                    <td>微信公众号appSecret</td>
 	                    <td></td>
 	                </tr>
 	            </tbody>
@@ -209,7 +263,7 @@
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->init("wxfae2fb734a9ddf58","78fd8a05411fbfd3b1e899d8a64b026a");
+$wechat->init("wxfae2fb734a9ddf58","78fd8a05411fbfd3b1e899d8a64b026a");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -217,15 +271,15 @@ Wechat::getInstance()->init("wxfae2fb734a9ddf58","78fd8a05411fbfd3b1e899d8a64b02
 	       	<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
+	                    <td>返回参数说明</td>
+	                    <td></td>
+	                    <td></td>
 	                    <td></td>         
 	                </tr>
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>void</td>
+	                    <td>Waljqiang\Wechat\Wechat实例</td>
 	                    <td></td>
 	                    <td></td>
 	                    <td></td>
@@ -240,16 +294,14 @@ Wechat::getInstance()->init("wxfae2fb734a9ddf58","78fd8a05411fbfd3b1e899d8a64b02
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-
-	                	</pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public initDecrypt($token,$encodingAesKey,$appid)</div>
+        	<div class="methods_body">public function setPay($config)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -258,7 +310,7 @@ Wechat::getInstance()->init("wxfae2fb734a9ddf58","78fd8a05411fbfd3b1e899d8a64b02
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>初始化Decrypt类,当用户不想使用配置文件中加密参数时,可使用该方法进行token,encodingAesKey,appid进行初始化</td>
+	                    <td>设置微信支付器</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -279,22 +331,12 @@ Wechat::getInstance()->init("wxfae2fb734a9ddf58","78fd8a05411fbfd3b1e899d8a64b02
 	                    <td>备注</td>
 	                </tr>
 	                <tr>
-	                    <td>string</td>
-	                    <td>$token</td>
-	                    <td>微信公众号中配置的token</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$encodingAesKey</td>
-	                    <td>微信公众号中配置的encodingAesKey</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$appid</td>
-	                    <td>微信公众号appid</td>
-	                    <td></td>
+	                    <td>array</td>
+	                    <td>$config</td>
+	                    <td>微信支付配置项</td>
+	                    <td>
+	                    	必须包含示例中的配置参数
+	                    </td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -307,7 +349,13 @@ Wechat::getInstance()->init("wxfae2fb734a9ddf58","78fd8a05411fbfd3b1e899d8a64b02
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->initDecrypt("pamtest","abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG","wxfae2fb734a9ddf58");
+$wechat->setPay([
+		"appid" => "wxdaa43d75b815f44e",//微信分配的公众账号ID（企业号corpid即为此appId)
+		"mch_id" => "1347427701",//微信支付分配的商户号
+		"key" => "otDEIs5YfaplAzvzXS5uBVFS7VD8rb12",
+		"appsecret" => "3343b17da99cbd77d32d1d18f68f739a",
+		"notify_url" => "http://www.yowifi.net/Wechat/wxpayh5",//接收微信支付异步通知回调地址,通知url必须为直接可访问的url,不能携带参数
+	]);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -338,16 +386,14 @@ Wechat::getInstance()->initDecrypt("pamtest","abcdefghijklmnopqrstuvwxyz01234567
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public getAccessToken()</div>
+        	<div class="methods_body">public function getAccessToken()</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -387,14 +433,14 @@ Wechat::getInstance()->initDecrypt("pamtest","abcdefghijklmnopqrstuvwxyz01234567
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getAccessToken();
+$wechat->getAccessToken();
 	                    </pre></td>
 	                </tr>
 	                <tr>
 	                	<td><pre>
 不使用配置文件中的appid时:
-Wechat::getInstance()->init("wxfae2fb734a9ddf58","78fd8a05411fbfd3b1e899d8a64b026a");
-Wechat::getInstance()->getAccessToken();
+$wechat->init("wxfae2fb734a9ddf58","78fd8a05411fbfd3b1e899d8a64b026a");
+$wechat->getAccessToken();
 	                	</pre></td>
 	                </tr>
 	            </tbody>
@@ -440,7 +486,7 @@ Wechat::getInstance()->getAccessToken();
         </div>
 
         <div>
-        	<div class="methods_body">public getAppid()</div>
+        	<div class="methods_body">public function getAppid()</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -526,7 +572,7 @@ Wechat::getInstance()->getAppid();
         </div>
 
         <div>
-        	<div class="methods_body">public getSecret()</div>
+        	<div class="methods_body">public function getAppSecret()</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -535,7 +581,7 @@ Wechat::getInstance()->getAppid();
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>获取公众号使用的secret</td>
+	                    <td>获取公众号使用的appSecret</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -566,7 +612,7 @@ Wechat::getInstance()->getAppid();
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getSecret();
+$wechat->getAppSecret();
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -590,7 +636,7 @@ Wechat::getInstance()->getSecret();
 	            	<tr>
 	                    <td>string</td>
 	                    <td></td>
-	                    <td>返回Wechat的私有属性scret</td>
+	                    <td>返回Wechat的私有属性appSecret</td>
 	                    <td></td>
 	                </tr>
 	            </tbody>
@@ -612,7 +658,7 @@ Wechat::getInstance()->getSecret();
         </div>
 
         <div>
-        	<div class="methods_body">public getPublishAccount()</div>
+        	<div class="methods_body">public function getRedis()</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -621,7 +667,7 @@ Wechat::getInstance()->getSecret();
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>获取公众号配置的全网发布账号</td>
+	                    <td>返回Waljqiang\Wechat\Redis实例</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -652,7 +698,7 @@ Wechat::getInstance()->getSecret();
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getPublishAccount();
+$wechat->getRedis();
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -674,9 +720,9 @@ Wechat::getInstance()->getPublishAccount();
 	                    <td>备注</td>
 	                </tr>
 	            	<tr>
-	                    <td>string</td>
+	                    <td>Waljqiang\Wechat\Redis</td>
 	                    <td></td>
-	                    <td>返回公众号配置的全网发布账号</td>
+	                    <td>redis实例</td>
 	                    <td></td>
 	                </tr>
 	            </tbody>
@@ -689,16 +735,266 @@ Wechat::getInstance()->getPublishAccount();
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-"gh_3c884a361561"
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public request($url,$method = 'GET',$options = [])</div>
+        	<div class="methods_body">public function getLogger()</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>返回Waljqiang\Wechat\Logger实例</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数示例</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+$wechat->getLogger();
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>Waljqiang\Wechat\Logger</td>
+	                    <td></td>
+	                    <td>Logger实例</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>无</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public function getDecrypt()</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>返回Waljqiang\Wechat\Decryption\Decrypt实例</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数示例</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+$wechat->getDecrypt();
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>Waljqiang\Wechat\Decryption\Decrypt</td>
+	                    <td></td>
+	                    <td>Decrypt实例</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>无</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public function getPay()</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>返回Waljqiang\Wechat\Pay实例</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数示例</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>无</td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+$wechat->getPay();
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>Waljqiang\Wechat\Pay</td>
+	                    <td></td>
+	                    <td>Pay实例</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>无</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public function request($url,$method = "GET",$data = [],$header = [])</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -744,8 +1040,14 @@ Wechat::getInstance()->getPublishAccount();
 	                </tr>
 	                <tr>
 	                    <td>array</td>
-	                    <td>$options</td>
+	                    <td>$data</td>
 	                    <td>GuzzleHttp\Client请求参数</td>
+	                    <td>默认为[]</td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>$header</td>
+	                    <td>GuzzleHttp\Client请求头参数</td>
 	                    <td>默认为[]</td>
 	                </tr>
 	            </tbody>
@@ -796,16 +1098,14 @@ Wechat::getInstance()->request("http://www.baidu.com");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-无
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public encryptMsg($replyMsg, $timeStamp = NULL, $nonce = NULL)</div>
+        	<div class="methods_body">private function loaderHandles()</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -814,7 +1114,7 @@ Wechat::getInstance()->request("http://www.baidu.com");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>消息加密</td>
+	                    <td>加载微信公众号处理类</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -828,30 +1128,6 @@ Wechat::getInstance()->request("http://www.baidu.com");
 	                </tr>
 	            </thead>
 	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	            	<tr>
-	                    <td>string</td>
-	                    <td>$replyMsg</td>
-	                    <td>加密前消息，xml格式</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$timeStamp</td>
-	                    <td>时间戳</td>
-	                    <td>默认为NULL，取系统时间戳</td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$nonce</td>
-	                    <td>随机字符串</td>
-	                    <td>默认为NULL，系统自动生成</td>
-	                </tr>
 	            </tbody>
 	       	</table>
 	       	<table class="tbl_params">
@@ -861,47 +1137,6 @@ Wechat::getInstance()->request("http://www.baidu.com");
 	                </tr>
 	            </thead>
 	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre><xmp>
-$text = '<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName><FromUserName>
-	<![CDATA[gh_7f083739789a]]></FromUserName><CreateTime>1407743423</CreateTime><MsgType><![CDATA[video]]>
-	</MsgType><Video><MediaId><![CDATA[eYJ1MbwPRJtOvIEabaxHs7TX2D-HV71s79GUxqdUkjm6Gs2Ed1KF3ulAOA9H1xG0]]>
-	</MediaId><Title><![CDATA[testCallBackReplyVideo]]></Title><Description><![CDATA[testCallBackReplyVideo]]>
-	</Description></Video></xml>';
-$timeStamp = "1409304348";
-$nonce = "123456";
-Wechat::getInstance()->encryptMsg($text,$timeStamp,$nonce);
-	                    </xmp></pre></td>
-	                </tr>
-	                <tr><pre>
-如果不使用配置文件中信息，需要在调用encryptMst方法之前，加入如下初始化方法:
-Wechat::getInstance()->init("wx5b18b274db7372d6","3cfcde5dfaf9eb01c2762a5aeadf68b2");
-Wechat::getInstance()->initDecrypt("pamtest","abcdefghijklmnopqrstuvwxyz0123456789ABCDEFG","wxfae2fb734a9ddf58");
-	                </pre></tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	            	<tr>
-	                    <td>string</td>
-	                    <td></td>
-	                    <td>加密后信息</td>
-	                    <td></td>
-	                </tr>
 	            </tbody>
 	       	</table>
 	       	<table class="tbl_params">
@@ -912,140 +1147,12 @@ Wechat::getInstance()->initDecrypt("pamtest","abcdefghijklmnopqrstuvwxyz01234567
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre><xmp>
-'<xml><Encrypt><![CDATA[FVdB5EhL0Q6Rsvg7f2vW+w3YIhTdxg0+GgmAh3pY0C5UwZ9WsxshRzL9wYNabY0Ep5Noo2CzRwGDvesz7nkwyZSqthGFxlqh5GrqDUbgTcjofE76E2t5TT/
-	zEllSw2UhwLvs2QApJ6184/MXW7sJIxSHoGPIeaIpxDdsHVUUwWQv+nvgbWQ75ycF1wOkjJcDY0aGJaqb138pPshsMxbmzOMjTcQPlEmgq83iOVEOMBLlXfN/
-	DxuxK5cuZG1nQWxsDCGg+alsawiypp5KHkcw4h9V5Vm4WEPB+OKXhgryYY2krBna4D3a2ybcRR/JORH/
-	SxJFsjTTDseSgB7tNiPHhfm07hW13LWRhehBeTlk1fR8GzwLSaTabGv4acExUdkcKsjBAN/BALFwGSWTuLefvZw/
-	NPOLPA038Zjy7GbIwO7eCZyXSYNyeKJmuCJIZXIqId0LPBLUAgXpqT+rWE/k]]></Encrypt><MsgSignature>
-		<![CDATA[dsafdesewrwsfqewfdsafewsd]]></MsgSignature>
-<TimeStamp>1409304348</TimeStamp>
-<Nonce><![CDATA[123456]]></Nonce>
-</xml>'
-	                    </xmp></pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
-        <div>
-        	<div class="methods_body">public decryptMsg($signature,$timeStamp,$nonce,$encryptMsg)</div>
-	        <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>解密消息</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	        <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数示例</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	            	<tr>
-	                    <td>string</td>
-	                    <td>$signature</td>
-	                    <td>消息签名</td>
-	                    <td>对应微信公众号推送消息url中signature</td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$timeStamp</td>
-	                    <td>时间戳</td>
-	                    <td>对应微信公众号推送消息url中timestamp</td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$nonce</td>
-	                    <td>随机数</td>
-	                    <td>对应微信公众号推送消息url中nonce</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre><xmp>
-    $format = "<xml><ToUserName><![CDATA[oia2Tj我是中文jewbmiOUlr6X-1crbLOvLw]]></ToUserName><Encrypt>
-    	<![CDATA[FVdB5EhL0Q6Rsvg7f2vW+w3YIhTdxg0+GgmAh3pY0C5UwZ9WsxshRzL9wYNabY0Ep5Noo2CzRwGDvesz7nkwyZSqthGFxlqh
-    	5GrqDUbgTcjofE76E2t5TT/zEllSw2UhwLvs2QApJ6184/MXW7sJIxSHoGPIeaIpxDdsHVUUwWQv+nvgbWQ75yc
-    	F1wOkjJcDY0aGJaqb138pPshsMxbmzOMjTcQPlEmgq83iOVEOMBLlXfN/DxuxK5cuZG1nQWxsDCGg+alsawi
-    	ypp5KHkcw4h9V5Vm4WEPB+OKXhgryYY2krBna4D3a2ybcRR/JORH/SxJFsjTTDseSgB7tNiPHhfm07hW13LWRhehBeTlk1f
-    	R8GzwLSaTabGv4acExUdkcKsjBAN/BALFwGSWTuLefvZw/NPOLPA038Zjy7GbIwO7eCZyXSYNyeKJmuCJIZXIqId0L
-    	PBLUAgXpqT+rWE/k]]></Encrypt></xml>";
-	$res = Wechat::getInstance()->decryptMsg("dsafdesewrwsfqewfdsafewsd", "1409304348","123456",$format);
-	                    </xmp></pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	            	<tr>
-	                    <td>string</td>
-	                    <td></td>
-	                    <td>解密后的消息</td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre><xmp>
-'<xml><Encrypt><![CDATA[FVdB5EhL0Q6Rsvg7f2vW+w3YIhTdxg0+GgmAh3pY0C5UwZ9WsxshRzL9wYNabY0Ep5Noo2CzRwGDvesz7nkwyZSqthGFxlqh5Gr
-	qDUbgTcjofE76E2t5TT/zEllSw2UhwLvs2QApJ6184/MXW7sJIxSHoGPIeaIpxDdsHVUUwWQv+nvgbWQ75ycF1wOkjJcDY0aGJaqb138p
-	PshsMxbmzOMjTcQPlEmgq83iOVEOMBLlXfN/DxuxK5cuZG1nQWxsDCGg+alsawiypp5KHkcw4h9V5Vm4WEPB+OKXhgryYY2krBna4D3a2ybc
-	RR/JORH/SxJFsjTTDseSgB7tNiPHhfm07hW13LWRhehBeTlk1fR8GzwLSaTabGv4acExUdkcKsjBAN/BALFwGSWTuLefvZw/NPOLPA038Zjy7GbIwO7eCZyXSYNyeKJmuCJIZXIqId0LPBLUAgXpqT+rWE/k]]>
-</Encrypt><MsgSignature>
-	<![CDATA[dsafdesewrwsfqewfdsafewsd]]></MsgSignature>
-<TimeStamp>1409304348</TimeStamp>
-<Nonce><![CDATA[123456]]></Nonce>
-</xml>'
-	                    </xmp></pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
     </div>
 </body>
 </html>

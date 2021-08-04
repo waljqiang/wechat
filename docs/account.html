@@ -14,7 +14,7 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class Account extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Base</a></div>
+        <div class="main_body">class Account extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Waljqiang\Wechat\Handles\Base</a></div>
     </div>
 
     <div id="box_expresion" class="layout_main_middle">
@@ -29,14 +29,130 @@
             </thead>
             <tbody class="tbody_params">
             	<tr>
-                    <td>UQRCODETICKET</td>
-                    <td>微信获取二维码ticket API地址</td>
+                    <td>parent::MENU</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UQRCODE</td>
-                    <td>微信获取二维码API地址</td>
+                    <td>parent::TAG</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TAGFANS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERTAGS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERINFO</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::QRCODE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::KFACCOUNT</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>parent::INDUSTRY</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TEMPLATELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::DEVICELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::AVATARTYPE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPIMAGE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>parent::$api</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::$wechat</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -55,9 +171,143 @@
                 </tr>
             </thead>
         </table>
+        <div>
+        	<div class="methods_body">parent::__construct(Wechat $wechat)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
 
         <div>
-        	<div class="methods_body">private getTicket($data)</div>
+        	<div class="methods_body">parent::setWechat(Wechat $wechat)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">public function getQrcode($str,$type = "QR_SCENE",$expire = 30)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>生成带参数的二维码</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>mixed</td>
+	                    <td>$str</td>
+	                    <td>二维码参数,为数字或字符串</td>
+	                    <td>具体格式要求请查看微信公众号文档相关说明</td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$type</td>
+	                    <td>二维码类型</td>
+	                    <td>QR_SCENE临时的整型参数值;QR_STR_SCENE,临时的字符串参数值;QR_LIMIT_SCENE,永久的整型参数值;QR_LIMIT_STR_SCENE,永久的字符串参数值,默认为QR_SCENE</td>
+	                </tr>
+	                <tr>
+	                    <td>integer</td>
+	                    <td>$expire</td>
+	                    <td>二维码过期时间</td>
+	                    <td>默认为30秒</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+示例1:
+$wechat->getQrcode(12);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$account = new Account($wechat);
+$account->getQrcode(12);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	            	<tr>
+	                    <td>string</td>
+	                    <td></td>
+	                    <td>二维码地址</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>
+https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQHE7jwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyZUlIQ3RMU2xmNWkxalQ1RHh1MWIAAgR-BWdeAwR4AAAA
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+        <div>
+        	<div class="methods_body">private function getTicket($data)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -126,9 +376,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-无
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -183,119 +431,6 @@
 	"url" => "http://weixin.qq.com/q/kZgfwMTm72WWPkovabbI"
 ]
 	                	</pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        <div>
-        	<div class="methods_body">public getQrcode($str,$type = "QR_SCENE",$expire = 30)</div>
-	        <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>生成带参数的二维码</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	        <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>mixed</td>
-	                    <td>$str</td>
-	                    <td>二维码参数,为数字或字符串</td>
-	                    <td>具体格式要求请查看微信公众号文档相关说明</td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$type</td>
-	                    <td>二维码类型</td>
-	                    <td>QR_SCENE临时的整型参数值;QR_STR_SCENE,临时的字符串参数值;QR_LIMIT_SCENE,永久的整型参数值;QR_LIMIT_STR_SCENE,永久的字符串参数值,默认为QR_SCENE</td>
-	                </tr>
-	                <tr>
-	                    <td>integer</td>
-	                    <td>$expire</td>
-	                    <td>二维码过期时间</td>
-	                    <td>默认为30秒</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-示例1:
-Wechat::getInstance()->getQrcode(12);
-	                    </pre></td>
-	                </tr>
-	                <tr>
-	                    <td><pre>
-示例2:
-$wechat = Wechat::getInstance();
-$account = new Account($wechat);
-$account->getQrcode(12);
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	            	<tr>
-	                    <td>string</td>
-	                    <td></td>
-	                    <td>二维码地址</td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQHE7jwAAAAAAAAAAS5odHRwOi8vd2VpeGluLnFxLmNvbS9xLzAyZUlIQ3RMU2xmNWkxalQ1RHh1MWIAAgR-BWdeAwR4AAAA
-	                    </pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>

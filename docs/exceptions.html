@@ -28,93 +28,137 @@
             </thead>
             <tbody class="tbody_params">
                 <tr>
-                    <td>RESULTERROR</td>
-                    <td>返回结果解析错误</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UNSUPPORT</td>
-                    <td>不支持的方法</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>USERREMARKERROR</td>
-                    <td>用户备注名必须小于30个字符</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>TAGNAMEERROR</td>
-                    <td>标签名长度超过30个字符</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UNSUPPORTMESSAGETYPE</td>
-                    <td>不支持的消息类型</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UNSUPPORTFILETYPE</td>
-                    <td>不支持的文件类型</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>FILENO</td>
-                    <td>文件不存在</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>ASEENCODEERROR</td>
-                    <td>aes 加密失败</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>ASEDECODEERROR</td>
-                    <td>aes 解密失败</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>ASEDECODEBUFFERERROR</td>
-                    <td>解密后得到的buffer非法</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td>APPIDINVALID</td>
-                    <td>appid 校验错误</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>SHAENCODEERROR</td>
-                    <td>aes sha加密生成签名失败</td>
-                    <td></td>
+                    <td>appid无效</td>
+                    <td>600900100</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>XMLPARSEERROR</td>
-                    <td>xml解析失败</td>
-                    <td></td>
+                    <td>APPSECRETINVALID</td>
+                    <td>secret无效</td>
+                    <td>600900101</td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>ENCODINGKEYERROR</td>
-                    <td>encodingAesKey 非法</td>
+                    <td>AESKEYINVALID</td>
+                    <td>encodingAesKey无效</td>
+                    <td>600900102</td>
                     <td></td>
+                </tr>
+                <tr>
+                    <td>GENERATESIGANATUREFAILURE</td>
+                    <td>生成签名失败</td>
+                    <td>600900103</td>
                     <td></td>
                 </tr>
                 <tr>
                     <td>SIGNATUREERROR</td>
                     <td>签名验证错误</td>
+                    <td>600900104</td>
                     <td></td>
+                </tr>
+                <tr>
+                    <td>ENCODINGFAILURE</td>
+                    <td>加密失败</td>
+                    <td>600900105</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DECRYPTFAILURE</td>
+                    <td>解密失败</td>
+                    <td>600900106</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>BASE64ENCODEFAILURE</td>
+                    <td>base64加密失败</td>
+                    <td>600900107</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>BASE64DECRYPTFAILURE</td>
+                    <td>base64解密失败</td>
+                    <td>600900108</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>BUFFERINIVALID</td>
+                    <td>解密后的buffer非法</td>
+                    <td>600900109</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>GENERATEXMLFAILURE</td>
+                    <td>生成xml失败</td>
+                    <td>600900110</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>XMLPARSEERROR</td>
+                    <td>xml解析错误</td>
+                    <td>600900111</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>ATTRIBUTEMISS</td>
+                    <td>缺少必要的属性</td>
+                    <td>600900112</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>HTTPREQUESTERROR</td>
+                    <td>http请求失败</td>
+                    <td>600900113</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>HTTPRESPONSEEXPLAINFAILURE</td>
+                    <td>http返回结果解析失败</td>
+                    <td>600900114</td>
+                    <td></td>
+                </tr>
+
+
+                <tr>
+                    <td>UNSUPPORTMETHOD</td>
+                    <td>不支持的方法</td>
+                    <td>600900115</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>TAGNAMEERROR</td>
+                    <td>标签名长度超过30个字符</td>
+                    <td>600900116</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>USERREMARKINVALID</td>
+                    <td>用户备注名称不合法</td>
+                    <td>600900117</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UNSUPPORTFILETYPE</td>
+                    <td>不支持的文件类型</td>
+                    <td>600900118</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>FILENO</td>
+                    <td>文件不存在</td>
+                    <td>600900119</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>UNSUPPORTMESSAGETYPE</td>
+                    <td>不支持的消息类型</td>
+                    <td>600900120</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DECRYPTERNOINIT</td>
+                    <td>加密器未初始化</td>
+                    <td>600900121</td>
                     <td></td>
                 </tr>
             </tbody>

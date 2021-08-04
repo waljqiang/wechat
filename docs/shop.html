@@ -14,7 +14,7 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class Shop extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Base</a></div>
+        <div class="main_body">class Shop extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Waljqiang\Wechat\Handles\Base</a></div>
     </div>
 
     <div id="box_expresion" class="layout_main_middle">
@@ -28,40 +28,110 @@
                 </tr>
             </thead>
             <tbody class="tbody_params">
-            	<tr>
-                    <td>USHOPCREATE</td>
-                    <td>微信创建门店API地址</td>
+                <tr>
+                    <td>parent::MENU</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>USHOPGET</td>
-                    <td>微信查询门店信息API地址</td>
+                    <td>parent::TAG</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>USHOPLIST</td>
-                    <td>微信查询门店列表API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>USHOPMODIFY</td>
-                    <td>微信修改门店信息API地址</td>
+                    <td>parent::TAGFANS</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>USHOPDEL</td>
-                    <td>微信删除门店API地址</td>
+                    <td>parent::USERTAGS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERINFO</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::QRCODE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::KFACCOUNT</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>parent::INDUSTRY</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TEMPLATELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::DEVICELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::AVATARTYPE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPIMAGE</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
             </tbody>
         </table>
     </div>
-
     <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
             <thead class="thead_params">
@@ -73,6 +143,18 @@
                 </tr>
             </thead>
             <tbody class="tbody_params">
+                <tr>
+                    <td>parent::$api</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::$wechat</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
                 <tr>
                     <td>private array</td>
                     <td>$baseinfo</td>
@@ -95,7 +177,30 @@
             </thead>
         </table>
         <div>
-        	<div class="methods_body">public uploadImage($imageUrl)</div>
+        	<div class="methods_body">parent::__construct(Wechat $wechat)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">parent::setWechat(Wechat $wechat)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+        <div>
+        	<div class="methods_body">public function uploadImage($imageUrl)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -143,7 +248,15 @@
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->uploadImage("./timg.jpg");
+示例1:
+$wechat->uploadImage("./timg.jpg");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$shop = new Shop($wechat);
+$shop->uploadImage("./timg.jpg");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -183,7 +296,7 @@ Wechat::getInstance()->uploadImage("./timg.jpg");
         </div>
 
         <div>
-        	<div class="methods_body">public createShop($data)</div>
+        	<div class="methods_body">public function createShop($data)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -333,6 +446,7 @@ Wechat::getInstance()->uploadImage("./timg.jpg");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
+示例1:
 $data = [
 	"sid" => "33788392",
 	"business_name" => "15个汉字或30个英文字符内",
@@ -358,7 +472,39 @@ $data = [
 	"open_time" => "8:00-20:00",
 	"avg_price" => 35
 ];
-Wechat::getInstance()->createShop($data);
+$wechat->createShop($data);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$data = [
+	"sid" => "33788392",
+	"business_name" => "15个汉字或30个英文字符内",
+	"branch_name" => "不超过10个字，不能含有括号和特殊字符",
+	"province" => "不超过10个字",
+	"city" => "不超过30个字",
+	"district" => "不超过10个字",
+	"address" => "门店所在的详细街道地址（不要填写省市信息）：不超过80个字",
+	"telephone" => "不超53个字符（不可以出现文字）",
+	"categories" => ["美食,小吃快餐"],
+	"offset_type" => 1,
+	"longitude" => 115.32375,
+	"latitude" => 25.097486,
+	"photo_list" => [
+		[
+			"photo_url" => "http://mmbiz.qpic.cn/mmbiz_jpg/5JvjiczLQWUxW8a2wgkTyYicAI9Ylf6sicPXyvJxU2PmeRvACPyJ9xy7Tk9LIibGO25BhVQiciaYYQMPdCviayiblU6H0w/0"
+		]
+	],
+	"recommend" => "不超过200字。麦辣鸡腿堡套餐，麦乐鸡，全家桶",
+	"special" => "不超过200字。免费wifi，外卖服务",
+	"introduction" => "不超过300字。麦当劳是全球大型跨国连锁餐厅，1940 年创立于美国，在世界上大约拥有3 万间分店。
+	主要售卖汉堡包，以及薯条、炸鸡、汽水、冰品、沙拉、 水果等快餐食品",
+	"open_time" => "8:00-20:00",
+	"avg_price" => 35
+];
+$shop = new Shop($wechat);
+$shop->createShop($data);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -398,7 +544,7 @@ Wechat::getInstance()->createShop($data);
         </div>
 
         <div>
-        	<div class="methods_body">public getShop($poiID)</div>
+        	<div class="methods_body">public function getShop($poiID)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -446,7 +592,15 @@ Wechat::getInstance()->createShop($data);
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getShop("271262077");
+示例1:
+$wechat->getShop("271262077");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$shop = new Shop($wechat);
+$shop->getShop("271262077");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -631,7 +785,7 @@ Wechat::getInstance()->getShop("271262077");
         </div>
 
         <div>
-        	<div class="methods_body">public getShopList($pageIndex = 1,$pageOffset = 10)</div>
+        	<div class="methods_body">public function getShopList($pageIndex = 1,$pageOffset = 10)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -685,7 +839,15 @@ Wechat::getInstance()->getShop("271262077");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getShopList();
+示例1:
+$wechat->getShopList();
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$shop = new Shop($wechat);
+$shop->getShopList();
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -934,7 +1096,7 @@ Wechat::getInstance()->getShopList();
         </div>
 
         <div>
-        	<div class="methods_body">public deleteShop($poiID)</div>
+        	<div class="methods_body">public function deleteShop($poiID)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -982,7 +1144,15 @@ Wechat::getInstance()->getShopList();
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->deleteShop("271864249");
+示例1:
+$wechat->deleteShop("271864249");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$shop = new Shop($wechat);
+$shop->deleteShop("271864249");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -1013,9 +1183,7 @@ Wechat::getInstance()->deleteShop("271864249");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                	</pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>

@@ -1,19 +1,18 @@
 <?php
-namespace Waljqiang\Wechat\Handles;
+namespace Waljqiang\Wechat;
 
 use Waljqiang\Wechat\Wechat;
 use Waljqiang\Wechat\Pay\WxPay;
-use Waljqiang\Wechat\Pay\WxPayOrderQuery;
-use Waljqiang\Wechat\Pay\WxPayCloseOrder;
-use Waljqiang\Wechat\Pay\WxPayRefund;
-use Waljqiang\Wechat\Pay\WxPayRefundQuery;
-use Waljqiang\Wechat\Pay\WxPayDownloadBill;
 use Waljqiang\Wechat\Pay\WxPayConfig;
 use Waljqiang\Wechat\Pay\WxPayUnifiedOrder;//统一下单输入对象
 use Waljqiang\Wechat\Exceptions\WechatPayException;
 
-class Pay extends Base{
+class Pay{
     private $config;
+
+    public function __construct($config){
+        $this->config = new WxPayConfig($config);
+    }
 
     public function setPayConfig($config){
         $this->config = new WxPayConfig($config);
@@ -43,35 +42,12 @@ class Pay extends Base{
 	    return $this->out($result);
     }
 
-    //查询订单
-    public function orderQuery($input,$config = [],$timeOut = 60){
-        return $this->excuteCommands($input,$config,$timeOut,__FUNCTION__);
-    }
-
-    //关闭订单
-    public function closeOrder($input,$config = [],$timeOut = 60){
-        return $this->excuteCommands($input,$config,$timeOut,__FUNCTION__);
-    }
-
-    //申请退款
-    public function refund($input,$config = [],$timeOut = 60){
-        return $this->excuteCommands($input,$config,$timeOut,__FUNCTION__);
-    }
-
-    //查询退款
-    public function refundQuery($input,$config = [],$timeOut = 60){
-        return $this->excuteCommands($input,$config,$timeOut,__FUNCTION__);
-    }
-
-    //下载对账单
-    public function downloadBill($input,$config = [],$timeOut = 60){
-        return $this->excuteCommands($input,$config,$timeOut,__FUNCTION__);
-    }
-
     //查询订单 关闭订单 申请退款 查询退款 下载对账单
-    /*public function __call($method,$args){
+    public function __call($method,$args){
     	$data = $args[0];
-    	$wxPayConfig = !empty($args[1]) ? new WxPayConfig($args[1]) : new WxPayConfig(Wechat::$config["pay"]);
+    	if(!empty($args[1])){
+    		$this->setPayConfig($args[1]);
+    	}
     	$timeOut = isset($args[2]) ? $args[2] : 60;
     	$class = "Waljqiang\Wechat\Pay\WxPay" . ucwords($method);
     	$input = new $class;
@@ -81,22 +57,8 @@ class Pay extends Base{
 	    		$input->{$function}($value);
 	    	}
 	    }
-	    $result = call_user_func_array([WxPay::class,$method],[$input,$wxPayConfig,$timeOut]);
+	    $result = call_user_func_array([WxPay::class,$method],[$input,$this->config,$timeOut]);
 	    return $this->out($result);
-    }*/
-
-    private function excuteCommands($datas,$config,$timeOut,$command){
-        $class = "Waljqiang\Wechat\Pay\WxPay" . ucwords($command);
-        $input = new $class;
-        foreach ($datas as $key => $value) {
-            $function = "Set" . ucwords($key);
-            if(method_exists($input,$function)){
-                $input->{$function}($value);
-            }
-        }
-        $wxPayConfig = !empty($config) ? new WxPayConfig($config) : $this->config;
-        $result = call_user_func_array([WxPay::class,$command],[$input,$wxPayConfig,$timeOut]);
-        return $this->out($result);
     }
 
     private function out($result){

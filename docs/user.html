@@ -14,7 +14,7 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class User extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Base</a></div>
+        <div class="main_body">class User extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Waljqiang\Wechat\Handles\Base</a></div>
     </div>
 
     <div id="box_expresion" class="layout_main_middle">
@@ -29,69 +29,135 @@
             </thead>
             <tbody class="tbody_params">
             	<tr>
-                    <td>UTAGSET</td>
-                    <td>微信创建公众号标签API地址</td>
+                    <td>parent::MENU</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UTAGGET</td>
-                    <td>微信获取公众号标签API地址</td>
+                    <td>parent::TAG</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UTAGDEL</td>
-                    <td>微信删除公众号标签API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UTAGFANS</td>
-                    <td>微信获取标签下的粉丝列表API地址</td>
+                    <td>parent::TAGFANS</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UTAGTOUSERS</td>
-                    <td>微信为用户打标签API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UTAGDELUSERS</td>
-                    <td>微信为用户取消标签API地址</td>
+                    <td>parent::USERTAGS</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UUSERTAGS</td>
-                    <td>微信获取用户身上的标签列表API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UUSERREMARKSET</td>
-                    <td>微信设置用户备注API地址</td>
+                    <td>parent::USERINFO</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UUSERINFO</td>
-                    <td>微信获取用户基本信息API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UUSERLIST</td>
-                    <td>微信获取用户列表API地址</td>
+                    <td>parent::USERLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::QRCODE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::KFACCOUNT</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>parent::INDUSTRY</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TEMPLATELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::DEVICELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::AVATARTYPE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPIMAGE</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>parent::$api</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::$wechat</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
             <thead class="thead_params">
@@ -104,7 +170,30 @@
             </thead>
         </table>
         <div>
-        	<div class="methods_body">public setTag($tagName)</div>
+        	<div class="methods_body">parent::__construct(Wechat $wechat)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">parent::setWechat(Wechat $wechat)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+        <div>
+        	<div class="methods_body">public function setTag($tagName)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -152,7 +241,15 @@
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->setTag("店小二1");
+示例1：
+$wechat->setTag("店小二1");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2：
+$user = new User($wechat);
+$user->setTag("店小二1");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -192,7 +289,7 @@ Wechat::getInstance()->setTag("店小二1");
         </div>
 
         <div>
-        	<div class="methods_body">public getTag()</div>
+        	<div class="methods_body">public function getTag()</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -232,7 +329,15 @@ Wechat::getInstance()->setTag("店小二1");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getTag();
+示例1:
+$wechat->getTag();
+	                    </pre></td>
+	                </tr>
+	           		<tr>
+	                    <td><pre>
+示例2:
+$user = new User($wechat);
+$user->getTag();
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -306,7 +411,7 @@ Wechat::getInstance()->getTag();
         </div>
 
         <div>
-        	<div class="methods_body">public deleteTag($tagID)</div>
+        	<div class="methods_body">public function deleteTag($tagID)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -352,7 +457,15 @@ Wechat::getInstance()->getTag();
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->deleteTag(123);
+示例1:
+$wechat->deleteTag(123);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$user = new User($wechat);
+$user->deleteTag(123);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -383,16 +496,14 @@ Wechat::getInstance()->deleteTag(123);
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public getTagFans($tagID,$pageIndex = 1,$pageOffset = 10)</div>
+        	<div class="methods_body">public function getTagFans($tagID,$pageIndex = 1,$pageOffset = 10)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -450,7 +561,15 @@ true
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getTagFans(105);
+示例1:
+$wechat->getTagFans(105);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$user = new User($wechat);
+$user->getTagFans(105);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -507,7 +626,7 @@ Wechat::getInstance()->getTagFans(105);
         </div>
 
         <div>
-        	<div class="methods_body">public tagToUsers($tagID,$openIDs)</div>
+        	<div class="methods_body">public function tagToUsers($tagID,$openIDs)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -559,7 +678,15 @@ Wechat::getInstance()->getTagFans(105);
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->tagToUsers(105,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
+示例1:
+$wechat->tagToUsers(105,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$user = new User($wechat);
+$user->tagToUsers(105,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -590,16 +717,14 @@ Wechat::getInstance()->tagToUsers(105,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public tagDelUsers($tagID,$openIDs)</div>
+        	<div class="methods_body">public function tagDelUsers($tagID,$openIDs)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -651,7 +776,15 @@ true
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->tagDelUsers(105,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
+示例1:
+$wechat->tagDelUsers(105,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$user = new User($wechat);
+$user->tagDelUsers(105,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -682,16 +815,14 @@ Wechat::getInstance()->tagDelUsers(105,["ocYxcuAEy30bX0NXmGn4ypqx3tI0"]);
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public getUserTags($openID)</div>
+        	<div class="methods_body">public function getUserTags($openID)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -737,7 +868,15 @@ true
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getUserTags("ocYxcuAEy30bX0NXmGn4ypqx3tI0");
+示例1:
+$wechat->getUserTags("ocYxcuAEy30bX0NXmGn4ypqx3tI0");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$user = new User($wechat);
+$user->getUserTags("ocYxcuAEy30bX0NXmGn4ypqx3tI0");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -794,7 +933,7 @@ Wechat::getInstance()->getUserTags("ocYxcuAEy30bX0NXmGn4ypqx3tI0");
         </div>
 
         <div>
-        	<div class="methods_body">public setUserRemark($openID,$remark)</div>
+        	<div class="methods_body">public function setUserRemark($openID,$remark)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -846,7 +985,15 @@ Wechat::getInstance()->getUserTags("ocYxcuAEy30bX0NXmGn4ypqx3tI0");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->setUserRemark("ocYxcuAEy30bX0NXmGn4ypqx3tI0","测试");
+示例1:
+$wechat->setUserRemark("ocYxcuAEy30bX0NXmGn4ypqx3tI0","测试");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$user = new User($wechat);
+$user->setUserRemark("ocYxcuAEy30bX0NXmGn4ypqx3tI0","测试");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -877,16 +1024,14 @@ Wechat::getInstance()->setUserRemark("ocYxcuAEy30bX0NXmGn4ypqx3tI0","测试");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public getUserInfo($openID,$lang="zh_CN")</div>
+        	<div class="methods_body">public function getUserInfo($openID,$lang="zh_CN")</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -938,7 +1083,14 @@ true
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getUserInfo("o6_bmjrPTlm6_2sgVt7hMZOPfL2M");
+示例1:
+$wechat->getUserInfo("o6_bmjrPTlm6_2sgVt7hMZOPfL2M");
+	                </pre></tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$user = new User($wechat);
+$user->getUserInfo("o6_bmjrPTlm6_2sgVt7hMZOPfL2M");
 	                </pre></tr>
 	            </tbody>
 	       	</table>
@@ -1098,7 +1250,7 @@ Wechat::getInstance()->getUserInfo("o6_bmjrPTlm6_2sgVt7hMZOPfL2M");
         </div>
 
         <div>
-        	<div class="methods_body">public getUserList($pageIndex = 0,$pageOffset = 10)</div>
+        	<div class="methods_body">public function getUserList($pageIndex = 0,$pageOffset = 10)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -1150,7 +1302,15 @@ Wechat::getInstance()->getUserInfo("o6_bmjrPTlm6_2sgVt7hMZOPfL2M");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getUserList();
+示例1:
+$wechat->getUserList();
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$user = new User($wechat);
+$user->getUserList();
 	                    </pre></td>
 	                </tr>
 	            </tbody>

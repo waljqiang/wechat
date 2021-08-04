@@ -14,8 +14,8 @@ try{
 	]);
 	//$wechat->init($wechatConfig["appid"],$wechatConfig["appSecret"]);
 
-	/*$accessToken = $wechat->getAccessToken();
-	var_dump($accessToken);*/
+	$accessToken = $wechat->getAccessToken();
+	var_dump($accessToken);
 
 	//创建菜单
 	/*$options = [
@@ -383,7 +383,7 @@ try{
 	/*$res = $wechat->getWifiCoupon(429620);
 	var_dump($res);
 	exit;*/
-	//微信支付统一下单接口
+	//微信支付
 	/*$config = [
 		"appid" => "wxdaa43d75b815f44e",//微信分配的公众账号ID（企业号corpid即为此appId)
 		"mch_id" => "1347427701",//微信支付分配的商户号
@@ -391,7 +391,8 @@ try{
 		"appsecret" => "3343b17da99cbd77d32d1d18f68f739a",
 		"notify_url" => "http://www.yowifi.net/Wechat/wxpayh5",//接收微信支付异步通知回调地址,通知url必须为直接可访问的url,不能携带参数
 	];
-	$wechat->setPayConfig($config);*/
+	$wechat->setPay($config);*/
+	//微信支付统一下单接口
 	//生成支付二维码
 	/*$data = [
 		"body" => "商品描述",
@@ -421,7 +422,10 @@ try{
 		        ]
 		    ]
 		]
-	];*/
+	];
+	$res = $wechat->getPay()->unifiedOrder($data);
+	var_dump($res);
+	exit;*/
 	//JSAPI示例
 	/*$data = [
 		"body" => "商品描述",
@@ -432,7 +436,10 @@ try{
 		"trade_type" => "JSAPI",
 		"product_id" => "12235413214070356458058",
 		"openid" => "oUpF8uMuAJO_M2pxb1Q9zNjWeS6o"
-	];*/
+	];
+	$res = $wechat->getPay()->unifiedOrder($data);
+	var_dump($res);
+	exit;*/
 	//H5示例
 	/*$data = [
 		"body" => "商品描述",
@@ -448,21 +455,21 @@ try{
 		    	"wap_name" => "腾讯充值"
 		    ]
 		]
-	];*/
-	/*
-	$res = $wechat->unifiedOrder($data,$config);
+	];
+	$res = $wechat->getPay()->unifiedOrder($data);
 	var_dump($res);
 	exit;*/
+	
 	//查询订单
 	/*$data = [
 		"transaction_id" => "1009660380201506130728806387",
 		"out_trade_no" => "20150806125346",
 	];
-	$res = $wechat->orderQuery($data);
+	$res = $wechat->getPay()->orderQuery($data);
 	var_dump($res);
 	exit;*/
 	//关闭订单
-	/*$res = $wechat->closeOrder(["out_trade_no" => "20150806125346"]);
+	/*$res = $wechat->getPay()->closeOrder(["out_trade_no" => "20150806125346"]);
 	var_dump($res);
 	exit;*/
 	//申请退款
@@ -473,19 +480,19 @@ try{
 		"total_fee" => 100,
 		"refund_fee" => 100
 	];
-	$res = $wechat->refund($data);
+	$res = $wechat->getPay()->refund($data);
 	var_dump($res);*/
 	//查询退款
 	/*$data = [
 		"out_trade_no" => "1415757673"
 	];
-	$res = $wechat->refundQuery($data);
+	$res = $wechat->getPay()->refundQuery($data);
 	var_dump($res);*/
 	//下载对账单
 	/*$data = [
 		"bill_date" => "20200316"
 	];
-	$res = $wechat->downloadBill($data);
+	$res = $wechat->getPay()->downloadBill($data);
 	var_dump($res);*/
 }catch(\Exception $e){
 	var_dump($e);

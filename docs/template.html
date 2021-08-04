@@ -14,10 +14,10 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class Template extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Base</a></div>
+        <div class="main_body">class Template extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Waljqiang\Wechat\Handles\Base</a></div>
     </div>
 
-    <div id="box_expresion" class="layout_main_middle">
+   <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
             <thead class="thead_params">
                 <tr>
@@ -28,45 +28,130 @@
                 </tr>
             </thead>
             <tbody class="tbody_params">
-            	<tr>
-                    <td>UINDUSTRYSET</td>
-                    <td>微信设置所属行业API地址</td>
+                <tr>
+                    <td>parent::MENU</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UINDUSTRYGET</td>
-                    <td>微信获取行业信息API地址</td>
+                    <td>parent::TAG</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UTEMPLATEID</td>
-                    <td>微信获取模板id API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UTEMPLATELIST</td>
-                    <td>微信获取模板列表API地址</td>
+                    <td>parent::TAGFANS</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UTEMPLATEDEL</td>
-                    <td>微信删除模板API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>USENDTPLMSG</td>
-                    <td>微信发送模板消息API地址</td>
+                    <td>parent::USERTAGS</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UUPIMAGE</td>
-                    <td>微信上传图片API地址</td>
+                    <td>parent::USERINFO</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::QRCODE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::KFACCOUNT</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>parent::INDUSTRY</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TEMPLATELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::DEVICELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::AVATARTYPE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPIMAGE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>parent::$api</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::$wechat</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -85,9 +170,31 @@
                 </tr>
             </thead>
         </table>
+        <div>
+        	<div class="methods_body">parent::__construct(Wechat $wechat)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
 
         <div>
-        	<div class="">public setIndustry($primaryNumber,$secondaryNumber)</div>
+        	<div class="methods_body">parent::setWechat(Wechat $wechat)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+        <div>
+        	<div class="">public function setIndustry($primaryNumber,$secondaryNumber)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -139,7 +246,15 @@
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->setIndustry("1","4");
+示例1：
+$wechat->setIndustry("1","4");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2：
+$tpl = new Template($wechat);
+$tpl->setIndustry("1","4");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -170,16 +285,14 @@ Wechat::getInstance()->setIndustry("1","4");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                	</pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="">public getIndustry()</div>
+        	<div class="">public function getIndustry()</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -219,7 +332,15 @@ true
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getIndustry();
+示例1:
+$wechat->getIndustry();
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$tpl = new Template($wechat);
+$tpl->getIndustry();
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -281,7 +402,7 @@ Wechat::getInstance()->getIndustry();
         </div>
 
         <div>
-        	<div class="">public getTemplateID($templateIdShort)</div>
+        	<div class="">public function getTemplateID($templateIdShort)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -327,7 +448,15 @@ Wechat::getInstance()->getIndustry();
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getTemplateID("TM00015");
+示例1:
+$wechat->getTemplateID("TM00015");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$tpl = new Template($wechat);
+$tpl->getTemplateID("TM00015");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -367,7 +496,7 @@ Wechat::getInstance()->getTemplateID("TM00015");
         </div>
 
         <div>
-        	<div class="">public deleteTemplate($templateID)</div>
+        	<div class="">public function deleteTemplate($templateID)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -413,7 +542,15 @@ Wechat::getInstance()->getTemplateID("TM00015");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->deleteTemplate("Doclyl5uP7Aciu-qZ7mJNPtWkbkYnWBWVja26EGbNyk");
+示例1:
+$wechat->deleteTemplate("Doclyl5uP7Aciu-qZ7mJNPtWkbkYnWBWVja26EGbNyk");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$tpl = new Template($wechat);
+$tpl->deleteTemplate("Doclyl5uP7Aciu-qZ7mJNPtWkbkYnWBWVja26EGbNyk");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -444,16 +581,14 @@ Wechat::getInstance()->deleteTemplate("Doclyl5uP7Aciu-qZ7mJNPtWkbkYnWBWVja26EGbN
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="">public getTemplateList()</div>
+        	<div class="">public function getTemplateList()</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -493,7 +628,15 @@ true
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getTemplateList();
+示例1：
+$wechat->getTemplateList();
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2：
+$tpl = new Template($wechat);
+$tpl->getTemplateList();
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -579,7 +722,7 @@ Wechat::getInstance()->getTemplateList();
         </div>
 
         <div>
-        	<div class="">public sendTemplate($openID,$templateID,$data,$url = "",$appid = "",$pagePath = "")</div>
+        	<div class="">public function sendTemplate($openID,$templateID,$data,$url = "",$appid = "",$pagePath = "")</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -656,7 +799,7 @@ Wechat::getInstance()->getTemplateList();
 	            	<tr>
 	                    <td><pre>
 示例1:
-Wechat::getInstance()->sendTemplate("o9lXF0oPTBOMS44dILU1kfZMlra0","ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",[
+$wechat->sendTemplate("o9lXF0oPTBOMS44dILU1kfZMlra0","ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",[
 	"first" => [
 		"value" => "恭喜你购买成功",
 		"color" => "#173177"
@@ -683,9 +826,29 @@ Wechat::getInstance()->sendTemplate("o9lXF0oPTBOMS44dILU1kfZMlra0","ngqIpbwh8bUf
 	                <tr>
 	                    <td><pre>
 示例2:
-$wechat = Wechat::getInstance();
-$message = new Message($wechat);
-$message->uploadAvatar("test1@test","./avatar.jpg");
+$tpl = new Template($wechat);
+$tpl->sendTemplate("o9lXF0oPTBOMS44dILU1kfZMlra0","ngqIpbwh8bUfcSsECmogfXcV14J0tQlEpBO27izEYtY",[
+	"first" => [
+		"value" => "恭喜你购买成功",
+		"color" => "#173177"
+	],
+	"keyword1" => [
+		"value" => "巧克力",
+		"color" => "#173177"
+	],
+	"keyword2" => [
+		"value" => "39.8$",
+		"color" => "#173177"
+	],
+	"keyword3" => [
+		"value" => "2014年9月22日",
+		"color" => "#173177"
+	],
+	"remark" => [
+		"value" => "欢迎再次购买",
+		"color" => "#173177"
+	]
+]);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -724,94 +887,6 @@ $message->uploadAvatar("test1@test","./avatar.jpg");
 	            	<tr>
 	                    <td><pre>
 200228332
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-        </div>
-
-        
-
-        <div>
-        	<div class="">protected checkMsgType($messageType)</div>
-	        <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>说明</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>检测是否符合客服消息类型</td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	        <table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$messageType</td>
-	                    <td>消息类型</td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>调用示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
-	                    </pre></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td width="10%">返回参数说明</td>
-	                    <td width="10%"></td>
-	                    <td width="20%"></td>
-	                    <td></td>         
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td>boolean</td>
-	                    <td></td>
-	                    <td></td>
-	                    <td></td>
-	                </tr>
-	            </tbody>
-	       	</table>
-	       	<table class="tbl_params">
-	            <thead class="thead_params">
-	                <tr>
-	                    <td>返回参数示例</td>       
-	                </tr>
-	            </thead>
-	            <tbody class="tbody_params">
-	            	<tr>
-	                    <td><pre>
-无
 	                    </pre></td>
 	                </tr>
 	            </tbody>

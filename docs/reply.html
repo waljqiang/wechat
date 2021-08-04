@@ -14,9 +14,150 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class Reply extends <a href="./message.html" onclick="showParent('#wechat','Message::class')">Message</a></div>
+        <div class="main_body">class Reply extends <a href="./message.html" onclick="showParent('#wechat','Message::class')">Waljqiang\Wechat\Handles\Message</a></div>
+    </div>
+    <div id="box_expresion" class="layout_main_middle">
+    	<table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Constants</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>parent::MENU</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TAG</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TAGFANS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERTAGS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERINFO</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::QRCODE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::KFACCOUNT</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>parent::INDUSTRY</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TEMPLATELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::DEVICELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::AVATARTYPE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPIMAGE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>parent::$api</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::$wechat</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
             <thead class="thead_params">
@@ -28,9 +169,43 @@
                 </tr>
             </thead>
         </table>
+        <div>
+        	<div class="methods_body">parent::__construct(Wechat $wechat)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
 
         <div>
-        	<div class="methods_body">public replyUser($messageType,$message)</div>
+        	<div class="methods_body">parent::setWechat(Wechat $wechat)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">parent::checkMsgType($messageType)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+        <div>
+        	<div class="methods_body">public function replyUser($messageType,$message)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -82,12 +257,25 @@
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
+示例1:
 $message = [
 	"ToUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
 	"FromUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
 	"Content" => "您好"
 ];
-Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);
+$wechat->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$message = [
+	"ToUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
+	"FromUserName" => "o9lXF0oPTBOMS44dILU1kfZMlra0",
+	"Content" => "您好"
+];
+$reply = new Reply($wechat);
+$reply->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -132,7 +320,7 @@ Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);
         </div>
 
         <div>
-        	<div class="main_body">private parseImage($message)</div>
+        	<div class="main_body">private function parseImage($message)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -148,7 +336,7 @@ Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);
         </div>
 
         <div>
-        	<div class="methods_body">private parseVoice($message)</div>
+        	<div class="methods_body">private function parseVoice($message)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -164,7 +352,7 @@ Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);
         </div>
 
         <div>
-        	<div class="methods_body">private parseVideo($message)</div>
+        	<div class="methods_body">private function parseVideo($message)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -180,7 +368,7 @@ Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);
         </div>
 
         <div>
-        	<div class="methods_body">private parseMusic($message)</div>
+        	<div class="methods_body">private function parseMusic($message)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -196,7 +384,7 @@ Wechat::getInstance()->replyUser(Waljqiang\Wechat\Handles::TEXT,$message);
         </div>
 
         <div>
-        	<div class="methods_body">private parseNews($message)</div>
+        	<div class="methods_body">private function parseNews($message)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>

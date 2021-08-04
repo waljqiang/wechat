@@ -14,9 +14,150 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class Receive extends <a href="./message.html" onclick="showParent('#wechat','Message::class')">Message</a></div>
+        <div class="main_body">class Receive extends <a href="./message.html" onclick="showParent('#wechat','Message::class')">Waljqiang\Wechat\Handles\Message</a></div>
+    </div>
+    <div id="box_expresion" class="layout_main_middle">
+    	<table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Constants</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>parent::MENU</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TAG</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TAGFANS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERTAGS</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERINFO</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::USERLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::QRCODE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::KFACCOUNT</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>parent::INDUSTRY</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TEMPLATELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::DEVICELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::AVATARTYPE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPIMAGE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>parent::$api</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::$wechat</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
             <thead class="thead_params">
@@ -28,9 +169,43 @@
                 </tr>
             </thead>
         </table>
+        <div>
+        	<div class="methods_body">parent::__construct(Wechat $wechat)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
 
         <div>
-        	<div class="methods_body">public handleWechatMessage($message,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = "")</div>
+        	<div class="methods_body">parent::setWechat(Wechat $wechat)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">parent::checkMsgType($messageType)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+        <div>
+        	<div class="methods_body">public function handleWechatMessage($message,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = "")</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -106,6 +281,7 @@
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre><xmp>
+示例1:
 $message = "<xml>
   <ToUserName><![CDATA[toUser]]></ToUserName>
   <FromUserName><![CDATA[FromUser]]></FromUserName>
@@ -117,7 +293,25 @@ $appid = "wx5b18b274db7372d6";
 $signature = "dsdasdfdas";
 $timestamp = "1122321234534";
 $nonce = "123456";
-$res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$timestamp,$nonce);
+$res = $wechat->handleWechatMessage($message,$appid,$signature,$timestamp,$nonce);
+	                    </xmp></pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre><xmp>
+示例2:
+$message = "<xml>
+  <ToUserName><![CDATA[toUser]]></ToUserName>
+  <FromUserName><![CDATA[FromUser]]></FromUserName>
+  <CreateTime>123456789</CreateTime>
+  <MsgType><![CDATA[event]]></MsgType>
+  <Event><![CDATA[subscribe]]></Event>
+</xml>";
+$appid = "wx5b18b274db7372d6";
+$signature = "dsdasdfdas";
+$timestamp = "1122321234534";
+$nonce = "123456";
+$receive = new Receive($wechat);
+$res = $receive->handleWechatMessage($message,$appid,$signature,$timestamp,$nonce);
 	                    </xmp></pre></td>
 	                </tr>
 	            </tbody>
@@ -163,7 +357,7 @@ $res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$ti
         </div>
 
         <div>
-        	<div class="methods_body">private handleEvent($obj,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = "")</div>
+        	<div class="methods_body">private function handleEvent($obj,$appid = "",$signature = "",$timestamp ="",$nonce = "",$echostr = "")</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -179,7 +373,7 @@ $res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$ti
         </div>
 
         <div>
-        	<div class="methods_body">private handleUnsubscribe($message,$appid = "")</div>
+        	<div class="methods_body">private function handleUnsubscribe($message,$appid = "")</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -195,7 +389,7 @@ $res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$ti
         </div>
 
         <div>
-        	<div class="methods_body">private handleLocation($message,$appid = "")</div>
+        	<div class="methods_body">private function handleLocation($message,$appid = "")</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -211,7 +405,7 @@ $res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$ti
         </div>
 
         <div>
-        	<div class="methods_body">private handleTplSend($message,$appid = "")</div>
+        	<div class="methods_body">private function handleTplSend($message,$appid = "")</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -227,7 +421,7 @@ $res = Wechat::getInstance()->handleWechatMessage($message,$appid,$signature,$ti
         </div>
 
         <div>
-        	<div class="methods_body">private handlePoiCheckNotify($message,$appid = ""</div>
+        	<div class="methods_body">private function handlePoiCheckNotify($message,$appid = ""</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>

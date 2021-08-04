@@ -14,7 +14,7 @@
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class WIFI extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Base</a></div>
+        <div class="main_body">class WIFI extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Waljqiang\Wechat\Handles\Base</a></div>
     </div>
 
     <div id="box_expresion" class="layout_main_middle">
@@ -28,75 +28,130 @@
                 </tr>
             </thead>
             <tbody class="tbody_params">
-            	<tr>
-                    <td>UWIFISHOPS</td>
-                    <td>微信获取WiFi门店列表API地址</td>
+                <tr>
+                    <td>parent::MENU</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UWIFISHOP</td>
-                    <td>微信查询WiFi门店信息API地址</td>
+                    <td>parent::TAG</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UWIFISHOPMODIFY</td>
-                    <td>微信修改WiFi门店信息API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UWIFISHOPCLEAR</td>
-                    <td>微信清空门店网络设备API地址</td>
+                    <td>parent::TAGFANS</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UDEVICETOPWD</td>
-                    <td>微信添加密码型设备API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UDEVICETOPORTAL</td>
-                    <td>微信添加portal型设备API地址</td>
+                    <td>parent::USERTAGS</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UDEVICELIST</td>
-                    <td>微信查询设备列表API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UDEVICEDEL</td>
-                    <td>微信删除设备API地址</td>
+                    <td>parent::USERINFO</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UWIFIQRCODE</td>
-                    <td>微信配置连网方式API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>USTATISTICS</td>
-                    <td>微信统计WiFi数据API地址</td>
+                    <td>parent::USERLIST</td>
                     <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>UCOUPONPUT</td>
-                    <td>微信设置门店卡券投放API地址</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
-                    <td>UCOUPONGET</td>
-                    <td>微信查询门店卡券信息API地址</td>
+                    <td>parent::QRCODE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::KFACCOUNT</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                 <tr>
+                    <td>parent::INDUSTRY</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::TEMPLATELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOPLIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::WIFISHOP</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::DEVICELIST</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::AVATARTYPE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::SHOPIMAGE</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>parent::$api</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>parent::$wechat</td>
+                    <td></td>
                     <td></td>
                     <td></td>
                 </tr>
@@ -116,7 +171,30 @@
             </thead>
         </table>
         <div>
-        	<div class="methods_body">public getWifiShopList($pageIndex = 1,$pageOffset = 10)</div>
+        	<div>
+        	<div class="methods_body">parent::__construct(Wechat $wechat)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+
+        <div>
+        	<div class="methods_body">parent::setWechat(Wechat $wechat)</div>
+	        <table class="tbl_params">
+	            <thead class="thead_params">
+	                
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+        </div>
+        	<div class="methods_body">public function getWifiShopList($pageIndex = 1,$pageOffset = 10)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -170,7 +248,15 @@
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getWifiShopList();
+示例1:
+$wechat->getWifiShopList();
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->getWifiShopList();
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -283,7 +369,7 @@ Wechat::getInstance()->getWifiShopList();
         </div>
 
         <div>
-        	<div class="methods_body">public getWifiShop($shopID)</div>
+        	<div class="methods_body">public function getWifiShop($shopID)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -331,7 +417,15 @@ Wechat::getInstance()->getWifiShopList();
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getWifiShop(429620);
+示例1:
+$wechat->getWifiShop(429620);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->getWifiShop(429620);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -462,7 +556,7 @@ Wechat::getInstance()->getWifiShop(429620);
         </div>
 
         <div>
-        	<div class="methods_body">public modifyWifiShop($data)</div>
+        	<div class="methods_body">public function modifyWifiShop($data)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -528,12 +622,25 @@ Wechat::getInstance()->getWifiShop(429620);
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
+示例1:
 $data = [
 	"shop_id" => 429620,
     "old_ssid" => "WX123",
     "ssid" => "WX567"
 ];
-Wechat::getInstance()->modifyWifiShop($data);
+$wechat->modifyWifiShop($data);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$data = [
+	"shop_id" => 429620,
+    "old_ssid" => "WX123",
+    "ssid" => "WX567"
+];
+$wifi = new WIFI($wechat);
+$wifi->modifyWifiShop($data);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -564,16 +671,14 @@ Wechat::getInstance()->modifyWifiShop($data);
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                	</pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public clearWifiShop($shopID,$ssid="")</div>
+        	<div class="methods_body">public function clearWifiShop($shopID,$ssid="")</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -627,7 +732,15 @@ true
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->clearWifiShop(429620);
+示例1:
+$wechat->clearWifiShop(429620);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->clearWifiShop(429620);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -658,16 +771,14 @@ Wechat::getInstance()->clearWifiShop(429620);
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                	</pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public addPasswordDevice($shopID,$ssid,$password)</div>
+        	<div class="methods_body">public function addPasswordDevice($shopID,$ssid,$password)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -730,7 +841,15 @@ true
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->addPasswordDevice(429620,"WX123","123456789");
+示例1:
+$wechat->addPasswordDevice(429620,"WX123","123456789");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->addPasswordDevice(429620,"WX123","123456789");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -761,16 +880,14 @@ Wechat::getInstance()->addPasswordDevice(429620,"WX123","123456789");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                	</pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public addPortalDevice($shopID,$ssid,$reset = false)</div>
+        	<div class="methods_body">public function addPortalDevice($shopID,$ssid,$reset = false)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -833,7 +950,15 @@ true
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->addPortalDevice(429620,"123");
+示例1:
+$wechat->addPortalDevice(429620,"123");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->addPortalDevice(429620,"123");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -873,7 +998,7 @@ Wechat::getInstance()->addPortalDevice(429620,"123");
         </div>
 
         <div>
-        	<div class="methods_body">public getDeviceList($pageIndex = 1,$pageOffset = 10,$shopID = "")</div>
+        	<div class="methods_body">public function getDeviceList($pageIndex = 1,$pageOffset = 10,$shopID = "")</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -933,7 +1058,15 @@ Wechat::getInstance()->addPortalDevice(429620,"123");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getDeviceList();
+示例1:
+$wechat->getDeviceList();
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->getDeviceList();
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -1011,7 +1144,7 @@ Wechat::getInstance()->getDeviceList();
         </div>
 
         <div>
-        	<div class="methods_body">public deleteDevice($bssid)</div>
+        	<div class="methods_body">public function deleteDevice($bssid)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -1059,7 +1192,15 @@ Wechat::getInstance()->getDeviceList();
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->deleteDevice("00:1f:7a:ad:5c:a8");
+示例1:
+$wechat->deleteDevice("00:1f:7a:ad:5c:a8");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->deleteDevice("00:1f:7a:ad:5c:a8");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -1090,16 +1231,14 @@ Wechat::getInstance()->deleteDevice("00:1f:7a:ad:5c:a8");
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true
-	                	</pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public wifiQrcode($shopID,$ssid,$imageID = 0)</div>
+        	<div class="methods_body">public function wifiQrcode($shopID,$ssid,$imageID = 0)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -1159,7 +1298,15 @@ true
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->wifiQrcode(429620,"WX123");
+示例1:
+$wechat->wifiQrcode(429620,"WX123");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->wifiQrcode(429620,"WX123");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -1199,7 +1346,7 @@ https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQHE7jwAAAAAAAAAAS5odHRwOi8vd
         </div>
 
         <div>
-        	<div class="methods_body">public getWifiStatistics($begin,$end,$shopID = -1)</div>
+        	<div class="methods_body">public function getWifiStatistics($begin,$end,$shopID = -1)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -1253,7 +1400,15 @@ https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=gQHE7jwAAAAAAAAAAS5odHRwOi8vd
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getWifiStatistics("2020-03-01","2020-03-12");
+示例1:
+$wechat->getWifiStatistics("2020-03-01","2020-03-12");
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->getWifiStatistics("2020-03-01","2020-03-12");
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -1362,7 +1517,7 @@ Wechat::getInstance()->getWifiStatistics("2020-03-01","2020-03-12");
         </div>
 
         <div>
-        	<div class="methods_body">public setWifiCoupon($data)</div>
+        	<div class="methods_body">public function setWifiCoupon($data)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -1434,7 +1589,23 @@ Wechat::getInstance()->getWifiStatistics("2020-03-01","2020-03-12");
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->setWifiCoupon(
+示例1:
+$wechat->setWifiCoupon(
+	[
+		"shop_id" => 429620,
+		"card_id" => "pBnTrjvZJXkZsPGwfq9F0Hl0WqE",
+	 	"card_describe" => "10元代金券",
+	  	"start_time" => 1457280000,
+	  	"end_time" => 1457712000
+	]
+);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->setWifiCoupon(
 	[
 		"shop_id" => 429620,
 		"card_id" => "pBnTrjvZJXkZsPGwfq9F0Hl0WqE",
@@ -1473,15 +1644,14 @@ Wechat::getInstance()->setWifiCoupon(
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-true	                	</pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">public getWifiCoupon($shopID)</div>
+        	<div class="methods_body">public function getWifiCoupon($shopID)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -1529,7 +1699,15 @@ true	                	</pre></td>
 	            <tbody class="tbody_params">
 	            	<tr>
 	                    <td><pre>
-Wechat::getInstance()->getWifiCoupon(429620);
+示例1:
+$wechat->getWifiCoupon(429620);
+	                    </pre></td>
+	                </tr>
+	                <tr>
+	                    <td><pre>
+示例2:
+$wifi = new WIFI($wechat);
+$wifi->getWifiCoupon(429620);
 	                    </pre></td>
 	                </tr>
 	            </tbody>

@@ -144,59 +144,16 @@
             </thead>
             <tbody class="tbody_params">
                 <tr>
-                    <td>protected string</td>
-                    <td>$accessToken</td>
-                    <td>微信公众号接口访问权限</td>
-                    <td></td>
+                    <td>protected</td>
+                    <td>$api</td>
+                    <td>微信公众号接口地址</td>
+                    <td>包括菜单、用户、账号、客服、模板、门店、智能、设备相关</td>
                 </tr>
                 <tr>
-                    <td>protected string</td>
-                    <td>$appid</td>
-                    <td>微信公众号appid</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>protected string</td>
-                    <td>$secret</td>
-                    <td>微信公众号secret</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>protected Wechat</td>
+                    <td>protected</td>
                     <td>$wechat</td>
-                    <td>Waljqiang\Wechat\Wechat::class实例</td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td>protected Redis</td>
-                    <td>$redis</td>
-                    <td>Waljqiang\Wechat\Redis\Redis::class实例</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>protected Logger</td>
-                    <td>$logger</td>
-                    <td>Waljqiang\Wechat\Logger::classs实例</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>protected boolean</td>
-                    <td>$log</td>
-                    <td>是否启用日志</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>public static boolean</td>
-                    <td>$cache</td>
-                    <td>是否启用缓存</td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>public static integer</td>
-                    <td>$commonExpire</td>
-                    <td>缓存公共过期时间</td>
-                    <td></td>
+                    <td>Wechat实例</td>
+                    <td>Waljqiang\Wechat\Wechat</td>
                 </tr>
             </tbody>
         </table>
@@ -213,7 +170,7 @@
             </thead>
         </table>
         <div>
-        	<div class="methods_body">public __construct($wechat)</div>
+        	<div class="methods_body">public function __construct(Wechat $wechat)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -246,14 +203,14 @@
 	                    <td>Waljqiang\Wechat\Wechat</td>
 	                    <td>$wechat</td>
 	                    <td>Wechat实例</td>
-	                    <td>主要完成变量初始化工作</td>
+	                    <td></td>
 	                </tr>
 	            </tbody>
 	       	</table>
         </div>
 
         <div>
-        	<div class="methods_body">protected request($url,$method = 'GET',$options = [])</div>
+        	<div class="methods_body">public function setWechat(Wechat $wechat)</div>
 	        <table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -262,7 +219,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>调用Waljqiang\Wechat\Wechat::class的request方法发送http请求,内部使用</td>
+	                    <td>设置$wechat属性</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -277,29 +234,17 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td>类型</td>
-	                    <td>名称</td>
-	                    <td>说明</td>
-	                    <td>备注</td>
-	                </tr>
-	            	<tr>
-	                    <td>string</td>
-	                    <td>$url</td>
-	                    <td>http请求地址</td>
-	                    <td></td>
-	                </tr>
-	                <tr>
-	                    <td>string</td>
-	                    <td>$method</td>
-	                    <td>http请求方法</td>
-	                    <td>默认为GET</td>
-	                </tr>
-	                <tr>
-	                    <td>array</td>
-	                    <td>$options</td>
-	                    <td>GuzzleHttp\Client请求参数</td>
-	                    <td>默认为[]</td>
-	                </tr>
+                        <td>类型</td>
+                        <td>名称</td>
+                        <td>说明</td>
+                        <td>备注</td>
+                    </tr>
+                    <tr>
+                        <td>Waljqiang\Wechat\Wechat</td>
+                        <td>$wechat</td>
+                        <td>Wechat实例</td>
+                        <td></td>
+                    </tr>
 	            </tbody>
 	       	</table>
 	       	<table class="tbl_params">
@@ -310,9 +255,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-无
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -332,12 +275,6 @@
 	                    <td>说明</td>
 	                    <td>备注</td>
 	                </tr>
-	            	<tr>
-	                    <td>array</td>
-	                    <td></td>
-	                    <td>http请求结果</td>
-	                    <td></td>
-	                </tr>
 	            </tbody>
 	       	</table>
 	       	<table class="tbl_params">
@@ -348,9 +285,7 @@
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-无
-	                    </pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>

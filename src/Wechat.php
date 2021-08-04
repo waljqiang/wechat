@@ -6,6 +6,7 @@ use Waljqiang\Wechat\Logger;
 use GuzzleHttp\Client;
 use Waljqiang\Wechat\Decryption\Decrypt;
 use Waljqiang\Wechat\Exceptions\WechatException;
+use Waljqiang\Wechat\Pay;
 
 /**
  * 公众号处理类
@@ -14,12 +15,11 @@ use Waljqiang\Wechat\Exceptions\WechatException;
  * @version 1.0
  * @link https://github.com/waljqiang/wechat.git
  * @method 
- * void init($appid,$secret);初始化公众号使用，当不需要使用配置文件中的公众号时，调用其他方法前必须先使用该方法
+ * void init($appid,$appSecret);初始化公众号使用，当不需要使用配置文件中的公众号时，调用其他方法前必须先使用该方法
  * string getAccessToken();获取公众号访问凭证access_token
  * string getAppid();返回公众号使用的appid
- * string getSecret();返回公众号使用的secret
- * string getPublishAccount();返回全网测试账号
- * array request($url,$method = 'GET',$options = []);发送http请求
+ * string getAppSecret();返回公众号使用的secret
+ * array request($url,$method = "GET",$data = [],$header = [])发送http请求
  *
  * 用户管理相关(Account)
  * string getQrcode($str,$type = "QR_SCENE",$expire = 30);获取公众号二维码
@@ -129,6 +129,12 @@ class Wechat{
 	private $decrypt;
 
 	/**
+	 * Waljqiang\Wechat\Pay
+	 * 支付类
+	 */
+	private $pay;
+
+	/**
 	 * 微信公众号接口调用凭证
 	 */
 	private $accessToken;
@@ -137,6 +143,13 @@ class Wechat{
 	 */
 	private $handles;
 
+	/**
+	 * 功能描述
+	 *
+	 * @param Waljqiang\Wechat\Redis  $redis
+	 * @param Waljqiang\Wechat\Logger $logger
+	 * @param array $config
+	 */
 	public function __construct(Redis $redis,Logger $logger,$config){
 		if(!empty(array_diff(["appid","appSecret","encodingAesKey","token"],array_keys($config)))){
 			throw new WechatException("Missing required attribute",WechatException::ATTRIBUTEMISS);
@@ -171,6 +184,10 @@ class Wechat{
 		return $this;
 	}
 
+	public function setPay($config){
+		$this->pay = new Pay($config);
+	}
+
 	/**
 	 * 获取access_token
 	 *
@@ -201,12 +218,16 @@ class Wechat{
 		return $this->redis;
 	}
 
+	public function getLogger(){
+		return $this->logger;
+	}
+
 	public function getDecrypt(){
 		return $this->decrypt;
 	}
 
-	public function getLogger(){
-		return $this->logger;
+	public function getPay(){
+		return $this->pay;
 	}
 
 	/**
@@ -259,6 +280,7 @@ class Wechat{
 				return call_user_func_array([$handle,$method],$args);
 			}
 		}
+		throw new WechatException("Unsupport method",WechatException::UNSUPPORTMETHOD);
 	}
 
 	private function loaderHandles(){

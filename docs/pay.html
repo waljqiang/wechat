@@ -10,11 +10,11 @@
 <body>
 	<div id="box_opration" class="layout_main_top">
 		<div class="main_header">Namespace</div>
-        <div class="main_body">Waljqiang\Wechat\Handles</div>
+        <div class="main_body">Waljqiang\Wechat</div>
 	</div>
     <div id="box_opration" class="layout_main_top">
         <div class="main_header">class</div>
-        <div class="main_body">class Pay extends <a href="./base.html" onclick="showParent('#wechat','Base::class')">Base</a></div>
+        <div class="main_body">class Pay</div>
         <div class="main_body">扫码支付,JSAPI支付,H5支付</div>
     </div>
     
@@ -124,7 +124,26 @@
             </tbody>
         </table>
     </div>
-
+     <div id="box_expresion" class="layout_main_middle">
+        <table class="tbl_params">
+            <thead class="thead_params">
+                <tr>
+                    <td width="15%">Properties</td>
+                    <td width="30%"></td>
+                    <td width="35%"></td>
+                    <td></td>         
+                </tr>
+            </thead>
+            <tbody class="tbody_params">
+                <tr>
+                    <td>private</td>
+                    <td>$config</td>
+                    <td>微信支付配置项</td>
+                    <td>包括appid,mch_id,key,appsecret,notify_url</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div id="box_expresion" class="layout_main_middle">
         <table class="tbl_params">
             <thead class="thead_params">
@@ -137,7 +156,179 @@
             </thead>
         </table>
         <div>
-        	<div class="methods_body">public unifiedOrder($data,$payConfig = [],$timeOut = 60)</div>
+        	<div class="methods_body">public function __construct($config)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>构造函数</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>$config</td>
+	                    <td>微信支付配置参数</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+$config = [
+	"appid" => "wxdaa43d75b815f44e",//微信分配的公众账号ID（企业号corpid即为此appId)
+	"mch_id" => "1347427701",//微信支付分配的商户号
+	"key" => "otDEIs5YfaplAzvzXS5uBVFS7VD8rb12",
+	"appsecret" => "3343b17da99cbd77d32d1d18f68f739a",
+	"notify_url" => "http://www.yowifi.net/Wechat/wxpayh5",//接收微信支付异步通知回调地址,通知url必须为直接可访问的url,不能携带参数
+];
+$wechatPay = new Pay($config);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>无</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+        <div>
+        	<div class="methods_body">public function setPayConfig($config)</div>
+	  		<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>说明</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>设置微信支付配置参数</td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	 <table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td>类型</td>
+	                    <td>名称</td>
+	                    <td>说明</td>
+	                    <td>备注</td>
+	                </tr>
+	                <tr>
+	                    <td>array</td>
+	                    <td>$config</td>
+	                    <td>微信支付配置参数</td>
+	                    <td></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>调用示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	                <tr><td><pre>
+$config = [
+	"appid" => "wxdaa43d75b815f44e",//微信分配的公众账号ID（企业号corpid即为此appId)
+	"mch_id" => "1347427701",//微信支付分配的商户号
+	"key" => "otDEIs5YfaplAzvzXS5uBVFS7VD8rb12",
+	"appsecret" => "3343b17da99cbd77d32d1d18f68f739a",
+	"notify_url" => "http://www.yowifi.net/Wechat/wxpayh5",//接收微信支付异步通知回调地址,通知url必须为直接可访问的url,不能携带参数
+];
+$wechatPay->setPayConfig($config);
+	                    </pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td width="10%">返回参数说明</td>
+	                    <td width="10%"></td>
+	                    <td width="20%"></td>
+	                    <td></td>         
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	
+	            </tbody>
+	       	</table>
+	       	<table class="tbl_params">
+	            <thead class="thead_params">
+	                <tr>
+	                    <td>返回参数示例</td>       
+	                </tr>
+	            </thead>
+	            <tbody class="tbody_params">
+	            	<tr>
+	                    <td><pre>无</pre></td>
+	                </tr>
+	            </tbody>
+	       	</table>
+        </div>
+        <div>
+        	<div class="methods_body">public function unifiedOrder($data,$payConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -349,7 +540,7 @@ $data = [
 	"trade_type" => "NATIVE",
 	"product_id" => "12235413214070356458058"
 ];
-Wechat::getInstance()->unifiedOrder($data);
+$wechatPay->unifiedOrder($data);
 	                    </pre></td>
 	                </tr>
 	                <tr><td><pre>
@@ -363,7 +554,7 @@ $data = [
 	"trade_type" => "JSAPI",
 	"openid" => "oUpF8uMuAJO_M2pxb1Q9zNjWeS6o"
 ];
-Wechat::getInstance()->unifiedOrder($data);
+$wechatPay->unifiedOrder($data);
 	                    </pre></td>
 	                </tr>
 	                <tr><td><pre>
@@ -383,7 +574,7 @@ $data = [
 	    ]
 	]
 ];
-Wechat::getInstance()->unifiedOrder($data);
+$wechatPay->unifiedOrder($data);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -519,7 +710,7 @@ H5示例:
         </div>
 
         <div>
-        	<div class="methods_body">public orderQuery($data,$payConfig = [],$timeOut = 60)</div>
+        	<div class="methods_body">public function orderQuery($data,$payConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -532,6 +723,9 @@ H5示例:
 	                </tr>
 	                <tr>
 	                    <td>支持NATIVE</td>
+	                </tr>
+	                <tr>
+	                    <td>由__call方法调用Waljqiang\Wechat\Pay\WxPay的orderQuery方法</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -591,7 +785,7 @@ $data = [
 	"transaction_id" => "1009660380201506130728806387",
 	"out_trade_no" => "20150806125346",
 ];
-Wechat::getInstance()->orderQuery($data);
+$wechatPay->orderQuery($data);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -798,7 +992,7 @@ Wechat::getInstance()->orderQuery($data);
         </div>
 
         <div>
-        	<div class="methods_body">public closeOrder($outTradeNo,$wxPayConfig = [],$timeOut = 60)</div>
+        	<div class="methods_body">public function closeOrder($outTradeNo,$wxPayConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -811,6 +1005,9 @@ Wechat::getInstance()->orderQuery($data);
 	                </tr>
 	                <tr>
 	                    <td>支持NATIVE</td>
+	                </tr>
+	                <tr>
+	                    <td>由__call方法调用Waljqiang\Wechat\Pay\WxPay的orderQuery方法</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -860,7 +1057,7 @@ Wechat::getInstance()->orderQuery($data);
 	            </thead>
 	            <tbody class="tbody_params">
 	                <tr><td><pre>
-Wechat::getInstance()->closeOrder(["out_trade_no" => "20150806125346"]);
+$wechatPay->closeOrder(["out_trade_no" => "20150806125346"]);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -929,7 +1126,7 @@ Wechat::getInstance()->closeOrder(["out_trade_no" => "20150806125346"]);
         </div>
 
         <div>
-        	<div class="methods_body">public refund($data,$wxPayConfig = [],$timeOut = 60)</div>
+        	<div class="methods_body">public function refund($data,$wxPayConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -945,6 +1142,9 @@ Wechat::getInstance()->closeOrder(["out_trade_no" => "20150806125346"]);
 	                </tr>
 	                <tr>
 	                    <td>支持NATIVE</td>
+	                </tr>
+	                <tr>
+	                    <td>由__call方法调用Waljqiang\Wechat\Pay\WxPay的orderQuery方法</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -1049,7 +1249,7 @@ $data = [
 	"total_fee" => 100,
 	"refund_fee" => 100
 ];
-Wechat::getInstance()->refund($data);
+$wechatPay->refund($data);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -1213,7 +1413,7 @@ Wechat::getInstance()->refund($data);
         </div>
 
         <div>
-        	<div class="methods_body">public refundQuery($data,$wxPayConfig = [],$timeOut = 60)</div>
+        	<div class="methods_body">public function refundQuery($data,$wxPayConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -1226,6 +1426,9 @@ Wechat::getInstance()->refund($data);
 	                </tr>
 	                <tr>
 	                    <td>支持NATIVE</td>
+	                </tr>
+	                <tr>
+	                    <td>由__call方法调用Waljqiang\Wechat\Pay\WxPay的orderQuery方法</td>
 	                </tr>
 	            </tbody>
 	       	</table>
@@ -1290,7 +1493,7 @@ Wechat::getInstance()->refund($data);
 $data = [
 	"transaction_id" => "1008450740201411110005820873"
 ];
-Wechat::getInstance()->refundQuery($data);
+$wechatPay->refundQuery($data);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -1504,7 +1707,7 @@ Wechat::getInstance()->refundQuery($data);
         </div>
 
         <div>
-        	<div class="methods_body">public downloadBill($data,$wxPayConfig = [],$timeOut = 60)</div>
+        	<div class="methods_body">public function downloadBill($data,$wxPayConfig = [],$timeOut = 60)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -1517,6 +1720,9 @@ Wechat::getInstance()->refundQuery($data);
 	                </tr>
 	                <tr>
 	                    <td>支持NATIVE</td>
+	                </tr>
+	                <tr>
+	                    <td>由__call方法调用Waljqiang\Wechat\Pay\WxPay的orderQuery方法</td>
 	                </tr>
 	                <tr>
 	                    <td style="color:#DC143C">微信侧未成功下单的交易不会出现在对账单中.支付成功后撤销的交易会出现在对账单中,跟原支付单订单号一致</td>
@@ -1584,7 +1790,7 @@ Wechat::getInstance()->refundQuery($data);
 $data = [
 	"transaction_id" => "1008450740201411110005820873"
 ];
-Wechat::getInstance()->refundQuery($data);
+$wechatPay->refundQuery($data);
 	                    </pre></td>
 	                </tr>
 	            </tbody>
@@ -1612,9 +1818,7 @@ Wechat::getInstance()->refundQuery($data);
 	            </thead>
 	            <tbody class="tbody_params">
 	            	<tr>
-	                    <td><pre>
-无
-	                	</pre></td>
+	                    <td><pre>无</pre></td>
 	                </tr>
 	            </tbody>
 	       	</table>
