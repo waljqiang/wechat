@@ -112,11 +112,11 @@ class Wechat{
 	private $token;
 
 	/**
-	 * Predis\Client
+	 * Waljqiang\Wechat\Redis
 	 */
 	private $redis;
 	/**
-	 * Monolog\Logger
+	 * Waljqiang\Wechat\Logger
 	 */
 	private $logger;
 	/**
