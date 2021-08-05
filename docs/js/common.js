@@ -17,5 +17,5 @@ function showParent(obj, className){
 
 function showSelect(obj){
 	$("li a").removeClass("selecta");
-	$(this).find("a").addClass("selecta");
+	$(obj).addClass("selecta");
 }

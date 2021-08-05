@@ -254,6 +254,7 @@ class Wechat{
 				if(!is_null($result = @json_decode($result,true))){
 					$this->logger->log("Request " . $url . " response[" . json_encode($result) . "]",\Monolog\Logger::DEBUG);
 					if(isset($result["errcode"]) && $result["errcode"] != 0){
+						$this->logger->log("Request " . $url . " response[" . json_encode($result) . "]",\Monolog\Logger::ERROR);
 						throw new WechatException($result["errmsg"],$result["errcode"]);
 					}
 					return $result;
