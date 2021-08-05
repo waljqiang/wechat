@@ -272,6 +272,15 @@ class Wechat{
 		}
 	}
 
+	public function join($signature,$timestamp,$nonce,$echostr){
+		$newSignature = $this->getDecrypt()->getSignature([$this->token,$timestamp,$nonce]);
+		if($signature == $newSignature){
+			echo $echostr;
+		}
+		@ob_flush();
+        @flush();
+	}
+
 	public function __call($method,$args){
 		if(!$this->accessToken){
 			$this->getAccessToken();

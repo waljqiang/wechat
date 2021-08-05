@@ -34,10 +34,10 @@ class Receive extends Message{
             $obj = json_decode(json_encode($obj),true);
             $res = $obj;
             //开放平台全网发布测试
-            if($obj["ToUserName"] == $this->wechat->publish_account){
+            /*if($obj["ToUserName"] == $this->wechat->publish_account){
                 $this->testPublish($obj,$timestamp,$nonce);
                 exit(-1);
-            }
+            }*/
 
             switch ($obj["MsgType"]) {
                 case self::TEXT:

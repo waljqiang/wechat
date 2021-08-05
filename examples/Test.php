@@ -14,6 +14,14 @@ try{
 	]);
 	//$wechat->init($wechatConfig["appid"],$wechatConfig["appSecret"]);
 
+	//接入指引,将微信公众平台发送get请求中的参数传入join方法即可
+	//http://xxxxxx?signature=ec8afbdef5c1834e79f08b72c6b914e4ab0af6f0&timestamp=1409304348&nonce=123456&echostr=abcdef
+	$signature = "ec8afbdef5c1834e79f08b72c6b914e4ab0af6f0";
+	$timestamp = 1409304348;
+	$nonce = 123456;
+	$echostr = "abcdef";
+	$wechat->join($signature,$timestamp,$nonce,$echostr);
+
 	$accessToken = $wechat->getAccessToken();
 	var_dump($accessToken);
 
