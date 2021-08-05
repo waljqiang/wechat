@@ -246,24 +246,21 @@ class Wechat{
 				array_push($body,["headers" => $header]);
 			}
 			if(!empty($data)){
-				array_merge($body,$data);
+				$body = array_merge($body,$data);
 			}
 			$response = $this->httpClient->request($method,$url,$body);
 			if($response->getStatusCode() == 200){
 				$result = $response->getBody();
 				if(!is_null($result = @json_decode($result,true))){
-					$this->logger->log("Request " . $url . " response[" . json_encode($result) . "]",\Monolog\Logger::DEBUG);
+					$this->logger->log("Request " . $url . "with method[" . $method . "]body[" . json_encode($body) . "] response[" . json_encode($result) . "]",\Monolog\Logger::DEBUG);
 					if(isset($result["errcode"]) && $result["errcode"] != 0){
-						$this->logger->log("Request " . $url . " response[" . json_encode($result) . "]",\Monolog\Logger::ERROR);
 						throw new WechatException($result["errmsg"],$result["errcode"]);
 					}
 					return $result;
 				}else{
-					$this->logger->log("Explain response failure",\Monolog\Logger::ERROR);
 					throw new WechatException("Explain response failure",WechatException::HTTPRESPONSEEXPLAINFAILURE);
 				}
 			}else{
-				$this->logger->log("Request " . $url . " Failure, caused:" . $e->getMessage(),\Monolog\Logger::ERROR);
 				throw new WechatException($e->getMessage(),WechatException::HTTPREQUESTERROR);
 			}
 		}catch(\Exception $e){
