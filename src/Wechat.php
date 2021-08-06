@@ -174,7 +174,7 @@ class Wechat{
 	 * @param  string $appSecret 微信公众号appSecret
 	 * @return void
 	 */
-	public function init($appid,$appSecret){
+	public function init($appid,$appSecret = ""){
 		$this->appid = $appid;
 		$this->appSecret = $appSecret;
 		$this->decrypt->init($this->token,$this->encodingAesKey,$this->appid);
@@ -194,15 +194,13 @@ class Wechat{
 	 * @return [type] [description]
 	 */
 	public function getAccessToken(){
-		if(!$this->accessToken){
-			$res = $this->redis->getValues(self::ACCESSTOKEN . $this->appid);
-			if(empty($res)){
-				$url = sprintf($this->api["access_token"],$this->appid,$this->appSecret);
-				$res = $this->request($url);
-				$this->redis->setValues(self::ACCESSTOKEN . $this->appid,$res,$res["expires_in"] - self::$pre_expire_in);
-			}
-			$this->accessToken = $res["access_token"];
+		$res = $this->redis->getValues(self::ACCESSTOKEN . $this->appid);
+		if(empty($res)){
+			$url = sprintf($this->api["access_token"],$this->appid,$this->appSecret);
+			$res = $this->request($url);
+			$this->redis->setValues(self::ACCESSTOKEN . $this->appid,$res,$res["expires_in"] - self::$pre_expire_in);
 		}
+		$this->accessToken = $res["access_token"];
 		return $this->accessToken;
 	}
 
@@ -279,9 +277,7 @@ class Wechat{
 	}
 
 	public function __call($method,$args){
-		if(!$this->accessToken){
-			$this->getAccessToken();
-		}
+		$this->getAccessToken();
 		foreach ($this->handles as $key => $handle){
 			if(method_exists($handle,$method)){
 				return call_user_func_array([$handle,$method],$args);
