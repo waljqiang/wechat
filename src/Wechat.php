@@ -277,7 +277,6 @@ class Wechat{
 	}
 
 	public function __call($method,$args){
-		$this->getAccessToken();
 		foreach ($this->handles as $key => $handle){
 			if(method_exists($handle,$method)){
 				return call_user_func_array([$handle,$method],$args);
