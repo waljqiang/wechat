@@ -31,7 +31,7 @@
         </table>
 
         <div>
-        	<div class="methods_body">public function extract($xmltext)</div>
+        	<div class="methods_body">public function extract($xmltext,$property = LIBXML_NOCDATA)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -64,6 +64,12 @@
 	                    <td>string</td>
 	                    <td>$xmltext</td>
 	                    <td>待提取的xml字符串</td>
+	                    <td></td>
+	                </tr>
+	                <tr>
+	                    <td>string</td>
+	                    <td>$property</td>
+	                    <td>规定附加的 Libxml 参数，具体参考simplexml_load_string方法</td>
 	                    <td></td>
 	                </tr>
 	            </tbody>
