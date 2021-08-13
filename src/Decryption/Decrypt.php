@@ -129,7 +129,7 @@ class Decrypt{
 		}
 
 		$encrypt = $array["Encrypt"];
-		$touser_name = $array["ToUserName"];
+		$touser_name = @$array["ToUserName"];
 
 		//验证安全签名
 		$msgSignature = $this->getSignature([$this->token, $timestamp, $nonce, $encrypt]);
