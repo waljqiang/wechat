@@ -60,7 +60,7 @@ class Decrypt{
 	 */
 	public function encryptMsg($content, $timestamp = null, $nonce = null){
 		if(empty($this->appId)){
-			throw new WechatException("The crypter is not init",WechatException::$DECRYPTERNOINIT);
+			throw new WechatException("The crypter is not init",WechatException::DECRYPTERNOINIT);
 		}
 		$pc = new Prpcrypt($this->encodingAesKey);
 
@@ -111,31 +111,31 @@ class Decrypt{
 	 */
 	public function decryptMsg($signature,$timestamp = null,$nonce,$encryptMsg){
 		if(empty($this->appId)){
-			throw new WechatException("The crypter is not init",WechatException::$DECRYPTERNOINIT);
+			throw new WechatException("The crypter is not init",WechatException::DECRYPTERNOINIT);
 		}
 
 		if (strlen($this->encodingAesKey) != 43) {
-			throw new WechatException("EncodingAesKey invalid",WechatException::$AESKEYINVALID);
+			throw new WechatException("EncodingAesKey invalid",WechatException::AESKEYINVALID);
 		}
 
 		$pc = new Prpcrypt($this->encodingAesKey);
 
 		//提取密文
 		$xmlparse = new XMLParse;
-		$array = $xmlparse->extract($encryptMsg,["Encrypt","ToUserName"]);
+		$array = $xmlparse->extract($encryptMsg);
 
 		if ($timestamp == null) {
 			$timestamp = Carbon::now()->timestamp;
 		}
 
-		$encrypt = $array["Encrypt"];
+		$encrypt = @$array["Encrypt"];
 		$touser_name = @$array["ToUserName"];
 
 		//验证安全签名
 		$msgSignature = $this->getSignature([$this->token, $timestamp, $nonce, $encrypt]);
 		
 		if ($signature != $msgSignature) {
-			throw new WechatException("Signature error",WechatException::$SIGNATUREERROR);
+			throw new WechatException("Signature error",WechatException::SIGNATUREERROR);
 		}
 
 		return $pc->decrypt($encrypt, $this->appId);

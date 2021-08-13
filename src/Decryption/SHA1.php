@@ -19,7 +19,7 @@ class SHA1{
 			$str = implode($data);
 			return sha1($str);
 		}catch (Exception $e) {
-			throw new WechatException($e->getMessage(),WechatException::$SIGNATUREERROR);
+			throw new WechatException($e->getMessage(),WechatException::SIGNATUREERROR);
 		}
 	}
 

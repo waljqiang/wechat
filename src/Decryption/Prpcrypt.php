@@ -43,7 +43,7 @@ class Prpcrypt{
 			//使用BASE64对加密后的字符串进行编码
 			return base64_encode($encrypted);
 		} catch (Exception $e) {
-			throw new WechatException($e->getMessage(),WechatException::$ENCODINGFAILURE);
+			throw new WechatException($e->getMessage(),WechatException::ENCODINGFAILURE);
 		}
 	}
 
@@ -66,7 +66,7 @@ class Prpcrypt{
 			mcrypt_generic_deinit($module);
 			mcrypt_module_close($module);
 		} catch (Exception $e) {
-			throw new WechatException($e->getMessage(),WechatException::$DECRYPTFAILURE);
+			throw new WechatException($e->getMessage(),WechatException::DECRYPTFAILURE);
 		}
 
 
@@ -83,10 +83,10 @@ class Prpcrypt{
 			$xml_content = substr($content, 4, $xml_len);
 			$from_appid = substr($content, $xml_len + 4);
 		} catch (Exception $e) {
-			throw new WechatException($e->getMessage(),WechatException::$BUFFERINIVALID);
+			throw new WechatException($e->getMessage(),WechatException::BUFFERINIVALID);
 		}
 		if ($from_appid != $appid){
-			throw new WechatException($e->getMessage(),WechatException::$APPIDINVALID);
+			throw new WechatException($e->getMessage(),WechatException::APPIDINVALID);
 		}
 		return $xml_content;
 	}

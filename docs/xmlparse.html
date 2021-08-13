@@ -31,7 +31,7 @@
         </table>
 
         <div>
-        	<div class="methods_body">public function extract($xmltext,$keys = ["Encrypt","ToUserName"])</div>
+        	<div class="methods_body">public function extract($xmltext,$option = LIBXML_NOCDATA)</div>
 	  		<table class="tbl_params">
 	            <thead class="thead_params">
 	                <tr>
@@ -68,8 +68,8 @@
 	                </tr>
 	                <tr>
 	                    <td>string</td>
-	                    <td>$keys</td>
-	                    <td>需要提取出的key值</td>
+	                    <td>$option</td>
+	                    <td>规定附加的 Libxml 参数，请参阅simplexml_load_string</td>
 	                    <td></td>
 	                </tr>
 	            </tbody>
