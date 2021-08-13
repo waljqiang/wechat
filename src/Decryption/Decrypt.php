@@ -122,7 +122,7 @@ class Decrypt{
 
 		//提取密文
 		$xmlparse = new XMLParse;
-		$array = $xmlparse->extract($encryptMsg);
+		$array = $xmlparse->extract($encryptMsg,["Encrypt","ToUserName"]);
 
 		if ($timestamp == null) {
 			$timestamp = Carbon::now()->timestamp;

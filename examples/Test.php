@@ -153,7 +153,7 @@ try{
 
 
 	$xmlParse = new Xmlparse;
-	$obj = $xmlParse->extract($res);
+	$obj = $xmlParse->extract($res,["MsgSignature","TimeStamp","Nonce","Encrypt"]);
 	$format = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><Encrypt><![CDATA[%s]]></Encrypt></xml>";
 	$from_xml = sprintf($format,$obj["Encrypt"]);
 	$decryptMsg = $wechat->getDecrypt()->decryptMsg($obj["MsgSignature"],$obj["TimeStamp"],$obj["Nonce"],$from_xml);
@@ -196,7 +196,7 @@ try{
 	echo "</br>";
 
 	$xmlParse = new Xmlparse;
-	$obj = $xmlParse->extract($encrypt);
+	$obj = $xmlParse->extract($encrypt,["MsgSignature","TimeStamp","Nonce","Encrypt"]);
 	$format = "<xml><ToUserName><![CDATA[toUser]]></ToUserName><Encrypt><![CDATA[%s]]></Encrypt></xml>";
 	$msg_sigature = $obj["MsgSignature"];
     $msg_timeStamp = $obj["TimeStamp"];
