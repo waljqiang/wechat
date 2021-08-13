@@ -15,7 +15,7 @@ class XmlParse{
 	 * @param string $xmltext 待提取的xml字符串
 	 * @return string 提取出的加密消息字符串
 	 */
-	public function extract($xmltext){
+	public function extract($xmltext,$property = LIBXML_NOCDATA){
 		try{
 			/*$res = [];
 			$xml = new \DOMDocument();
