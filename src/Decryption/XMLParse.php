@@ -21,7 +21,7 @@ class XmlParse{
 			$xml = new \DOMDocument();
 			$xml->loadXML($xmltext);
 			foreach ($keys as $key) {
-				$res[$key] = $xml->getElementsByTagName($key)->item(0)->nodeValue;
+				$res[$key] = @$xml->getElementsByTagName($key)->item(0)->nodeValue;
 			}
 			return $res;
 		}catch(Exception $e) {
